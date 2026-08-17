@@ -1,0 +1,52 @@
+{
+  "region": "barmer",
+  "region_label": "Barmer (Thar Desert)",
+  "generated_at": "2026-08-17T19:25:41+00:00",
+  "target": "spi3",
+  "test_period": [
+    "2020",
+    "2024"
+  ],
+  "n_test_windows": 58,
+  "test_target_range": [
+    "2020-01-01",
+    "2024-12-01"
+  ],
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.4232,
+      "mae": 1.0917,
+      "r2": -0.0162,
+      "rmse_climatology": 1.4133,
+      "skill_score": -0.007
+    },
+    "t+2": {
+      "rmse": 1.415,
+      "mae": 1.0817,
+      "r2": -0.0154,
+      "rmse_climatology": 1.4059,
+      "skill_score": -0.0065
+    },
+    "t+3": {
+      "rmse": 1.4104,
+      "mae": 1.0838,
+      "r2": -0.007,
+      "rmse_climatology": 1.4071,
+      "skill_score": -0.0023
+    }
+  },
+  "averaged": {
+    "rmse": 1.4162,
+    "mae": 1.0857,
+    "r2": -0.0129,
+    "rmse_climatology": 1.4088,
+    "skill_score": -0.0053
+  },
+  "targets_reference": {
+    "r2": "> 0.80",
+    "rmse": "< 0.5 SPI units",
+    "skill_score": "> 0.30"
+  },
+  "n_train_windows": 358,
+  "n_val_windows": 46
+}

@@ -1,0 +1,52 @@
+{
+  "region": "rajasthan",
+  "region_label": "Rajasthan (Jaipur centroid)",
+  "generated_at": "2026-08-17T19:25:40+00:00",
+  "target": "spi3",
+  "test_period": [
+    "2020",
+    "2024"
+  ],
+  "n_test_windows": 58,
+  "test_target_range": [
+    "2020-01-01",
+    "2024-12-01"
+  ],
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.0641,
+      "mae": 0.8547,
+      "r2": -0.2024,
+      "rmse_climatology": 1.0647,
+      "skill_score": 0.0005
+    },
+    "t+2": {
+      "rmse": 1.0711,
+      "mae": 0.8622,
+      "r2": -0.2109,
+      "rmse_climatology": 1.0697,
+      "skill_score": -0.0013
+    },
+    "t+3": {
+      "rmse": 1.0691,
+      "mae": 0.8652,
+      "r2": -0.2072,
+      "rmse_climatology": 1.0735,
+      "skill_score": 0.0041
+    }
+  },
+  "averaged": {
+    "rmse": 1.0681,
+    "mae": 0.8607,
+    "r2": -0.2068,
+    "rmse_climatology": 1.0693,
+    "skill_score": 0.0011
+  },
+  "targets_reference": {
+    "r2": "> 0.80",
+    "rmse": "< 0.5 SPI units",
+    "skill_score": "> 0.30"
+  },
+  "n_train_windows": 358,
+  "n_val_windows": 46
+}

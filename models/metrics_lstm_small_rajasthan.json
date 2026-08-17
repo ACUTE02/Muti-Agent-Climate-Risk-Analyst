@@ -1,0 +1,59 @@
+{
+  "model": "lstm_small",
+  "region": "rajasthan",
+  "region_label": "Rajasthan (Jaipur centroid)",
+  "generated_at": "2026-08-17T20:57:51+00:00",
+  "target": "spi3",
+  "test_period": [
+    "2020",
+    "2024"
+  ],
+  "n_test_windows": 58,
+  "test_target_range": [
+    "2020-01-01",
+    "2024-12-01"
+  ],
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.029,
+      "mae": 0.8134,
+      "r2": -0.1243,
+      "rmse_climatology": 1.0647,
+      "skill_score": 0.0336
+    },
+    "t+2": {
+      "rmse": 1.0746,
+      "mae": 0.8618,
+      "r2": -0.2188,
+      "rmse_climatology": 1.0697,
+      "skill_score": -0.0046
+    },
+    "t+3": {
+      "rmse": 1.0617,
+      "mae": 0.8619,
+      "r2": -0.1904,
+      "rmse_climatology": 1.0735,
+      "skill_score": 0.0111
+    }
+  },
+  "averaged": {
+    "rmse": 1.0553,
+    "mae": 0.8457,
+    "r2": -0.1779,
+    "rmse_climatology": 1.0693,
+    "skill_score": 0.0132
+  },
+  "targets_reference": {
+    "r2": "> 0.80",
+    "rmse": "< 0.5 SPI units",
+    "skill_score": "> 0.30"
+  },
+  "n_train_windows": 358,
+  "n_val_windows": 46,
+  "trainable_params": 1907,
+  "epochs_run": 30,
+  "val_loss_min": 0.999947726726532,
+  "val_loss_best_epoch": 15,
+  "climatology_val_mse": 1.0237,
+  "val_loss_beat_climatology": true
+}
