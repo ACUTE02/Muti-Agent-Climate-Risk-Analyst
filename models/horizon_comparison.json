@@ -1,0 +1,527 @@
+{
+  "generated_at": "2026-08-17T22:02:39+00:00",
+  "question": "For t+2 and t+3, does chaining the validated t+1 model beat predicting those horizons directly?",
+  "oni_limitation": "recursive steps hold ONI at its last observed value; a live system with a real ENSO forecast could do better",
+  "direct_lookback_selection": {
+    "rajasthan_t+2": {
+      "chosen": 12,
+      "mean_val_skill_by_lookback": {
+        "12": 0.0861,
+        "24": 0.0645,
+        "60": 0.0338
+      }
+    },
+    "rajasthan_t+3": {
+      "chosen": 24,
+      "mean_val_skill_by_lookback": {
+        "12": -0.0017,
+        "24": -0.0014,
+        "60": -0.0022
+      }
+    },
+    "barmer_t+2": {
+      "chosen": 12,
+      "mean_val_skill_by_lookback": {
+        "12": 0.1014,
+        "24": 0.0716,
+        "60": 0.0318
+      }
+    },
+    "barmer_t+3": {
+      "chosen": 12,
+      "mean_val_skill_by_lookback": {
+        "12": 0.0043,
+        "24": -0.0,
+        "60": -0.0078
+      }
+    }
+  },
+  "results": [
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "A",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.1254,
+      "mae": 0.9085,
+      "r2": -0.3366,
+      "rmse_climatology": 1.0697,
+      "skill_score": -0.052
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "A",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 1.0132,
+      "mae": 0.8166,
+      "r2": -0.0834,
+      "rmse_climatology": 1.0697,
+      "skill_score": 0.0529
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "B",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.0115,
+      "mae": 0.8044,
+      "r2": 0.0806,
+      "rmse_climatology": 1.0559,
+      "skill_score": 0.0421
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "B",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 0.962,
+      "mae": 0.7628,
+      "r2": 0.1684,
+      "rmse_climatology": 1.0559,
+      "skill_score": 0.089
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "C",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.0076,
+      "mae": 0.7802,
+      "r2": 0.2321,
+      "rmse_climatology": 1.1586,
+      "skill_score": 0.1304
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "C",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 1.0523,
+      "mae": 0.8123,
+      "r2": 0.1623,
+      "rmse_climatology": 1.1586,
+      "skill_score": 0.0918
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "D",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.1541,
+      "mae": 0.8454,
+      "r2": 0.0583,
+      "rmse_climatology": 1.1896,
+      "skill_score": 0.0298
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+2",
+      "window": "D",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 1.103,
+      "mae": 0.7856,
+      "r2": 0.1399,
+      "rmse_climatology": 1.1896,
+      "skill_score": 0.0728
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "A",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.4746,
+      "mae": 1.1377,
+      "r2": -1.2967,
+      "rmse_climatology": 1.0735,
+      "skill_score": -0.3736
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "A",
+      "approach": "direct",
+      "lookback": 24,
+      "alpha": 1000.0,
+      "n_test_windows": 58,
+      "rmse": 1.096,
+      "mae": 0.8854,
+      "r2": -0.2686,
+      "rmse_climatology": 1.0735,
+      "skill_score": -0.0209
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "B",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.3381,
+      "mae": 1.0397,
+      "r2": -0.6103,
+      "rmse_climatology": 1.0556,
+      "skill_score": -0.2676
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "B",
+      "approach": "direct",
+      "lookback": 24,
+      "alpha": 1000.0,
+      "n_test_windows": 58,
+      "rmse": 1.0627,
+      "mae": 0.8268,
+      "r2": -0.0157,
+      "rmse_climatology": 1.0556,
+      "skill_score": -0.0067
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "C",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.2044,
+      "mae": 0.992,
+      "r2": -0.0949,
+      "rmse_climatology": 1.1592,
+      "skill_score": -0.039
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "C",
+      "approach": "direct",
+      "lookback": 24,
+      "alpha": 100.0,
+      "n_test_windows": 58,
+      "rmse": 1.1956,
+      "mae": 0.9645,
+      "r2": -0.0788,
+      "rmse_climatology": 1.1592,
+      "skill_score": -0.0314
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "D",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.4067,
+      "mae": 1.055,
+      "r2": -0.4021,
+      "rmse_climatology": 1.1882,
+      "skill_score": -0.1839
+    },
+    {
+      "region": "rajasthan",
+      "horizon": "t+3",
+      "window": "D",
+      "approach": "direct",
+      "lookback": 24,
+      "alpha": 1000.0,
+      "n_test_windows": 58,
+      "rmse": 1.1869,
+      "mae": 0.8749,
+      "r2": 0.0018,
+      "rmse_climatology": 1.1882,
+      "skill_score": 0.0011
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "A",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.307,
+      "mae": 1.03,
+      "r2": 0.1336,
+      "rmse_climatology": 1.4059,
+      "skill_score": 0.0703
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "A",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 1.2857,
+      "mae": 0.9682,
+      "r2": 0.1616,
+      "rmse_climatology": 1.4059,
+      "skill_score": 0.0855
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "B",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 0.8712,
+      "mae": 0.6997,
+      "r2": -0.0409,
+      "rmse_climatology": 0.8595,
+      "skill_score": -0.0136
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "B",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 1.0,
+      "n_test_windows": 58,
+      "rmse": 0.8402,
+      "mae": 0.6666,
+      "r2": 0.0317,
+      "rmse_climatology": 0.8595,
+      "skill_score": 0.0224
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "C",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.2147,
+      "mae": 0.9096,
+      "r2": 0.0164,
+      "rmse_climatology": 1.2262,
+      "skill_score": 0.0093
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "C",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 10.0,
+      "n_test_windows": 58,
+      "rmse": 1.1749,
+      "mae": 0.8914,
+      "r2": 0.0799,
+      "rmse_climatology": 1.2262,
+      "skill_score": 0.0419
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "D",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 0.9164,
+      "mae": 0.6995,
+      "r2": 0.0426,
+      "rmse_climatology": 0.9558,
+      "skill_score": 0.0413
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+2",
+      "window": "D",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 0.1,
+      "n_test_windows": 58,
+      "rmse": 0.9318,
+      "mae": 0.7091,
+      "r2": 0.0102,
+      "rmse_climatology": 0.9558,
+      "skill_score": 0.0252
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "A",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.4443,
+      "mae": 1.1632,
+      "r2": -0.056,
+      "rmse_climatology": 1.4071,
+      "skill_score": -0.0264
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "A",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 1000.0,
+      "n_test_windows": 58,
+      "rmse": 1.4107,
+      "mae": 1.0826,
+      "r2": -0.0075,
+      "rmse_climatology": 1.4071,
+      "skill_score": -0.0026
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "B",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.0,
+      "mae": 0.8089,
+      "r2": -0.2923,
+      "rmse_climatology": 0.883,
+      "skill_score": -0.1324
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "B",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 0.1,
+      "n_test_windows": 58,
+      "rmse": 0.9583,
+      "mae": 0.7869,
+      "r2": -0.1868,
+      "rmse_climatology": 0.883,
+      "skill_score": -0.0852
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "C",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.3489,
+      "mae": 1.054,
+      "r2": -0.2011,
+      "rmse_climatology": 1.2329,
+      "skill_score": -0.0941
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "C",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 1000.0,
+      "n_test_windows": 58,
+      "rmse": 1.2436,
+      "mae": 0.972,
+      "r2": -0.0208,
+      "rmse_climatology": 1.2329,
+      "skill_score": -0.0087
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "D",
+      "approach": "recursive",
+      "lookback": 12,
+      "n_test_windows": 58,
+      "rmse": 1.0611,
+      "mae": 0.8408,
+      "r2": -0.2355,
+      "rmse_climatology": 0.9707,
+      "skill_score": -0.0931
+    },
+    {
+      "region": "barmer",
+      "horizon": "t+3",
+      "window": "D",
+      "approach": "direct",
+      "lookback": 12,
+      "alpha": 1.0,
+      "n_test_windows": 58,
+      "rmse": 1.0666,
+      "mae": 0.827,
+      "r2": -0.2486,
+      "rmse_climatology": 0.9707,
+      "skill_score": -0.0989
+    }
+  ],
+  "winners": {
+    "rajasthan_t+1": {
+      "method": "direct",
+      "lookback": 12,
+      "skill_score": 0.2622,
+      "rmse_window_a": 0.8918
+    },
+    "rajasthan_t+2": {
+      "method": "direct",
+      "lookback": 12,
+      "skill_score": 0.0766,
+      "rmse_window_a": 1.0132,
+      "mean_skill_by_approach": {
+        "recursive": 0.0376,
+        "direct": 0.0766
+      }
+    },
+    "rajasthan_t+3": {
+      "method": "direct",
+      "lookback": 24,
+      "skill_score": -0.0145,
+      "rmse_window_a": 1.096,
+      "mean_skill_by_approach": {
+        "recursive": -0.216,
+        "direct": -0.0145
+      }
+    },
+    "barmer_t+1": {
+      "method": "direct",
+      "lookback": 12,
+      "skill_score": 0.2053,
+      "rmse_window_a": 1.0986
+    },
+    "barmer_t+2": {
+      "method": "direct",
+      "lookback": 12,
+      "skill_score": 0.0438,
+      "rmse_window_a": 1.2857,
+      "mean_skill_by_approach": {
+        "recursive": 0.0268,
+        "direct": 0.0438
+      }
+    },
+    "barmer_t+3": {
+      "method": "direct",
+      "lookback": 12,
+      "skill_score": -0.0489,
+      "rmse_window_a": 1.4107,
+      "mean_skill_by_approach": {
+        "recursive": -0.0865,
+        "direct": -0.0489
+      }
+    }
+  }
+}

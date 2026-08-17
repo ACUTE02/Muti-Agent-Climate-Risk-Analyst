@@ -1,0 +1,11 @@
+tensorflow==2.21.0
+pandas>=2.2,<3
+numpy>=1.26
+scikit-learn>=1.5
+scipy>=1.13
+joblib>=1.4
+requests>=2.32
+matplotlib>=3.9
+langchain-core>=1.5,<2.0
+pytest>=8.0
+pyarrow>=16.0

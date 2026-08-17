@@ -1,0 +1,57 @@
+{
+  "production_window": "A",
+  "regions": {
+    "rajasthan": [
+      {
+        "horizon": "t+1",
+        "method": "direct",
+        "lookback": 12,
+        "skill_score": 0.2622,
+        "rmse_window_a": 0.8918,
+        "label": "validated"
+      },
+      {
+        "horizon": "t+2",
+        "method": "direct",
+        "lookback": 12,
+        "skill_score": 0.0766,
+        "rmse_window_a": 1.0132,
+        "label": "weak/directional"
+      },
+      {
+        "horizon": "t+3",
+        "method": "direct",
+        "lookback": 24,
+        "skill_score": -0.0145,
+        "rmse_window_a": 1.096,
+        "label": "no skill \u2014 shown for context only, do not rely on this figure"
+      }
+    ],
+    "barmer": [
+      {
+        "horizon": "t+1",
+        "method": "direct",
+        "lookback": 12,
+        "skill_score": 0.2053,
+        "rmse_window_a": 1.0986,
+        "label": "validated"
+      },
+      {
+        "horizon": "t+2",
+        "method": "direct",
+        "lookback": 12,
+        "skill_score": 0.0438,
+        "rmse_window_a": 1.2857,
+        "label": "weak/directional"
+      },
+      {
+        "horizon": "t+3",
+        "method": "direct",
+        "lookback": 12,
+        "skill_score": -0.0489,
+        "rmse_window_a": 1.4107,
+        "label": "no skill \u2014 shown for context only, do not rely on this figure"
+      }
+    ]
+  }
+}

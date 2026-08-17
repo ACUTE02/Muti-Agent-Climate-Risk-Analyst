@@ -1,0 +1,59 @@
+{
+  "model": "lstm_small",
+  "region": "barmer",
+  "region_label": "Barmer (Thar Desert)",
+  "generated_at": "2026-08-17T20:57:58+00:00",
+  "target": "spi3",
+  "test_period": [
+    "2020",
+    "2024"
+  ],
+  "n_test_windows": 58,
+  "test_target_range": [
+    "2020-01-01",
+    "2024-12-01"
+  ],
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.4097,
+      "mae": 1.0836,
+      "r2": 0.003,
+      "rmse_climatology": 1.4133,
+      "skill_score": 0.0026
+    },
+    "t+2": {
+      "rmse": 1.4014,
+      "mae": 1.0758,
+      "r2": 0.0041,
+      "rmse_climatology": 1.4059,
+      "skill_score": 0.0033
+    },
+    "t+3": {
+      "rmse": 1.4057,
+      "mae": 1.0762,
+      "r2": -0.0003,
+      "rmse_climatology": 1.4071,
+      "skill_score": 0.001
+    }
+  },
+  "averaged": {
+    "rmse": 1.4056,
+    "mae": 1.0785,
+    "r2": 0.0023,
+    "rmse_climatology": 1.4088,
+    "skill_score": 0.0023
+  },
+  "targets_reference": {
+    "r2": "> 0.80",
+    "rmse": "< 0.5 SPI units",
+    "skill_score": "> 0.30"
+  },
+  "n_train_windows": 358,
+  "n_val_windows": 46,
+  "trainable_params": 1907,
+  "epochs_run": 40,
+  "val_loss_min": 0.8153003454208374,
+  "val_loss_best_epoch": 25,
+  "climatology_val_mse": 0.8338,
+  "val_loss_beat_climatology": true
+}

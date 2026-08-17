@@ -1,0 +1,322 @@
+{
+  "generated_at": "2026-08-17T21:58:30+00:00",
+  "question": "Does the Phase-1.3 Ridge t+1 skill replicate across independent historical windows, or was 2020-2024 a favourable slice?",
+  "model": "ridge",
+  "horizon": "t+1",
+  "alphas_searched": [
+    0.1,
+    1,
+    10,
+    100,
+    1000
+  ],
+  "windows": {
+    "A": {
+      "train": [
+        "1980",
+        "2015"
+      ],
+      "val": [
+        "2016",
+        "2019"
+      ],
+      "test": [
+        "2020",
+        "2024"
+      ]
+    },
+    "B": {
+      "train": [
+        "1980",
+        "2010"
+      ],
+      "val": [
+        "2011",
+        "2014"
+      ],
+      "test": [
+        "2015",
+        "2019"
+      ]
+    },
+    "C": {
+      "train": [
+        "1980",
+        "2005"
+      ],
+      "val": [
+        "2006",
+        "2009"
+      ],
+      "test": [
+        "2010",
+        "2014"
+      ]
+    },
+    "D": {
+      "train": [
+        "1980",
+        "2000"
+      ],
+      "val": [
+        "2001",
+        "2004"
+      ],
+      "test": [
+        "2005",
+        "2009"
+      ]
+    }
+  },
+  "results": [
+    {
+      "region": "rajasthan",
+      "window": "A",
+      "train": [
+        "1980",
+        "2015"
+      ],
+      "val": [
+        "2016",
+        "2019"
+      ],
+      "test": [
+        "2020",
+        "2024"
+      ],
+      "horizon": "t+1",
+      "alpha": 10.0,
+      "val_mse": 0.8903,
+      "n_train_windows": 358,
+      "n_test_windows": 58,
+      "rmse": 0.9748,
+      "mae": 0.7935,
+      "r2": -0.0091,
+      "rmse_climatology": 1.0647,
+      "skill_score": 0.0844
+    },
+    {
+      "region": "rajasthan",
+      "window": "B",
+      "train": [
+        "1980",
+        "2010"
+      ],
+      "val": [
+        "2011",
+        "2014"
+      ],
+      "test": [
+        "2015",
+        "2019"
+      ],
+      "horizon": "t+1",
+      "alpha": 1000.0,
+      "val_mse": 0.8204,
+      "n_train_windows": 298,
+      "n_test_windows": 58,
+      "rmse": 1.0129,
+      "mae": 0.7745,
+      "r2": 0.0314,
+      "rmse_climatology": 1.0296,
+      "skill_score": 0.0163
+    },
+    {
+      "region": "rajasthan",
+      "window": "C",
+      "train": [
+        "1980",
+        "2005"
+      ],
+      "val": [
+        "2006",
+        "2009"
+      ],
+      "test": [
+        "2010",
+        "2014"
+      ],
+      "horizon": "t+1",
+      "alpha": 10.0,
+      "val_mse": 0.9849,
+      "n_train_windows": 238,
+      "n_test_windows": 58,
+      "rmse": 0.9385,
+      "mae": 0.7738,
+      "r2": 0.3329,
+      "rmse_climatology": 1.1579,
+      "skill_score": 0.1895
+    },
+    {
+      "region": "rajasthan",
+      "window": "D",
+      "train": [
+        "1980",
+        "2000"
+      ],
+      "val": [
+        "2001",
+        "2004"
+      ],
+      "test": [
+        "2005",
+        "2009"
+      ],
+      "horizon": "t+1",
+      "alpha": 100.0,
+      "val_mse": 0.6793,
+      "n_train_windows": 178,
+      "n_test_windows": 58,
+      "rmse": 1.1681,
+      "mae": 0.8212,
+      "r2": 0.0362,
+      "rmse_climatology": 1.1902,
+      "skill_score": 0.0186
+    },
+    {
+      "region": "barmer",
+      "window": "A",
+      "train": [
+        "1980",
+        "2015"
+      ],
+      "val": [
+        "2016",
+        "2019"
+      ],
+      "test": [
+        "2020",
+        "2024"
+      ],
+      "horizon": "t+1",
+      "alpha": 10.0,
+      "val_mse": 0.8829,
+      "n_train_windows": 358,
+      "n_test_windows": 58,
+      "rmse": 1.2276,
+      "mae": 0.9167,
+      "r2": 0.2438,
+      "rmse_climatology": 1.4133,
+      "skill_score": 0.1314
+    },
+    {
+      "region": "barmer",
+      "window": "B",
+      "train": [
+        "1980",
+        "2010"
+      ],
+      "val": [
+        "2011",
+        "2014"
+      ],
+      "test": [
+        "2015",
+        "2019"
+      ],
+      "horizon": "t+1",
+      "alpha": 10.0,
+      "val_mse": 1.0044,
+      "n_train_windows": 298,
+      "n_test_windows": 58,
+      "rmse": 0.7543,
+      "mae": 0.6344,
+      "r2": 0.1514,
+      "rmse_climatology": 0.8234,
+      "skill_score": 0.0839
+    },
+    {
+      "region": "barmer",
+      "window": "C",
+      "train": [
+        "1980",
+        "2005"
+      ],
+      "val": [
+        "2006",
+        "2009"
+      ],
+      "test": [
+        "2010",
+        "2014"
+      ],
+      "horizon": "t+1",
+      "alpha": 10.0,
+      "val_mse": 0.7994,
+      "n_train_windows": 238,
+      "n_test_windows": 58,
+      "rmse": 1.1176,
+      "mae": 0.8132,
+      "r2": 0.132,
+      "rmse_climatology": 1.1986,
+      "skill_score": 0.0675
+    },
+    {
+      "region": "barmer",
+      "window": "D",
+      "train": [
+        "1980",
+        "2000"
+      ],
+      "val": [
+        "2001",
+        "2004"
+      ],
+      "test": [
+        "2005",
+        "2009"
+      ],
+      "horizon": "t+1",
+      "alpha": 1000.0,
+      "val_mse": 1.3675,
+      "n_train_windows": 178,
+      "n_test_windows": 58,
+      "rmse": 0.9632,
+      "mae": 0.7178,
+      "r2": -0.0695,
+      "rmse_climatology": 0.9529,
+      "skill_score": -0.0108
+    }
+  ],
+  "verdicts": {
+    "rajasthan": {
+      "region": "rajasthan",
+      "n_windows": 4,
+      "n_positive": 4,
+      "positive_windows": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "threshold": "3 of 4",
+      "skill_by_window": {
+        "A": 0.0844,
+        "B": 0.0163,
+        "C": 0.1895,
+        "D": 0.0186
+      },
+      "mean_skill": 0.0772,
+      "confirmed": true
+    },
+    "barmer": {
+      "region": "barmer",
+      "n_windows": 4,
+      "n_positive": 3,
+      "positive_windows": [
+        "A",
+        "B",
+        "C"
+      ],
+      "threshold": "3 of 4",
+      "skill_by_window": {
+        "A": 0.1314,
+        "B": 0.0839,
+        "C": 0.0675,
+        "D": -0.0108
+      },
+      "mean_skill": 0.068,
+      "confirmed": true
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/raw/
+data/processed/
+*.chroma/
+reports/eval/*.json.tmp
+.DS_Store
+.pytest_cache/
+~$*.docx
+
+# Trained artifacts are regenerable with `python -m forecasting.train <region>`.
+# The measured evidence stays tracked; models, scalers and caches do not.
+# Filenames are region-suffixed since Phase 1.2, hence the globs.
+models/*
+!models/metrics_*.json
+!models/test_forecast_plot_*.png
+!models/training_history_*.json
+!models/region_comparison.md
+# Phase 1.3 ablation evidence (already matched by the globs above; spelled out
+# so the intent survives any future narrowing of them).
+!models/metrics_ridge_*.json
+!models/metrics_lstm_small_*.json
+!models/training_history_lstm_small_*.json
+# Phase 1.4 robustness evidence
+!models/rolling_window_check.json
+!models/metrics_t1_ridge.json
+# Phase 1.5 horizon evidence (the manifest is what the tool reads at runtime)
+!models/horizon_comparison.json
+!models/horizon_manifest.json
