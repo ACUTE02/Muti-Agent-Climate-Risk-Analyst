@@ -1,0 +1,172 @@
+{
+  "generated_at": "2026-08-18T22:02:23+00:00",
+  "what_this_measures": "Precision and recall of orchestrator/grounding.py's check_grounding() on a hand-labelled adversarial set. Positive class = a number that is fabricated and should be flagged. Fully offline and deterministic — no LLM involved in either the checker or this score.",
+  "cases": 14,
+  "numbers_labelled": 40,
+  "true_positives": 13,
+  "false_positives": 0,
+  "false_negatives": 1,
+  "true_negatives": 26,
+  "precision": 1.0,
+  "recall": 0.9286,
+  "f1": 0.963,
+  "cases_fully_correct": 13,
+  "per_case": [
+    {
+      "id": "clean_drought_report",
+      "why": "A wholly grounded report. Any flag here is a false positive.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 8,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "rounded_to_report_precision",
+      "why": "The documented tolerance rule: a report may round a source value to its own precision. +0.26 against 0.2622 must pass.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "fabricated_skill_score",
+      "why": "The commonest fabrication shape: a plausible but invented metric.",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "mckee_band_recitation",
+      "why": "The real fabrication caught in Phase 3: correct-in-the-world classification bands recited from training data and cited to a document that does not contain them.",
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "subtly_wrong_digit",
+      "why": "Materially different at the report's own precision. A checker that let this through would be useless — this is the hard case.",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "number_fragment_attack",
+      "why": "A fabricated '4-month horizon' must not be accepted merely because '4' appears inside the source value 0.0438. This is why the checker enforces number boundaries rather than substring matching.",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "content_block_leakage",
+      "why": "The Phase-3.1 bug's signature: a non-text metadata block stringified into the report body. The checker's behaviour was correct — those digits are genuinely unverifiable — so every one of them is a true positive.",
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "clean_heat_observations",
+      "why": "Observation-only heat reporting, fully grounded.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "inflated_heat_count",
+      "why": "A count inflated from 7 to 17 — grounded-looking, materially wrong.",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "clean_crop_impact",
+      "why": "The sourced coefficient reported exactly as the table holds it.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "invented_yield_percentage",
+      "why": "The Phase-4 failure mode: asked about crop impact, a model supplies a confident percentage from general agronomic knowledge. KNOWN FALSE NEGATIVE — see PERCENT_FRACTION_DEFECT below. Kept in the set as a failing case rather than removed or worked around.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "tn": 0,
+      "missed": [
+        "12%"
+      ],
+      "wrongly_flagged": [],
+      "passed": false
+    },
+    {
+      "id": "scaled_coefficient",
+      "why": "Scaling a single anchor point into a per-degree rate — forbidden by the yield table's own caveat, and it produces a number that exists in no source.",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "structural_tokens_only",
+      "why": "Years, horizon labels and index names carry no measured claim and must never be flagged — false positives here would make the checker's output unreadable.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    },
+    {
+      "id": "percent_against_fraction",
+      "why": "A source fraction 0.0766 reported as 7.66% is the same quantity.",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "missed": [],
+      "wrongly_flagged": [],
+      "passed": true
+    }
+  ]
+}
