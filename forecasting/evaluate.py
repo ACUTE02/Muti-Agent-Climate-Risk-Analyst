@@ -284,6 +284,33 @@ def _phase_1_4_section() -> list[str]:
             "inverting the SPI-3 gamma transform, and those errors compound.", "",
         ]
 
+    if config.IOD_COMPARISON_PATH.exists():
+        from forecasting.iod_check import format_table as iod_table
+
+        payload = json.loads(
+            config.IOD_COMPARISON_PATH.read_text(encoding="utf-8"))
+        c = payload["iod_oni_correlation"]
+        lines += [
+            "", "---", "",
+            "## Phase 1.6 — does the Indian Ocean Dipole add anything?", "",
+            "One bounded feature test on an otherwise frozen pipeline. Both "
+            "columns below were produced by the same code in the same run, so the "
+            "difference is attributable to the feature and nothing else. IOD "
+            "correlates with ONI at "
+            f"r={c['pearson_full_period']:+.3f} over 1980-2024 "
+            f"({c['pearson_train_only']:+.3f} on train alone) — related, but far "
+            "from redundant, so a null result here is not simply ENSO in "
+            "disguise.", "",
+            iod_table(payload), "",
+            "**Rejected.** " + ("IOD was adopted at some horizon."
+                                if payload["adopted_any"] else
+                                "Five of the six region/horizon cells got worse, "
+                                "and the one nominal gain (+0.0011) held in only "
+                                "2 of 4 windows against a 3-of-4 bar. The feature "
+                                "is not in the model; `models/iod_comparison.json` "
+                                "keeps the measurement."), "",
+        ]
+
     if config.HORIZON_MANIFEST_PATH.exists():
         manifest = json.loads(
             config.HORIZON_MANIFEST_PATH.read_text(encoding="utf-8"))

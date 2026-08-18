@@ -41,11 +41,12 @@ def _skill(y_true: np.ndarray, y_pred: np.ndarray, y_base: np.ndarray) -> float:
 
 
 def fit_one(region: str, window_name: str, windows: SplitWindows,
-            lookback: int) -> dict:
+            lookback: int, features: list | None = None) -> dict:
     """One region × window × lookback: fit on train, select alpha on val, and
     record validation *and* test skill separately."""
     ds = prepare_dataset(region, save=False, windows=windows,
-                         seq_len=lookback, horizon=HORIZON)
+                         seq_len=lookback, horizon=HORIZON,
+                         features=features)
     X_train, y_train = ds.get("train")
     X_val, y_val = ds.get("val")
 

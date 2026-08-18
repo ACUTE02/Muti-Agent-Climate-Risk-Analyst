@@ -119,10 +119,12 @@ def recursive_forecast(model, ds, origin: pd.Timestamp, lookback: int,
 # --------------------------------------------------------------------------- #
 # Direct dedicated models per horizon (same process as Phase 1.4 §3)
 # --------------------------------------------------------------------------- #
-def fit_direct(region: str, windows: SplitWindows, horizon: int, lookback: int):
+def fit_direct(region: str, windows: SplitWindows, horizon: int, lookback: int,
+               features: list | None = None):
     """Ridge trained to predict horizon ``h`` alone from a ``lookback``-month window."""
     ds = prepare_dataset(region, save=False, windows=windows,
-                         seq_len=lookback, horizon=horizon)
+                         seq_len=lookback, horizon=horizon,
+                         features=features)
     col = horizon - 1
     X_train, y_train = ds.get("train")
     X_val, y_val = ds.get("val")

@@ -37,6 +37,7 @@ from sklearn.preprocessing import MinMaxScaler
 from forecasting import config
 from forecasting.clean import clean_india_climate, clip_baseline
 from forecasting.enso import attach_oni
+from forecasting.iod import attach_iod
 from forecasting.fetch_data import load_or_fetch_region
 
 
@@ -64,6 +65,7 @@ class Dataset:
     windows: SplitWindows = DEFAULT_WINDOWS
     seq_len: int = config.SEQ_LEN
     horizon: int = config.HORIZON
+    features: list = field(default_factory=lambda: list(config.FEATURES))
     splits: dict = field(default_factory=dict)   # name -> dict(X, y, target_dates,
     #                                              window_start, window_end)
 
@@ -158,10 +160,11 @@ def compute_spi3(df: pd.DataFrame, params: dict[int, dict],
 
 
 def fit_scaler(frame: pd.DataFrame,
-               windows: SplitWindows = DEFAULT_WINDOWS) -> MinMaxScaler:
+               windows: SplitWindows = DEFAULT_WINDOWS,
+               features: list | None = None) -> MinMaxScaler:
     """Fit the feature scaler on TRAIN ROWS ONLY (Rule A)."""
     scaler = MinMaxScaler()
-    scaler.fit(frame.loc[windows.train, config.FEATURES])
+    scaler.fit(frame.loc[windows.train, features or config.FEATURES])
     return scaler
 
 
@@ -202,7 +205,8 @@ def prepare_dataset(region: str = config.DEFAULT_REGION,
                     save: bool = True,
                     windows: SplitWindows = DEFAULT_WINDOWS,
                     seq_len: int = config.SEQ_LEN,
-                    horizon: int = config.HORIZON) -> Dataset:
+                    horizon: int = config.HORIZON,
+                    features: list | None = None) -> Dataset:
     """Full leak-free pipeline: raw -> cleaned -> split -> SPI -> scale -> windows.
 
     ``windows`` selects the train/val/test date ranges; every statistic below is
@@ -210,6 +214,7 @@ def prepare_dataset(region: str = config.DEFAULT_REGION,
     leak-free as the standing one.
     """
     config.check_region(region)
+    features = list(features or config.FEATURES)
     raw = load_or_fetch_region(region)
     # Both statistics computed inside clean() — the IQR outlier bounds and the
     # anomaly baseline — must come from THIS window's train partition (Rule A/C).
@@ -218,6 +223,11 @@ def prepare_dataset(region: str = config.DEFAULT_REGION,
         train_end=windows.train.stop,
         baseline=clip_baseline(config.BASELINE, windows.train),
     ))
+    # Phase 1.6 tested the IOD and rejected it (models/iod_comparison.json), so
+    # the DMI is merged only when a caller explicitly asks for those columns.
+    # The default path stays exactly what Phase 1.5 measured and committed.
+    if any(f.startswith("iod") for f in features):
+        cleaned = attach_iod(cleaned)
 
     # --- 1. split first -----------------------------------------------------
     train_df, val_df, test_df = split_by_date(cleaned, windows)
@@ -233,8 +243,8 @@ def prepare_dataset(region: str = config.DEFAULT_REGION,
         frame.to_parquet(config.processed_path(region))
 
     # --- 3. train-only scaler ----------------------------------------------
-    scaler = fit_scaler(frame, windows)
-    X_all = scaler.transform(frame[config.FEATURES]).astype("float32")
+    scaler = fit_scaler(frame, windows, features)
+    X_all = scaler.transform(frame[features]).astype("float32")
     y_all = frame[config.TARGET].to_numpy(dtype="float32")   # raw SPI units
     dates = pd.DatetimeIndex(frame.index)
 
@@ -257,13 +267,15 @@ def prepare_dataset(region: str = config.DEFAULT_REGION,
     }
     return Dataset(frame=frame, scaler=scaler, month_stats=month_stats,
                    spi_params=spi_params, splits=splits, region=region,
-                   windows=windows, seq_len=seq_len, horizon=horizon)
+                   windows=windows, seq_len=seq_len, horizon=horizon,
+                   features=features)
 
 
 def latest_window(frame: pd.DataFrame, scaler: MinMaxScaler,
-                  seq_len: int = config.SEQ_LEN) -> tuple[np.ndarray, pd.Timestamp]:
+                  seq_len: int = config.SEQ_LEN,
+                  features: list | None = None) -> tuple[np.ndarray, pd.Timestamp]:
     """Most recent ``seq_len`` months of scaled features, for inference."""
-    tail = frame[config.FEATURES].iloc[-seq_len:]
+    tail = frame[features or config.FEATURES].iloc[-seq_len:]
     if len(tail) < seq_len:
         raise ValueError(f"Need {seq_len} months of history, have {len(tail)}")
     X = scaler.transform(tail).astype("float32")[None, ...]

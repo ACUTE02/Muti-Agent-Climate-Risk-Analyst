@@ -1,0 +1,1276 @@
+{
+  "generated_at": "2026-08-18T05:04:21+00:00",
+  "hypotheses": [
+    "heat_extreme target",
+    "heatwave_day_count target",
+    "SPI-3 antecedent-dryness feature"
+  ],
+  "phase1_reference": {
+    "rajasthan": -0.0525,
+    "barmer": -0.0209
+  },
+  "split": {
+    "train": [
+      "1980",
+      "2015"
+    ],
+    "val": [
+      "2016",
+      "2019"
+    ],
+    "test": [
+      "2020",
+      "2024"
+    ]
+  },
+  "results": [
+    {
+      "region": "rajasthan",
+      "target": "heat_anomaly",
+      "feature_set": "heat-only",
+      "lookback": 24,
+      "alpha": 0.1,
+      "val_mse": 0.5654,
+      "val_skill": 0.1101,
+      "n_features": 10,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.0742,
+          "mae": 0.8504,
+          "r2": -0.1096,
+          "skill_score": -0.0525,
+          "skill_vs_persistence": 0.0764,
+          "persistence_skill_vs_climatology": -0.1396,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 1.1915,
+          "mae": 0.9562,
+          "r2": -0.3488,
+          "skill_score": -0.161,
+          "skill_vs_persistence": 0.2144,
+          "persistence_skill_vs_climatology": -0.4779,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 1.2011,
+          "mae": 0.9625,
+          "r2": -0.3545,
+          "skill_score": -0.1631,
+          "skill_vs_persistence": 0.2766,
+          "persistence_skill_vs_climatology": -0.6077,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.1255,
+      "distribution": {
+        "n_train_months": 420,
+        "mean": -0.0049,
+        "std": 0.9918,
+        "min": -3.6968,
+        "max": 3.1434,
+        "skew": -0.0425,
+        "excess_kurtosis": 0.6427,
+        "percentiles_empirical": {
+          "p5": -1.4783,
+          "p25": -0.639,
+          "p75": 0.6609,
+          "p95": 1.6443
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 0.1666,
+        "approximately_normal": true,
+        "approximately_standard_normal": true
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": -0.0539,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.3189,
+          "predicted_max": 0.4438
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": -0.0134,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.1065,
+          "predicted_max": 0.3844
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": -0.1085,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.0651,
+          "predicted_max": 0.5064
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0598,
+        "24": 0.1101,
+        "60": 0.0786
+      }
+    },
+    {
+      "region": "rajasthan",
+      "target": "heat_anomaly",
+      "feature_set": "heat+SPI3",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.6173,
+      "val_skill": 0.0685,
+      "n_features": 13,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.0259,
+          "mae": 0.796,
+          "r2": -0.012,
+          "skill_score": -0.0038,
+          "skill_vs_persistence": 0.118,
+          "persistence_skill_vs_climatology": -0.138,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 1.0371,
+          "mae": 0.8088,
+          "r2": -0.0218,
+          "skill_score": -0.0094,
+          "skill_vs_persistence": 0.3162,
+          "persistence_skill_vs_climatology": -0.4762,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 1.0348,
+          "mae": 0.8159,
+          "r2": -0.0054,
+          "skill_score": -0.001,
+          "skill_vs_persistence": 0.3767,
+          "persistence_skill_vs_climatology": -0.606,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.0047,
+      "distribution": {
+        "n_train_months": 417,
+        "mean": -0.0019,
+        "std": 0.9933,
+        "min": -3.6968,
+        "max": 3.1434,
+        "skew": -0.0487,
+        "excess_kurtosis": 0.6437,
+        "percentiles_empirical": {
+          "p5": -1.4802,
+          "p25": -0.6271,
+          "p75": 0.6675,
+          "p95": 1.6453
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 0.1646,
+        "approximately_normal": true,
+        "approximately_standard_normal": true
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": -0.0539,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.0784,
+          "predicted_max": 0.1739
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": -0.0134,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.0566,
+          "predicted_max": 0.1801
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": -0.1085,
+          "observed_max": 1.7639,
+          "predicted_mean": -0.0665,
+          "predicted_max": 0.1664
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0482,
+        "24": 0.0654,
+        "60": 0.0685
+      }
+    },
+    {
+      "region": "rajasthan",
+      "target": "heat_extreme",
+      "feature_set": "heat-only",
+      "lookback": 60,
+      "alpha": 1.0,
+      "val_mse": 0.2459,
+      "val_skill": 0.1462,
+      "n_features": 11,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 0.831,
+          "mae": 0.6558,
+          "r2": -0.5517,
+          "skill_score": -0.2883,
+          "skill_vs_persistence": 0.0177,
+          "persistence_skill_vs_climatology": -0.3115,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 0.8399,
+          "mae": 0.6819,
+          "r2": -0.552,
+          "skill_score": -0.2987,
+          "skill_vs_persistence": 0.1634,
+          "persistence_skill_vs_climatology": -0.5524,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 0.8119,
+          "mae": 0.6554,
+          "r2": -0.4545,
+          "skill_score": -0.2554,
+          "skill_vs_persistence": 0.1895,
+          "persistence_skill_vs_climatology": -0.549,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.2808,
+      "distribution": {
+        "n_train_months": 420,
+        "mean": 1.3715,
+        "std": 0.6663,
+        "min": -0.8236,
+        "max": 3.5676,
+        "skew": 0.1165,
+        "excess_kurtosis": 0.2832,
+        "percentiles_empirical": {
+          "p5": 0.3116,
+          "p25": 0.9304,
+          "p75": 1.8093,
+          "p95": 2.5213
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 1.9565,
+        "approximately_normal": true,
+        "approximately_standard_normal": false
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 1.445,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.276,
+          "predicted_max": 2.1525
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 1.4666,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.3565,
+          "predicted_max": 2.0921
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 1.4475,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.419,
+          "predicted_max": 2.1195
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0794,
+        "24": 0.1439,
+        "60": 0.1462
+      }
+    },
+    {
+      "region": "rajasthan",
+      "target": "heat_extreme",
+      "feature_set": "heat+SPI3",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.3034,
+      "val_skill": 0.0483,
+      "n_features": 14,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 0.6801,
+          "mae": 0.5517,
+          "r2": -0.0392,
+          "skill_score": -0.051,
+          "skill_vs_persistence": 0.1961,
+          "persistence_skill_vs_climatology": -0.3074,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 0.6825,
+          "mae": 0.5627,
+          "r2": -0.0249,
+          "skill_score": -0.0527,
+          "skill_vs_persistence": 0.3202,
+          "persistence_skill_vs_climatology": -0.5486,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 0.6766,
+          "mae": 0.5615,
+          "r2": -0.01,
+          "skill_score": -0.0435,
+          "skill_vs_persistence": 0.3246,
+          "persistence_skill_vs_climatology": -0.5451,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.0491,
+      "distribution": {
+        "n_train_months": 417,
+        "mean": 1.372,
+        "std": 0.6674,
+        "min": -0.8236,
+        "max": 3.5676,
+        "skew": 0.1167,
+        "excess_kurtosis": 0.2809,
+        "percentiles_empirical": {
+          "p5": 0.3045,
+          "p25": 0.9304,
+          "p75": 1.8075,
+          "p95": 2.5224
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 1.9494,
+        "approximately_normal": true,
+        "approximately_standard_normal": false
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 1.445,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.4624,
+          "predicted_max": 1.6024
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 1.4666,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.4834,
+          "predicted_max": 1.6459
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 1.4475,
+          "observed_max": 2.4906,
+          "predicted_mean": 1.4867,
+          "predicted_max": 1.6132
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.011,
+        "24": 0.0204,
+        "60": 0.0483
+      }
+    },
+    {
+      "region": "rajasthan",
+      "target": "heatwave_day_count",
+      "feature_set": "heat-only",
+      "lookback": 12,
+      "alpha": 1.0,
+      "val_mse": 1.4358,
+      "val_skill": 0.0008,
+      "n_features": 11,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.2667,
+          "mae": 0.531,
+          "r2": 0.1041,
+          "skill_score": 0.022,
+          "skill_vs_persistence": 0.2769,
+          "persistence_skill_vs_climatology": -0.3526,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 1.291,
+          "mae": 0.5447,
+          "r2": 0.0694,
+          "skill_score": 0.0032,
+          "skill_vs_persistence": 0.331,
+          "persistence_skill_vs_climatology": -0.49,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "rmse": 1.2817,
+          "mae": 0.5336,
+          "r2": 0.0828,
+          "skill_score": 0.0104,
+          "skill_vs_persistence": 0.3507,
+          "persistence_skill_vs_climatology": -0.5241,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": 0.0119,
+      "diagnostics": {
+        "n_train_months": 420,
+        "fraction_zero_all_months": 0.9238,
+        "fraction_zero_pre_monsoon": 0.7524,
+        "mean_all_months": 0.1881,
+        "mean_pre_monsoon": 0.6476,
+        "max": 9
+      },
+      "clipping": {
+        "fraction_predictions_negative_before_clip": 0.2931,
+        "most_negative_raw_prediction": -0.5732
+      },
+      "pre_monsoon": {
+        "t+1": {
+          "n_months": 15,
+          "rmse": 2.3665,
+          "mae": 1.3469,
+          "r2": -0.0863,
+          "skill_score": 0.0322,
+          "skill_vs_persistence": 0.2886,
+          "persistence_skill_vs_climatology": -0.3605,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "n_months": 15,
+          "rmse": 2.3911,
+          "mae": 1.3577,
+          "r2": -0.109,
+          "skill_score": 0.0221,
+          "skill_vs_persistence": 0.1511,
+          "persistence_skill_vs_climatology": -0.1519,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "n_months": 15,
+          "rmse": 2.3981,
+          "mae": 1.3905,
+          "r2": -0.1155,
+          "skill_score": 0.0192,
+          "skill_vs_persistence": 0.0893,
+          "persistence_skill_vs_climatology": -0.0769,
+          "label": "weak/directional"
+        }
+      },
+      "may_2024_check": {
+        "t+1": {
+          "observed_days": 8.0,
+          "predicted_days": 0.71
+        },
+        "t+2": {
+          "observed_days": 8.0,
+          "predicted_days": 0.92
+        },
+        "t+3": {
+          "observed_days": 8.0,
+          "predicted_days": 0.92
+        }
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.0263,
+          "predicted_max": 0.2215
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.0512,
+          "predicted_max": 0.2565
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.0533,
+          "predicted_max": 0.2413
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0008,
+        "24": 0.0002,
+        "60": 0.0008
+      }
+    },
+    {
+      "region": "rajasthan",
+      "target": "heatwave_day_count",
+      "feature_set": "heat+SPI3",
+      "lookback": 12,
+      "alpha": 1.0,
+      "val_mse": 1.3502,
+      "val_skill": 0.0311,
+      "n_features": 14,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.2837,
+          "mae": 0.5786,
+          "r2": 0.0799,
+          "skill_score": 0.0088,
+          "skill_vs_persistence": 0.2672,
+          "persistence_skill_vs_climatology": -0.3526,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 1.3216,
+          "mae": 0.6176,
+          "r2": 0.0248,
+          "skill_score": -0.0204,
+          "skill_vs_persistence": 0.3152,
+          "persistence_skill_vs_climatology": -0.49,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 1.3019,
+          "mae": 0.5988,
+          "r2": 0.0536,
+          "skill_score": -0.0052,
+          "skill_vs_persistence": 0.3405,
+          "persistence_skill_vs_climatology": -0.5241,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.0056,
+      "diagnostics": {
+        "n_train_months": 417,
+        "fraction_zero_all_months": 0.9233,
+        "fraction_zero_pre_monsoon": 0.7524,
+        "mean_all_months": 0.1894,
+        "mean_pre_monsoon": 0.6476,
+        "max": 9
+      },
+      "clipping": {
+        "fraction_predictions_negative_before_clip": 0.2126,
+        "most_negative_raw_prediction": -0.7281
+      },
+      "pre_monsoon": {
+        "t+1": {
+          "n_months": 15,
+          "rmse": 2.3862,
+          "mae": 1.4079,
+          "r2": -0.1044,
+          "skill_score": 0.0241,
+          "skill_vs_persistence": 0.2827,
+          "persistence_skill_vs_climatology": -0.3605,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "n_months": 15,
+          "rmse": 2.4169,
+          "mae": 1.4337,
+          "r2": -0.133,
+          "skill_score": 0.0116,
+          "skill_vs_persistence": 0.1419,
+          "persistence_skill_vs_climatology": -0.1519,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "n_months": 15,
+          "rmse": 2.4011,
+          "mae": 1.4087,
+          "r2": -0.1183,
+          "skill_score": 0.018,
+          "skill_vs_persistence": 0.0881,
+          "persistence_skill_vs_climatology": -0.0769,
+          "label": "weak/directional"
+        }
+      },
+      "may_2024_check": {
+        "t+1": {
+          "observed_days": 8.0,
+          "predicted_days": 0.7
+        },
+        "t+2": {
+          "observed_days": 8.0,
+          "predicted_days": 0.89
+        },
+        "t+3": {
+          "observed_days": 8.0,
+          "predicted_days": 0.94
+        }
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.0341,
+          "predicted_max": 0.1414
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.082,
+          "predicted_max": 0.2811
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.0615,
+          "predicted_max": 0.3066
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0311,
+        "24": 0.0117,
+        "60": -0.0062
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heat_anomaly",
+      "feature_set": "heat-only",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.9713,
+      "val_skill": 0.0588,
+      "n_features": 10,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.2169,
+          "mae": 0.9619,
+          "r2": -0.0888,
+          "skill_score": -0.0209,
+          "skill_vs_persistence": 0.1757,
+          "persistence_skill_vs_climatology": -0.2384,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 1.2109,
+          "mae": 0.9531,
+          "r2": -0.0986,
+          "skill_score": -0.0172,
+          "skill_vs_persistence": 0.2993,
+          "persistence_skill_vs_climatology": -0.4518,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 1.2045,
+          "mae": 0.9456,
+          "r2": -0.0748,
+          "skill_score": -0.0118,
+          "skill_vs_persistence": 0.3484,
+          "persistence_skill_vs_climatology": -0.5528,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      },
+      "mean_skill": -0.0166,
+      "distribution": {
+        "n_train_months": 420,
+        "mean": -0.0047,
+        "std": 0.9927,
+        "min": -3.7953,
+        "max": 3.1863,
+        "skew": -0.2494,
+        "excess_kurtosis": 0.7541,
+        "percentiles_empirical": {
+          "p5": -1.659,
+          "p25": -0.6029,
+          "p75": 0.6813,
+          "p95": 1.4641
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 0.1808,
+        "approximately_normal": true,
+        "approximately_standard_normal": true
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.333,
+          "observed_max": 2.7978,
+          "predicted_mean": -0.0014,
+          "predicted_max": 0.2115
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.4635,
+          "observed_max": 2.7978,
+          "predicted_mean": -0.001,
+          "predicted_max": 0.2508
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.3296,
+          "observed_max": 2.7978,
+          "predicted_mean": -0.004,
+          "predicted_max": 0.2309
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0266,
+        "24": 0.0375,
+        "60": 0.0588
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heat_anomaly",
+      "feature_set": "heat+SPI3",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.9984,
+      "val_skill": 0.0453,
+      "n_features": 13,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.2068,
+          "mae": 0.9631,
+          "r2": -0.0707,
+          "skill_score": -0.0115,
+          "skill_vs_persistence": 0.1826,
+          "persistence_skill_vs_climatology": -0.2374,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+2": {
+          "rmse": 1.1926,
+          "mae": 0.9464,
+          "r2": -0.0656,
+          "skill_score": -0.0012,
+          "skill_vs_persistence": 0.3099,
+          "persistence_skill_vs_climatology": -0.4508,
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        "t+3": {
+          "rmse": 1.1904,
+          "mae": 0.9448,
+          "r2": -0.0498,
+          "skill_score": 0.0006,
+          "skill_vs_persistence": 0.3561,
+          "persistence_skill_vs_climatology": -0.552,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": -0.004,
+      "distribution": {
+        "n_train_months": 417,
+        "mean": -0.003,
+        "std": 0.9953,
+        "min": -3.7953,
+        "max": 3.1863,
+        "skew": -0.2533,
+        "excess_kurtosis": 0.7425,
+        "percentiles_empirical": {
+          "p5": -1.6635,
+          "p25": -0.6017,
+          "p75": 0.6845,
+          "p95": 1.4674
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 0.1774,
+        "approximately_normal": true,
+        "approximately_standard_normal": true
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.333,
+          "observed_max": 2.7978,
+          "predicted_mean": 0.0623,
+          "predicted_max": 0.1966
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.4635,
+          "observed_max": 2.7978,
+          "predicted_mean": 0.0655,
+          "predicted_max": 0.2428
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.3296,
+          "observed_max": 2.7978,
+          "predicted_mean": 0.068,
+          "predicted_max": 0.2615
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0222,
+        "24": 0.0292,
+        "60": 0.0453
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heat_extreme",
+      "feature_set": "heat-only",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.2612,
+      "val_skill": 0.0346,
+      "n_features": 11,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 0.6301,
+          "mae": 0.5098,
+          "r2": -0.0532,
+          "skill_score": 0.0169,
+          "skill_vs_persistence": 0.2958,
+          "persistence_skill_vs_climatology": -0.396,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 0.6373,
+          "mae": 0.5198,
+          "r2": -0.0562,
+          "skill_score": 0.0231,
+          "skill_vs_persistence": 0.244,
+          "persistence_skill_vs_climatology": -0.2921,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "rmse": 0.6395,
+          "mae": 0.5241,
+          "r2": -0.0534,
+          "skill_score": 0.0213,
+          "skill_vs_persistence": 0.3258,
+          "persistence_skill_vs_climatology": -0.4516,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": 0.0204,
+      "distribution": {
+        "n_train_months": 420,
+        "mean": 1.4363,
+        "std": 0.5865,
+        "min": -0.7435,
+        "max": 3.0053,
+        "skew": -0.2126,
+        "excess_kurtosis": 0.814,
+        "percentiles_empirical": {
+          "p5": 0.5868,
+          "p25": 1.0661,
+          "p75": 1.8118,
+          "p95": 2.4018
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 2.2316,
+        "approximately_normal": true,
+        "approximately_standard_normal": false
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 1.6523,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.5117,
+          "predicted_max": 1.7042
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 1.6723,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.5212,
+          "predicted_max": 1.689
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 1.6067,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.5317,
+          "predicted_max": 1.6858
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0334,
+        "24": 0.0258,
+        "60": 0.0346
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heat_extreme",
+      "feature_set": "heat+SPI3",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 0.261,
+      "val_skill": 0.0365,
+      "n_features": 14,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 0.6352,
+          "mae": 0.5223,
+          "r2": -0.0705,
+          "skill_score": 0.011,
+          "skill_vs_persistence": 0.29,
+          "persistence_skill_vs_climatology": -0.3929,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 0.6376,
+          "mae": 0.5245,
+          "r2": -0.0572,
+          "skill_score": 0.0246,
+          "skill_vs_persistence": 0.2436,
+          "persistence_skill_vs_climatology": -0.2895,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "rmse": 0.6393,
+          "mae": 0.5289,
+          "r2": -0.0527,
+          "skill_score": 0.0234,
+          "skill_vs_persistence": 0.326,
+          "persistence_skill_vs_climatology": -0.4489,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": 0.0197,
+      "distribution": {
+        "n_train_months": 417,
+        "mean": 1.4343,
+        "std": 0.5877,
+        "min": -0.7435,
+        "max": 3.0053,
+        "skew": -0.2054,
+        "excess_kurtosis": 0.8072,
+        "percentiles_empirical": {
+          "p5": 0.5853,
+          "p25": 1.0598,
+          "p75": 1.8048,
+          "p95": 2.4021
+        },
+        "percentiles_standard_normal": {
+          "p5": -1.6449,
+          "p25": -0.6745,
+          "p75": 0.6745,
+          "p95": 1.6449
+        },
+        "max_percentile_gap": 2.2302,
+        "approximately_normal": true,
+        "approximately_standard_normal": false
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 1.6523,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.5815,
+          "predicted_max": 1.7845
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 1.6723,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.5896,
+          "predicted_max": 1.8038
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 1.6067,
+          "observed_max": 2.5827,
+          "predicted_mean": 1.6118,
+          "predicted_max": 1.7707
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": 0.0257,
+        "24": 0.0133,
+        "60": 0.0365
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heatwave_day_count",
+      "feature_set": "heat-only",
+      "lookback": 60,
+      "alpha": 100.0,
+      "val_mse": 1.4381,
+      "val_skill": -0.019,
+      "n_features": 11,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.3019,
+          "mae": 0.6451,
+          "r2": 0.0579,
+          "skill_score": 0.0269,
+          "skill_vs_persistence": 0.261,
+          "persistence_skill_vs_climatology": -0.3167,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 1.3087,
+          "mae": 0.6461,
+          "r2": 0.0481,
+          "skill_score": 0.0219,
+          "skill_vs_persistence": 0.3155,
+          "persistence_skill_vs_climatology": -0.429,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "rmse": 1.3086,
+          "mae": 0.6452,
+          "r2": 0.0481,
+          "skill_score": 0.0219,
+          "skill_vs_persistence": 0.3485,
+          "persistence_skill_vs_climatology": -0.5013,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": 0.0236,
+      "diagnostics": {
+        "n_train_months": 420,
+        "fraction_zero_all_months": 0.9,
+        "fraction_zero_pre_monsoon": 0.7429,
+        "mean_all_months": 0.2071,
+        "mean_pre_monsoon": 0.5619,
+        "max": 7
+      },
+      "clipping": {
+        "fraction_predictions_negative_before_clip": 0.1207,
+        "most_negative_raw_prediction": -0.1225
+      },
+      "pre_monsoon": {
+        "t+1": {
+          "n_months": 15,
+          "rmse": 2.1751,
+          "mae": 1.3588,
+          "r2": -0.1277,
+          "skill_score": 0.0106,
+          "skill_vs_persistence": 0.2373,
+          "persistence_skill_vs_climatology": -0.2972,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "n_months": 15,
+          "rmse": 2.1884,
+          "mae": 1.3678,
+          "r2": -0.1414,
+          "skill_score": 0.0046,
+          "skill_vs_persistence": 0.1567,
+          "persistence_skill_vs_climatology": -0.1803,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "n_months": 15,
+          "rmse": 2.1876,
+          "mae": 1.3653,
+          "r2": -0.1406,
+          "skill_score": 0.0049,
+          "skill_vs_persistence": 0.1167,
+          "persistence_skill_vs_climatology": -0.1265,
+          "label": "weak/directional"
+        }
+      },
+      "may_2024_check": {
+        "t+1": {
+          "observed_days": 7.0,
+          "predicted_days": 0.75
+        },
+        "t+2": {
+          "observed_days": 7.0,
+          "predicted_days": 0.75
+        },
+        "t+3": {
+          "observed_days": 7.0,
+          "predicted_days": 0.75
+        }
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.1104,
+          "predicted_max": 0.2769
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.1143,
+          "predicted_max": 0.291
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.1121,
+          "predicted_max": 0.2937
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": -0.0201,
+        "24": -0.025,
+        "60": -0.019
+      }
+    },
+    {
+      "region": "barmer",
+      "target": "heatwave_day_count",
+      "feature_set": "heat+SPI3",
+      "lookback": 60,
+      "alpha": 10.0,
+      "val_mse": 1.392,
+      "val_skill": -0.003,
+      "n_features": 14,
+      "per_horizon": {
+        "t+1": {
+          "rmse": 1.287,
+          "mae": 0.6614,
+          "r2": 0.0793,
+          "skill_score": 0.0378,
+          "skill_vs_persistence": 0.2694,
+          "persistence_skill_vs_climatology": -0.317,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "rmse": 1.3077,
+          "mae": 0.6737,
+          "r2": 0.0495,
+          "skill_score": 0.0224,
+          "skill_vs_persistence": 0.316,
+          "persistence_skill_vs_climatology": -0.4293,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "rmse": 1.3122,
+          "mae": 0.691,
+          "r2": 0.0429,
+          "skill_score": 0.019,
+          "skill_vs_persistence": 0.3467,
+          "persistence_skill_vs_climatology": -0.5016,
+          "label": "weak/directional"
+        }
+      },
+      "mean_skill": 0.0264,
+      "diagnostics": {
+        "n_train_months": 417,
+        "fraction_zero_all_months": 0.8993,
+        "fraction_zero_pre_monsoon": 0.7429,
+        "mean_all_months": 0.2086,
+        "mean_pre_monsoon": 0.5619,
+        "max": 7
+      },
+      "clipping": {
+        "fraction_predictions_negative_before_clip": 0.2069,
+        "most_negative_raw_prediction": -0.7865
+      },
+      "pre_monsoon": {
+        "t+1": {
+          "n_months": 15,
+          "rmse": 2.1505,
+          "mae": 1.3248,
+          "r2": -0.1022,
+          "skill_score": 0.0218,
+          "skill_vs_persistence": 0.2459,
+          "persistence_skill_vs_climatology": -0.2972,
+          "label": "weak/directional"
+        },
+        "t+2": {
+          "n_months": 15,
+          "rmse": 2.1747,
+          "mae": 1.3467,
+          "r2": -0.1272,
+          "skill_score": 0.0108,
+          "skill_vs_persistence": 0.1619,
+          "persistence_skill_vs_climatology": -0.1803,
+          "label": "weak/directional"
+        },
+        "t+3": {
+          "n_months": 15,
+          "rmse": 2.1681,
+          "mae": 1.3475,
+          "r2": -0.1204,
+          "skill_score": 0.0138,
+          "skill_vs_persistence": 0.1246,
+          "persistence_skill_vs_climatology": -0.1265,
+          "label": "weak/directional"
+        }
+      },
+      "may_2024_check": {
+        "t+1": {
+          "observed_days": 7.0,
+          "predicted_days": 0.83
+        },
+        "t+2": {
+          "observed_days": 7.0,
+          "predicted_days": 0.85
+        },
+        "t+3": {
+          "observed_days": 7.0,
+          "predicted_days": 0.89
+        }
+      },
+      "winter_check": {
+        "t+1": {
+          "n_months": 14,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.2551,
+          "predicted_max": 0.9658
+        },
+        "t+2": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.2843,
+          "predicted_max": 1.0285
+        },
+        "t+3": {
+          "n_months": 13,
+          "observed_mean": 0.0,
+          "observed_max": 0.0,
+          "predicted_mean": 0.3277,
+          "predicted_max": 1.0283
+        }
+      },
+      "val_skill_by_lookback": {
+        "12": -0.0278,
+        "24": -0.0308,
+        "60": -0.003
+      }
+    }
+  ],
+  "best_cell": {
+    "region": "barmer",
+    "target": "heatwave_day_count",
+    "feature_set": "heat+SPI3",
+    "horizon": "t+1",
+    "skill_score": 0.0378
+  },
+  "anything_clears_bar": false
+}

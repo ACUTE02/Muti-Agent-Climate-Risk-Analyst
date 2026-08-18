@@ -130,6 +130,117 @@ The original tech spec described 5 climate risk types (Drought, Flood, Heat Stre
 
 ---
 
+## Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill
+
+**Why this exists:** second independent risk type per the standing scope decision. Reuses the Open-Meteo source, the same two regions, and the same pipeline pattern; shares no features with the Drought Agent by design.
+
+**Built:** `heat/` package — `target.py` (climatology + IMD heat wave criteria), `dataset.py`, `model.py`, `tool.py`. Open-Meteo pull extended with `temperature_2m_max`/`min`, cached to a new daily parquet per region (the drought monthly cache gained two columns; verified the committed drought numbers are bit-identical afterwards — window-A t+1 RMSE/skill unchanged to 4dp for both regions). ONI reused, not refetched.
+
+**Lesson 1 applied — target built properly first, not after two wasted phases.** `heat_anomaly` = standardised monthly Tmax anomaly, climatology fit train-only, **distribution-checked before any modelling**: Jaipur skew −0.049 / excess kurtosis +0.626, Barmer −0.255 / +0.758, empirical p5/p95 within 0.19 of a standard normal's, both flagged approximately normal. It also reaches both tails (min < −2, max > +2), the exact property the Phase-1 SPI proxy lacked. No transform needed. *Deviation stated:* the spec described the climatology as mean/std of **daily** Tmax; standardising a monthly mean by a daily std would divide by 3–5× too much spread and make the normality check unpassable by construction, so it is fit on the monthly-mean series — which is what makes it a genuine z-score.
+
+**Operational indicator (kept separate from the regression target):** IMD plains heat wave criteria — Tmax ≥ 45 °C, or (≥ 40 °C and ≥ +4.5 °C departure); severe at ≥ 47 °C or +6.4 °C; spells need ≥ 2 consecutive days. `normal_Tmax` is a day-of-year climatology pooled over ±7 days across the train-clipped 1981–2010 baseline (~450 samples/day: a bare DOY mean has ~30 samples and a 0.6 °C standard error, large next to a 4.5 °C threshold; a flat monthly normal misassigns month-edge days by >2 °C during April–May warming). **Documented adaptation:** IMD requires the criteria at ≥2 stations in a subdivision; this is a single grid point, so these are indicative single-point counts, not IMD declarations. Sanity-checked against the May 2016 national-record event — both regions register heat wave days and a spell, peaking on **19 May 2016**, the actual Phalodi record date.
+
+**Lesson 2 applied — started at Ridge, no speculative LSTM.** Joint 3-horizon Ridge, alpha grid by validation MSE, lookback from {12, 24, 60} by validation skill (Jaipur chose 24mo, Barmer 60mo).
+
+**Result: no skill at any horizon, either region.**
+
+| Region | Lookback | t+1 | t+2 | t+3 |
+|---|---|---|---|---|
+| rajasthan | 24mo | −0.0525 | −0.1610 | −0.1631 |
+| barmer | 60mo | −0.0209 | −0.0172 | −0.0118 |
+
+Validation had looked mildly promising (+0.06 to +0.11) and test did not follow — an honest validation/test gap, not a target artifact this time: the target was checked first and is near-normal.
+
+**Persistence, computed up front as instructed, and it changes the reading.** Ridge beats persistence everywhere (+0.08 to +0.35) — but persistence is *far worse than climatology* here (−0.14 to −0.61), because monthly Tmax anomalies barely persist month to month. That is the mirror image of drought, where SPI-3's 3-month accumulation made persistence genuinely strong at t+1. So "beats persistence" is close to meaningless for heat; climatology is the only baseline that matters, and Ridge loses to it. Computing persistence up front is what made this visible immediately rather than a phase later.
+
+**Stopped here** per the phase's stopping rule — no LSTM (the precondition, Ridge skill > 0 at some horizon, was never met), no tuning chain. `forecast_heat_stress_risk()` is implemented and returns measured per-horizon skill; every horizon is labelled "no skill — shown for context only" and every risk flag reads "not rated — no measured skill at this horizon". The heat wave day counts *are* served, since they are observations rather than forecasts. 163 tests.
+
+**Honest project-level read:** two risk types, one validated result between them (drought, 1-month lead, linear). Four of six drought phases and this heat phase all ended in "no skill, here's why". That is the expected shape of this work, and the record shows the reasoning rather than a curated highlight.
+
+---
+
+## Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)
+
+**Why a formally closed phase reopened:** Phase 1.5 declared the Forecasting Agent closed with an explicit "no Phase 1.6". This was a deliberate, narrow exception — IOD is a real, literature-documented driver of Indian monsoon variability, independent of ENSO, and it was the one predictor never tested. One bounded hypothesis, nothing else touched.
+
+**Fetching the DMI, and a discrepancy worth recording.** NOAA PSL publishes exactly one DMI series (HadISST1.1); the `.data` and `.csv` endpoints are the same numbers and the other candidate URLs 404. Its amplitudes run smaller than the DMI figures usually quoted: this series gives Nov 1997 = **+1.279** and Nov 2019 = **+0.835**, where the phase spec's reference values were ≈+1.55 and ≈+1.78. That is a difference of SST product, not a parse error — verified by checking the raw bytes and the alternative endpoints before proceeding, exactly as the spec instructed. The events were therefore pinned by **sign and rank** instead of absolute value: Nov 1997 is the single highest month of 1980–2024, Oct 2019 the second highest with Nov 2019 at the 98th percentile, Oct 2016 negative. A constant scale factor is irrelevant downstream anyway, since features are min-max scaled.
+
+**IOD–ONI correlation:** r = **+0.386** over 1980–2024 (+0.340 on train alone, Spearman +0.343). Related but far from redundant — so a null result here is not simply "IOD is ENSO in disguise".
+
+**Method:** both variants re-run in the same process rather than comparing against numbers on disk, so the "without IOD" column comes from exactly the code that produced the "with IOD" column. Same target, model type, regions, windows, lookback grid {12, 24, 60}, alpha grid, and selection-by-validation rule.
+
+| Region | Horizon | Without IOD | With IOD | Change | Windows improved | Adopt |
+|---|---|---|---|---|---|---|
+| rajasthan | t+1 | +0.2622 | +0.2389 | −0.0233 | 1/4 | no |
+| rajasthan | t+2 | +0.0763 | +0.0774 | +0.0011 | 2/4 | no |
+| rajasthan | t+3 | −0.0145 | −0.0305 | −0.0160 | 1/4 | no |
+| barmer | t+1 | +0.2053 | +0.1933 | −0.0120 | 2/4 | no |
+| barmer | t+2 | +0.0496 | +0.0392 | −0.0104 | 2/4 | no |
+| barmer | t+3 | −0.0489 | −0.0757 | −0.0268 | 0/4 | no |
+
+**Decision: rejected.** Five of six cells got worse. The one nominal gain (+0.0011 at rajasthan t+2) held in only 2 of 4 windows against the project's standing 3-of-4 bar — the same bar that confirmed the original t+1 signal. Two extra features on ~350 training sequences cost more in variance than they return in information.
+
+**Reverted properly:** `iod` is not in `FEATURES`, and `prepare_dataset` merges the DMI only when a caller explicitly asks for those columns, so the default path is byte-identical to what Phase 1.5 measured and committed — verified: window-A t+1 RMSE/skill unchanged to 4dp for both regions after the revert. `forecasting/iod.py` and `iod_check.py` stay in the tree with `models/iod_comparison.json` as the evidence, and a test asserts the rejection cannot drift back silently.
+
+**Note on the baseline column:** t+2 reads +0.0763/+0.0496 here versus +0.0766/+0.0438 in Phase 1.5, because Phase 1.5 scored direct models on the horizon-3 window set for like-for-like comparison against recursion, while this module scores each horizon on its own window set. Both columns here use the identical path, so the comparison stands — this is precisely why both variants were re-run rather than one being read off disk.
+
+**This closes the Drought Agent's feature set for real.** Validated at 1 month, weak at 2, none at 3 — five angles tested (target definition, architecture, site, horizon method, exogenous predictors) and that is the final answer. No Phase 1.7.
+
+---
+
+## Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)
+
+**Why:** Heat Phase 1 tested one hypothesis (monthly *mean* Tmax anomaly, heat-only features) and got a clean null. Two motivated ideas remained untested — a mean dilutes 5–10 day spells into a 30-day average, and land-atmosphere feedback (dry soil → less evaporative cooling → hotter days) had been deliberately excluded. Three hypotheses, one bounded pass.
+
+**A false positive caught before it was reported.** The first run showed `heat_extreme` at skill **+0.44 (Jaipur) and +0.63 (Barmer)** — after every model in this project had sat at zero. That is a red flag, not a result, so it was checked rather than written up. Cause: `climatology_prediction()` and `persistence_prediction()` in `heat/model.py` hardcoded `config.HEAT_TARGET` instead of following the run's actual target, so `heat_extreme` (which averages ≈ +1.4) was being scored against a baseline predicting `heat_anomaly` (≈ 0). The baseline was not even predicting the right quantity. Fixed to follow `ds.target`; the "skill" collapsed to −0.28 / +0.02. **A wrong baseline is the most flattering bug available in forecasting work** — the only defence is disbelieving good news.
+
+**Results after the fix — nothing clears the bar:**
+
+| Region | Target | Features | Lookback | t+1 | t+2 | t+3 | mean |
+|---|---|---|---|---|---|---|---|
+| rajasthan | `heat_anomaly` | heat-only | 24mo | −0.0525 | −0.1610 | −0.1631 | −0.1255 |
+| rajasthan | `heat_anomaly` | heat+SPI3 | 60mo | −0.0038 | −0.0026 | −0.0078 | −0.0047 |
+| rajasthan | `heat_extreme` | heat-only | 60mo | −0.2883 | −0.2779 | −0.2762 | −0.2808 |
+| rajasthan | `heat_extreme` | heat+SPI3 | 60mo | −0.0510 | −0.0490 | −0.0472 | −0.0491 |
+| rajasthan | `heatwave_day_count` | heat-only | 12mo | +0.0220 | +0.0075 | +0.0061 | +0.0119 |
+| rajasthan | `heatwave_day_count` | heat+SPI3 | 12mo | +0.0088 | −0.0141 | −0.0116 | −0.0056 |
+| barmer | `heat_anomaly` | heat-only | 60mo | −0.0209 | −0.0172 | −0.0118 | −0.0166 |
+| barmer | `heat_anomaly` | heat+SPI3 | 60mo | −0.0115 | −0.0011 | +0.0007 | −0.0040 |
+| barmer | `heat_extreme` | heat-only | 60mo | +0.0169 | +0.0227 | +0.0217 | +0.0204 |
+| barmer | `heat_extreme` | heat+SPI3 | 60mo | +0.0110 | +0.0245 | +0.0236 | +0.0197 |
+| barmer | `heatwave_day_count` | heat-only | 60mo | +0.0269 | +0.0225 | +0.0215 | +0.0236 |
+| barmer | `heatwave_day_count` | heat+SPI3 | 60mo | +0.0378 | +0.0213 | +0.0200 | +0.0264 |
+
+Best cell anywhere: **+0.0378** (barmer / `heatwave_day_count` / heat+SPI3 / t+1), against a +0.1 bar.
+
+**Hypothesis 1 — extremes target: no.** `heat_extreme` is worse than the mean at Jaipur and indistinguishable at Barmer. Its distribution check also flagged something worth recording: standardising the monthly *max* by the *daily* climatology (as the phase specified, correctly, since it is a daily-scale quantity) produces a target centred at **+1.37 / +1.44 with std ≈ 0.6** — normal in shape but nowhere near *standard* normal, because the hottest day of any month sits well above that month's daily mean by construction. The `approximately_normal` flag was tightened to separate shape from location/scale, since shape alone had called this "normal".
+
+**Hypothesis 2 — count target: no.** 92.4% of train months have zero heat wave days (75.2% even within April–June), so skill against an all-months climatology is flattered by eight easy months a year. The April–June-only cut gives +0.005 to +0.032 — still nothing. The plain-language check is the clearest statement of the failure: for May 2024, the model predicted **0.7–0.9 heat wave days** where **8 (Jaipur) and 7 (Barmer)** actually occurred. Ridge on a zero-inflated count also produced 12–29% negative raw predictions before clipping, which is the expected mismatch of model family to data; per the phase spec, a Poisson/count model was *not* reached for, since nothing here justifies the upgrade.
+
+**Hypothesis 3 — SPI-3 antecedent dryness: it helps, but only by making bad models less bad.** Adding it moved Jaipur's `heat_anomaly` from −0.126 to −0.005 and `heat_extreme` from −0.281 to −0.049 — large relative moves, all of them from "clearly worse than climatology" toward "equal to climatology", never past it. It is regularisation, not signal.
+
+**Cross-agent dependency, now real and guarded.** The Heat Agent reads the Drought Agent's SPI-3 via `heat/dataset.load_drought_spi3()`, rebuilt through the Drought pipeline for the *same* window so the gamma parameters stay fit on that window's train partition. The alignment guard fired on the first run — the Drought frame starts 1981-01 (it drops 12 months for its lag-12 warm-up) against the Heat frame's 1980-01 — and was then taught to distinguish expected leading truncation (trim) from genuine drift or interior gaps (raise loudly). Four tests cover it.
+
+**Winter sanity check (Dec–Feb, 14 test months), confirmed not assumed:** `heat_anomaly` observed −0.05 / +0.33, predicted −0.32 to +0.06 — near zero as required. `heatwave_day_count` observed exactly 0.000 in every winter month, predicted 0.03–0.26 days (Barmer/heat+SPI3 peaking at 0.97) — small but not exactly zero, the expected artifact of a linear model that cannot represent a hard floor. `heat_extreme` observed **+1.45 / +1.65** in winter, which is the construction offset described above rather than a spurious winter heat signal.
+
+**Verdict: Heat Stress forecasting does not work with this data.** Three target definitions (mean, extreme, count) × two feature sets (heat-only, heat+drought) × two regions × three horizons — 36 measured cells, best +0.0378. The null is now well-established, not merely observed once. What survives is the **operational IMD heat wave day counter**, which is observation rather than forecast and is reliable: it correctly identifies the 19 May 2016 national-record event and May 2024's spells at both sites. `forecast_heat_stress_risk()` keeps serving those counts with every forecast horizon labelled "no skill". No Phase 1.2.
+
+**Recorded for the future (trigger condition, per the phase spec):** splitting each month into two 15-day halves and predicting each half's extreme separately is a reasonable next question — **but only if some heat target first clears the +0.1 skill bar at monthly resolution.** It did not, so adding resolution now would be refining noise. If a future phase ever produces a genuine monthly-resolution heat signal, that is the moment to revisit the half-month split.
+
+---
+
+## Heat Stress Agent — Phase 1.2: interface trimmed (Aug 18, 2026)
+
+Housekeeping, not a new result. Phase 1.1 closed the forecasting question (36 measured cells, best +0.0378 against a +0.1 bar), but `forecast_heat_stress_risk()` was still returning three no-skill prediction fields behind "do not rely on this figure" labels. Serving three flavours of a result that does not work is dead weight on a live interface.
+
+**Changed:** the tool now returns observations only — `region`, `month`, `heatwave_days`, `severe_heatwave_days`, `had_heatwave_spell`, `max_tmax_c`, plus `forecast_available: False` and a `note` pointing at this log. The predicted fields and `horizon_confidence` were **removed**, not relabelled. It also gained an optional `month` argument so callers can ask about any historical month rather than only the latest, and it no longer loads a model, scaler or manifest at all — it reads daily observations and applies the IMD criteria.
+
+**Deliberately untouched:** `heat/target.py`, `heat/model.py`, `heat/phase11.py`, every `models/heat_*` evidence file, and the Phase 1/1.1 log sections. The negative result was rigorously established and the code that established it still has passing tests — what got trimmed is only what the live interface serves.
+
+`tests/test_heat_tool.py` was rewritten (not deleted) against the smaller contract, including a test asserting no forecast field can reappear. No other call sites existed — checked before changing the shape. 193 tests pass.
+
+---
+
 ## Phase 2 — Retrieval Agent (RAG)
 *Not started.*
 
@@ -145,5 +256,3 @@ The original tech spec described 5 climate risk types (Drought, Flood, Heat Stre
 ## Phase 6 — API, Container, Deploy
 *Not started.*
 
-## Heat Stress Agent (second risk type)
-*Not started — queued to begin after Phase 1.3 closes out.*
