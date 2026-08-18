@@ -241,8 +241,28 @@ Housekeeping, not a new result. Phase 1.1 closed the forecasting question (36 me
 
 ---
 
-## Phase 2 — Retrieval Agent (RAG)
-*Not started.*
+## Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)
+
+**Built:** a bounded, curated RAG corpus over Gemini embeddings (`gemini-embedding-001`, 768-dim, correct `task_type` per side) and a locally-persisted ChromaDB store, plus a `retrieve_context()` tool that returns citations, not just text. Two indexed document types, deliberately different in purpose: Type A (domain reference — real government/institutional documents establishing authoritative definitions and methodology) and Type B (this project's own evidence — `PROJECT_LOG.md` and both region-comparison files, so the system can cite its own measured numbers instead of inventing them). A third, unindexed Type C (IMD's live seasonal and extended-range outlooks) is fetched fresh at report time and kept as whole excerpts, clearly attributed to IMD, never blended with the project's own results.
+
+**Source verification caught a real dead link.** `https://ndma.gov.in/Natural-Hazards/Drought` and every plausible variant (`/Droughts`, `/drought`, `/Natural-Hazards`) returned a hard 404 — NDMA no longer publishes a drought hazard page at that path. Dropped per the phase's own verify-before-include rule, recorded in `retrieval/corpus_manifest.json` under `verified_dead_and_excluded` alongside its replacement, and guarded by a test so it cannot quietly reappear. Every surviving Type A PDF was checked for genuine extractable text rather than scanned-image noise before inclusion (1,227-2,044 chars/page, alpha ratio 0.74-0.81).
+
+**Type C finding, reported honestly rather than smoothed over:** `seasonal_forecast.php` turned out to be a navigation hub, not a bulletin — its extractable text is menus plus a rotating press-release marquee, with the real seasonal outlooks living in linked PDFs. The manifest says so rather than implying a full outlook exists where it doesn't. The extended-range forecast PDF is a genuine bulletin and works as intended.
+
+**The drought blind spot, found and closed.** The first build ran with four Type A documents, all heat/agromet-focused — the dropped NDMA drought page had left the domain-reference half of the corpus with *zero* drought sources, while the eval set happened to contain zero drought-domain queries. That combination would have reported a perfect precision score while never testing half the domain this project is actually about. Closed by adding two verified sources: **NDMA's National Disaster Management Guidelines: Management of Drought** (108pp, NIDM-hosted since NDMA's own link is dead) and **NIH Roorkee's SPI methodology paper** (10pp, documenting the same gamma-fit McKee et al. 1993 method this project implements in `forecasting/split.py`). Two eval queries were added to target them, and two tests now enforce the invariant permanently: every Type A source must be targeted by some query, and both drought sources must be present. Same family of error as the Heat 1.1 hardcoded baseline — a metric that looks fine because it never examined the thing that was missing.
+
+**Final corpus:** 9 documents, **224 chunks** — 181 Type A across six documents (IMD Heat Wave FAQ, NDMA Heat Wave page, NDMA Drought Guidelines, NIH Roorkee SPI methodology, IMD GKMS Agromet SOP, ICAR-ATARI Jodhpur Agro-Advisory) and 43 Type B across `PROJECT_LOG.md` and both region-comparison files. Header-aware chunking for Type B (keeps a result table with the caveat that qualifies it — `+0.0766` stays attached to "weak/directional, not validated" rather than being split into a misleading fragment, pinned by a test); paragraph-packing at ~2,000 chars with 200-char overlap for Type A.
+
+**Rate limiting was not theoretical.** Every one of the seven embedding batches hit a 429 and recovered through exponential backoff; progress is written to disk per batch, so a failed build resumes rather than restarting. Exactly the discipline the Open-Meteo fetch taught in the Heat phase.
+
+**Evaluation (12 hand-authored queries, written before the index existed and not revised against its results):** precision@5 = **1.00** overall — 1.00 for Type A (7 queries), 1.00 for Type B (5 queries), MRR 1.00, every correct source ranked first. Run *without* the `doc_type` filter, the harder setting, since a live Orchestrator will not know in advance which half of the corpus holds an answer.
+
+**Read that number skeptically, because a perfect score usually means an easy test — and it does here.** Nine documents with barely-overlapping vocabularies make "which document" a soft problem. What this honestly establishes is that the plumbing is correct (task_type handling, index, metadata filtering, citations), not that retrieval is robust on ambiguous queries. A stronger check was run alongside: does the retrieved *text* contain the answer, not merely the right document? `+0.0766` appears in the top-5 text for the 2-month skill query, "no skill" for the 3-month reliability query, `47`/`6.4` for the severe heat wave threshold, and "gamma" for the SPI methodology query — that is the property the Synthesis agent will actually depend on.
+
+**Not built, deliberately:** RAGAS-style faithfulness/relevance evaluation remains Phase 5. This was a bounded first pass run once; no chunking or embedding choice was revised after seeing the eval results.
+
+**Status:** complete. The drought Type A gap that this entry previously tracked as open is closed.
+
 
 ## Phase 3 — Orchestrator + Synthesis
 *Not started.*

@@ -1,0 +1,6 @@
+# Phase 2 — Retrieval Agent (RAG). Installed on top of requirements-phase1.txt.
+chromadb>=0.5
+google-genai>=1.0
+pypdf>=5.0
+beautifulsoup4>=4.12
+lxml>=5.0
