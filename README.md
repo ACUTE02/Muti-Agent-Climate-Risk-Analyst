@@ -36,8 +36,15 @@ citable RAG corpus over IMD/NDMA/ICAR references plus this project's own evidenc
 and a LangGraph orchestrator whose every reported number is mechanically verified
 against source data. **Phase 4 (Crop Impact Agent) is complete** — a hybrid agent
 whose risk-dominance decision and yield-impact lookup are deterministic, with one
-LLM call used only to explain results it is handed. Phases 5–6 (Evaluation Suite,
-FastAPI/Docker) are not started.
+LLM call used only to explain results it is handed. **Phase 5 (Evaluation Suite)
+is complete** — see **[`EVALUATION.md`](./EVALUATION.md)**, the canonical
+scorecard for how good this system actually is, including the grounding checker's
+own measured precision/recall and a real defect that measurement found. **Phase 6
+(local API + Docker) is complete** — a FastAPI backend wrapping the orchestrator
+directly, a one-command setup from a clean clone
+([`SETUP_FROM_CLEAN.md`](./SETUP_FROM_CLEAN.md)), and a Dockerfile that builds and
+runs locally. Deployment is deliberately not done: the image exists so that
+choosing a host later is a decision, not a rebuild.
 
 ### Results, as measured (2020–2024 held-out test set)
 
@@ -313,6 +320,54 @@ Full breakdown in [`models/region_comparison.md`](./models/region_comparison.md)
 [`models/metrics_t1_ridge.json`](./models/metrics_t1_ridge.json). These numbers are
 reported as measured, never as targets.
 
+## Running it as a local API
+
+```bash
+pip install -r requirements-api.txt
+python -m scripts.setup            # regenerate everything a fresh clone lacks
+uvicorn api.app:app --reload --port 8000
+```
+
+Then <http://localhost:8000/docs>. Full instructions, including what a fresh
+clone is missing and why, are in
+[`SETUP_FROM_CLEAN.md`](./SETUP_FROM_CLEAN.md).
+
+| Endpoint | Cost | What it gives you |
+|---|---|---|
+| `POST /report` | 2-4 Gemini calls | The real pipeline: routed tools, grounded report |
+| `GET /health` | free | Readiness, plus exactly which artifacts are missing |
+| `GET /quota` | free | Calls used today, tallied at the chat chokepoint |
+| `GET /examples` | free | Ready-to-post request bodies, incl. an impossible one |
+| `GET /evaluation` | free | `EVALUATION.md` plus a JSON summary |
+
+`/report` calls `orchestrator.graph.analyse()` — the same function the tests
+exercise. There is no separate demo path.
+
+**The honesty mechanisms are structured fields, not prose.** Grounding status
+arrives as `clean` / `warning` / `not_generated` with the unverified numbers
+listed; per-horizon labels stay distinct rather than collapsing into one
+confidence score (a test asserts `reliable` follows the measured *label*, not a
+threshold on the skill score); and missing data — no heat forecast, no sourced
+yield coefficient, an unavailable IMD outlook — travels as explicit flags with
+reasons, never as an absent key.
+
+**Quota is first-class.** The free tier allows 20 `generate_content` calls per
+day, so a day is roughly 5-8 reports. Exhaustion returns **429 with a specific
+explanation**, not a generic 500.
+
+### Docker
+
+```bash
+docker build --secret id=gemini_key,env=GEMINI_API_KEY -t climate-risk-analyst .
+docker run --rm -p 8000:8000 -e GEMINI_API_KEY=your-key climate-risk-analyst
+```
+
+ChromaDB is baked in at build time; the runtime key is never baked into the
+image (a BuildKit secret, not an `ARG`, so it leaves nothing in image history).
+The image skips TensorFlow entirely — it is imported only by the LSTM path,
+which has no skill and serves no forecast. No deployment-platform config is
+included, by design.
+
 ## Project layout
 
 ```
@@ -365,6 +420,17 @@ crop_impact/        # Phase 4 — the Crop Impact Agent
   prompts/narrative.md      # the one prompt, reviewable rather than inline
   tool.py             # assess_crop_impact() — the Phase-4 deliverable
   narrative_sample.json     # a real grounded run, kept as evidence
+api/                # Phase 6 - the local API
+  app.py              # FastAPI app wrapping orchestrator.graph.analyse()
+  schemas.py          # response shapes that keep honesty signals structured
+  quota.py            # real call tally + quota-aware errors
+scripts/
+  setup.py            # clone -> working API in one command
+evaluation/         # Phase 5 - the evaluation suite
+  checker_eval.py     # the grounding checker's own precision/recall (offline)
+  faithfulness.py     # sentence-level faithfulness + relevance (the one LLM judge)
+  eval_requests.json  # held-out set, written before any results existed
+  prompts/judge.md    # the judging prompt, checked in
 tests/              # leakage, SPI-3 gamma-fit, ENSO-parse, multi-region and
                     # retrieval-corpus tests
 ```
@@ -398,6 +464,8 @@ python -m heat.model                    # Heat Stress: fit, evaluate, compare
 python -m heat.phase11                  # Heat Phase 1.1 target/feature grid
 python -m heat.tool                     # observed heat wave counts per region
 python -m crop_impact.tool rajasthan wheat 2006-02   # crop impact, no LLM call
+python -m evaluation.checker_eval        # grounding-checker precision/recall (free)
+python -m evaluation.faithfulness        # faithfulness eval (costs ~9-15 Gemini calls)
 pytest tests/ -v
 ```
 

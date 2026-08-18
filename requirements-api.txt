@@ -1,0 +1,28 @@
+# Runtime + setup dependencies for the local API image.
+#
+# Deliberately NOT the union of requirements-phase1..3: tensorflow (~600 MB) and
+# matplotlib are imported only by forecasting/train.py, lstm_small.py and
+# evaluate.py — the LSTM path, which has no skill at any horizon and no longer
+# serves any forecast. Neither `api.app` nor `scripts.setup` touches them
+# (verified by inspecting the loaded modules), so the image leaves them out.
+# Install requirements-phase1.txt as well if you want to retrain the LSTMs.
+
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.5
+joblib>=1.4
+requests>=2.32
+pyarrow>=15.0
+
+langchain-core>=1.5,<2.0
+langgraph>=1.0
+langchain-google-genai>=2.0
+google-genai>=1.0
+
+chromadb>=0.5
+pypdf>=5.0
+beautifulsoup4>=4.12
+lxml>=5.0
+
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
