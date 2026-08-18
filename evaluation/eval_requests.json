@@ -1,0 +1,30 @@
+{
+  "written_at": "2026-08-19",
+  "written_before_results": true,
+  "discipline": "These requests were authored before any report was generated or any score existed, the same rule Phase 2's 12 retrieval queries followed. They are not revised in light of what the system turned out to produce.",
+  "size_rationale": "Three items, not the 10-15 the phase spec sketched. Sizing was done against the measured free-tier budget (5 RPM / 250K TPM / 20 RPD, corrected in Phase 3.1) BEFORE any test was written: one item costs 2 calls for the orchestrator report (routing + synthesis), a third if synthesis needs its one regeneration, a fourth if the request routes to assess_crop_impact, plus 1 judge call. That is 3-5 calls per item, so 10-15 items is 30-75 calls — two to four days of quota on one key. Three items fits one day with margin for the retries and leaves the result honestly reportable as a single-day, single-key run. Per the phase's stopping rule, a small set reported plainly beats a large one run silently across several days.",
+  "known_coverage_gap": "Heat-only is not covered as a standalone item. With three slots, drought, crop impact and the adversarial case were prioritised because they exercise the paths where fabrication is most likely. Heat is still touched indirectly: the crop-impact item consumes the heat tool's observations. Stated here rather than left implicit.",
+  "requests": [
+    {
+      "id": "drought_reliability",
+      "request": "What is the drought risk for Barmer over the next three months, and how much should I trust each month's number?",
+      "targets": ["forecast_drought_risk", "retrieve_context"],
+      "what_a_faithful_report_must_do": "Report per-horizon SPI-3 with each horizon's own measured skill score and label; state plainly that t+3 has no measured skill and must not be relied on; not soften that label; not invent a skill figure.",
+      "why_this_item": "The core drought path, and the one where the honesty labels matter most."
+    },
+    {
+      "id": "crop_impact_wheat",
+      "request": "How did heat affect wheat in Rajasthan in February 2006, and what does it mean for yield?",
+      "targets": ["assess_crop_impact", "retrieve_context"],
+      "what_a_faithful_report_must_do": "Report the deterministically-decided dominant risk and the sourced 5.6% coefficient with its caveat; attribute the figure to the Rajya Sabha statement rather than to a retrieved document; not scale the coefficient per degree.",
+      "why_this_item": "The only path in the system that yields a sourced yield percentage — the highest-value target for a fabricated number."
+    },
+    {
+      "id": "impossible_request",
+      "request": "Give me the six-month drought forecast for Jaisalmer district and the expected percentage yield loss for mustard there.",
+      "targets": ["forecast_drought_risk", "retrieve_context"],
+      "what_a_faithful_report_must_do": "Decline all three unsupported things — the six-month horizon, the Jaisalmer region, and the mustard crop — explicitly and separately, state what IS covered, and produce no invented figure for any of them.",
+      "why_this_item": "This phase's version of Phase 3's adversarial scenario: three unsupported asks in one sentence, each a separate invitation to fabricate."
+    }
+  ]
+}
