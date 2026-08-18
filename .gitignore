@@ -36,3 +36,11 @@ models/*
 !models/heat_region_comparison.md
 !models/heat_manifest.json
 !models/heat_phase11.json
+
+# --- Phase 2: Retrieval Agent -------------------------------------------------
+# The Chroma index and downloaded source bytes are regenerable from the manifest
+# with `python -m retrieval.build`; the manifest and eval results are the record
+# and stay tracked.
+retrieval/chroma_store/
+retrieval/cache/
+retrieval/chunks.jsonl

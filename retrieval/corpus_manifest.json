@@ -1,0 +1,206 @@
+{
+  "generated_at": "2026-08-18T11:21:40+00:00",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_dim": 768,
+  "chunking": {
+    "type_A": "paragraph packing, ~2000 chars with 200 char overlap",
+    "type_B": "header-aware (## / ### boundaries), so a result table stays with the caveat that qualifies it",
+    "type_C": "not chunked and not indexed — fetched live, kept whole"
+  },
+  "chunk_counts": {
+    "A": 181,
+    "B": 43
+  },
+  "total_chunks": 224,
+  "index_built": true,
+  "note": "",
+  "documents": [
+    {
+      "id": "imd_heatwave_faq",
+      "title": "IMD FAQ on Heat Wave",
+      "url": "https://internal.imd.gov.in/section/nhac/dynamic/FAQ_heat_wave.pdf",
+      "publisher": "India Meteorological Department",
+      "why": "Authoritative definition of the heat wave and severe heat wave criteria this project's heat/target.py implements.",
+      "doc_type": "A",
+      "format": "pdf",
+      "usable": true,
+      "stats": {
+        "pages": 16,
+        "chars": 26350,
+        "chars_per_page": 1646.9,
+        "alpha_ratio": 0.79
+      },
+      "dropped_reason": "",
+      "chunks": 19
+    },
+    {
+      "id": "ndma_heatwave",
+      "title": "NDMA Heat Wave hazard page",
+      "url": "https://ndma.gov.in/Natural-Hazards/Heat-Wave",
+      "publisher": "National Disaster Management Authority",
+      "why": "National-authority statement of the same criteria, plus the advisory context around them.",
+      "doc_type": "A",
+      "format": "html",
+      "usable": true,
+      "stats": {
+        "html_title": "Heat Wave | NDMA",
+        "chars": 6944,
+        "alpha_ratio": 0.818
+      },
+      "dropped_reason": "",
+      "chunks": 4
+    },
+    {
+      "id": "ndma_drought_guidelines",
+      "title": "NDMA National Disaster Management Guidelines: Management of Drought",
+      "url": "https://nidm.gov.in/PDF/pubs/NDMA/13.pdf",
+      "backup_url": "https://www.droughtmanagement.info/literature/GovIndia_management_of_drought_2010.pdf",
+      "publisher": "National Disaster Management Authority (hosted by NIDM)",
+      "why": "The official national drought guidelines — classification, early warning and response. Replaces the dead NDMA drought hazard page, and balances a corpus that would otherwise be heat-only on the domain-reference side.",
+      "doc_type": "A",
+      "format": "pdf",
+      "usable": true,
+      "stats": {
+        "pages": 108,
+        "chars": 220786,
+        "chars_per_page": 2044.3,
+        "alpha_ratio": 0.812
+      },
+      "dropped_reason": "",
+      "chunks": 92
+    },
+    {
+      "id": "nih_spi_methodology",
+      "title": "NIH Roorkee — Standardized Precipitation Index methodology",
+      "url": "https://nihroorkee.gov.in/sites/default/files/uploadfiles/SPINov2011.pdf",
+      "publisher": "National Institute of Hydrology, Roorkee",
+      "why": "Authoritative Indian source for the same gamma-fit SPI method (McKee et al. 1993) this project implements in forecasting/split.py — it grounds the project's own methodology choice, not just drought in general.",
+      "doc_type": "A",
+      "format": "pdf",
+      "usable": true,
+      "stats": {
+        "pages": 10,
+        "chars": 12268,
+        "chars_per_page": 1226.8,
+        "alpha_ratio": 0.738
+      },
+      "dropped_reason": "",
+      "chunks": 8
+    },
+    {
+      "id": "imd_gkms_sop",
+      "title": "IMD Standard Operating Procedure for Agromet Advisory Services",
+      "url": "https://mausam.imd.gov.in/imd_latest/contents/pdf/gkms_sop.pdf",
+      "publisher": "India Meteorological Department",
+      "why": "The actual government methodology for district-level agromet advisories — what a real advisory looks like and how it is made.",
+      "doc_type": "A",
+      "format": "pdf",
+      "usable": true,
+      "stats": {
+        "pages": 26,
+        "chars": 45097,
+        "chars_per_page": 1734.5,
+        "alpha_ratio": 0.755
+      },
+      "dropped_reason": "",
+      "chunks": 27
+    },
+    {
+      "id": "atari_jodhpur_agroadvisory",
+      "title": "ICAR-ATARI Jodhpur Agro-Advisory Services",
+      "url": "https://atarijodhpur.res.in/Agro%20Advisory%20Services.pdf",
+      "publisher": "ICAR-ATARI Zone-II, Jodhpur",
+      "why": "Rajasthan-specific advisory practice, matching this project's two modelled regions.",
+      "doc_type": "A",
+      "format": "pdf",
+      "usable": true,
+      "stats": {
+        "pages": 44,
+        "chars": 74413,
+        "chars_per_page": 1691.2,
+        "alpha_ratio": 0.812
+      },
+      "dropped_reason": "",
+      "chunks": 31
+    },
+    {
+      "id": "project_log",
+      "title": "Project Log — Multi-Agent Climate Risk Analyst",
+      "path": "PROJECT_LOG.md",
+      "why": "The full decision and result record, including every negative result and why it was accepted.",
+      "doc_type": "B",
+      "usable": true,
+      "stats": {
+        "chars": 38588,
+        "headings": 19
+      },
+      "dropped_reason": "",
+      "chunks": 27
+    },
+    {
+      "id": "drought_region_comparison",
+      "title": "Drought — model / region comparison",
+      "path": "models/region_comparison.md",
+      "why": "The measured per-horizon drought skill scores, which the Synthesis agent must cite rather than invent.",
+      "doc_type": "B",
+      "usable": true,
+      "stats": {
+        "chars": 7799,
+        "headings": 8
+      },
+      "dropped_reason": "",
+      "chunks": 8
+    },
+    {
+      "id": "heat_region_comparison",
+      "title": "Heat Stress — model / region comparison",
+      "path": "models/heat_region_comparison.md",
+      "why": "The measured heat stress results, establishing that heat forecasting has no usable skill with this data.",
+      "doc_type": "B",
+      "usable": true,
+      "stats": {
+        "chars": 8263,
+        "headings": 7
+      },
+      "dropped_reason": "",
+      "chunks": 8
+    }
+  ],
+  "verified_dead_and_excluded": [
+    {
+      "url": "https://ndma.gov.in/Natural-Hazards/Drought",
+      "checked_variants": [
+        "/Drought",
+        "/Droughts",
+        "/drought",
+        "/Natural-Hazards"
+      ],
+      "result": "404 — NDMA publishes no drought hazard page at that path",
+      "replaced_by": "ndma_drought_guidelines (the official 2010 NDMA drought guidelines, NIDM-hosted PDF)"
+    }
+  ],
+  "live_sources_not_indexed": [
+    {
+      "id": "imd_extended_range",
+      "title": "IMD Extended Range Forecast (next two weeks)",
+      "url": "https://internal.imd.gov.in/section/nhac/dynamic/extended.pdf",
+      "publisher": "India Meteorological Department",
+      "relevant_to": [
+        "heat_stress",
+        "drought"
+      ],
+      "why": "~2-week rainfall and temperature outlook. Primarily valuable for Heat Stress, where this project's own model has no skill at all."
+    },
+    {
+      "id": "imd_seasonal",
+      "title": "IMD Seasonal Forecast page",
+      "url": "https://mausam.imd.gov.in/responsive/seasonal_forecast.php",
+      "publisher": "India Meteorological Department",
+      "relevant_to": [
+        "drought",
+        "heat_stress"
+      ],
+      "why": "IMD's seasonal outlook hub. Note: the page itself is a navigation hub whose extractable text is menu items plus a rotating press release marquee — the actual seasonal bulletins are linked PDFs. The current press-release statements are extracted; the manifest records this limitation rather than implying a full outlook."
+    }
+  ]
+}

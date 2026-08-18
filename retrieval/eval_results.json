@@ -1,0 +1,234 @@
+{
+  "generated_at": "2026-08-18T11:22:13+00:00",
+  "k": 5,
+  "doc_type_filter_used": false,
+  "precision_at_k": 1.0,
+  "precision_type_A_domain_reference": 1.0,
+  "precision_type_B_project_evidence": 1.0,
+  "mrr": 1.0,
+  "results": [
+    {
+      "id": "q1_severe_heatwave_threshold",
+      "query": "What is the IMD threshold for declaring a severe heat wave?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "imd_heatwave_faq",
+        "ndma_heatwave"
+      ],
+      "retrieved_sources": [
+        "imd_heatwave_faq",
+        "ndma_heatwave",
+        "imd_heatwave_faq",
+        "imd_heatwave_faq",
+        "imd_heatwave_faq"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7668
+    },
+    {
+      "id": "q2_heatwave_plains_criteria",
+      "query": "When is a heat wave declared over the plains of India, and what departure from normal temperature is required?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "imd_heatwave_faq",
+        "ndma_heatwave"
+      ],
+      "retrieved_sources": [
+        "ndma_heatwave",
+        "imd_heatwave_faq",
+        "imd_heatwave_faq",
+        "imd_heatwave_faq",
+        "ndma_heatwave"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7591
+    },
+    {
+      "id": "q3_agromet_advisory_sop",
+      "query": "What is the standard operating procedure for preparing district level agromet advisory bulletins?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "imd_gkms_sop"
+      ],
+      "retrieved_sources": [
+        "imd_gkms_sop",
+        "imd_gkms_sop",
+        "imd_gkms_sop",
+        "imd_gkms_sop",
+        "imd_gkms_sop"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.8181
+    },
+    {
+      "id": "q4_rajasthan_agro_advisory",
+      "query": "What agro advisory services are provided to farmers in Rajasthan and the arid western zone?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "atari_jodhpur_agroadvisory"
+      ],
+      "retrieved_sources": [
+        "atari_jodhpur_agroadvisory",
+        "atari_jodhpur_agroadvisory",
+        "atari_jodhpur_agroadvisory",
+        "atari_jodhpur_agroadvisory",
+        "atari_jodhpur_agroadvisory"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7106
+    },
+    {
+      "id": "q5_heat_health_impact",
+      "query": "What are the health effects of extreme heat and who is most vulnerable?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "imd_heatwave_faq",
+        "ndma_heatwave"
+      ],
+      "retrieved_sources": [
+        "imd_heatwave_faq",
+        "ndma_heatwave",
+        "imd_heatwave_faq",
+        "imd_heatwave_faq",
+        "ndma_heatwave"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7089
+    },
+    {
+      "id": "q6_two_month_drought_skill",
+      "query": "What is the measured skill score for the 2-month drought forecast?",
+      "doc_type": "B",
+      "acceptable_sources": [
+        "drought_region_comparison",
+        "project_log"
+      ],
+      "retrieved_sources": [
+        "project_log",
+        "drought_region_comparison",
+        "heat_region_comparison",
+        "project_log",
+        "heat_region_comparison"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7691
+    },
+    {
+      "id": "q7_three_month_reliability",
+      "query": "How reliable is the 3-month drought forecast and should it be relied on?",
+      "doc_type": "B",
+      "acceptable_sources": [
+        "drought_region_comparison",
+        "project_log"
+      ],
+      "retrieved_sources": [
+        "project_log",
+        "project_log",
+        "project_log",
+        "ndma_drought_guidelines",
+        "drought_region_comparison"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7173
+    },
+    {
+      "id": "q8_heat_forecast_skill",
+      "query": "Does the heat stress model have any usable forecasting skill?",
+      "doc_type": "B",
+      "acceptable_sources": [
+        "heat_region_comparison",
+        "project_log"
+      ],
+      "retrieved_sources": [
+        "project_log",
+        "heat_region_comparison",
+        "heat_region_comparison",
+        "heat_region_comparison",
+        "project_log"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7672
+    },
+    {
+      "id": "q9_iod_rejected",
+      "query": "Why was the Indian Ocean Dipole rejected as a predictor for the drought model?",
+      "doc_type": "B",
+      "acceptable_sources": [
+        "project_log"
+      ],
+      "retrieved_sources": [
+        "project_log",
+        "drought_region_comparison",
+        "project_log",
+        "heat_region_comparison",
+        "project_log"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.787
+    },
+    {
+      "id": "q10_t1_model_lookback",
+      "query": "What lookback window does the validated 1-month drought model use, and how well does it score?",
+      "doc_type": "B",
+      "acceptable_sources": [
+        "project_log",
+        "drought_region_comparison"
+      ],
+      "retrieved_sources": [
+        "drought_region_comparison",
+        "project_log",
+        "project_log",
+        "heat_region_comparison",
+        "drought_region_comparison"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7881
+    },
+    {
+      "id": "q11_spi_calculation",
+      "query": "How is the Standardized Precipitation Index calculated, and what probability distribution is fitted to rainfall?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "nih_spi_methodology"
+      ],
+      "retrieved_sources": [
+        "nih_spi_methodology",
+        "nih_spi_methodology",
+        "nih_spi_methodology",
+        "nih_spi_methodology",
+        "nih_spi_methodology"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7744
+    },
+    {
+      "id": "q12_drought_types_early_warning",
+      "query": "What are the different types of drought and how does India's drought early warning and declaration system work?",
+      "doc_type": "A",
+      "acceptable_sources": [
+        "ndma_drought_guidelines"
+      ],
+      "retrieved_sources": [
+        "ndma_drought_guidelines",
+        "ndma_drought_guidelines",
+        "ndma_drought_guidelines",
+        "ndma_drought_guidelines",
+        "ndma_drought_guidelines"
+      ],
+      "hit": true,
+      "rank_of_first_correct": 1,
+      "top_score": 0.7385
+    }
+  ]
+}

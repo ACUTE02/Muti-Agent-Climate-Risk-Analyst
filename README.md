@@ -30,9 +30,10 @@ against a Ridge baseline and a small LSTM; Phase 1.4 validated the one positive
 result across four historical windows and built a dedicated 1-month-ahead model;
 Phase 1.5 settled t+2/t+3 (direct beat recursive everywhere) and made the tool
 report measured per-horizon confidence; Phase 1.6 tested the Indian Ocean Dipole
-as a second exogenous predictor and rejected it on the measurements. Phases 2–6
-(Retrieval Agent, Orchestrator, Synthesis, Crop Impact, FastAPI/Docker) are not
-started.
+as a second exogenous predictor and rejected it on the measurements. **Phase 2
+(Retrieval Agent) is complete** — a citable RAG corpus over IMD/NDMA/ICAR
+references plus this project's own evidence. Phases 3–6 (Orchestrator, Synthesis,
+Crop Impact, FastAPI/Docker) are not started.
 
 ### Results, as measured (2020–2024 held-out test set)
 
@@ -114,6 +115,47 @@ byte-identical to what Phase 1.5 measured, and
 
 That closes the drought feature set: five angles tested — target definition,
 architecture, site, horizon method, and exogenous predictors.
+
+## Retrieval Agent (RAG)
+
+The two forecasting tools state numbers; neither could explain itself or cite
+authority for its thresholds. `retrieval/` builds the piece that does — a bounded,
+curated corpus (**9 documents, 224 chunks**) with a `retrieve_context()` tool that
+returns citations, not just text.
+
+- **Type A — domain reference (181 chunks):** IMD Heat Wave FAQ, NDMA Heat Wave
+  page, NDMA Drought Management Guidelines, NIH Roorkee SPI methodology, IMD GKMS
+  Agromet SOP, ICAR-ATARI Jodhpur Agro-Advisory. Every PDF was extraction-checked
+  before inclusion; `https://ndma.gov.in/Natural-Hazards/Drought` is a verified
+  404 and was replaced by the NIDM-hosted official guidelines.
+- **Type B — this project's own evidence (43 chunks):** `PROJECT_LOG.md` and both
+  region-comparison files. This is the more important half. It is what lets the
+  system answer "how reliable is the 2-month forecast" with the measured
+  **+0.0766, weak/directional** instead of a number a language model made up.
+- **Type C — live IMD outlooks:** never indexed, fetched fresh at report time,
+  quoted whole and attributed to IMD by name, with an explicit "unavailable"
+  state rather than a silent omission or an undated stale copy.
+
+Chunking differs by type on purpose: header-aware for Type B, so a skill score
+stays in the same chunk as the caveat that qualifies it; paragraph packing with
+overlap for Type A prose. Embeddings are `gemini-embedding-001` at 768-dim with
+`RETRIEVAL_DOCUMENT`/`RETRIEVAL_QUERY` used on the correct sides.
+
+**Evaluation: precision@5 = 1.00** across 12 hand-authored queries (7 domain
+reference, 5 project evidence), MRR 1.00, run without the document-type filter.
+Read skeptically — nine documents with barely-overlapping vocabularies make this
+an easy test, so it confirms the plumbing rather than proving robust retrieval.
+A stricter check confirms the retrieved *text* contains the answers themselves
+(`+0.0766`, `47`/`6.4`, "gamma"), which is what the Synthesis agent will depend
+on. Full RAGAS-style evaluation is Phase 5.
+
+```bash
+python -m retrieval.build       # verify sources, chunk, embed, populate Chroma
+python -m retrieval.evaluate    # the 12-query precision check
+python -m retrieval.tool "how reliable is the 2-month drought forecast?"
+```
+
+Requires a Gemini API key in `GEMINI_API_KEY` (or a gitignored `.env`).
 
 ## Heat Stress — the second risk type
 
@@ -203,7 +245,17 @@ data/processed/     # cleaned + feature-engineered, {region}_clean.parquet (giti
 models/             # per-region model/scaler/spi_params + ONI cache (gitignored);
                     # metrics_*.json, test_forecast_plot_*.png,
                     # training_history_*.json, region_comparison.md (tracked)
-tests/              # leakage, SPI-3 gamma-fit, ENSO-parse and multi-region tests
+retrieval/          # Phase 2 — the Retrieval Agent (RAG)
+  config.py           # the corpus definition: Type A/B/C sources
+  sources.py          # defensive fetch + PDF/HTML extraction verification
+  chunk.py            # header-aware (Type B) and overlap (Type A) chunking
+  embed.py            # gemini-embedding-001, batched, backed off, resumable
+  store.py            # ChromaDB build/query
+  outlooks.py         # Type C live IMD outlooks, never indexed
+  tool.py             # retrieve_context() — the callable tool
+  evaluate.py         # the 12-query precision check
+tests/              # leakage, SPI-3 gamma-fit, ENSO-parse, multi-region and
+                    # retrieval-corpus tests
 ```
 
 ## Setup
