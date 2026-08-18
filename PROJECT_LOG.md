@@ -345,8 +345,173 @@ Those numbers appear **nowhere in the corpus**: not in the retrieved chunks, not
 
 **Honest read:** the deterministic machinery is the deliverable and it works — the dominance rule, the skill gating, the band enforcement, and the refusal to invent. What it mostly returns is "no sourced yield-impact estimate available", because that is what the literature actually supports for these crops and risks at zero cost. One real coefficient, three recorded gaps, and a system that says so plainly is the correct outcome of the phase's own stopping rule.
 
-## Phase 5 — Evaluation Suite
-*Not started.*
+## Phase 5 — Evaluation Suite (Aug 19, 2026)
 
-## Phase 6 — API, Container, Deploy
-*Not started.*
+**Built:** `EVALUATION.md` (the consolidated scorecard) plus an `evaluation/` package with two genuinely new measurements and a test suite that holds the scorecard to the same standard the system's own reports are held to.
+
+### 1. The scorecard, and a real inconsistency it surfaced
+
+`EVALUATION.md` consolidates every measured result in the project, each cited to the file it was measured in. `tests/test_evaluation.py` parses the document section by section, extracts every number, and verifies it appears in that section's cited sources — **reusing `orchestrator/grounding.py`'s own matching primitives rather than writing a second regex**, since "does this number appear in that source" is exactly the problem the checker already solves.
+
+Building it surfaced one genuine discrepancy, which is the kind of finding this phase existed to produce. **The Phase 1.4 per-window table in this log holds pre-leak-fix numbers that were never restated.** Phase 1.5 found a leakage bug affecting windows C and D, re-ran, and corrected the *means* (+0.2667 → +0.2622, +0.2304 → +0.2053) — but left the per-window figures alone. The log says rajasthan C **+0.2303** / D **+0.3092**; `models/metrics_t1_ridge.json` says **+0.2403** / **+0.2809**. Same for barmer: logged C +0.1754 / D +0.2890, actual +0.1546 / +0.2269. The Phase 1.4 entry is not wrong as a *historical record* of that run, and Phase 1.5 does say the numbers moved — but a reader skimming could quote +0.3092 as current. `EVALUATION.md` uses post-fix values throughout and documents the discrepancy explicitly rather than quietly correcting it.
+
+### 2. The grounding checker's own precision and recall — and a real defect found
+
+The checker is the most safety-critical piece in this project and had never been **measured**, only exercised. On a hand-labelled adversarial set of **14 reports / 40 labelled numbers**, fully offline:
+
+| Metric | Value |
+|---|---|
+| Precision | **1.0** |
+| Recall | **0.9286** |
+| F1 | **0.963** |
+| Cases fully correct | 13 / 14 |
+
+The labelling discipline matters as much as the number: `score_case()` **raises** if a case extracts a token that is not labelled either fabricated or grounded, so the label set cannot silently drift behind the fixtures and flatter the result. It fired immediately on the first run and caught three unlabelled tokens of my own.
+
+**A false positive that turned out to be my mislabel, not a checker error.** The first run flagged `-1.0` in the McKee-band case as wrongly-flagged. On inspection `-1.0` genuinely appears nowhere in that case's sources — it is part of the same recited band table as `-0.99` and `-1.49`. The label was wrong, not the checker; corrected, with the correction noted in the case itself rather than silently applied.
+
+**A false negative that is a real defect, reported rather than patched.** `12%` — an invented yield percentage, exactly the Phase-4 failure mode — passes the checker. Cause, diagnosed precisely rather than guessed: an integer percentage is compared against its fraction form at the report token's own precision, so `12%` → `0.12` → rounds at zero decimals to `0.0` → matches any source containing a zero. Tool outputs are full of legitimate zeros (`heatwave_days: 0`). **Any invented integer percentage below 50% is currently accepted whenever the sources contain a zero.**
+
+Not fixed in this phase, deliberately. Phase 5's own stated non-goals forbid tuning a measured component, and fixing it here would mean the precision/recall above no longer describe the code that was measured. The failing case stays in the set, `PERCENT_FRACTION_DEFECT` documents the likely fix, and a test asserts the defect stays *documented and failing* — so if someone fixes the checker the test fails loudly, forcing a re-measurement and a scorecard update rather than a silent improvement.
+
+### 3. Faithfulness and answer relevance — the one LLM-judges-LLM exception
+
+`check_grounding()` verifies every **number**; it says nothing about whether a **claim** is entailed. This measures that gap, and it is the only place in the whole project where an LLM judges an LLM's output.
+
+**The exception is deliberate and bounded.** Everywhere else the rule is the opposite — the grounding checker and `dominant_risk()` are plain Python precisely because an LLM checking an LLM shares the failure mode being checked. It holds here because the quantity is different in kind: verifying a discrete fact is mechanical, judging entailment of a claim is not. The two are complementary, and this one is labelled lower-trust in the module docstring, in the results JSON, and in the scorecard: **where they disagree, the mechanical checker wins.** A test asserts that labelling stays present.
+
+**Set size: 3 items, not the 10–15 the spec sketched — and the sizing was done before any test was written.** One item costs 2 calls (routing + synthesis), a third if synthesis retries, a fourth if it routes to `assess_crop_impact`, plus 1 judge call: 3–5 each. Ten to fifteen items is 30–75 calls, two to four days of quota on one key. Three fits one day with margin. This was a **single-day, single-key run with no results discarded**. A test asserts `HELD_OUT_SET_SIZE × CALLS_PER_ITEM_WORST ≤ DAILY_REQUEST_BUDGET`, so the set cannot silently outgrow the budget it claims to fit.
+
+| Metric | Value |
+|---|---|
+| Mean faithfulness | **0.9867** |
+| Mean answer relevance | **1.0** |
+| Unsupported claims across all items | 1 |
+| Mechanical grounding clean on every item | yes (27, 19 and 28 numbers checked) |
+| Routing correct on every item | yes |
+
+**The one unsupported claim is not a hallucination, and reporting it as one would be wrong.** The judge flagged the report for stating that skill score is `1 - RMSE_model/RMSE_climatology`. That formula is in no retrieved chunk — so the judge is technically right — but it comes from `orchestrator/prompts/synthesis.md`, which *instructs* the model to define the labels precisely, a rule added in Phase 3 after "no skill" was glossed as "no better than random chance". **The judge sees tool outputs and retrieved chunks but not the system prompt**, so definitions the prompt legitimately supplies score as unsupported. That is a limitation of this evaluation setup, not of the report. Recorded rather than corrected into a cleaner-looking 1.0.
+
+**Coverage gap, stated up front in `eval_requests.json` rather than discovered later:** with three slots, heat-only is not a standalone item; it is exercised indirectly through the crop-impact item. The three chosen — drought reliability, crop impact, and a three-way impossible request (six-month horizon + unsupported district + unsupported crop) — prioritise the paths where fabrication is most likely.
+
+### Honest read
+
+Two of the three deliverables came back clean and one came back with a defect — which is the right ratio for a phase whose job is to look. The scorecard's own closing section lists what it does **not** claim, including that the grounding checker is complete: it has a measured, documented false-negative class, unfixed as of this scorecard. **277 tests pass, 12 skipped.** The 25 new evaluation tests are entirely offline; the live faithfulness run is a script, not a test, so the suite verifies the measurement without repeating its cost.
+
+## Independent verification note (Aug 19, 2026)
+
+Phase 4 and Phase 5's claims were independently checked from the Cowork session that has been reviewing this project throughout — not re-taken on trust. Specifically verified against the actual files on disk: `crop_impact/yield_impact_table.json`'s sourced coefficient and the four sources checked/rejected; the wheat×heat 5.6% figure against the original Rajya Sabha statement (fetched and quoted directly — matches verbatim); `crop_impact/dominance.py`'s two-route heat-severity logic and the `+4.0 °C` severe threshold's match to the yield table's own exposure band; `dominance_rule.md`'s t+3 gate; `evaluation/checker_eval_results.json`'s precision/recall numbers and the documented `12%` false-negative case; and the Phase 1.4 per-window discrepancy claim directly against `models/metrics_t1_ridge.json` (rajasthan window D: log says +0.3092, file says +0.2809 — confirmed exactly as reported). No discrepancies found between what was reported and what the code/data actually show.
+
+## Phase 6 — Local API + Container (Aug 19, 2026)
+
+**Built:** `api/` (FastAPI over the real orchestrator), `scripts/setup.py` (clone → working API in one command), `SETUP_FROM_CLEAN.md`, `Dockerfile` + `.dockerignore`, `requirements-api.txt`. **No frontend** — per the Aug 19 scope change below, that is built separately with a design tool. No deployment configuration of any kind.
+
+### The "database disappears on a fresh clone" complaint — root-caused, and it was not ChromaDB
+
+The reported symptom pointed at the vector store. The store turned out to be the *healthy* part:
+
+- **ChromaDB is portable.** Paths are computed at import time from `__file__`, and the persisted store was scanned byte-wise for baked-in absolute paths — **zero hits**. A store built at `E:\...` works after cloning anywhere. It is git-ignored because it is regenerable and 5.9 MB, not because it is fragile.
+- **The actual breakage is in the forecasting artifacts, and it is worse than it looks.** `forecast_drought_risk()` loads `scaler_<region>.joblib` and `spi_params_<region>.joblib` at request time. **Neither `t1_model` nor `recursive` writes them** — both call `prepare_dataset(..., save=False)`. The only modules that persist them are `forecasting.train` and `forecasting.evaluate`: the **LSTM** path. So the obvious sequence (fetch → t1_model → recursive) yields a tracked manifest, Ridge models that load fine, and a tool that dies on a missing scaler at the first drought question. On this machine those four files existed **only as a leftover side effect of Phase-1 LSTM training** — for a model that has no skill and no longer answers anything.
+
+That is the kind of dependency that survives indefinitely on the machine where it was born and breaks for everyone else. `scripts/setup.py` step 3 fixes it directly by calling the project's own `prepare_dataset(region, save=True)`, so setting up no longer requires training a model nobody uses.
+
+**Verified byte-identical, not merely "equivalent":** deleting all four artifacts and re-running step 3 reproduces the same SHA-256 for each (`aab2201574c82ec4`, `bfd0060532fe1e02`, `8951594869b31732`, `f2379d5dcffd8ef7`). A fresh clone gets the artifacts every phase actually measured with — a regeneration that silently produced a *different* scaler would have shifted every forecast while looking like it worked.
+
+`--check` runs exactly what `GET /health` runs, so setup and health cannot disagree about readiness; a test asserts it.
+
+### The API — thin wrapper, honesty as structure
+
+`POST /report` calls `orchestrator.graph.analyse()` directly — the same function the tests exercise, with no separate demo path. The API layer only reshapes; it never re-decides.
+
+The response **promotes this project's honesty mechanisms to structured fields**, because a client should never parse English to find out whether a figure was verified:
+
+- **Grounding** arrives as `clean` / `warning` / `not_generated`, with the unverified numbers listed and an explanation. `not_generated` exists specifically so the Phase-3 vacuous-pass shape (zero numbers checked reported as success) cannot reappear at the API boundary.
+- **Per-horizon labels stay distinct.** `validated`, `weak/directional` and `no skill …` are never collapsed server-side into one confidence number — that single line of code would undo five phases of honesty. The `reliable` boolean follows the measured *label*, not a threshold on the skill score, and a test pins it: a horizon with skill 0.99 and a non-validated label still reads unreliable.
+- **Missing data is stated, not omitted.** `forecast_available: false`, "no sourced yield-impact estimate available", a no-skill horizon, and a failed IMD outlook fetch all travel as explicit flags with reasons attached.
+
+**Quota is first-class, and the count is real rather than estimated.** A tally was added at `invoke_with_backoff` — the single chokepoint every chat call in the project passes through — so `GET /quota` reports actual usage, retries included. Exhaustion returns **429 with a specific explanation** naming the budget and what a report costs, never a generic 500 and never a 200 with an empty report. Embedding calls are deliberately excluded from the tally: they bill against a separate quota, and conflating them would misreport both.
+
+`/health`, `/quota`, `/examples` and `/evaluation` make no LLM calls. A test asserts `/health` never touches Gemini by reading its source — the same guard as `test_checker_is_not_an_llm`. It is the endpoint a container health check hits every 30 seconds; if it ever cost a call, a 20/day budget would be gone in ten minutes.
+
+### The image leaves TensorFlow out
+
+`requirements-api.txt` is deliberately not the union of phases 1–3. TensorFlow (~600 MB) and matplotlib are imported **only** by `train.py`, `lstm_small.py` and `evaluate.py` — the LSTM path. Verified by loading the whole API path and inspecting `sys.modules`: only scikit-learn appears. Neither the API nor `scripts.setup` touches Keras, so the image omits it. The LSTM code and its evidence stay in the tree; they are simply not runtime dependencies of a system whose forecasts are all linear.
+
+**Build-time secret, not an ARG.** Two of this phase's rules collide: the ChromaDB index must be baked in at build time (no zero-cost host offers persistent disk), and the API key must never be baked into the image. Building the index needs a key. Resolved with a BuildKit secret mount — an `ARG` would persist the key in image history, which is precisely what the second rule forbids. A keyless build is a supported outcome: the index step is skipped, the build still succeeds, and the image serves `/health` as `degraded`.
+
+### Tests
+
+**301 pass, 13 skipped.** 24 new API tests, all offline — the orchestrator is monkeypatched so response shaping, error handling and the honesty fields are tested without spending a single call. One live smoke test sits behind the existing `RUN_LIVE_ORCHESTRATOR=1`, and it treats a 429 as a *pass* condition (skip with the reported detail), because the API correctly reporting exhaustion is correct behaviour, not a failure. The live smoke test was run once and passed.
+
+### Docker — actually built and actually run, not just written
+
+`docker build` and `docker run` were both executed and verified end-to-end rather than assumed.
+
+**The first build failed, on a bug in the Dockerfile's own verification step** — and it is a good one to record because it is invisible on the happy path. The line read `raise SystemExit(1) if blocking else print(...)`, which Python parses as `raise (SystemExit(1) if blocking else print(...))`. When nothing is blocking, that evaluates `print(...)` → `None` and then raises `None` → `TypeError: exceptions must derive from BaseException`. So the guard failed **precisely when everything was fine**, which is the opposite of what a guard should do. It was spotted by reading the file while the build was still running and fixed before the rebuild; the container-side setup step underneath it had already succeeded completely.
+
+**Second build: succeeded.** Image `climate-risk-analyst:latest`, **1.42 GB** — the whole `scripts.setup` sequence ran inside the image, fetching Open-Meteo and NOAA data, fitting the runtime artifacts, training the Ridge models and embedding the corpus. The embedding build hit rate limits repeatedly during the image build (`rate limited, waiting 20s / 40s`) and recovered through the existing backoff, exactly as it does on the host — the resumable-per-batch design from Phase 2 earning its keep in a new context.
+
+**Run: verified working.** `docker run -p 8000:8000 -e GEMINI_API_KEY=...`:
+
+| Check | Result |
+|---|---|
+| `GET /health` | `status: ok`, index ready, **zero** missing artifacts, key read from the runtime env |
+| `GET /examples` | all 5 examples, both regions, both crops |
+| `GET /evaluation` | scorecard served, 14,362 chars, checker summary incl. the known defect |
+| `POST /report` | **HTTP 200**, routing correct, grounding **clean — 23 numbers checked, zero unverified** |
+
+The report's per-horizon fields came back exactly as designed: t+1 `+0.2053 validated reliable=True`, t+2 `+0.0438 weak/directional reliable=False`, t+3 `-0.0489 no skill reliable=False`, with a `missing_data` flag naming t+3 as unreliable. **The quota tally read `calls_used_today: 2`** for that one report — matching the predicted typical cost exactly, which is the first independent confirmation that the chokepoint tally is accurate rather than plausible.
+
+**One honest discrepancy worth recording.** The index built *inside the image* contains **249 chunks** (181 Type A + 68 Type B) against the committed manifest's **224** (181 + 43). Nothing is wrong: Type B is this project's own evidence — `PROJECT_LOG.md` and the region comparisons — and the log has grown with every phase since Phase 2 measured it. The corpus is rebuilt from current files at build time, so a container built today indexes today's log. The Phase-2 retrieval precision figures were measured on the 224-chunk index and are **not** re-validated by this build. The host manifest was checked afterwards and is untouched at 224.
+
+**Nothing was deployed and no platform config exists.** No Hugging Face frontmatter, no Cloud Run YAML, no registry push, no credentials. The API key reached the build only through a BuildKit secret mount and reached the runtime only through `-e`; it is in no layer and no file. The project is exactly as portable as before — just packaged.
+
+## Codebase audit (dispatched, not a numbered phase)
+
+`CLAUDE_audit.md` dispatched (Aug 19, 2026) — a report-only review of Phases 1-5 for dead code, redundant evidence files, and duplicated logic, plus a specific investigation into a reported "the local database disappears after a fresh clone/download" problem (almost certainly the git-ignored `data/`/`models/`/ChromaDB paths not being obviously regenerable) — to be documented in a new `SETUP_FROM_CLEAN.md`. Explicitly scoped as find-and-report, not delete-and-restructure: nothing gets removed without the user reviewing the list first.
+
+
+## Phase 6 scope change (Aug 19, 2026)
+
+`CLAUDE_phase6.md` updated (from Cowork session) — frontend is no longer part of Phase 6. User is building the frontend separately with a design tool (Claude Design). Phase 6 is now backend-only: FastAPI (`/report`, `/health`, `/evaluation`, new `/examples`), Docker, setup automation. Section 2 kept as a reference-only "API contract" note (grounding status, honesty labels, missing-data flags as explicit structured fields; CORS enabled for local frontend dev) so the API still matches what an external frontend needs, but no UI files should be created under this phase. This change was made before Claude Code (the dispatched session) reported back on Phase 6, so it should apply to that work going forward — if that session already produced a frontend, it needs to be dropped per this update.
+
+Codebase audit (`CLAUDE_audit.md`) status unchanged — still dispatched, no results/`AUDIT_REPORT.md` on disk yet as of this entry. Timing of that session is not controlled from here; check the Claude Code session directly for progress.
+
+
+## Frontend design iteration (Claude Design tool, Aug 19, 2026)
+
+Frontend is being built by the user directly in Claude Design (not by Claude Code — see Phase 6 scope change above). Cowork session verified the API contract against `api/schemas.py` before advising on the mockup:
+
+- `ReportRequest` actually has 4 optional filters: `region`, `risk_types`, `month`, `crop` — confirmed by reading `api/schemas.py` and `api/app.py` directly, not assumed from the spec.
+- `month` requires `"YYYY-MM"` format (e.g. `"2006-02"`), not a bare month name — a month-name-only dropdown ("August") would send a value the backend can't parse correctly.
+- `crop` (`"bajra"` / `"wheat"`) is a real, meaningful filter — advised adding it to the mockup, and moving `month` to an optional/advanced section (with a year field, not just a month-name list) since most live queries don't need it and it's mainly used for historical crop-impact examples (e.g. the Feb 2006 wheat example).
+- Region/crop dropdowns in the mockup were corrected earlier to match the system's real scope: only `rajasthan` and `barmer` regions (both in Rajasthan state), only `bajra` and `wheat` crops — the design tool had initially invented Punjab/Maharashtra/Karnataka examples that the backend does not support.
+
+Audit (`AUDIT_REPORT.md`) status re-checked directly on disk at this point — still not present. `CLAUDE_audit.md` (the dispatched spec) is the only audit-related file on disk; the audit task has not produced output yet.
+
+
+## Codebase audit — complete, independently verified (Aug 19, 2026)
+
+`AUDIT_REPORT.md` landed. Report-only as instructed — nothing deleted/changed except the report itself; test suite still `301 passed, 13 skipped` per the report (not re-run independently this pass).
+
+**Verified directly against files on disk from the Cowork session (not taken on trust):**
+- `outlooks_for()` in `retrieval/outlooks.py:103` — confirmed zero callers anywhere in the repo (grepped). Genuinely dead, safe to remove.
+- The two stale `.gitignore` lines (`*.chroma/`, `reports/eval/*.json.tmp`) — confirmed present at lines 7-8; confirmed they don't match the project's real paths (actual store is `retrieval/chroma_store/`, already separately gitignored).
+- **Real bug confirmed byte-for-byte:** `api/app.py:221` does `"API_KEY" in env_file.read_text(...)` — a plain substring search on `.env`, so it reports `api_key_present: true` for a commented-out line, an empty value, or an unrelated key like `OPENAI_API_KEY`. Confirmed the correct helper (`get_api_key()`) already exists in `retrieval/embed.py` and just isn't called from `api/app.py` or `scripts/setup.py:161`. Not fixed yet, per the audit's own "flag, don't fix inline" discipline — same as Phase 5's grounding-checker defect.
+- Requirements: confirmed 5 files present (`requirements-phase1/2/3/6.txt`, `requirements-api.txt`) as the report describes.
+
+**Two decisions still open, not yet made:**
+1. Extract the skill-score formula (`1 - rmse/rmse_baseline`, duplicated 6x across `evaluate.py`, `t1_model.py`, `heat/model.py`, `heat/phase11.py`) into one shared function — needs a before/after numeric check since every call site produced a published number.
+2. Split requirements into `requirements.txt` (run+test) + `requirements-training.txt` (adds TF/matplotlib) instead of the current 5 files.
+
+Not committed. Uncommitted tree is now three units of work: Phase 5, Phase 6, and this audit.
+
+
+## Phase 7 dispatched (Aug 19, 2026) — audit fixes + real frontend, bundled
+
+User approved all 4 audit-fix items in one go and asked to bundle them with the frontend build so Claude Code does both together. `CLAUDE_phase7.md` dispatched, covering two independent parts (kept separately labelled for PROJECT_LOG/commit purposes):
+
+- **Part 1 (audit fixes):** the `api_key_present` substring-search bug (fix using existing `get_api_key()`), removing the dead `outlooks_for()` + 2 stale `.gitignore` lines, consolidating the 6x-duplicated skill-score formula (**explicit numeric before/after check required — any mismatch must be reported, not silently resolved**, since every call site's number is already published), and collapsing the 5 requirements files into `requirements.txt` + `requirements-training.txt`.
+- **Part 2 (real frontend):** the user's Claude-Design export (`design_export/` — now committed into the repo: `AgriRisk Query Assistant.dc.html`, `support.js`, `_ds/nocturne/`) is a visual prototype only — its "Ask" button doesn't call any backend, it shows hardcoded fake data (`CANNED` object, which still references Punjab/Maharashtra/Karnataka — regions this project doesn't support, a leftover from the design tool's earlier mistake). Spec instructs building a real `frontend/` (plain HTML/JS/CSS) matching that visual design but wired to the actual API (`/report`, `/examples`, `/quota`, `/health`), with no fake data shipped.
+
+Cowork session's own review of the export (inspected directly, not assumed): confirmed it uses a proprietary `x-dc`/`{{ }}` template runtime requiring `support.js`, and confirmed the `ask()` handler only flips local state — no `fetch()` call anywhere in the exported code.

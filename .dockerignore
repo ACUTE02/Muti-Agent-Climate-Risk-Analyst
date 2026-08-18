@@ -1,0 +1,25 @@
+# Mirrors .gitignore: derived data is rebuilt inside the image, not copied in.
+.venv/
+.git/
+.github/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Regenerable during `docker build` via scripts.setup
+data/raw/
+data/processed/
+retrieval/chroma_store/
+retrieval/cache/
+retrieval/chunks.jsonl
+*.joblib
+*.keras
+*.parquet
+*.png
+
+# Not needed to run the API
+*.docx
+~$*
+CLAUDE*.md
+orchestrator/grounding_failures.jsonl

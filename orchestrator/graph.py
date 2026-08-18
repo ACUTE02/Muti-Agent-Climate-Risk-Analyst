@@ -54,6 +54,22 @@ class ReportState(TypedDict, total=False):
     warnings: list[str]
 
 
+# Every chat call in this project goes through invoke_with_backoff, so this is
+# the one honest place to count them. The API surfaces the count as "requests
+# used today" — an actual tally rather than an estimate. Retries count, because
+# a retried request is a real request against the cap.
+CALL_TALLY: dict = {"date": None, "generate_content": 0}
+
+
+def _tally_call() -> None:
+    from datetime import date
+
+    today = date.today().isoformat()
+    if CALL_TALLY["date"] != today:
+        CALL_TALLY.update(date=today, generate_content=0)
+    CALL_TALLY["generate_content"] += 1
+
+
 def invoke_with_backoff(model, messages, attempts: int = 3):
     """Retry a chat call on transient rate limits.
 
@@ -67,6 +83,7 @@ def invoke_with_backoff(model, messages, attempts: int = 3):
     last = None
     for attempt in range(attempts):
         try:
+            _tally_call()
             return model.invoke(messages)
         except Exception as exc:
             last = exc
