@@ -29,3 +29,10 @@ models/*
 # Phase 1.5 horizon evidence (the manifest is what the tool reads at runtime)
 !models/horizon_comparison.json
 !models/horizon_manifest.json
+# Phase 1.6 IOD evidence (the DMI cache itself is regenerable, so ignored)
+!models/iod_comparison.json
+# Heat Stress agent evidence
+!models/heat_metrics_*.json
+!models/heat_region_comparison.md
+!models/heat_manifest.json
+!models/heat_phase11.json

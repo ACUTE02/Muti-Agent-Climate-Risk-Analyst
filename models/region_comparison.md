@@ -89,6 +89,24 @@ Recursive chains the validated t+1 model forward, feeding each prediction back a
 
 Limitation of the recursive path, stated rather than hidden: it holds ONI at its last observed value, since fabricating a future ENSO state would be worse. Calendar features (`month_sin`/`month_cos`) are exactly known; rainfall and everything derived from it is reconstructed by inverting the SPI-3 gamma transform, and those errors compound.
 
+
+---
+
+## Phase 1.6 — does the Indian Ocean Dipole add anything?
+
+One bounded feature test on an otherwise frozen pipeline. Both columns below were produced by the same code in the same run, so the difference is attributable to the feature and nothing else. IOD correlates with ONI at r=+0.386 over 1980-2024 (+0.340 on train alone) — related, but far from redundant, so a null result here is not simply ENSO in disguise.
+
+| Region | Horizon | Skill without IOD | Skill with IOD | Change | Windows improved | Adopt |
+|---|---|---|---|---|---|---|
+| rajasthan | t+1 | +0.2622 | +0.2389 | -0.0233 | 1/4 | no |
+| rajasthan | t+2 | +0.0763 | +0.0774 | +0.0011 | 2/4 | no |
+| rajasthan | t+3 | -0.0145 | -0.0305 | -0.0160 | 1/4 | no |
+| barmer | t+1 | +0.2053 | +0.1933 | -0.0120 | 2/4 | no |
+| barmer | t+2 | +0.0496 | +0.0392 | -0.0104 | 2/4 | no |
+| barmer | t+3 | -0.0489 | -0.0757 | -0.0268 | 0/4 | no |
+
+**Rejected.** Five of the six region/horizon cells got worse, and the one nominal gain (+0.0011) held in only 2 of 4 windows against a 3-of-4 bar. The feature is not in the model; `models/iod_comparison.json` keeps the measurement.
+
 ## Final per-horizon verdict
 
 What `forecast_drought_risk()` reports at runtime, straight from measurement on window A's split.

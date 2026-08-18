@@ -1,0 +1,51 @@
+{
+  "model": "ridge_joint_3horizon",
+  "regions": {
+    "rajasthan": {
+      "lookback": 24,
+      "horizons": [
+        {
+          "horizon": "t+1",
+          "skill_score": -0.0525,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        {
+          "horizon": "t+2",
+          "skill_score": -0.161,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        {
+          "horizon": "t+3",
+          "skill_score": -0.1631,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      ]
+    },
+    "barmer": {
+      "lookback": 60,
+      "horizons": [
+        {
+          "horizon": "t+1",
+          "skill_score": -0.0209,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        {
+          "horizon": "t+2",
+          "skill_score": -0.0172,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        },
+        {
+          "horizon": "t+3",
+          "skill_score": -0.0118,
+          "method": "ridge",
+          "label": "no skill \u2014 shown for context only, do not rely on this figure"
+        }
+      ]
+    }
+  }
+}

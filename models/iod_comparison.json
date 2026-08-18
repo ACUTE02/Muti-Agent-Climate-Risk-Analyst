@@ -1,0 +1,299 @@
+{
+  "generated_at": "2026-08-18T04:41:48+00:00",
+  "question": "Does the IOD add forecast skill beyond ENSO for these sites?",
+  "features_without_iod": [
+    "rainfall_mm",
+    "spi3",
+    "anomaly",
+    "month_sin",
+    "month_cos",
+    "rainfall_mm_lag1",
+    "rainfall_mm_lag3",
+    "rainfall_mm_lag6",
+    "rainfall_mm_lag12",
+    "roll3_mean",
+    "roll12_sum",
+    "oni"
+  ],
+  "features_with_iod": [
+    "rainfall_mm",
+    "spi3",
+    "anomaly",
+    "month_sin",
+    "month_cos",
+    "rainfall_mm_lag1",
+    "rainfall_mm_lag3",
+    "rainfall_mm_lag6",
+    "rainfall_mm_lag12",
+    "roll3_mean",
+    "roll12_sum",
+    "oni",
+    "iod",
+    "iod_lag1"
+  ],
+  "adoption_rule": "higher mean test skill AND improvement in at least 3 of 4 windows",
+  "iod_oni_correlation": {
+    "n_months": 540,
+    "pearson_full_period": 0.3858,
+    "pearson_train_only": 0.3396,
+    "spearman_full_period": 0.343,
+    "oni_std": 0.865,
+    "iod_std": 0.3441
+  },
+  "without_iod": {
+    "rajasthan": {
+      "t+1": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.2973,
+          "24": 0.2657,
+          "60": 0.1453
+        },
+        "test_skill_by_window": {
+          "A": 0.1594,
+          "B": 0.3681,
+          "C": 0.2403,
+          "D": 0.2809
+        },
+        "mean_test_skill": 0.2622
+      },
+      "t+2": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.0861,
+          "24": 0.0645,
+          "60": 0.0338
+        },
+        "test_skill_by_window": {
+          "A": 0.051,
+          "B": 0.0896,
+          "C": 0.0911,
+          "D": 0.0733
+        },
+        "mean_test_skill": 0.0763
+      },
+      "t+3": {
+        "chosen_lookback": 24,
+        "mean_val_skill_by_lookback": {
+          "12": -0.0017,
+          "24": -0.0014,
+          "60": -0.0021
+        },
+        "test_skill_by_window": {
+          "A": -0.0209,
+          "B": -0.0067,
+          "C": -0.0314,
+          "D": 0.0011
+        },
+        "mean_test_skill": -0.0145
+      }
+    },
+    "barmer": {
+      "t+1": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.2725,
+          "24": 0.2359,
+          "60": 0.1642
+        },
+        "test_skill_by_window": {
+          "A": 0.2132,
+          "B": 0.2265,
+          "C": 0.1546,
+          "D": 0.2269
+        },
+        "mean_test_skill": 0.2053
+      },
+      "t+2": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.1014,
+          "24": 0.0716,
+          "60": 0.0318
+        },
+        "test_skill_by_window": {
+          "A": 0.0859,
+          "B": 0.0413,
+          "C": 0.0411,
+          "D": 0.0301
+        },
+        "mean_test_skill": 0.0496
+      },
+      "t+3": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.0043,
+          "24": -0.0,
+          "60": -0.0078
+        },
+        "test_skill_by_window": {
+          "A": -0.0026,
+          "B": -0.0852,
+          "C": -0.0087,
+          "D": -0.0989
+        },
+        "mean_test_skill": -0.0489
+      }
+    }
+  },
+  "with_iod": {
+    "rajasthan": {
+      "t+1": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.3013,
+          "24": 0.2513,
+          "60": 0.128
+        },
+        "test_skill_by_window": {
+          "A": 0.1504,
+          "B": 0.311,
+          "C": 0.2058,
+          "D": 0.2884
+        },
+        "mean_test_skill": 0.2389
+      },
+      "t+2": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.104,
+          "24": 0.0705,
+          "60": 0.0348
+        },
+        "test_skill_by_window": {
+          "A": 0.0423,
+          "B": 0.0967,
+          "C": 0.0859,
+          "D": 0.0848
+        },
+        "mean_test_skill": 0.0774
+      },
+      "t+3": {
+        "chosen_lookback": 24,
+        "mean_val_skill_by_lookback": {
+          "12": 0.0013,
+          "24": 0.0053,
+          "60": 0.0041
+        },
+        "test_skill_by_window": {
+          "A": -0.0246,
+          "B": -0.0096,
+          "C": -0.0902,
+          "D": 0.0024
+        },
+        "mean_test_skill": -0.0305
+      }
+    },
+    "barmer": {
+      "t+1": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.2506,
+          "24": 0.216,
+          "60": 0.1473
+        },
+        "test_skill_by_window": {
+          "A": 0.2165,
+          "B": 0.2411,
+          "C": 0.1317,
+          "D": 0.184
+        },
+        "mean_test_skill": 0.1933
+      },
+      "t+2": {
+        "chosen_lookback": 12,
+        "mean_val_skill_by_lookback": {
+          "12": 0.0836,
+          "24": 0.0627,
+          "60": 0.0214
+        },
+        "test_skill_by_window": {
+          "A": 0.0894,
+          "B": 0.0722,
+          "C": 0.0041,
+          "D": -0.0088
+        },
+        "mean_test_skill": 0.0392
+      },
+      "t+3": {
+        "chosen_lookback": 24,
+        "mean_val_skill_by_lookback": {
+          "12": 0.0052,
+          "24": 0.0056,
+          "60": -0.0069
+        },
+        "test_skill_by_window": {
+          "A": -0.0062,
+          "B": -0.1052,
+          "C": -0.0098,
+          "D": -0.1818
+        },
+        "mean_test_skill": -0.0757
+      }
+    }
+  },
+  "verdicts": {
+    "rajasthan|t+1": {
+      "skill_without_iod": 0.2622,
+      "skill_with_iod": 0.2389,
+      "change": -0.0233,
+      "windows_improved": 1,
+      "improved_in": [
+        "D"
+      ],
+      "adopt": false
+    },
+    "rajasthan|t+2": {
+      "skill_without_iod": 0.0763,
+      "skill_with_iod": 0.0774,
+      "change": 0.0011,
+      "windows_improved": 2,
+      "improved_in": [
+        "B",
+        "D"
+      ],
+      "adopt": false
+    },
+    "rajasthan|t+3": {
+      "skill_without_iod": -0.0145,
+      "skill_with_iod": -0.0305,
+      "change": -0.016,
+      "windows_improved": 1,
+      "improved_in": [
+        "D"
+      ],
+      "adopt": false
+    },
+    "barmer|t+1": {
+      "skill_without_iod": 0.2053,
+      "skill_with_iod": 0.1933,
+      "change": -0.012,
+      "windows_improved": 2,
+      "improved_in": [
+        "A",
+        "B"
+      ],
+      "adopt": false
+    },
+    "barmer|t+2": {
+      "skill_without_iod": 0.0496,
+      "skill_with_iod": 0.0392,
+      "change": -0.0104,
+      "windows_improved": 2,
+      "improved_in": [
+        "A",
+        "B"
+      ],
+      "adopt": false
+    },
+    "barmer|t+3": {
+      "skill_without_iod": -0.0489,
+      "skill_with_iod": -0.0757,
+      "change": -0.0268,
+      "windows_improved": 0,
+      "improved_in": [],
+      "adopt": false
+    }
+  },
+  "adopted_any": false
+}

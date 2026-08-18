@@ -20,7 +20,8 @@ constants).
 
 ## Status
 
-**Phases 1 → 1.5 of 7 complete — Forecasting Agent, closed.** A leak-free LSTM predicts
+**Forecasting (Drought) Agent closed at Phase 1.5; Heat Stress Agent first pass
+complete.** A leak-free LSTM predicts
 SPI-3 at t+1/t+2/t+3 and is wrapped as a standalone LangChain tool. Phase 1.1
 replaced the Phase-1 z-score SPI proxy with real gamma-fit SPI-3 (McKee et al. 1993)
 and added NOAA's Oceanic Niño Index as an exogenous predictor; Phase 1.2 added
@@ -28,8 +29,10 @@ Barmer as an independently-trained second region; Phase 1.3 ablated the architec
 against a Ridge baseline and a small LSTM; Phase 1.4 validated the one positive
 result across four historical windows and built a dedicated 1-month-ahead model;
 Phase 1.5 settled t+2/t+3 (direct beat recursive everywhere) and made the tool
-report measured per-horizon confidence. Phases 2–6 (Retrieval Agent, Orchestrator,
-Synthesis, Crop Impact, FastAPI/Docker) are not started.
+report measured per-horizon confidence; Phase 1.6 tested the Indian Ocean Dipole
+as a second exogenous predictor and rejected it on the measurements. Phases 2–6
+(Retrieval Agent, Orchestrator, Synthesis, Crop Impact, FastAPI/Docker) are not
+started.
 
 ### Results, as measured (2020–2024 held-out test set)
 
@@ -95,6 +98,76 @@ hardcoded confidence:
 *"no skill — shown for context only, do not rely on this figure."* Anything
 consuming this tool should honour that.
 
+### Tested and rejected: the Indian Ocean Dipole
+
+IOD is a documented driver of Indian monsoon variability, independent of ENSO, and
+was the one predictor never tried. Phase 1.6 added it (`iod`, `iod_lag1`) and
+re-ran the whole selection process across the same four windows and both regions.
+It correlates with ONI at r = +0.386, so it is related but not redundant.
+
+**Result: rejected.** Five of six region/horizon cells got *worse*; the single
+nominal gain (+0.0011) held in only 2 of 4 windows against the project's standing
+3-of-4 bar. Two extra features on ~350 training sequences cost more in variance
+than they return. The feature is not in the model, the default pipeline is
+byte-identical to what Phase 1.5 measured, and
+[`models/iod_comparison.json`](./models/iod_comparison.json) keeps the numbers.
+
+That closes the drought feature set: five angles tested — target definition,
+architecture, site, horizon method, and exogenous predictors.
+
+## Heat Stress — the second risk type
+
+Same regions, same source, same discipline; no shared features with drought. The
+target (`heat_anomaly`, the standardised monthly Tmax anomaly) was
+distribution-checked *before* modelling this time — skew −0.05/−0.26, excess
+kurtosis +0.63/+0.76, tails within 0.19 of a standard normal's, reaching both
+tails — so the Phase-1 mistake of shipping a broken target could not repeat.
+
+**Result: no skill at any horizon, either region.**
+
+| Region | Lookback | t+1 | t+2 | t+3 |
+|---|---|---|---|---|
+| Rajasthan | 24mo | −0.053 | −0.161 | −0.163 |
+| Barmer | 60mo | −0.021 | −0.017 | −0.012 |
+
+Ridge does beat a persistence baseline (+0.08 to +0.35) — but persistence is much
+*worse* than climatology here (−0.14 to −0.61), because monthly heat anomalies
+barely persist, so beating it means little. Climatology is the baseline that
+counts, and the model loses to it. Full picture in
+[`models/heat_region_comparison.md`](./models/heat_region_comparison.md).
+
+Phase 1.1 then tested three further hypotheses — an extremes-focused target
+(hottest day of the month), the heat wave day count as a forecast target, and
+antecedent dryness (SPI-3, read from the Drought Agent) as a feature. **None
+cleared the bar**; the best of 36 measured cells reached +0.038. SPI-3 helps only
+in the sense of moving clearly-worse-than-climatology models back to
+equal-to-climatology — regularisation, not signal. The clearest statement of the
+failure: for May 2024 the count model predicted **0.7–0.9 heat wave days** where
+**8 and 7** actually occurred.
+
+Worth recording because it nearly went the other way: the first Phase 1.1 run
+showed the extremes target at +0.44/+0.63 skill. That was a bug, not a discovery —
+the baseline functions were scoring the new target against the *old* target's
+climatology. Fixed, it collapsed to −0.28/+0.02. A wrong baseline is the most
+flattering bug available in forecasting work.
+
+What the heat agent *does* deliver reliably is the operational indicator, which is
+observation rather than forecast: monthly heat wave day counts under IMD's plains
+criteria (Tmax ≥ 45 °C, or ≥ 40 °C with a ≥ 4.5 °C departure from a ±7-day
+day-of-year normal; severe at 47 °C / 6.4 °C; spells need ≥ 2 consecutive days),
+adapted to a single grid point — IMD's real rule requires two stations in a
+subdivision, which one grid cell cannot satisfy. It correctly picks out the
+19 May 2016 national-record event at both locations.
+
+`forecast_heat_stress_risk(region, month=None)` serves exactly that and nothing
+else. It is a **reporting function, not a forecaster**: the no-skill prediction
+fields were removed outright in Phase 1.2 rather than shipped behind a warning
+label, and the response carries `forecast_available: False` plus a note pointing
+at the evidence, so a caller can tell observation from forecast programmatically.
+The training and evaluation code that established the negative result stays in the
+tree with its evidence files — the record is worth keeping, the dead interface was
+not.
+
 Full breakdown in [`models/region_comparison.md`](./models/region_comparison.md),
 [`models/rolling_window_check.json`](./models/rolling_window_check.json) and
 [`models/metrics_t1_ridge.json`](./models/metrics_t1_ridge.json). These numbers are
@@ -112,12 +185,20 @@ forecasting/        # Phase 1 — the forecasting agent
   rolling_check.py    # Phase 1.4 — does t+1 skill replicate across 4 windows?
   t1_model.py         # Phase 1.4 — dedicated 1-month-ahead Ridge model
   recursive.py        # Phase 1.5 — recursive vs direct for t+2/t+3, horizon manifest
+  iod.py              # Phase 1.6 — NOAA Dipole Mode Index fetch + parsers
+  iod_check.py        # Phase 1.6 — before/after IOD comparison (rejected)
   clean.py            # leak-free cleaning + feature engineering
   split.py            # chronological split, train-only SPI-3 gamma fit, scaling, windowing
   train.py            # model build + train + save
   evaluate.py         # test-set metrics + forecast sanity-check plot
   tool.py             # forecast_drought_risk() — the callable tool
-data/raw/           # fetched API responses, {region}_raw.parquet (gitignored)
+heat/               # Heat Stress agent — the second risk type
+  target.py           # train-only Tmax climatology, distribution check, IMD heat wave rules
+  dataset.py          # causal features + leak-free split, reusing the window builder
+  model.py            # Ridge first (per the drought ablation), climatology + persistence
+  tool.py             # forecast_heat_stress_risk() — observed heat wave reporting
+  phase11.py          # Phase 1.1 — extremes/count targets + SPI-3 cross-feature
+data/raw/           # fetched API responses, {region}_raw/_daily.parquet (gitignored)
 data/processed/     # cleaned + feature-engineered, {region}_clean.parquet (gitignored)
 models/             # per-region model/scaler/spi_params + ONI cache (gitignored);
                     # metrics_*.json, test_forecast_plot_*.png,
@@ -148,7 +229,11 @@ python -m forecasting.lstm_small        # Phase 1.3 ablation
 python -m forecasting.rolling_check     # Phase 1.4 robustness check
 python -m forecasting.t1_model          # Phase 1.4 dedicated t+1 model
 python -m forecasting.recursive         # Phase 1.5 horizon comparison + manifest
+python -m forecasting.iod_check         # Phase 1.6 IOD feature test
 python -m forecasting.tool              # a live 3-month forecast per region
+python -m heat.model                    # Heat Stress: fit, evaluate, compare
+python -m heat.phase11                  # Heat Phase 1.1 target/feature grid
+python -m heat.tool                     # observed heat wave counts per region
 pytest tests/ -v
 ```
 

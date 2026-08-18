@@ -1,0 +1,114 @@
+{
+  "region": "rajasthan",
+  "region_label": "Rajasthan (Jaipur centroid)",
+  "generated_at": "2026-08-17T22:35:07+00:00",
+  "model": "ridge_joint_3horizon",
+  "target": "heat_anomaly",
+  "features": [
+    "heat_anomaly",
+    "heat_anomaly_lag1",
+    "heat_anomaly_lag2",
+    "heat_anomaly_lag3",
+    "heat_anomaly_lag12",
+    "heat_roll3_mean",
+    "heat_roll6_mean",
+    "month_sin",
+    "month_cos",
+    "oni"
+  ],
+  "split": {
+    "train": [
+      "1980",
+      "2015"
+    ],
+    "val": [
+      "2016",
+      "2019"
+    ],
+    "test": [
+      "2020",
+      "2024"
+    ]
+  },
+  "chosen_lookback": 24,
+  "chosen_by": "validation skill vs climatology",
+  "val_skill_by_lookback": {
+    "12": 0.0598,
+    "24": 0.1101,
+    "60": 0.0786
+  },
+  "target_distribution_check": {
+    "n_train_months": 432,
+    "mean": -0.0,
+    "std": 0.9872,
+    "min": -3.6968,
+    "max": 3.1434,
+    "skew": -0.0491,
+    "excess_kurtosis": 0.6257,
+    "percentiles_empirical": {
+      "p5": -1.4635,
+      "p25": -0.6445,
+      "p75": 0.6756,
+      "p95": 1.6429
+    },
+    "percentiles_standard_normal": {
+      "p5": -1.6449,
+      "p25": -0.6745,
+      "p75": 0.6745,
+      "p95": 1.6449
+    },
+    "max_percentile_gap": 0.1814,
+    "approximately_normal": true
+  },
+  "alpha": 0.1,
+  "val_mse": 0.5654,
+  "val_skill": 0.1101,
+  "n_train_windows": 394,
+  "n_test_windows": 58,
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.0742,
+      "mae": 0.8504,
+      "r2": -0.1096,
+      "rmse_climatology": 1.0206,
+      "rmse_persistence": 1.1631,
+      "skill_score": -0.0525,
+      "skill_vs_persistence": 0.0764,
+      "persistence_skill_vs_climatology": -0.1396,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    },
+    "t+2": {
+      "rmse": 1.1915,
+      "mae": 0.9562,
+      "r2": -0.3488,
+      "rmse_climatology": 1.0262,
+      "rmse_persistence": 1.5167,
+      "skill_score": -0.161,
+      "skill_vs_persistence": 0.2144,
+      "persistence_skill_vs_climatology": -0.4779,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    },
+    "t+3": {
+      "rmse": 1.2011,
+      "mae": 0.9625,
+      "r2": -0.3545,
+      "rmse_climatology": 1.0327,
+      "rmse_persistence": 1.6602,
+      "skill_score": -0.1631,
+      "skill_vs_persistence": 0.2766,
+      "persistence_skill_vs_climatology": -0.6077,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    }
+  },
+  "averaged": {
+    "rmse": 1.157,
+    "mae": 0.9231,
+    "r2": -0.2718,
+    "rmse_climatology": 1.0265,
+    "rmse_persistence": 1.4617,
+    "skill_score": -0.1271,
+    "skill_vs_persistence": 0.2084,
+    "persistence_skill_vs_climatology": -0.4239,
+    "label": "no skill \u2014 shown for context only, do not rely on this figure"
+  }
+}

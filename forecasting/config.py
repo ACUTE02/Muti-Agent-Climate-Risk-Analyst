@@ -16,6 +16,7 @@ MODELS_DIR = REPO_ROOT / "models"
 
 # Per-region artifacts are region-suffixed so regions never overwrite each other.
 ONI_PATH = MODELS_DIR / "oni_series.parquet"   # shared: ENSO is a global index
+IOD_PATH = MODELS_DIR / "iod_series.parquet"   # shared: the DMI is global too
 COMPARISON_PATH = MODELS_DIR / "region_comparison.md"
 ROLLING_CHECK_PATH = MODELS_DIR / "rolling_window_check.json"
 T1_METRICS_PATH = MODELS_DIR / "metrics_t1_ridge.json"
@@ -53,6 +54,12 @@ FEATURES = [
     "roll3_mean", "roll12_sum", "oni",
 ]
 TARGET = "spi3"         # real SPI-3 (McKee et al. 1993), see split.fit_spi3_params
+
+# Phase 1.6 tests whether the Indian Ocean Dipole adds anything beyond ENSO.
+# Kept as a separate list so the before/after comparison runs the *same*
+# pipeline twice rather than editing the standing feature set to find out.
+FEATURES_IOD = FEATURES + ["iod", "iod_lag1"]
+IOD_COMPARISON_PATH = MODELS_DIR / "iod_comparison.json"
 SPI_SOURCE = "rainfall_mm"
 SPI_ACCUM = "rainfall_roll3_sum"   # 3-month causal accumulation the gamma is fit to
 SPI_ACCUM_MONTHS = 3
@@ -110,6 +117,65 @@ SMALL_EARLY_STOPPING_PATIENCE = 15
 RIDGE_ALPHAS = (0.1, 1, 10, 100, 1000)
 
 # --------------------------------------------------------------------------- #
+# Heat Stress agent (second risk type) — same split, same discipline
+# --------------------------------------------------------------------------- #
+HEAT_TARGET = "heat_anomaly"          # standardised monthly Tmax anomaly
+HEAT_SOURCE = "tmax_c"
+HEAT_FEATURES = [
+    "heat_anomaly",
+    "heat_anomaly_lag1", "heat_anomaly_lag2", "heat_anomaly_lag3",
+    "heat_anomaly_lag12",
+    "heat_roll3_mean", "heat_roll6_mean",
+    "month_sin", "month_cos", "oni",
+]
+HEAT_LAGS = (1, 2, 3, 12)
+HEAT_ROLL_WINDOWS = (3, 6)
+HEAT_LOOKBACKS = (12, 24, 60)
+
+# IMD heat wave criteria for the plains, adapted to a single grid point.
+# Sources cited in heat/target.py — https://ndma.gov.in/Natural-Hazards/Heat-Wave
+HEAT_WAVE_MIN_TMAX = 40.0        # departure rules only apply at/above this Tmax
+HEAT_WAVE_ABS_C = 45.0           # absolute heat wave threshold
+HEAT_WAVE_DEP_C = 4.5            # departure from normal for a heat wave
+SEVERE_HEAT_WAVE_ABS_C = 47.0
+SEVERE_HEAT_WAVE_DEP_C = 6.4
+HEAT_WAVE_SPELL_DAYS = 2         # IMD needs >=2 consecutive qualifying days
+NORMAL_WINDOW_DAYS = 7           # +/- days pooled for the day-of-year normal
+
+# Heat Phase 1.1 candidate targets. heat_anomaly (the monthly mean) stays the
+# reference point; the other two test whether a mean dilutes short spells.
+HEAT_EXTREME_TARGET = "heat_extreme"        # hottest single day of the month
+HEAT_COUNT_TARGET = "heatwave_day_count"    # IMD-criteria heat wave days, zero-inflated
+HEAT_TARGETS = (HEAT_TARGET, HEAT_EXTREME_TARGET, HEAT_COUNT_TARGET)
+
+# Cross-agent dependency: SPI-3 comes from the Drought Agent. Land-atmosphere
+# feedback (dry soil -> less evaporative cooling -> hotter days) is the motivation.
+HEAT_SPI3_FEATURES = ["spi3", "spi3_lag1", "spi3_lag3"]
+HEAT_FEATURES_SPI3 = HEAT_FEATURES + HEAT_SPI3_FEATURES
+PRE_MONSOON_MONTHS = (4, 5, 6)              # where heat wave counts are actually nonzero
+WINTER_MONTHS = (12, 1, 2)                  # sanity check: these should be ~zero
+
+HEAT_PHASE11_PATH = MODELS_DIR / "heat_phase11.json"
+HEAT_COMPARISON_PATH = MODELS_DIR / "heat_region_comparison.md"
+HEAT_MANIFEST_PATH = MODELS_DIR / "heat_manifest.json"
+
+
+def heat_metrics_path(region: str) -> Path:
+    return MODELS_DIR / f"heat_metrics_{check_region(region)}.json"
+
+
+def heat_climatology_path(region: str) -> Path:
+    return MODELS_DIR / f"heat_climatology_{check_region(region)}.joblib"
+
+
+def heat_scaler_path(region: str) -> Path:
+    return MODELS_DIR / f"heat_scaler_{check_region(region)}.joblib"
+
+
+def heat_model_path(region: str, horizon: int) -> Path:
+    return MODELS_DIR / f"ridge_heat_t{horizon}_{check_region(region)}.joblib"
+
+# --------------------------------------------------------------------------- #
 # Risk thresholds (Phase 5 will calibrate against real NDMA drought records)
 # --------------------------------------------------------------------------- #
 SPI_MODERATE = -1.0   # spi <  -1.0 -> at least "Moderate"
@@ -125,6 +191,12 @@ def check_region(region: str) -> str:
 
 def raw_path(region: str) -> Path:
     return DATA_RAW / f"{check_region(region)}_raw.parquet"
+
+
+def daily_path(region: str) -> Path:
+    """Daily frame — needed by the Heat Stress agent, which counts heat wave
+    *days* and so cannot work from monthly aggregates."""
+    return DATA_RAW / f"{check_region(region)}_daily.parquet"
 
 
 def processed_path(region: str) -> Path:

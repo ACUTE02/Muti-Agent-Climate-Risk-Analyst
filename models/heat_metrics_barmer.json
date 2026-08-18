@@ -1,0 +1,114 @@
+{
+  "region": "barmer",
+  "region_label": "Barmer (Thar Desert)",
+  "generated_at": "2026-08-17T22:35:07+00:00",
+  "model": "ridge_joint_3horizon",
+  "target": "heat_anomaly",
+  "features": [
+    "heat_anomaly",
+    "heat_anomaly_lag1",
+    "heat_anomaly_lag2",
+    "heat_anomaly_lag3",
+    "heat_anomaly_lag12",
+    "heat_roll3_mean",
+    "heat_roll6_mean",
+    "month_sin",
+    "month_cos",
+    "oni"
+  ],
+  "split": {
+    "train": [
+      "1980",
+      "2015"
+    ],
+    "val": [
+      "2016",
+      "2019"
+    ],
+    "test": [
+      "2020",
+      "2024"
+    ]
+  },
+  "chosen_lookback": 60,
+  "chosen_by": "validation skill vs climatology",
+  "val_skill_by_lookback": {
+    "12": 0.0266,
+    "24": 0.0375,
+    "60": 0.0588
+  },
+  "target_distribution_check": {
+    "n_train_months": 432,
+    "mean": 0.0,
+    "std": 0.9872,
+    "min": -3.7953,
+    "max": 3.1863,
+    "skew": -0.2546,
+    "excess_kurtosis": 0.758,
+    "percentiles_empirical": {
+      "p5": -1.6562,
+      "p25": -0.6003,
+      "p75": 0.6712,
+      "p95": 1.4668
+    },
+    "percentiles_standard_normal": {
+      "p5": -1.6449,
+      "p25": -0.6745,
+      "p75": 0.6745,
+      "p95": 1.6449
+    },
+    "max_percentile_gap": 0.1781,
+    "approximately_normal": true
+  },
+  "alpha": 100.0,
+  "val_mse": 0.9713,
+  "val_skill": 0.0588,
+  "n_train_windows": 358,
+  "n_test_windows": 58,
+  "per_horizon": {
+    "t+1": {
+      "rmse": 1.2169,
+      "mae": 0.9619,
+      "r2": -0.0888,
+      "rmse_climatology": 1.192,
+      "rmse_persistence": 1.4763,
+      "skill_score": -0.0209,
+      "skill_vs_persistence": 0.1757,
+      "persistence_skill_vs_climatology": -0.2384,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    },
+    "t+2": {
+      "rmse": 1.2109,
+      "mae": 0.9531,
+      "r2": -0.0986,
+      "rmse_climatology": 1.1904,
+      "rmse_persistence": 1.7282,
+      "skill_score": -0.0172,
+      "skill_vs_persistence": 0.2993,
+      "persistence_skill_vs_climatology": -0.4518,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    },
+    "t+3": {
+      "rmse": 1.2045,
+      "mae": 0.9456,
+      "r2": -0.0748,
+      "rmse_climatology": 1.1905,
+      "rmse_persistence": 1.8487,
+      "skill_score": -0.0118,
+      "skill_vs_persistence": 0.3484,
+      "persistence_skill_vs_climatology": -0.5528,
+      "label": "no skill \u2014 shown for context only, do not rely on this figure"
+    }
+  },
+  "averaged": {
+    "rmse": 1.2108,
+    "mae": 0.9535,
+    "r2": -0.0871,
+    "rmse_climatology": 1.191,
+    "rmse_persistence": 1.6915,
+    "skill_score": -0.0166,
+    "skill_vs_persistence": 0.2842,
+    "persistence_skill_vs_climatology": -0.4203,
+    "label": "no skill \u2014 shown for context only, do not rely on this figure"
+  }
+}
