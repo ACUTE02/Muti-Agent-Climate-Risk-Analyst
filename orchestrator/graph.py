@@ -7,7 +7,7 @@ first pass — the one cycle in the graph is a single regeneration when the
 grounding checker rejects a report.
 
 Tool routing is done with Gemini's function calling rather than hand-written
-keyword matching: the model is given the three real tools and decides which to
+keyword matching: the model is given the real tools and decides which to
 invoke. A deterministic fallback covers the case where the model returns no tool
 calls at all, so a transient LLM failure degrades to "call the obvious tools"
 rather than to an empty report.
@@ -22,6 +22,8 @@ from typing import Annotated, Any, TypedDict
 
 from langgraph.graph import END, StateGraph
 
+from crop_impact import config as cconfig
+from crop_impact.tool import assess_crop_impact
 from forecasting import config as fconfig
 from forecasting.tool import forecast_drought_risk
 from heat.tool import forecast_heat_stress_risk
@@ -31,13 +33,15 @@ from orchestrator.grounding import (check_grounding, log_failure,
 from retrieval.outlooks import fetch_outlooks
 from retrieval.tool import retrieve_context_tool
 
-TOOLS = [forecast_drought_risk, forecast_heat_stress_risk, retrieve_context_tool]
+TOOLS = [forecast_drought_risk, forecast_heat_stress_risk, assess_crop_impact,
+         retrieve_context_tool]
 TOOLS_BY_NAME = {t.name: t for t in TOOLS}
 
 
 class ReportState(TypedDict, total=False):
     request: str
     region: str | None
+    crop: str | None
     risk_types: list[str] | None
     month: str | None
     tool_calls: list[dict]
@@ -75,7 +79,7 @@ def invoke_with_backoff(model, messages, attempts: int = 3):
 
 
 def get_chat_model(tools: bool = False):
-    """Gemini 3.6 Flash, with the three project tools bound when requested."""
+    """Gemini 3.6 Flash, with the project's tools bound when requested."""
     from langchain_google_genai import ChatGoogleGenerativeAI
 
     from retrieval.embed import get_api_key
@@ -93,10 +97,14 @@ ROUTING_INSTRUCTION = """You route climate-risk requests to tools for India.
 
 Available regions: {regions}. Supported risk types: drought (forecast, with
 per-horizon skill) and heat stress (observations only — it has no forecast skill).
+Supported crops for impact assessment: {crops}.
 
 Call every tool needed to answer the request:
 - forecast_drought_risk(region) for any drought question
 - forecast_heat_stress_risk(region, month) for any heat question
+- assess_crop_impact(region, crop, month) whenever the request names a crop or
+  asks about yield, harvest or farming impact. It decides for itself which risk
+  is binding, so call it instead of guessing that from the forecast tools.
 - retrieve_context(query, k, doc_type) at least once, to ground definitions and
   reliability claims in real documents. Prefer two calls when the request touches
   both a definition ("what is a heat wave") and a reliability question ("how
@@ -112,6 +120,7 @@ def parse_request(state: ReportState) -> ReportState:
     """Let the model choose the tools; fall back to the obvious ones."""
     prompt = ROUTING_INSTRUCTION.format(
         regions=", ".join(fconfig.REGIONS),
+        crops=", ".join(cconfig.CROPS),
         default_region=fconfig.DEFAULT_REGION)
 
     calls: list[dict] = []
@@ -145,6 +154,12 @@ def _fallback_calls(state: ReportState) -> list[dict]:
             args["month"] = state["month"]
         calls.append({"name": "forecast_heat_stress_risk",
                       "args": args, "id": "fb_heat"})
+    if state.get("crop"):
+        calls.append({"name": "assess_crop_impact",
+                      "args": {"region": region, "crop": state["crop"],
+                               **({"month": state["month"]} if state.get("month")
+                                  else {})},
+                      "id": "fb_crop"})
     calls.append({"name": "retrieve_context",
                   "args": {"query": state["request"], "k": config.RETRIEVAL_K},
                   "id": "fb_retrieve"})
@@ -349,13 +364,15 @@ def build_graph():
 
 def analyse(request: str, region: str | None = None,
             risk_types: list[str] | None = None,
-            month: str | None = None) -> dict:
+            month: str | None = None, crop: str | None = None) -> dict:
     """Run the whole pipeline for one request and return the final state."""
     if region:
         fconfig.check_region(region)
+    if crop:
+        cconfig.check_crop(crop)
     initial: ReportState = {"request": request, "region": region,
                             "risk_types": risk_types, "month": month,
-                            "warnings": []}
+                            "crop": crop, "warnings": []}
     return build_graph().invoke(initial)
 
 

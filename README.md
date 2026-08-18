@@ -34,8 +34,10 @@ as a second exogenous predictor and rejected it on the measurements. **Phase 2
 (Retrieval Agent) and Phase 3 (Orchestrator + Synthesis) are complete** — a
 citable RAG corpus over IMD/NDMA/ICAR references plus this project's own evidence,
 and a LangGraph orchestrator whose every reported number is mechanically verified
-against source data. Phases 4–6 (Crop Impact, Evaluation Suite, FastAPI/Docker)
-are not started.
+against source data. **Phase 4 (Crop Impact Agent) is complete** — a hybrid agent
+whose risk-dominance decision and yield-impact lookup are deterministic, with one
+LLM call used only to explain results it is handed. Phases 5–6 (Evaluation Suite,
+FastAPI/Docker) are not started.
 
 ### Results, as measured (2020–2024 held-out test set)
 
@@ -197,6 +199,62 @@ the free tier allows 20 generate_content calls per day (5 RPM) and each
 scenario costs two. The 11 offline checker tests — including corrupted-report and
 number-fragment attacks — always run.
 
+## Crop Impact Agent
+
+`crop_impact/` turns the risk signals into a crop-yield assessment — and it is
+deliberately a **hybrid**, not an LLM asked for a percentage:
+
+1. **`dominant_risk()`** decides which risk actually binds yield for a crop,
+   region and month. Plain Python, unit-tested, no model call (a test asserts
+   this). The rule is written out in
+   [`crop_impact/dominance_rule.md`](./crop_impact/dominance_rule.md).
+2. **`lookup_yield_impact()`** reads a sourced coefficient from
+   [`crop_impact/yield_impact_table.json`](./crop_impact/yield_impact_table.json).
+   A table read — it never computes, interpolates or scales.
+3. **One Gemini call** explains those two results in plain language. It is never
+   asked to produce a number.
+4. **The Phase-3 grounding checker**, reused unmodified, verifies every figure in
+   that explanation.
+
+```bash
+python -m crop_impact.tool rajasthan wheat 2006-02   # steps 1-2 only, no LLM call
+```
+
+### A no-skill forecast can never drive an assessment
+
+The most important property here: a drought horizon labelled *no skill* declares
+nothing, however alarming its value. A t+3 SPI-3 of −2.5 is severe on this
+project's own thresholds and is still refused, because five phases of evidence
+say that horizon is worthless. `weak/directional` may corroborate but never
+decide; only `validated` decides. Heat is likewise never treated as a forecast —
+this system has none — so a request about a future month can never return heat as
+dominant, and the reasoning says so in words.
+
+### What the table actually contains, and what it does not
+
+**One** sourced coefficient survived verification: **wheat × heat = 5.6% yield
+loss**, from the Union Minister of State for Agriculture's statement to the Rajya
+Sabha (4 April 2025) on the 2021–22 North Western Plain Zone wheat season at
++5.5 °C. It is stored with its verbatim quote and an explicit caveat that it is a
+*single anchor point, not a slope* — and the lookup enforces the exposure band it
+was measured in, so a +3.68 °C March returns **no estimate** rather than a scaled
+one.
+
+Three combinations are recorded as gaps: bajra × drought, bajra × heat, wheat ×
+drought. Four candidate sources — including two already in this project's own RAG
+corpus — were checked and rejected, each with its reason recorded in the table.
+The ICAR-ATARI document is the instructive one: it is full of pearl millet and
+wheat percentages, and every one is a gain from *adopting agro-advisories*, not a
+climate-driven loss. Citing it would have looked authoritative and been wrong.
+
+So the agent's most common honest answer is **"no sourced yield-impact estimate
+available for this crop and risk combination"**, with the reason attached. That is
+the same discipline as the Heat Agent's `forecast_available: False`: the system
+declines rather than inventing a plausible number.
+
+A real captured run, grounded and verified, is checked in at
+[`crop_impact/narrative_sample.json`](./crop_impact/narrative_sample.json).
+
 ## Heat Stress — the second risk type
 
 Same regions, same source, same discipline; no shared features with drought. The
@@ -298,6 +356,15 @@ retrieval/          # Phase 2 — the Retrieval Agent (RAG)
   outlooks.py         # Type C live IMD outlooks, never indexed
   tool.py             # retrieve_context() — the callable tool
   evaluate.py         # the 12-query precision check
+crop_impact/        # Phase 4 — the Crop Impact Agent
+  config.py           # crops, sensitive windows, dominance thresholds
+  dominance.py        # dominant_risk() — deterministic, no LLM
+  dominance_rule.md   # the decision rule, checked in and reviewable
+  yield_impact.py     # sourced-coefficient lookup — a table read, not a formula
+  yield_impact_table.json   # coefficients with citations, and recorded gaps
+  prompts/narrative.md      # the one prompt, reviewable rather than inline
+  tool.py             # assess_crop_impact() — the Phase-4 deliverable
+  narrative_sample.json     # a real grounded run, kept as evidence
 tests/              # leakage, SPI-3 gamma-fit, ENSO-parse, multi-region and
                     # retrieval-corpus tests
 ```
@@ -330,6 +397,7 @@ python -m forecasting.tool              # a live 3-month forecast per region
 python -m heat.model                    # Heat Stress: fit, evaluate, compare
 python -m heat.phase11                  # Heat Phase 1.1 target/feature grid
 python -m heat.tool                     # observed heat wave counts per region
+python -m crop_impact.tool rajasthan wheat 2006-02   # crop impact, no LLM call
 pytest tests/ -v
 ```
 

@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-08-19",
+  "principle": "Every coefficient here is a number some real, named source states. Nothing is interpolated, scaled per-degree, or inferred from a related quantity. Where no source states a usable number for a crop/risk combination, the combination appears under `gaps` with the search that was actually run, and the tool returns 'no sourced yield-impact estimate available' rather than an invented figure.",
+  "sources_checked_and_rejected": [
+    {
+      "source": "ICAR-ATARI Jodhpur Agro-Advisory Services",
+      "in_project_corpus": true,
+      "citation": "https://atarijodhpur.res.in/Agro%20Advisory%20Services.pdf",
+      "why_checked": "Named in the Phase 4 spec as the legitimate first place to look, and already indexed as a Type A document in this project's RAG corpus.",
+      "finding": "Contains many percentages for pearl millet and wheat, but every one is a gain from ADOPTING agro-advisories (e.g. pearl millet grain yield 2765 kg/ha for adopters, +19.2% over non-adopters; wheat input cost saving Rs.9909, 27.93% risk aversion). None is a climate-driven yield LOSS coefficient. Citing any of them as a drought or heat impact would be the Phase-3 misattribution error in a new place.",
+      "usable": false
+    },
+    {
+      "source": "NDMA National Disaster Management Guidelines: Management of Drought",
+      "in_project_corpus": true,
+      "citation": "https://nidm.gov.in/PDF/pubs/NDMA/13.pdf",
+      "why_checked": "The official national drought guidelines, already indexed as Type A in this project's corpus.",
+      "finding": "Discusses crop loss assessment procedure (annewari / paisewari / girdawari, central team visits) but states no crop-specific yield-loss percentage for any crop or drought severity class.",
+      "usable": false
+    },
+    {
+      "source": "Manual for Drought Management 2016, Department of Agriculture, Cooperation and Farmers Welfare",
+      "in_project_corpus": false,
+      "citation": "https://nidm.gov.in/pdf/manuals/drought_manual.pdf",
+      "why_checked": "The current national drought manual — the most likely government source for a severity-graded crop loss figure.",
+      "finding": "202 pages, text extracted and searched directly. Describes SPI qualitatively but publishes no SPI classification table, and gives no crop-specific yield-loss coefficient. Its 33% figures refer to the share of India's cropped area receiving under 750 mm rainfall, NOT to a crop loss threshold — a number that looks usable and is about something else entirely.",
+      "usable": false
+    },
+    {
+      "source": "Identifying prospects for pearl millet stress-tolerant cultivars in Rajasthan (geospatial analysis)",
+      "in_project_corpus": false,
+      "citation": "https://www.sciencedirect.com/science/article/pii/S2772375523002010",
+      "why_checked": "Search surfaced a '20-25% of yield loss per hectare due to moisture stress' figure attributed to this paper.",
+      "finding": "Not usable on two counts. (1) The full text is paywalled (HTTP 403) so the sentence could not be verified against the source, and this project does not cite what it has not read. (2) As surfaced, the figure describes yield loss that could be SAVED by switching to stress-tolerant cultivars — a potential gain from an intervention, not the yield loss caused by a given drought severity. Using it as the latter would misstate what the authors measured.",
+      "usable": false
+    }
+  ],
+  "coefficients": [
+    {
+      "id": "wheat_heat_large_departure",
+      "crop": "wheat",
+      "risk": "heat",
+      "severity": "severe",
+      "yield_impact_pct": 5.6,
+      "source": "Statement by Bhagirath Choudhary, Union Minister of State for Agriculture and Farmers' Welfare, to the Rajya Sabha, 4 April 2025",
+      "citation": "https://www.downtoearth.org.in/governance/as-told-to-parliament-april-4-2025-heat-stress-caused-56-wheat-yield-loss-in-north-western-plains-in-2021-22",
+      "quoted": "the maximum temperature rose significantly by 5.5 degrees Celsius compared to 2020-21, leading to an average yield loss of 5.6 per cent",
+      "exposure_definition": "North Western Plain Zone (NWPZ), wheat season 2021-22: zone-level maximum temperature about 5.5 degrees C higher than the 2020-21 season, during the grain-filling period.",
+      "match_band": {
+        "metric": "mean_tmax_departure_c",
+        "min": 4.0,
+        "max": null,
+        "comment": "Applied only when this project's own measured monthly mean Tmax departure reaches at least 4.0 C in the crop's sensitive window. Below that the combination returns no estimate rather than a scaled-down number."
+      },
+      "caveat": "This is a single anchor point, not a validated slope. It must NOT be scaled per degree: 5.6% at +5.5 C does not license '1.02% per degree' at any other departure. Two further mismatches are stated rather than smoothed over — the source compares one season against the previous season across a whole zone, while this project measures departure from a 1981-2010 day-of-year normal at a single grid point; and the NWPZ covers Punjab, Haryana, Delhi, western Uttar Pradesh and part of Rajasthan, so it is regionally indicative for Jaipur rather than specific to it.",
+      "application": "indicative_anchor"
+    }
+  ],
+  "gaps": [
+    {
+      "crop": "bajra",
+      "risk": "drought",
+      "status": "no sourced yield-impact estimate available",
+      "searched": "ICAR-ATARI Jodhpur agro-advisory (in corpus), NDMA drought guidelines (in corpus), Manual for Drought Management 2016, ICRISAT terminal-drought literature, Frontiers 'Pearl millet response to drought: A review' (2023), and Rajasthan drought-productivity studies.",
+      "why_nothing_qualified": "Nothing states a yield loss percentage tied to a drought severity class that this project can measure. The closest quantified findings are ICRISAT's experimental rates — a 0.9% relative grain yield reduction per day earlier stress onset, and 0.7% per 1% additional irrigation deficit — which are conditioned on irrigation deficit and stress timing under controlled trials, not on SPI-3. Converting them to an SPI-3 band would require a mapping this project has not measured and would be inventing the coefficient in all but name. The Frontiers review discusses terminal drought damage qualitatively and publishes no percentage at all.",
+      "note": "This is the honest and slightly awkward shape of the result: drought is the risk type with the validated forecast, and it is the one with no sourced coefficient. Recorded rather than papered over."
+    },
+    {
+      "crop": "bajra",
+      "risk": "heat",
+      "status": "no sourced yield-impact estimate available",
+      "searched": "Same sweep as bajra/drought.",
+      "why_nothing_qualified": "Pearl millet is the arid-zone crop precisely because it tolerates high temperature; no source found states a heat-driven yield loss percentage for it in this region."
+    },
+    {
+      "crop": "wheat",
+      "risk": "drought",
+      "status": "no sourced yield-impact estimate available",
+      "searched": "Same sweep as bajra/drought.",
+      "why_nothing_qualified": "Rajasthan rabi wheat is largely irrigated, so a rainfall-deficit (SPI-3) coefficient would not describe the actual water available to the crop. No source found states one."
+    }
+  ]
+}

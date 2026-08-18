@@ -1,0 +1,21 @@
+{
+  "why_this_file_exists": "A real captured run of the Crop Impact Agent on the one crop/risk combination this phase could source a coefficient for. Kept as evidence the hybrid design works end to end: the dominant risk and the 5.6% figure were both decided deterministically before the model was called, and the Phase-3 grounding checker verified every number in the narrative without any modification for this new output shape.",
+  "request": {
+    "region": "rajasthan",
+    "crop": "wheat",
+    "month": "2006-02"
+  },
+  "dominant_risk": "heat",
+  "risk_reasoning": "heat is binding: observed mean daily maximum temperature in 2006-02 ran +5.35 C against the 1981-2010 normal. This is an observation, not a forecast — this system has no heat forecast at all. Wheat is most vulnerable during grain filling (terminal heat window).",
+  "yield_impact_pct": 5.6,
+  "yield_impact_source": "Statement by Bhagirath Choudhary, Union Minister of State for Agriculture and Farmers' Welfare, to the Rajya Sabha, 4 April 2025",
+  "yield_impact_citation": "https://www.downtoearth.org.in/governance/as-told-to-parliament-april-4-2025-heat-stress-caused-56-wheat-yield-loss-in-north-western-plains-in-2021-22",
+  "confidence_label": "observed — not a forecast (the Heat Agent has no forecast skill)",
+  "grounding": {
+    "grounded": true,
+    "unverified_numbers": [],
+    "total_checked": 6,
+    "source_numbers_available": 26
+  },
+  "narrative": "For wheat in Rajasthan during February 2006, severe heat is the binding risk factor. Wheat is especially vulnerable to elevated temperatures during the grain-filling window late in its growth cycle. Heat was selected as the binding risk because observed mean daily maximum temperatures ran +5.35 °C above the 1981–2010 baseline normal, reaching a maximum daily peak of 33.4 °C. Drought signals were not available for this assessment because the project's drought model is a forward-looking forecast tool and cannot evaluate a past historical month.\n\nThese heat figures reflect actual observed conditions that have already occurred, not a future forecast. This assessment system has no predictive skill for heat at any horizon, so heat data is reported strictly as measured historical evidence rather than a prediction.\n\nThe benchmark yield impact for this risk exposure is a 5.6% loss. This figure is sourced from a statement by Union Minister of State for Agriculture and Farmers' Welfare Bhagirath Choudhary to the Rajya Sabha on April 4, 2025, describing the 2021–22 wheat season in the North Western Plain Zone (NWPZ) when grain-filling maximum temperatures rose by 5.5 °C over the previous season. \n\nThis single anchor point carries important caveats and must not be scaled or converted into a per-degree rate to estimate losses at other temperatures. Additionally, the source reference compares zone-level seasonal changes against the previous year across the broader NWPZ (which encompasses Punjab, Haryana, Delhi, western Uttar Pradesh, and part of Rajasthan), whereas this system evaluates a single grid point against a 1981–2010 baseline.\n\nYou can rely on the heat signal as a verified historical record of severe temperature stress during terminal grain filling, but the yield percentage should be understood as a regional benchmark rather than a exact location-specific calculation."
+}

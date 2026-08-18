@@ -306,8 +306,44 @@ Those numbers appear **nowhere in the corpus**: not in the retrieved chunks, not
 
 ---
 
-## Phase 4 — Crop Impact Agent (optional)
-*Not started. Scope updated above — must be generic across whichever risk types exist, not drought-only.*
+## Phase 4 — Crop Impact Agent (Aug 19, 2026)
+
+**Built:** `crop_impact/` — a hybrid agent in the order the phase spec fixed. `dominance.py` decides deterministically which risk binds yield (no LLM, guarded by a test); `yield_impact.py` reads a sourced coefficient table (no LLM, no arithmetic); **one** Gemini call writes the plain-language explanation of results it is handed and is never asked for a number; the Phase-3 `check_grounding()` then verifies that text. `assess_crop_impact` is wired into the orchestrator's routable tools, so "what's the impact on wheat in Rajasthan" routes here through the same function calling as the other three.
+
+**The sourcing result is the honest headline, and it is mostly a null.** Four candidate sources were checked properly rather than cited on faith, and three were rejected:
+
+| Source | Verdict |
+|---|---|
+| ICAR-ATARI Jodhpur Agro-Advisory *(named in the spec, already in the RAG corpus)* | **Rejected.** It is full of percentages for pearl millet and wheat — +19.2% yield for advisory adopters, Rs.9909 input cost saving, 27.93% "risk aversion" — and every one is a gain from *adopting agro-advisories*, not a climate-driven loss. Citing any of them as a drought or heat impact would have been the Phase-3 misattribution error in a new place. |
+| NDMA Drought Guidelines *(in corpus)* | **Rejected.** Describes the crop-loss *assessment procedure* (annewari / paisewari / girdawari) and states no crop-specific loss percentage. |
+| Manual for Drought Management 2016 (DAC&FW) | **Rejected.** 202 pages, downloaded and text-extracted locally with the project's own Phase-2 `pypdf` path rather than trusted to a summary. No SPI classification table and no crop coefficient. Its prominent "33%" refers to the share of India's cropped area under 750 mm rainfall — a number that looks usable and is about something else entirely. |
+| ScienceDirect geospatial pearl-millet paper | **Rejected on two counts.** The full text is paywalled (HTTP 403), and this project does not cite what it has not read; and the "20–25% yield loss" figure as surfaced describes loss that could be *saved* by switching to stress-tolerant cultivars — a gain from an intervention, not the loss caused by a drought severity. |
+
+**One coefficient survived: wheat × heat = 5.6%**, from the Union Minister of State for Agriculture's statement to the Rajya Sabha (4 Apr 2025) on the 2021–22 NWPZ wheat season at +5.5 °C. Verified by reading the source directly. It is stored with its verbatim quote, its exposure definition, and a caveat that it is a **single anchor point, not a slope** — 5.6% at +5.5 °C does not license "1.02% per degree", and the lookup enforces a `match_band` so it is never applied outside the exposure range it was measured in.
+
+**Three gaps are recorded rather than filled** — bajra × drought, bajra × heat, wheat × drought. The bajra × drought gap is the awkward one and is stated as such: **drought is the risk type with the validated forecast, and it is the one with no sourced coefficient.** The closest quantified findings (ICRISAT's 0.9% per day of earlier stress onset, 0.7% per 1% irrigation deficit) are conditioned on irrigation deficit under controlled trials, not on SPI-3; converting them to an SPI-3 band would have been inventing the coefficient in all but name.
+
+**A real mismatch found by measurement, not assumed.** The first working version judged heat candidacy by IMD heat wave days — and returned "no heat" for every warm wheat season on record. Cause: IMD's plains criteria gate on Tmax ≥ 40 °C, which February and March at these sites almost never reach. Measured directly: the warmest February at Jaipur in the whole record (**2006, +5.35 °C mean Tmax departure**) records **zero** IMD heat wave days, and so does the record March of 2022 (+3.68 °C). The day counter is a summer indicator; wheat's grain-filling window is Feb–March. Judging terminal heat by it is a metric that passes because it cannot see the thing it is measuring — the same shape as the Heat-1.1 baseline bug and the Phase-3 vacuous pass. Fixed by adding a second candidacy route on monthly mean Tmax departure, with **severe set to +4.0 °C specifically to match the sourced coefficient's own band** so the coefficient is never applied outside it. The +3.0 °C moderate threshold has no source and is flagged in code as a Phase-5 calibration target, the same posture as `spi_to_risk_score`.
+
+**What `dominant_risk()` actually decided, three real cases:**
+
+| Request | Decision | Yield impact |
+|---|---|---|
+| wheat / rajasthan / **2006-02** | **heat**, severe — +5.35 °C departure, via the departure route | **5.6%**, sourced and cited |
+| wheat / rajasthan / **2022-03** | **heat**, moderate — +3.68 °C | **none** — "the table's only sourced coefficient was measured at severe severity… no number rather than one scaled down from a different severity band" |
+| wheat / rajasthan / **2024-03** | **none dominant** — 0 heat wave days, −0.08 °C departure | none — nothing binding to look up |
+
+**A structural limitation this phase surfaced and did not hide.** The two risk types describe different time frames: drought is a forecast (t+1…t+3) and heat is an observation of a month that has already happened. So for a **future** month heat is always "unknown" and can never be dominant, and for a **past** month the drought forecast cannot apply. A genuine head-to-head dominance comparison is therefore reachable in unit tests with fixtures but not in a live single call — the tie-break rule (equal severity → the observation wins, because a fact outranks an estimate) is correct and tested, but rarely exercised live. Stated here rather than left for a reader to discover.
+
+**The t+3 gate holds, and it is the phase's most important property.** A t+3 SPI-3 of −2.5 is severe on the project's own thresholds and still declares nothing, because that horizon is labelled "no skill". Five phases of evidence say that number is worthless; letting it drive a crop assessment would have laundered it into something that looks like a finding. Tested directly, alongside "weak/directional may corroborate but never decide".
+
+**Grounding needed no changes.** `check_grounding()` was reused completely unmodified on the new output shape and passed on the first live run — 6 numbers checked, zero unverified, including the 5.6% and the +5.35 °C. A captured run is checked in at `crop_impact/narrative_sample.json`. The model reproduced the caveat unprompted ("must not be scaled or converted into a per-degree rate") and correctly attributed the figure to the Rajya Sabha statement rather than to a retrieved document.
+
+**Quota cost, against the corrected 5 RPM / 20 RPD budget:** `assess_crop_impact` costs **one** generate_content request (the narrative; no retry loop inside the tool). A full orchestrator report that routes to it costs **3** in the best case — routing + crop narrative + main synthesis — and **up to 5** if the main synthesis needs its one regeneration. The two live crop tests cost 2 and are gated behind the existing `RUN_LIVE_ORCHESTRATOR=1`, not a second variable.
+
+**252 tests pass, 12 skipped.** 31 of the new tests are offline and free; 2 are live.
+
+**Honest read:** the deterministic machinery is the deliverable and it works — the dominance rule, the skill gating, the band enforcement, and the refusal to invent. What it mostly returns is "no sourced yield-impact estimate available", because that is what the literature actually supports for these crops and risks at zero cost. One real coefficient, three recorded gaps, and a system that says so plainly is the correct outcome of the phase's own stopping rule.
 
 ## Phase 5 — Evaluation Suite
 *Not started.*
