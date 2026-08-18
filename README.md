@@ -31,9 +31,11 @@ result across four historical windows and built a dedicated 1-month-ahead model;
 Phase 1.5 settled t+2/t+3 (direct beat recursive everywhere) and made the tool
 report measured per-horizon confidence; Phase 1.6 tested the Indian Ocean Dipole
 as a second exogenous predictor and rejected it on the measurements. **Phase 2
-(Retrieval Agent) is complete** — a citable RAG corpus over IMD/NDMA/ICAR
-references plus this project's own evidence. Phases 3–6 (Orchestrator, Synthesis,
-Crop Impact, FastAPI/Docker) are not started.
+(Retrieval Agent) and Phase 3 (Orchestrator + Synthesis) are complete** — a
+citable RAG corpus over IMD/NDMA/ICAR references plus this project's own evidence,
+and a LangGraph orchestrator whose every reported number is mechanically verified
+against source data. Phases 4–6 (Crop Impact, Evaluation Suite, FastAPI/Docker)
+are not started.
 
 ### Results, as measured (2020–2024 held-out test set)
 
@@ -157,6 +159,44 @@ python -m retrieval.tool "how reliable is the 2-month drought forecast?"
 
 Requires a Gemini API key in `GEMINI_API_KEY` (or a gitignored `.env`).
 
+## Orchestrator + Synthesis
+
+`orchestrator/` turns the three tools into something a person can query. A
+LangGraph state graph
+(`parse_request → call_tools → fetch_type_c → synthesize → verify_grounding →
+finalise`) routes a natural-language request using Gemini 3.6 Flash function
+calling, always fetches IMD's live outlooks, and writes the report. The prompt is
+checked in at [`orchestrator/prompts/synthesis.md`](./orchestrator/prompts/synthesis.md)
+so it is reviewable rather than buried in a string.
+
+```bash
+python -m orchestrator.graph "drought and heat risk for Barmer, with reliability"
+```
+
+### The grounding checker
+
+Every number in the report is verified mechanically — **not by another LLM**, since
+an LLM checking an LLM shares the failure mode being checked. `check_grounding()`
+extracts each figure and requires it to appear in the tool outputs or the retrieved
+chunks. A report may round a source value to its own precision (`+0.26` against
+`+0.2622` passes); anything materially different is flagged, logged, and triggers
+one regeneration. If it still fails, the report ships with an explicit
+unverified-figures banner rather than looking clean.
+
+**It caught a real fabrication in testing.** Asked for a 4-month forecast that does
+not exist, the model correctly declined it — then explained SPI by reciting the
+standard classification bands (`-1.0 to -1.49 moderately dry`) and cited them to a
+retrieved document. Those numbers are in **no document in the corpus**; they came
+from the model's training data, and they are *correct in the real world*, which is
+what makes that class of error dangerous. Preserved in
+[`orchestrator/grounding_caught_sample.json`](./orchestrator/grounding_caught_sample.json),
+and the prompt now forbids reciting reference tables that are not in the sources.
+
+Live end-to-end tests are opt-in (`RUN_LIVE_ORCHESTRATOR=1`) because
+the free tier allows 20 generate_content calls per day (5 RPM) and each
+scenario costs two. The 11 offline checker tests — including corrupted-report and
+number-fragment attacks — always run.
+
 ## Heat Stress — the second risk type
 
 Same regions, same source, same discipline; no shared features with drought. The
@@ -245,6 +285,10 @@ data/processed/     # cleaned + feature-engineered, {region}_clean.parquet (giti
 models/             # per-region model/scaler/spi_params + ONI cache (gitignored);
                     # metrics_*.json, test_forecast_plot_*.png,
                     # training_history_*.json, region_comparison.md (tracked)
+orchestrator/       # Phase 3 — Orchestrator + Synthesis
+  graph.py            # the LangGraph state graph and tool routing
+  grounding.py        # mechanical number verification (no LLM)
+  prompts/synthesis.md  # the synthesis prompt, checked in
 retrieval/          # Phase 2 — the Retrieval Agent (RAG)
   config.py           # the corpus definition: Type A/B/C sources
   sources.py          # defensive fetch + PDF/HTML extraction verification

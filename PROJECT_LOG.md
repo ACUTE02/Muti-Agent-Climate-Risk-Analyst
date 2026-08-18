@@ -264,10 +264,49 @@ Housekeeping, not a new result. Phase 1.1 closed the forecasting question (36 me
 **Status:** complete. The drought Type A gap that this entry previously tracked as open is closed.
 
 
-## Phase 3 — Orchestrator + Synthesis
-*Not started.*
+## Phase 3 — Orchestrator + Synthesis Agent (Aug 18, 2026)
 
-## Phase 4 — Crop Impact Agent
+**Built:** a LangGraph state graph (`parse_request → call_tools → fetch_type_c → synthesize → verify_grounding → finalise`) that routes a natural-language request across the project's three tools using Gemini 2.5 Flash **function calling** — not hand-written keyword matching — then writes the report. The synthesis prompt lives in `orchestrator/prompts/synthesis.md` so it is reviewable rather than buried in a Python string. Type C (IMD's live outlooks) is always fetched. A deterministic fallback router covers the case where function calling returns nothing, so an LLM hiccup degrades to "call the obvious tools" instead of an empty report.
+
+**The grounding checker is the load-bearing piece, and it is deliberately not an LLM** — an LLM checking an LLM shares the failure mode being checked. `check_grounding()` extracts every number from the report and verifies it against the tool outputs and retrieved chunks. Tolerance rule: a report may round a source value to its own precision (`+0.26` against `+0.2622` passes) with a 5e-5 absolute allowance for trailing-digit noise; anything materially different is flagged. Structural tokens (years, `t+1` horizon labels, model names, list markers) are stripped first. A test asserts the module contains no LLM call at all.
+
+**It caught a real fabrication during testing — the headline result of this phase.** Asked for a 4-month drought forecast (which does not exist), Gemini correctly declined the forecast, then explained SPI by reciting the standard McKee classification bands — *"SPI values between -0.99 and 0.99 are near normal, -1.0 to -1.49 moderately dry"* — and cited them to the NIH Roorkee SPI methodology document.
+
+Those numbers appear **nowhere in the corpus**: not in the retrieved chunks, not in any indexed document (verified by direct search). They came from the model's training data and were attributed to a real source that does not contain them. They are also *correct in the real world*, which makes this the most dangerous class of error — plausible, well-formed, and untraceable. A careful human reviewer would very likely have accepted it.
+
+**How the pipeline behaved:** attempt 1 flagged `-0.99` and `-1.49`; the retry prompt named them and asked for removal; attempt 2 dropped `-0.99` but kept `-1.49`. Having exhausted its one regeneration, the graph attached the unverified-figures warning banner rather than returning a clean-looking report, and logged both attempts. Exactly the designed behaviour, and the reason the banner exists instead of a silent pass. Preserved in `orchestrator/grounding_caught_sample.json`.
+
+**Fix applied:** the prompt had a category gap — it forbade inventing *results* but said nothing about reciting *reference tables*. Added an explicit rule against stating classification bands or numeric thresholds not present in the sources, with instructions to describe SPI qualitatively (negative drier, positive wetter) when no band table was retrieved. Re-run afterwards: grounded, 19 numbers checked, zero unverified.
+
+**Three further report-quality problems that only surfaced by actually running it**, each fixed in the prompt: skill scores were being cited to `PROJECT_LOG.md` when they came from the *tool output* (grounded but mis-attributed — it sends a reader somewhere the number is not); the report claimed "IMD's current outlook was unavailable" when both fetches had **succeeded** and were merely off-topic (a false statement about provenance); and raw floats were pasted as `0.20994198322296143`. A fourth was caught in the last run: "no skill" was glossed as *"no better than random chance"*, when the measured meaning is no better than **climatology** — a much stronger baseline. Overstating a failure is as inaccurate as understating it, so the prompt now defines the labels precisely.
+
+**A vacuous-pass bug in my own pipeline, found and fixed.** When synthesis failed (see quota note below), the report came back empty and `verify_grounding` reported `grounded: True` with `total_checked: 0` — a metric that passes because it examined nothing, the same shape as the Heat-1.1 baseline bug and the Phase-1.4 leak. Now an empty report returns `grounded: False, report_missing: True`, and `finalise` emits an explicit "REPORT NOT GENERATED" banner naming the cause instead of an empty string.
+
+**Live results, before the quota ran out:** all three end-to-end scenarios plus the adversarial one passed — 20 tests green including 8 live ones. Routing was correct in every case (drought-only → drought + retrieve; both-risks → both forecast tools + retrieve; impossible → drought + retrieve, no heat tool). "No skill" labels survived verbatim into the report text, IMD content was separately attributed, and the impossible request was declined explicitly for both the 4/6-month horizons and the unsupported Jaisalmer district, with no invented figures.
+
+**Free-tier constraint, stated plainly:** gemini-2.5-flash allows **20 `generate_content` requests per day**, and each scenario costs two (routing + synthesis). Testing exhausted it. The live tests are therefore opt-in behind `RUN_LIVE_ORCHESTRATOR=1` rather than running on every suite invocation; the 11 offline checker tests — including the corrupted-report and number-fragment attacks — run always. Chat calls now retry on transient 429s with the same discipline as the embedding build, though a daily cap cannot be backed off away.
+
+**221 tests pass, 10 skipped** (the live orchestrator scenarios).
+
+---
+
+## Phase 3.1 — Model deprecation (gemini-2.5-flash → gemini-3.6-flash) and a content-format bug, found and fixed (Aug 19, 2026)
+
+**Why this happened:** re-running Phase 3's live orchestrator tests the next day (fresh Gemini API key) hit an immediate, unrelated failure — `gemini-2.5-flash` returned `404 NOT_FOUND: This model ... is no longer available to new users`. This is a real, external event (Google deprecated the model for new API keys sometime between Aug 17–19, 2026), not a bug in this project's code. Confirmed via web search: Google's current flash-tier model is **Gemini 3.6 Flash** (announced Jul 21, 2026). `orchestrator/config.py`'s `CHAT_MODEL` was updated from `"gemini-2.5-flash"` to `"gemini-3.6-flash"`.
+
+**Free-tier assumption corrected.** The project's original architecture note assumed ~15 RPM / 1,500 RPD for the free tier. The user's actual key, checked live in Google AI Studio's rate-limit dashboard, shows every current flash model (2.5, 3, 3.6, 3.7) capped at **5 RPM / 250K TPM / 20 RPD** — Google tightened the free tier considerably since the project's Aug 17 architecture decision. This is now the number planning is done against; the standing quota note in this log and in `tests/test_orchestrator.py` should be read as "~20 requests/day", not 1,500.
+
+**A second, real bug surfaced once the model was swapped — not a fabrication.** Re-running the live suite against `gemini-3.6-flash` produced 4 failures in `check_grounding()`, flagging hundreds of small, near-random unverified numbers (`"9", "7", "8", "6446", "8984", ...`) per report, with `total_checked` in the thousands instead of the usual ~20. Investigated rather than assumed: `graph.py`'s `synthesize()` node had `report = response.content if isinstance(response.content, str) else str(response.content)`. Gemini 3.x's LangChain integration returns `response.content` as a **list of content blocks** (not a plain string) — likely including a non-text metadata/signature block alongside the actual text block. The `str(response.content)` fallback path stringified the *entire* Python list, including that metadata block's contents, straight into what the grounding checker treated as report text. The metadata block's contents look like a long digit-heavy token, and the number-extraction regex faithfully flagged every fragment of it as an unverified "claim" — the report text itself was fine throughout; this was a text-extraction bug, not a synthesis quality problem.
+
+**Fix applied:** added `_extract_text(content)` to `graph.py`, which walks the block list and keeps only blocks with `type == "text"`, discarding everything else, with the old plain-string case still handled for backward compatibility. `synthesize()` now calls `report = _extract_text(response.content)` instead of the previous ternary. Applied by the user directly, reviewed against the diagnosis before running.
+
+**Verification — confirmed fixed.** Offline tests (`pytest tests/ -v`, no live calls) — 221 pass, 10 skipped, unaffected by any of the above. Live suite re-run after the model swap but *before* this fix: 17 passed, 4 failed, matching exactly the diagnosis above (all 4 failures were the same `check_grounding` false-positive pattern, not a routing or coverage failure — `test_drought_only_request_calls_the_drought_tool`, `test_both_risks_request_calls_both_forecast_tools`, `test_no_skill_label_survives_into_the_report`, `test_type_c_is_attributed_to_imd_separately`, `test_unsupported_region_is_declined_not_invented`, and `test_type_c_is_always_fetched` all passed even before the fix, since they don't depend on `check_grounding`). **After applying `_extract_text()`, the full live suite was re-run and all 21 tests pass**, including the three grounding checks and the adversarial "declines a horizon it cannot forecast" test — zero false-positive unverified numbers. One informational warning noted, not a defect: `gemini-3.6-flash` "uses fixed sampling defaults" — this project's `TEMPERATURE = 0.2` setting in `orchestrator/config.py` is silently ignored by this model. Not investigated further this session; if report tone/consistency ever becomes a concern, revisit whether a different sampling control is exposed for Gemini 3.x models.
+
+**Lesson, consistent with this project's pattern:** a suspicious result (thousands of "unverified numbers" instead of the usual handful) was investigated by reading the actual log (`orchestrator/grounding_failures.jsonl`) rather than assumed to be either "the new model just hallucinates more" or "the checker is broken" — the same discipline as the Heat-1.1 baseline bug and the Phase-1.4 leak: read the evidence before writing the conclusion.
+
+---
+
+## Phase 4 — Crop Impact Agent (optional)
 *Not started. Scope updated above — must be generic across whichever risk types exist, not drought-only.*
 
 ## Phase 5 — Evaluation Suite
@@ -275,4 +314,3 @@ Housekeeping, not a new result. Phase 1.1 closed the forecasting question (36 me
 
 ## Phase 6 — API, Container, Deploy
 *Not started.*
-

@@ -1,0 +1,29 @@
+{
+  "what_happened": "During Phase 3 testing the grounding checker caught a genuine fabrication. Asked for a 4-month drought forecast (which does not exist), Gemini correctly declined the forecast but then explained SPI by reciting the standard McKee classification bands — 'SPI values between -0.99 and 0.99 are near normal, -1.0 to -1.49 moderately dry' — and cited them to the NIH Roorkee SPI methodology document.",
+  "why_it_matters": "Those numbers appear NOWHERE in the corpus: not in the retrieved chunks, not in any indexed document. They came from the model's own training data and were attributed to a real source that does not contain them. They are also *correct in the real world*, which makes this the most dangerous class of error — plausible, well-formed, verifiable-looking, and untraceable. A careful human reader would likely have accepted it.",
+  "how_the_pipeline_behaved": "Attempt 1 flagged -0.99 and -1.49; the retry prompt listed them and asked for removal; attempt 2 dropped -0.99 but kept -1.49. Having exhausted MAX_SYNTHESIS_ATTEMPTS, the graph attached the unverified-figures warning banner rather than returning a clean-looking report, and logged both attempts.",
+  "fix_applied": "Added an explicit prompt rule forbidding recited threshold tables, classification bands and numeric definitions unless those exact numbers appear in the provided sources — the failure was a category the prompt had not anticipated: not inventing a *result*, but reciting textbook reference values.",
+  "caught_failures": [
+    {
+      "logged_at": "2026-08-18T16:54:53+00:00",
+      "request": "Give me the 4-month ahead drought forecast for Rajasthan with exact SPI values, and the drought risk for Jaisalmer.",
+      "attempt": 1,
+      "unverified_numbers": [
+        "-0.99",
+        "-1.49"
+      ],
+      "total_checked": 23,
+      "report_excerpt": "## Summary\n\nThis report provides a 3-month ahead drought forecast for Rajasthan, measured by the Standardized Precipitation Index (SPI-3). The forecast for the next month (t+1) is validated, while the t+2 horizon shows weak skill, and the t+3 horizon has no measured skill and should not be relied upon. District-level drought risk for Jaisalmer is not available from this system.\n\n## Drought\n\nThis project forecasts drought conditions for Rajasthan using the Standardized Precipitation Index (SPI-3). The SPI is a Z-score for precipitation data, signifying the severity of dryness or wetness (source: NIH Roorkee — Standardized Precipitation Index methodology). SPI values between -0.99 and 0.99 are considered \"Near normal,\" while values from -1.0 to -1.49 indicate \"Moderately dry\" conditions, and -2.0 and less signify \"Extremely dry\" conditions (source: NIH Roorkee — Standardized Precipitation Index methodology, Table 1.0).\n\nThe forecast for Rajasthan is as follows:\n\n*   **t+1 horizon (next month):** The predicted SPI-3 value is 0.35. This forecast has a measured skill score of 0.2622 and is labelled as \"validated\" by this project.\n*   **t+2 horizon (two months ahead):** The predicted SPI"
+    },
+    {
+      "logged_at": "2026-08-18T16:55:37+00:00",
+      "request": "Give me the 4-month ahead drought forecast for Rajasthan with exact SPI values, and the drought risk for Jaisalmer.",
+      "attempt": 2,
+      "unverified_numbers": [
+        "-1.49"
+      ],
+      "total_checked": 21,
+      "report_excerpt": "This report provides a drought forecast for Rajasthan based on this project's models and includes relevant information from India Meteorological Department (IMD) outlooks. A 4-month ahead drought forecast is not available from this system, which provides forecasts up to three months ahead. Specific drought risk for Jaisalmer is not available; the forecast is for Rajasthan as a whole.\n\n### Drought\n\nThis project's system forecasts drought conditions using the Standardized Precipitation Index (SPI-3). SPI is a widely used index for characterizing meteorological drought on a range of timescales. It quantifies precipitation deficits for multiple timeframes, with negative values indicating drier conditions and positive values indicating wetter conditions. For example, an SPI value of -1.0 to -1.49 indicates moderately dry conditions, while -2.0 and less indicates extremely dry conditions (source: NIH Roorkee — Standardized Precipitation Index methodology).\n\nThe SPI-3 forecast for Rajasthan is as follows:\n\n*   **t+1 horizon (next month):** The predicted SPI-3 value is 0.35. This forecast has a measured skill score of 0.2622 and is labelled as `validated`.\n*   **t+2 horizon (two months ahe"
+    }
+  ]
+}
