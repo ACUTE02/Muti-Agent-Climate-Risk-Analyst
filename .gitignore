@@ -48,3 +48,7 @@ retrieval/chunks.jsonl
 # of what the checker actually caught during testing IS kept — it is a real
 # result, like the Phase-1.4 leak and the Heat-1.1 baseline bug.
 orchestrator/grounding_failures.jsonl
+
+# internal dispatch specs - not part of the public repo
+CLAUDE.md
+CLAUDE_*.md
