@@ -51,8 +51,13 @@ def test_forecast_returns_measured_per_horizon_confidence(region):
         pytest.skip("horizon manifest missing — run `python -m forecasting.recursive`")
 
     result = forecast_drought_risk.invoke({"region": region})
+    # Phase 8 added the three provenance fields: which months this forecast is
+    # actually about, and how current its inputs are. Kept as an exact-set
+    # assertion so a future field cannot slip in unreviewed.
     assert set(result) == {"region", "predicted_values", "horizon_confidence",
-                           "risk_score", "risk_flags", "model_rmse_test"}
+                           "risk_score", "risk_flags", "model_rmse_test",
+                           "forecast_anchor_month", "forecast_months",
+                           "data_currency"}
     assert result["region"] == region
     assert len(result["predicted_values"]) == config.HORIZON
     assert len(result["risk_flags"]) == config.HORIZON

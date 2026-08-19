@@ -105,6 +105,39 @@ def test_health_reports_readiness_and_what_is_missing():
             "degraded must say what is actually missing"
 
 
+@pytest.mark.parametrize("env_text, why", [
+    ("# GEMINI_API_KEY=abc\n", "a commented-out key is not a key"),
+    ("GEMINI_API_KEY=\n", "an empty value is not a key"),
+    ("OPENAI_API_KEY=xyz\n", "another provider's key is not a Gemini key"),
+])
+def test_api_key_present_is_false_for_near_misses(tmp_path, monkeypatch,
+                                                  env_text, why):
+    """The audit's one real bug: `"API_KEY" in env_text` was True for all three.
+
+    /health and scripts.setup now both ask `retrieval.embed.get_api_key()` — the
+    same resolver the embedding code spends the key through — so the readiness
+    answer cannot drift from what a real call would do.
+    """
+    from forecasting import config as fconfig
+    from retrieval import config as rconfig
+    from retrieval.embed import MissingAPIKey, get_api_key
+    from scripts.setup import _has_api_key
+
+    for var in (*rconfig.API_KEY_ENV_VARS, "OPENAI_API_KEY"):
+        monkeypatch.delenv(var, raising=False)
+
+    (tmp_path / ".env").write_text(env_text, encoding="utf-8")
+    monkeypatch.setattr(rconfig, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(fconfig, "REPO_ROOT", tmp_path)
+
+    assert "API_KEY" in env_text, "the substring the old check keyed on is present"
+
+    with pytest.raises(MissingAPIKey):
+        get_api_key()
+    assert _has_api_key() is False, why
+    assert client.get("/health").json()["api_key_present"] is False, why
+
+
 def test_health_and_setup_check_agree():
     """The two readiness checks must not disagree about whether we are ready."""
     from scripts.setup import verify

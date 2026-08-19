@@ -73,6 +73,13 @@ class ReportResponse(BaseModel):
     tools_called: list[str] = []
     tool_outputs: dict[str, Any] = {}
     retrieved_sources: list[dict[str, Any]] = []
+    external_sources: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description="Live third-party sources (IMD's peers: NASA POWER, "
+                    "data.gov.in), each with its publisher and citation. Kept "
+                    "separate from tool_outputs on purpose: these are other "
+                    "organisations' figures, never this project's measurements. "
+                    "Unavailable sources appear here too, with a reason.")
     warnings: list[str] = []
     quota: dict[str, Any] = {}
 
@@ -88,6 +95,10 @@ class QuotaStatus(BaseModel):
 
 class HealthResponse(BaseModel):
     status: str
+    data_currency: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Per-region input currency: how recent the data behind a live "
+                    "forecast actually is, and which input is the binding limit.")
     chroma_index_ready: bool
     chroma_chunks: int | None = None
     forecast_artifacts_ready: bool

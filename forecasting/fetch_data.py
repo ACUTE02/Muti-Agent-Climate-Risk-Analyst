@@ -146,6 +146,179 @@ def load_or_fetch_daily(region: str = config.DEFAULT_REGION,
     return _fetch_and_cache(region)[1]
 
 
+# --------------------------------------------------------------------------- #
+# Rolling recent cache — Phase 8
+# --------------------------------------------------------------------------- #
+# The fixed archive stops at FETCH_END (2024-12-31) because that is the data every
+# published skill score was measured against. A live question ("the next three
+# months") asked in 2026 was therefore being answered from inputs ~20 months old.
+#
+# This path is strictly *additive*: it writes only to the `_recent` files and
+# never touches `{region}_raw.parquet` / `{region}_daily.parquet`. The model is
+# not retrained — same fitted Ridge coefficients, current inputs.
+
+
+def _month_is_complete(daily: pd.DataFrame, month_start: pd.Timestamp) -> bool:
+    """Does the daily frame cover every day of this month?
+
+    This matters more than it looks. A monthly rainfall *sum* over a half-finished
+    month is a small number, and a small rainfall number is indistinguishable from
+    a dry month once it reaches SPI-3 — so including the running month would
+    manufacture a drought signal out of nothing but the calendar. Partial months
+    are dropped rather than scaled up, because scaling would be an estimate and
+    this project does not publish estimates as measurements.
+    """
+    days_in_month = month_start.days_in_month
+    covered = daily.loc[str(month_start.year) + "-" + f"{month_start.month:02d}"]
+    return len(covered.dropna(how="all")) >= days_in_month
+
+
+def refresh_recent(region: str, today: str | None = None) -> dict:
+    """Fetch everything after the caches' last date, up to ``today``.
+
+    Returns a summary rather than printing, so callers (setup, /health, tests)
+    can report it. Never raises on "nothing to do" — an already-current cache is
+    a normal outcome, not an error.
+    """
+    config.check_region(region)
+    meta = config.REGIONS[region]
+    end = pd.Timestamp(today) if today else pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
+
+    archive_daily = pd.read_parquet(config.daily_path(region))
+    have_daily = archive_daily
+    recent_daily_file = config.recent_daily_path(region)
+    if recent_daily_file.exists():
+        have_daily = pd.concat([archive_daily, pd.read_parquet(recent_daily_file)])
+
+    last_have = have_daily.index.max()
+    start = (last_have + pd.Timedelta(days=1)).normalize()
+
+    summary = {
+        "region": region,
+        "archive_through": str(archive_daily.index.max().date()),
+        "requested_through": str(end.date()),
+    }
+
+    if start > end:
+        summary.update(fetched_days=0, note="already current")
+        return {**summary, **data_currency(region)}
+
+    daily_raw, hourly_raw = _fetch_raw_frames(
+        meta["lat"], meta["lon"], start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d"))
+
+    new_daily = _to_daily(daily_raw).dropna(how="all")
+    if recent_daily_file.exists():
+        new_daily = pd.concat([pd.read_parquet(recent_daily_file), new_daily])
+    new_daily = new_daily[~new_daily.index.duplicated(keep="last")].sort_index()
+    new_daily.to_parquet(recent_daily_file)
+
+    # Monthly frame is derived from the *union* of archive + recent daily, so a
+    # month straddling the archive boundary is aggregated from all of its days,
+    # then filtered to the months the fixed archive does not already own.
+    union_daily = pd.concat([archive_daily, new_daily])
+    union_daily = union_daily[~union_daily.index.duplicated(keep="last")].sort_index()
+
+    hourly = hourly_raw.sort_index()
+    monthly = _to_monthly(
+        union_daily.rename(columns={"temp_c": "temperature_2m_mean",
+                                    "tmax_c": "temperature_2m_max",
+                                    "tmin_c": "temperature_2m_min",
+                                    "rainfall_mm": "precipitation_sum"}),
+        hourly)
+
+    archive_monthly_end = pd.read_parquet(config.raw_path(region)).index.max()
+    monthly = monthly[monthly.index > archive_monthly_end]
+
+    # Drop any month the daily record does not fully cover (see _month_is_complete).
+    complete = [m for m in monthly.index if _month_is_complete(union_daily, m)]
+    dropped = [str(m.date()) for m in monthly.index if m not in complete]
+    monthly = monthly.loc[complete]
+    monthly.to_parquet(config.recent_path(region))
+
+    summary.update(
+        fetched_days=int(len(new_daily)),
+        new_complete_months=int(len(monthly)),
+        dropped_incomplete_months=dropped,
+    )
+    return {**summary, **data_currency(region)}
+
+
+def load_recent_region(region: str) -> pd.DataFrame:
+    """Monthly rows newer than the fixed archive, or an empty frame."""
+    path = config.recent_path(region)
+    return pd.read_parquet(path) if path.exists() else pd.DataFrame()
+
+
+def load_recent_daily(region: str) -> pd.DataFrame:
+    """Daily rows newer than the fixed archive, or an empty frame."""
+    path = config.recent_daily_path(region)
+    return pd.read_parquet(path) if path.exists() else pd.DataFrame()
+
+
+def _union(archive: pd.DataFrame, recent: pd.DataFrame) -> pd.DataFrame:
+    if recent.empty:
+        return archive
+    joined = pd.concat([archive, recent.reindex(columns=archive.columns)])
+    return joined[~joined.index.duplicated(keep="last")].sort_index()
+
+
+def load_live_region(region: str = config.DEFAULT_REGION) -> pd.DataFrame:
+    """Fixed archive + rolling recent, monthly. What a *live* forecast reads.
+
+    The evaluation path deliberately does not use this — it calls
+    ``load_or_fetch_region`` so its windows stay pinned to the fixed archive.
+    """
+    return _union(load_or_fetch_region(region), load_recent_region(region))
+
+
+def load_live_daily(region: str = config.DEFAULT_REGION) -> pd.DataFrame:
+    """Fixed archive + rolling recent, daily. What the heat tool observes from."""
+    return _union(load_or_fetch_daily(region), load_recent_daily(region))
+
+
+def data_currency(region: str) -> dict:
+    """How current this region's inputs are — surfaced by /health and the tools.
+
+    Reports two different "through" dates on purpose, because they differ and the
+    difference matters:
+
+    * ``weather_through`` — the last complete month of Open-Meteo data.
+    * ``data_current_through`` — the last month for which *every* model input
+      exists, which is what the forecast is actually anchored to.
+
+    The gap between them is normally ONI: NOAA publishes it as a 3-month running
+    mean, so it trails by a month or two. Reporting only the weather date would
+    overstate how current the forecast is.
+    """
+    config.check_region(region)
+    archive = pd.read_parquet(config.raw_path(region))
+    recent = load_recent_region(region)
+    weather_end = recent.index.max() if not recent.empty else archive.index.max()
+
+    try:
+        from forecasting.enso import fetch_oni
+        oni_end = fetch_oni().dropna().index.max()
+    except Exception:                        # ONI unavailable is reportable, not fatal
+        oni_end = None
+
+    anchor = min(weather_end, oni_end) if oni_end is not None else weather_end
+    today = pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
+    months_behind = ((today.year - anchor.year) * 12 + (today.month - anchor.month))
+
+    return {
+        "archive_through": str(archive.index.max().date()),
+        "weather_through": str(weather_end.date()),
+        "oni_through": str(oni_end.date()) if oni_end is not None else None,
+        "data_current_through": str(anchor.date()),
+        "months_behind_today": int(months_behind),
+        "limiting_input": ("ONI (NOAA publishes it as a 3-month running mean, so it "
+                           "trails the weather data)"
+                           if oni_end is not None and oni_end < weather_end
+                           else "Open-Meteo weather archive"),
+        "refresh_command": "python -m scripts.refresh",
+    }
+
+
 if __name__ == "__main__":
     for name in config.REGIONS:
         frame = load_or_fetch_region(name)

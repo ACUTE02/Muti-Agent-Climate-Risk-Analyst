@@ -1,0 +1,13 @@
+# Only needed to retrain or re-plot the LSTM ablation path:
+#   forecasting/train.py, forecasting/lstm_small.py, and forecasting/evaluate.py's
+#   test_forecast_plot.png rendering.
+#
+# Nothing the API serves depends on these. TensorFlow alone is ~600 MB, which is
+# why the Docker image installs requirements.txt only.
+#
+#   pip install -r requirements-training.txt      # pulls in requirements.txt too
+
+-r requirements.txt
+
+tensorflow==2.21.0
+matplotlib>=3.9

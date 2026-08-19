@@ -23,7 +23,7 @@ import pandas as pd
 from langchain_core.tools import tool
 
 from forecasting import config
-from forecasting.fetch_data import load_or_fetch_daily
+from forecasting.fetch_data import load_live_daily
 from heat.target import (fit_daily_normals, flag_heat_wave_days,
                          monthly_heat_wave_counts)
 
@@ -42,7 +42,9 @@ def observed_heat_wave_months(region: str) -> pd.DataFrame:
     partition only, the same discipline as everywhere else in this project — even
     though nothing here is a forecast, so leakage could not flatter a result.
     """
-    daily = load_or_fetch_daily(config.check_region(region))
+    # Live observations read the union; heat/dataset.py (the evaluation path)
+    # still reads the fixed archive, so the measured no-skill result stands.
+    daily = load_live_daily(config.check_region(region))
     normals = fit_daily_normals(daily, config.TRAIN)
     return monthly_heat_wave_counts(flag_heat_wave_days(daily, normals))
 

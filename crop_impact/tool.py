@@ -27,7 +27,7 @@ from crop_impact import config
 from crop_impact.dominance import dominant_risk
 from crop_impact.yield_impact import lookup_yield_impact
 from forecasting import config as fconfig
-from forecasting.fetch_data import load_or_fetch_daily, load_or_fetch_region
+from forecasting.fetch_data import data_currency, load_live_daily
 from forecasting.tool import forecast_drought_risk
 from heat.target import fit_daily_normals, flag_heat_wave_days
 from heat.tool import forecast_heat_stress_risk
@@ -39,7 +39,16 @@ MAX_HORIZON = 3
 # Timing: which signals can describe the month being asked about
 # --------------------------------------------------------------------------- #
 def latest_data_month(region: str) -> pd.Timestamp:
-    return load_or_fetch_region(region).index.max()
+    """The month the drought forecast is actually anchored to.
+
+    Deliberately *not* the newest weather month. The forecast needs every
+    feature, and ONI trails the weather by a month or two, so the weather max can
+    be one month ahead of the anchor. Using it here would offset the horizon
+    arithmetic by one and quietly attribute t+1's SPI-3 value to the wrong
+    calendar month — a wrong number under a right-looking label, which is the
+    exact failure this project is built to avoid.
+    """
+    return pd.Timestamp(data_currency(region)["data_current_through"])
 
 
 def resolve_target_month(region: str, crop: str,
@@ -48,8 +57,18 @@ def resolve_target_month(region: str, crop: str,
 
     ``horizon <= 0`` means the month has already happened, so the drought
     *forecast* cannot describe it; ``1..3`` means it is inside the forecast's
-    range. Defaults to the crop's most recent completed sensitive window, which
-    is the last month for which this system has anything real to say.
+    range.
+
+    With no month given, prefer the crop's next sensitive month that the drought
+    forecast can actually reach (horizon 1..MAX_HORIZON), and only fall back to
+    the most recent *completed* sensitive window when none is in range.
+
+    Before Phase 8 this only ever looked backwards, because the newest data was
+    2024-12 and nothing upcoming was ever reachable — so "what does the drought
+    risk mean for my bajra?" resolved to a month already past and answered
+    "no drought signal: that month has already happened". Now that the rolling
+    cache keeps the inputs current, the forward case is the useful one, and the
+    backward fallback is kept for crops whose window is genuinely out of range.
     """
     latest = latest_data_month(region)
     spec = config.CROPS[crop]
@@ -62,10 +81,17 @@ def resolve_target_month(region: str, crop: str,
                 f"Could not parse month {month!r} — expected something like "
                 "'2024-03' or '2024-03-01'.") from exc
     else:
-        target = latest
-        while target.month not in spec["sensitive_months"]:
-            target -= pd.DateOffset(months=1)
-        target = pd.Timestamp(target)
+        target = None
+        for ahead in range(1, MAX_HORIZON + 1):
+            candidate = latest + pd.DateOffset(months=ahead)
+            if candidate.month in spec["sensitive_months"]:
+                target = pd.Timestamp(candidate)
+                break
+        if target is None:                     # nothing upcoming is in range
+            target = latest
+            while target.month not in spec["sensitive_months"]:
+                target -= pd.DateOffset(months=1)
+            target = pd.Timestamp(target)
 
     horizon = (target.year - latest.year) * 12 + (target.month - latest.month)
     return target, latest, horizon
@@ -79,7 +105,7 @@ def mean_tmax_departure(region: str, target: pd.Timestamp) -> float | None:
     the month has no observations — a missing measurement must not silently read
     as zero departure.
     """
-    daily = load_or_fetch_daily(region)
+    daily = load_live_daily(region)
     flagged = flag_heat_wave_days(daily, fit_daily_normals(daily, fconfig.TRAIN))
     monthly = flagged["tmax_departure_c"].resample("MS").mean()
     if target not in monthly.index:

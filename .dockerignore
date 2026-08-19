@@ -21,4 +21,5 @@ retrieval/chunks.jsonl
 # Not needed to run the API
 *.docx
 ~$*
+design_export/          # the design-tool prototype; frontend/ is the real thing
 orchestrator/grounding_failures.jsonl

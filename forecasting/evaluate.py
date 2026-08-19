@@ -18,6 +18,7 @@ import pandas as pd  # noqa: E402
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score  # noqa: E402
 
 from forecasting import config  # noqa: E402
+from forecasting.metrics import round4, skill_score  # noqa: E402
 from forecasting.split import Dataset, prepare_dataset  # noqa: E402
 
 HORIZON_LABELS = [f"t+{h}" for h in range(1, config.HORIZON + 1)]
@@ -47,7 +48,7 @@ def _scores(y_true: np.ndarray, y_pred: np.ndarray, y_base: np.ndarray) -> dict:
         "mae": round(float(mean_absolute_error(y_true, y_pred)), 4),
         "r2": round(float(r2_score(y_true, y_pred)), 4),
         "rmse_climatology": round(rmse_clim, 4),
-        "skill_score": round(float(1 - rmse / rmse_clim), 4) if rmse_clim else None,
+        "skill_score": round4(skill_score(rmse, rmse_clim)),
     }
 
 

@@ -1,0 +1,49 @@
+# Everything needed to run the system (API + orchestrator + all four agents) and
+# its test suite. This replaces requirements-phase1/2/3/6.txt and
+# requirements-api.txt: the phase split stopped meaning anything once the phases
+# stopped being built in isolation, and the split that does still mean something
+# is runtime vs. training — see requirements-training.txt.
+#
+# TensorFlow and matplotlib are deliberately absent. They are imported only by
+# forecasting/train.py, forecasting/lstm_small.py, and evaluate.py's plotting —
+# the LSTM ablation path, which has no skill at any horizon and serves no
+# forecast. Verified rather than assumed: api.app, scripts.setup, and a real
+# forecast_drought_risk call were imported and run, then sys.modules inspected;
+# neither package appears.
+
+# --- numeric / data ---------------------------------------------------------
+pandas>=2.2,<3
+numpy>=1.26
+scipy>=1.13              # gamma SPI fit — forecasting/split.py, heat/target.py.
+                         # Undeclared in the old requirements-api.txt and only
+                         # working there because phase1 happened to pull it in.
+scikit-learn>=1.5
+joblib>=1.4
+pyarrow>=16.0            # parquet engine behind the cached region pulls
+requests>=2.32
+
+# --- agent framework --------------------------------------------------------
+langchain-core>=1.5,<2.0
+langgraph>=1.0
+langchain-google-genai>=2.0
+google-genai>=1.0
+
+# --- retrieval --------------------------------------------------------------
+chromadb>=0.5
+pypdf>=5.0
+beautifulsoup4>=4.12
+lxml>=5.0
+
+# --- API --------------------------------------------------------------------
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
+pydantic>=2.7            # api/schemas.py imports it directly. Declared here
+                         # rather than relied on as a FastAPI transitive dep,
+                         # which a future FastAPI release could drop or repin.
+python-dotenv>=1.0       # retrieval/embed.py loads .env through it. There is a
+                         # hand-rolled fallback behind the ImportError, but the
+                         # two parsers are not equivalent, so declare the real one.
+
+# --- tests ------------------------------------------------------------------
+pytest>=8.0
+httpx>=0.27              # required by fastapi.testclient.TestClient

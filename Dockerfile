@@ -37,10 +37,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Dependencies first, so a code change does not re-resolve the whole tree.
-# Note this is requirements-api.txt, not the union of phases 1-3: tensorflow and
-# matplotlib belong to the LSTM path, which the API never imports.
-COPY requirements-api.txt ./
-RUN pip install --upgrade pip && pip install -r requirements-api.txt \
+# Note this is requirements.txt only, never requirements-training.txt:
+# tensorflow and matplotlib belong to the LSTM path, which the API never imports.
+COPY requirements.txt ./
+RUN pip install --upgrade pip && pip install -r requirements.txt \
     && apt-get purge -y --auto-remove build-essential
 
 COPY . .

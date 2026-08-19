@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agricultural Risk Query Assistant</title>
+<link rel="stylesheet" href="nocturne.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+  Layout, labels and classes follow design_export/"AgriRisk Query Assistant.dc.html".
+  Every value shown at runtime comes from the API — there is no canned report
+  data in this app, and no region beyond the two the backend actually supports.
+-->
+<div class="page">
+
+  <nav class="nav">
+    <span class="nav-brand" style="color:#9184D9; font-weight:500; font-style:italic;">Agricultural Risk Query Assistant</span>
+    <span class="status-strip">
+      <span id="health-dot" class="dot dot-grey"></span>
+      <span id="health-text">Checking the backend…</span>
+    </span>
+  </nav>
+
+  <main class="main">
+
+    <section class="card elev-sm ask-card">
+      <div>
+        <h2 style="margin:0 0 var(--space-1);">Ask your question</h2>
+        <p class="card-body" style="opacity:0.65; margin:0; color:#F3F3F7;">Ask about agricultural risk in plain language. The filters below are optional — use them to narrow the question to a particular region, crop, or type of risk.</p>
+      </div>
+
+      <div class="field">
+        <label for="f-query">Your question</label>
+        <textarea class="input" id="f-query" rows="3"
+                  placeholder="What is the drought risk for Barmer over the next 3 months?"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Example questions</label>
+        <div class="chips" id="chips"><span class="hint">Loading…</span></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="f-region">Region</label>
+          <!-- options filled from /examples -> supported_regions -->
+          <select class="input" id="f-region"><option value="">Any</option></select>
+        </div>
+        <div class="field">
+          <label for="f-crop">Crop</label>
+          <!-- options filled from /examples -> supported_crops -->
+          <select class="input" id="f-crop"><option value="">Any</option></select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="f-risk">Risk type</label>
+          <select class="input" id="f-risk">
+            <option value="">Any</option>
+            <option value="drought">Drought</option>
+            <option value="heat_stress">Heat stress</option>
+          </select>
+        </div>
+      </div>
+
+      <details class="advanced">
+        <summary>Advanced options ▸ target month</summary>
+        <div class="grid-2" style="margin-top:var(--space-3);">
+          <div class="field">
+            <label for="f-year">Year</label>
+            <input class="input" id="f-year" type="number" placeholder="2024" min="1980" max="2100">
+          </div>
+          <div class="field">
+            <label for="f-month">Month</label>
+            <select class="input" id="f-month">
+              <option value="">Any</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+        </div>
+        <p class="hint hidden" id="month-preview"></p>
+      </details>
+
+      <div style="display:flex; align-items:center; gap:var(--space-3); flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="ask" style="min-width:120px;">
+          <span class="spinner hidden" id="ask-spinner"></span>
+          <span id="ask-label">Ask</span>
+        </button>
+        <span class="quota-note hidden" id="quota-warning"></span>
+      </div>
+      <p class="hint" id="cost-warning"></p>
+    </section>
+
+    <!-- Populated only from a real /report response. -->
+    <section id="result" class="hidden" style="margin-top:var(--space-6);">
+
+      <div id="banner" class="banner">
+        <span id="banner-dot" class="dot dot-lg"></span>
+        <span id="banner-text" class="banner-text"></span>
+      </div>
+
+      <div class="card elev-sm" style="padding:var(--space-6); gap:var(--space-4);">
+        <div class="card-kicker">Report</div>
+        <h3 id="query-label" style="margin:0;"></h3>
+
+        <div id="report-body"></div>
+
+        <div id="claims-block" class="hidden">
+          <div class="hr"></div>
+          <div class="section-label">Forecast horizons &amp; confidence</div>
+          <div id="claims" class="stack"></div>
+        </div>
+
+        <div id="missing-block" class="hidden">
+          <div class="hr"></div>
+          <div class="section-label">Data availability</div>
+          <div id="missing" class="stack-tight"></div>
+        </div>
+
+        <!-- Live third-party sources, kept in their own block so a reader can
+             never mistake another organisation's figure for this project's. -->
+        <div id="external-block" class="hidden">
+          <div class="hr"></div>
+          <div class="section-label">What other organisations report (not this project's figures)</div>
+          <div id="external" class="stack-tight"></div>
+        </div>
+
+        <div id="sources-block" class="hidden">
+          <div class="hr"></div>
+          <div class="section-label">Sources retrieved</div>
+          <div id="sources" class="stack-tight"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span id="quota-line">Loading quota…</span>
+      <span style="display:flex; align-items:center; gap:6px;">
+        <span id="footer-dot" class="dot dot-sm dot-grey"></span>
+        <span id="footer-text">Checking…</span>
+      </span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -154,13 +154,17 @@ STEPS: list[Step] = [
 # Driver
 # --------------------------------------------------------------------------- #
 def _has_api_key() -> bool:
-    import os
+    """Defer to the one resolver that knows what a usable key looks like.
 
-    if any(os.environ.get(v) for v in rconfig.API_KEY_ENV_VARS):
-        return True
-    env_file = fconfig.REPO_ROOT / ".env"
-    return env_file.exists() and "API_KEY" in env_file.read_text(
-        encoding="utf-8", errors="ignore")
+    Same fix as /health: a substring search for "API_KEY" in the raw .env text
+    counted a commented-out line, an empty value, and OPENAI_API_KEY as a key.
+    """
+    from retrieval.embed import MissingAPIKey, get_api_key
+
+    try:
+        return bool(get_api_key())
+    except MissingAPIKey:
+        return False
 
 
 def step_is_done(step: Step) -> bool:
@@ -223,8 +227,26 @@ def main(argv: list[str] | None = None) -> int:
     ok, missing = verify()
     print()
     if ok:
-        print("Setup complete. Start the API with:")
+        # Setup builds the *fixed* 1980-2024 archive, which is deliberately
+        # frozen. Live inputs are a separate, additive step — so tell the user
+        # how current their forecasts would be right now rather than letting
+        # them discover it from a report anchored two years back.
+        try:
+            from forecasting.fetch_data import data_currency
+
+            print("Forecast inputs are currently anchored to:")
+            for region in fconfig.REGIONS:
+                info = data_currency(region)
+                print(f"    {region:12s} {info['data_current_through']} "
+                      f"({info['months_behind_today']} month(s) behind today)")
+            print("\n    Run `python -m scripts.refresh` to bring them up to "
+                  "date (free, no API key).")
+        except Exception as exc:                 # never block a good setup
+            print(f"    (could not read data currency: {type(exc).__name__})")
+
+        print("\nSetup complete. Start the API with:")
         print("    uvicorn api.app:app --reload --port 8000")
+        print("Then open http://localhost:8000/app/")
         return 0
     print(f"Setup incomplete — still missing: {', '.join(missing)}")
     return 1
