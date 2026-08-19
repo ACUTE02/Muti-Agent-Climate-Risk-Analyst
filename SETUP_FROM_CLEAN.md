@@ -10,17 +10,94 @@ cd Muti-Agent-Climate-Risk-Analyst
 py -3.11 -m venv .venv
 .venv\Scripts\activate                 # Windows;  source .venv/bin/activate on Linux/macOS
 python -m pip install --upgrade pip
-pip install -r requirements-phase1.txt -r requirements-phase2.txt \
-            -r requirements-phase3.txt -r requirements-phase6.txt
+pip install -r requirements.txt
 
 echo GEMINI_API_KEY=your-key-here > .env
 
 python -m scripts.setup                # regenerates everything, ~2-5 min
+python -m scripts.refresh              # bring forecast inputs up to today
 uvicorn api.app:app --reload --port 8000
 ```
 
-Then open <http://localhost:8000/docs>, or check
-<http://localhost:8000/health>.
+Then open:
+
+| URL | What it is |
+|---|---|
+| <http://localhost:8000/app/> | **the frontend** — the actual query UI |
+| <http://localhost:8000/docs> | interactive OpenAPI docs |
+| <http://localhost:8000/health> | readiness, and what is missing if not ready |
+
+The frontend is served by the same uvicorn process (a `StaticFiles` mount over
+`frontend/`), so there is no second command and no second port: one process
+gives you the whole local site.
+
+Serving it separately also works if you prefer — the API allows cross-origin
+requests from any localhost port:
+
+```bash
+python -m http.server 5500 --directory frontend
+```
+
+Then <http://localhost:5500/index.html>, which calls the API at
+`http://localhost:8000` by default. Point it elsewhere with
+`?api=http://host:port`.
+
+---
+
+## Keeping the forecast current — `python -m scripts.refresh`
+
+Run this before a demo. It is free, needs no API key, and spends no Gemini quota.
+
+The fixed 1980–2024 weather archive is **deliberately frozen**: it is the data
+every published skill score in `PROJECT_LOG.md` and `EVALUATION.md` was measured
+against, so appending to it would silently invalidate all of them. `scripts.refresh`
+therefore writes to a *separate* rolling cache (`data/raw/{region}_recent.parquet`)
+and re-pulls the NOAA ONI series. Nothing is retrained — the Ridge coefficients
+are the ones the evaluation measured; only the months they are applied to move
+forward.
+
+```bash
+python -m scripts.refresh              # all regions
+python -m scripts.refresh barmer       # just one
+```
+
+Without it, a question about "the next three months" is answered from inputs
+ending 2024-12, which is why the crop tool used to report "insufficient data".
+
+**How current can it actually get?** Two limits, both reported by `/health` under
+`data_currency`:
+
+| Input | Lag | Why |
+|---|---|---|
+| Open-Meteo weather | to yesterday, but only **complete months** count | a half-finished month's rainfall *sum* looks like a drought, so partial months are dropped rather than scaled |
+| NOAA ONI (ENSO) | ~1–2 months | it is published as a 3-month running mean, so the latest centred month lags |
+
+The binding constraint is whichever is further back — usually ONI. `/health`
+names it explicitly in `limiting_input`, and the forecast reports the real
+calendar months it covers in `forecast_months`, so a stale anchor can never be
+mistaken for a current one.
+
+---
+
+## Optional: a data.gov.in API key
+
+The report cites live daily mandi (market) prices published by India's Ministry
+of Agriculture and Farmers Welfare via data.gov.in. This is **optional** — the
+key's absence is handled exactly like a missing Gemini key: the source reports
+itself unavailable with a reason, and the rest of the report is unaffected.
+
+1. Register free at <https://data.gov.in/apis> and generate a key.
+2. Add it to the same gitignored `.env`:
+
+```bash
+echo DATA_GOV_IN_API_KEY=your-key-here >> .env
+```
+
+Note: `api.data.gov.in` is intermittently slow and returns occasional `502`s even
+for a valid key — observed repeatedly while building this. The client retries and
+then reports the failure rather than substituting a price.
+
+NASA POWER, the other live source, needs **no key and no registration**.
 
 ---
 

@@ -24,6 +24,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 from forecasting import config
 from forecasting.baseline_ridge import fit_ridge_baseline, flatten_windows
+from forecasting.metrics import round4, skill_from_predictions, skill_score
 from forecasting.recursive import horizon_label
 from forecasting.split import DEFAULT_WINDOWS, SplitWindows
 from heat.dataset import HeatDataset, prepare_heat_dataset
@@ -69,10 +70,11 @@ def _scores(y_true, y_pred, y_clim, y_persist) -> dict:
         "r2": round(float(r2_score(y_true, y_pred)), 4),
         "rmse_climatology": round(rmse_clim, 4),
         "rmse_persistence": round(rmse_persist, 4),
-        "skill_score": round(1 - rmse / rmse_clim, 4),
-        "skill_vs_persistence": round(1 - rmse / rmse_persist, 4),
-        "persistence_skill_vs_climatology": round(1 - rmse_persist / rmse_clim, 4),
-        "label": horizon_label(round(1 - rmse / rmse_clim, 4)),
+        "skill_score": round4(skill_score(rmse, rmse_clim)),
+        "skill_vs_persistence": round4(skill_score(rmse, rmse_persist)),
+        "persistence_skill_vs_climatology": round4(
+            skill_score(rmse_persist, rmse_clim)),
+        "label": horizon_label(round4(skill_score(rmse, rmse_clim))),
     }
 
 
@@ -86,8 +88,9 @@ def fit_and_score(region: str, lookback: int,
     model, val_mse, alpha = fit_ridge_baseline(X_train, y_train, X_val, y_val)
 
     val_split = ds.splits["val"]
-    val_skill = 1 - _rmse(y_val, model.predict(flatten_windows(X_val))) / _rmse(
-        y_val, climatology_prediction(ds, val_split["target_dates"]))
+    val_skill = skill_from_predictions(
+        y_val, model.predict(flatten_windows(X_val)),
+        climatology_prediction(ds, val_split["target_dates"]))
 
     test = ds.splits["test"]
     y_pred = model.predict(flatten_windows(test["X"]))

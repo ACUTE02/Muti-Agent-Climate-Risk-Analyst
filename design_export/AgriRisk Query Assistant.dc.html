@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nocturne-a7ea8906-6a2a-469a-8351-03510dcad2e7/styles.css">
+  <script src="_ds/nocturne-a7ea8906-6a2a-469a-8351-03510dcad2e7/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; }
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-accent-300); }
+    .chip { cursor: pointer; border: 1px solid var(--color-accent); background: transparent; font: inherit; white-space: nowrap; }
+    .chip:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+    .banner-clean { background: color-mix(in srgb, #6fcf97 14%, var(--color-surface)); border: 1px solid color-mix(in srgb, #6fcf97 55%, transparent); }
+    .banner-warn { background: color-mix(in srgb, #e0b04d 16%, var(--color-surface)); border: 1px solid color-mix(in srgb, #e0b04d 55%, transparent); }
+    .dot-green { background: #6fcf97; box-shadow: 0 0 6px color-mix(in srgb, #6fcf97 70%, transparent); }
+    .dot-amber { background: #e0b04d; box-shadow: 0 0 6px color-mix(in srgb, #e0b04d 70%, transparent); }
+    select.input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%239397ab' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+  </style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);min-height:100vh;font-family:var(--font-body);display:flex;flex-direction:column;">
+
+  <nav class="nav">
+    
+    <span class="nav-brand" style="color: #9184D9; font-weight: 500; font-style: italic; text-decoration-line: none; text-align: left">Agricultural Risk Query Assistant(कृषि जोखिम संबंधी पूछताछ सहायक)</span><span style="display:flex;align-items:center;gap:8px;font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin-left:auto;">
+      <span class="dot-green" style="width:8px;height:8px;border-radius:50%;display:inline-block;"></span>
+      Backend + ChromaDB connected
+    </span>
+  </nav>
+
+  
+
+  <main style="max-width: 820px; margin: 0 auto; padding: 0 var(--space-4) 64px; width: 824px; box-sizing: border-box; height: 558px">
+
+    <section class="card elev-sm" style="padding: var(--space-6); gap: var(--space-4); margin-top: var(--space-4); width: 821px; height: 631px; background-color: #1F1E2C">
+      <div>
+        
+        <h2 style="margin:0 0 var(--space-1);">अपना सवाल पूछें</h2>
+        <p class="card-body" style="opacity: 0.65; margin: 0; color: #F3F3F7">कृषि जोखिमों की सही और सटीक जानकारी के लिए आप इन विकल्पों का उपयोग कर सकते हैं। आप अपने सवाल को नीचे दिए गए किसी भी फिल्टर (Filter) की मदद से सीमित (Narrow down) कर सकते हैं:</p>
+      </div>
+
+      <div class="field">
+        
+        
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+        <div class="field">
+          <label for="f-region">क्षेत्र (Region)</label>
+          <select class="input" id="f-region" value="{{ region }}" onChange="{{ onRegionChange }}">
+            <option value="">कोई भी</option>
+            <option value="rajasthan">राजस्थान (Rajasthan)</option>
+            <option value="barmer">बाड़मेर (Barmer)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-crop">फसल (Crop)</label>
+          <select class="input" id="f-crop" value="{{ crop }}" onChange="{{ onCropChange }}">
+            <option value="">कोई भी</option>
+            <option value="bajra">बाजरा (Bajra)</option>
+            <option value="wheat">गेहूं (Wheat)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+        <div class="field">
+          <label for="f-risk">जोखिम का प्रकार (Risk Type)</label>
+          <select class="input" id="f-risk" value="{{ riskType }}" onChange="{{ onRiskChange }}">
+            <option value="">कोई भी</option>
+            <option value="drought">सूखा (Drought)</option>
+            <option value="heat">गर्मी (Heat)</option>
+          </select>
+        </div>
+      </div>
+
+      <details style="border:1px solid var(--color-divider);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);">
+        <summary style="cursor:pointer;font-size:13px;color:var(--color-accent);">Advanced options ▸ महीना (Month)</summary>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-3);">
+          <div class="field">
+            <label for="f-year">Year</label>
+            <input class="input" id="f-year" type="number" placeholder="2024" value="{{ year }}" onChange="{{ onYearChange }}">
+          </div>
+          <div class="field">
+            <label for="f-month">Month</label>
+            <select class="input" id="f-month" value="{{ monthNum }}" onChange="{{ onMonthChange }}">
+              <option value="">कोई भी</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+        </div>
+        <sc-if value="{{ hasMonthCombined }}">
+          <p style="font-size:11px;opacity:0.5;margin:var(--space-2) 0 0;">Format: {{ monthCombined }}</p>
+        </sc-if>
+      </details>
+
+      <div style="display:flex;align-items:center;gap:var(--space-3);">
+        <button type="button" class="btn btn-primary" onClick="{{ onAsk }}" disabled="{{ askDisabled }}" style="min-width:120px;">जानकारी लें (ASK)</button>
+        <sc-if value="{{ quotaExhausted }}">
+          <span style="font-size:12px;color:#e0b04d;">Aaj ke liye quota khatam ho gaya — kal fir try karein.</span>
+        </sc-if>
+      </div>
+
+      <div>
+        
+        
+      </div>
+    </section>
+
+    <sc-if value="{{ reportVisible }}" hint-placeholder-val="{{ false }}">
+      <section style="margin-top:var(--space-6);">
+
+        <div class="{{ bannerClass }}" style="display:flex;align-items:center;gap:10px;padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);margin-bottom:var(--space-4);">
+          <span class="{{ bannerDotClass }}" style="width:10px;height:10px;border-radius:50%;display:inline-block;flex:none;"></span>
+          <span style="font-size:14px;font-weight:500;">{{ bannerText }}</span>
+        </div>
+
+        <div class="card elev-sm" style="padding:var(--space-6);gap:var(--space-4);">
+          <div class="card-kicker">Report</div>
+          <h3 style="margin:0;">{{ activeQueryLabel }}</h3>
+
+          <sc-for list="{{ synthesisParas }}" as="para" hint-placeholder-count="2">
+            <p style="font-size:14px;opacity:0.85;margin:0 0 var(--space-2);">{{ para }}</p>
+          </sc-for>
+
+          <div class="hr"></div>
+
+          <div>
+            <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.5;margin-bottom:var(--space-3);">Claims &amp; confidence</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+              <sc-for list="{{ claims }}" as="claim" hint-placeholder-count="3">
+                <div style="display:flex;gap:var(--space-3);align-items:flex-start;">
+                  <span class="tag {{ claim.tagClass }}" style="flex:none;min-width:96px;text-align:center;">{{ claim.label }}</span>
+                  <span style="font-size:14px;opacity:0.85;">{{ claim.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ hasMissing }}">
+            <div class="hr"></div>
+            <div>
+              <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.5;margin-bottom:var(--space-3);">Data availability</div>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                <sc-for list="{{ missing }}" as="m" hint-placeholder-count="1">
+                  <p style="font-size:13px;font-style:italic;opacity:0.6;margin:0;">{{ m }}</p>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-if>
+
+  </main><footer style="margin-top:auto;border-top:1px solid var(--color-divider);padding:var(--space-3) var(--space-4);display:flex;justify-content:center;">
+    <div style="max-width:820px;width:100%;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent);">
+      <span>Aaj {{ quotaRemaining }}/{{ quotaLimit }} requests bache hain</span>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <span class="dot-green" style="width:7px;height:7px;border-radius:50%;display:inline-block;"></span>
+        All systems operational
+      </span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;assistantName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;AgriRisk Query Assistant&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;quotaLimit&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:20,&quot;min&quot;:5,&quot;max&quot;:50,&quot;step&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;unit&quot;:&quot;req/day&quot;}}">
+const CANNED = {
+  rajasthan: {
+    query: "Rajasthan mein agla 3 mahine drought risk?",
+    banner: "warning",
+    paras: [
+      "Rajasthan ke pashchimi zilon (Jaisalmer, Barmer, Bikaner) mein agle 3 mahinon ke liye drought risk moderate-to-high category mein hai, jo below-normal monsoon withdrawal aur low reservoir levels par based hai.",
+      "Poorvi Rajasthan (Kota, Bharatpur) mein risk comparatively kam hai kyunki recent rainfall ne soil moisture ko partially recharge kiya hai."
+    ],
+    claims: [
+      { label: "Validated", tagClass: "tag-accent", text: "Pashchimi Rajasthan mein reservoir storage is saal ke average se 22% neeche hai (state water resources bulletin se verified)." },
+      { label: "Weak/Directional", tagClass: "tag-outline", text: "3-mahine ka rainfall outlook below-normal ki taraf tilt kar raha hai, lekin confidence interval wide hai." },
+      { label: "No skill", tagClass: "tag-neutral", text: "Is lead time par district-level drought onset timing predict karne ka koi reliable model skill nahi hai." }
+    ],
+    missing: ["Zilewar crop coefficient data is region ke liye available nahi hai — irrigation demand estimate isliye nahi diya gaya."]
+  },
+  punjab: {
+    query: "Punjab mein wheat ke liye is season mein risk kya hai?",
+    banner: "clean",
+    paras: [
+      "Punjab ke wheat-growing zilon mein is season overall risk low hai — soil moisture aur canal water availability dono normal range mein hain.",
+      "Terminal heat stress ka minor risk March ke aakhri hafte mein flag kiya gaya hai, based on long-range temperature outlook par."
+    ],
+    claims: [
+      { label: "Validated", tagClass: "tag-accent", text: "Canal water release schedule confirmed hai aur normal allocation ke mutabik chal raha hai." },
+      { label: "Validated", tagClass: "tag-accent", text: "Current soil moisture readings sabhi monitored stations par optimal range mein hain." },
+      { label: "Weak/Directional", tagClass: "tag-outline", text: "Late-season heat stress signal directional hai — abhi high-confidence nahi kaha ja sakta." }
+    ],
+    missing: []
+  },
+  maharashtra: {
+    query: "Maharashtra cotton region mein rainfall shortfall forecast?",
+    banner: "warning",
+    paras: [
+      "Vidarbha ke cotton belt mein rainfall shortfall ka signal mila hai, particularly Yavatmal aur Amravati zilon mein, jahan cumulative rainfall normal se 18% kam record hua hai.",
+      "Forecast confidence agle 4-6 hafton ke liye moderate hai; usse aage ka outlook abhi kaafi uncertain hai."
+    ],
+    claims: [
+      { label: "Validated", tagClass: "tag-accent", text: "Yavatmal aur Amravati mein cumulative rainfall deficit IMD district data se confirmed hai." },
+      { label: "No skill", tagClass: "tag-neutral", text: "6 hafton se aage ka rainfall forecast is region ke liye kisi verified skill ke saath available nahi hai." }
+    ],
+    missing: ["Cotton crop coefficient (Kc) values is season ke liye database mein update nahi hain — yield impact estimate isliye nahi diya gaya."]
+  },
+  karnataka: {
+    query: "Karnataka mein pichle mahine ka soil moisture trend?",
+    banner: "clean",
+    paras: [
+      "Karnataka ke major agricultural zones mein pichle mahine soil moisture stable se slightly improving trend mein raha, driven by consistent light-to-moderate rainfall spells se."
+    ],
+    claims: [
+      { label: "Validated", tagClass: "tag-accent", text: "Soil moisture readings 14 monitoring stations se directly aggregate kiye gaye hain — koi extrapolation nahi." }
+    ],
+    missing: []
+  },
+};
+
+const FALLBACK = {
+  banner: "warning",
+  paras: ["Aapke sawaal ke liye ek directional synthesis taiyar kiya gaya hai. Kuch hisson ko sourced data se poori tarah support nahi mila — neeche claims ko dhyan se dekhein."],
+  claims: [
+    { label: "Weak/Directional", tagClass: "tag-outline", text: "Yeh response general trends par based hai; region-specific validation abhi pending hai." },
+    { label: "No skill", tagClass: "tag-neutral", text: "Is specific combination ke liye koi trained forecasting skill available nahi hai." }
+  ],
+  missing: ["Requested region/crop ke liye detailed coefficient data available nahi hai."]
+};
+
+class Component extends DCLogic {
+  state = {
+    queryText: "",
+    region: "",
+    crop: "",
+    riskType: "",
+    year: "",
+    monthNum: "",
+    activeKey: null,
+    reportVisible: false,
+    quotaRemaining: this.props.quotaLimit ?? 20,
+  };
+
+  pickChip(key) {
+    this.setState({ queryText: CANNED[key].query, activeKey: key });
+  }
+
+  ask() {
+    if (this.state.quotaRemaining <= 0) return;
+    let key = this.state.activeKey;
+    if (!key) {
+      const match = Object.keys(CANNED).find(k => CANNED[k].query === this.state.queryText.trim());
+      if (match) key = match;
+    }
+    this.setState(s => ({
+      reportVisible: true,
+      activeKey: key,
+      quotaRemaining: Math.max(0, s.quotaRemaining - 1),
+    }));
+  }
+
+  renderVals() {
+    const quotaLimit = this.props.quotaLimit ?? 20;
+    const data = this.state.activeKey ? CANNED[this.state.activeKey] : FALLBACK;
+    const isClean = data.banner === "clean";
+    const activeQueryLabel = this.state.activeKey
+      ? CANNED[this.state.activeKey].query
+      : (this.state.queryText.trim() || "Aapka sawaal");
+
+    return {
+      assistantName: this.props.assistantName ?? "AgriRisk Query Assistant",
+      queryText: this.state.queryText,
+      onQueryChange: e => this.setState({ queryText: e.target.value, activeKey: null }),
+      region: this.state.region,
+      onRegionChange: e => this.setState({ region: e.target.value }),
+      crop: this.state.crop,
+      onCropChange: e => this.setState({ crop: e.target.value }),
+      riskType: this.state.riskType,
+      onRiskChange: e => this.setState({ riskType: e.target.value }),
+      year: this.state.year,
+      onYearChange: e => this.setState({ year: e.target.value }),
+      monthNum: this.state.monthNum,
+      onMonthChange: e => this.setState({ monthNum: e.target.value }),
+      monthCombined: this.state.year && this.state.monthNum ? `${this.state.year}-${this.state.monthNum}` : "",
+      hasMonthCombined: !!(this.state.year && this.state.monthNum),
+      askDisabled: this.state.quotaRemaining <= 0,
+      askLabel: this.state.quotaRemaining <= 0 ? "Quota khatam" : "Ask",
+      quotaExhausted: this.state.quotaRemaining <= 0,
+      onAsk: () => this.ask(),
+      chips: Object.keys(CANNED).map(key => ({
+        label: CANNED[key].query,
+        onPick: () => this.pickChip(key),
+      })),
+      reportVisible: this.state.reportVisible,
+      bannerClass: isClean ? "banner-clean" : "banner-warn",
+      bannerDotClass: isClean ? "dot-green" : "dot-amber",
+      bannerText: isClean ? "Clean — sab claims sourced hain" : "Warning — kuch unsupported claims mile",
+      activeQueryLabel,
+      synthesisParas: data.paras,
+      claims: data.claims,
+      hasMissing: data.missing.length > 0,
+      missing: data.missing,
+      quotaRemaining: this.state.quotaRemaining,
+      quotaLimit,
+    };
+  }
+}
+</script>
+</body>
+</html>

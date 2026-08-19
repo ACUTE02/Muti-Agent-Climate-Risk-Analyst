@@ -150,6 +150,27 @@ def _retrieved_sources(state: dict) -> list[dict]:
             for c in state.get("retrieved_chunks", [])]
 
 
+def _external_sources(state: dict) -> list[dict]:
+    """The live third-party sources, each kept whole and attributed.
+
+    Deliberately a separate field from `tool_outputs`: these are other
+    organisations' published figures, and the API's job is to keep that boundary
+    visible rather than to fold them in among this project's own measurements.
+    Unavailable sources are listed too, with their reason — an omitted source and
+    a source that had nothing to say are different facts.
+    """
+    return [{
+        "id": s.get("id"),
+        "title": s.get("title"),
+        "publisher": s.get("publisher"),
+        "citation": s.get("citation"),
+        "available": s.get("available", False),
+        "fetched_at": s.get("fetched_at"),
+        "excerpt": s.get("excerpt"),
+        "reason": s.get("reason"),
+    } for s in state.get("external", {}).get("sources", [])]
+
+
 def build_response(state: dict, request_text: str) -> dict:
     return {
         "request": request_text,
@@ -160,6 +181,7 @@ def build_response(state: dict, request_text: str) -> dict:
         "tools_called": [c.get("name") for c in state.get("tool_calls", [])],
         "tool_outputs": state.get("tool_outputs", {}),
         "retrieved_sources": _retrieved_sources(state),
+        "external_sources": _external_sources(state),
         "warnings": state.get("warnings", []),
         "quota": quota.status(),
     }
@@ -213,17 +235,32 @@ def health() -> dict:
     if not fconfig.HORIZON_MANIFEST_PATH.exists():
         missing.append(fconfig.HORIZON_MANIFEST_PATH.name)
 
-    from retrieval.config import API_KEY_ENV_VARS
-    import os
-    key_present = any(os.environ.get(v) for v in API_KEY_ENV_VARS)
-    if not key_present:
-        env_file = fconfig.REPO_ROOT / ".env"
-        key_present = env_file.exists() and "API_KEY" in env_file.read_text(
-            encoding="utf-8", errors="ignore")
+    # Ask the same resolver the code that actually *spends* the key uses. The
+    # previous substring search for "API_KEY" in the raw .env text answered
+    # "present" for a commented-out line, an empty value, and an unrelated key
+    # such as OPENAI_API_KEY — /health would say ready and the first real call
+    # would fail.
+    from retrieval.embed import MissingAPIKey, get_api_key
+    try:
+        key_present = bool(get_api_key())
+    except MissingAPIKey:
+        key_present = False
+
+    # How current the live inputs are, per region. Reported unconditionally so a
+    # forecast anchored months in the past can never be served without saying so.
+    # Reads cached parquet only — no network call, so /health stays cheap.
+    data_currency: dict = {}
+    try:
+        from forecasting.fetch_data import data_currency as _currency
+
+        data_currency = {r: _currency(r) for r in fconfig.REGIONS}
+    except Exception as exc:
+        data_currency = {"error": f"{type(exc).__name__}: {exc}"}
 
     ready = chroma_ready and not missing
     return {
         "status": "ok" if ready else "degraded",
+        "data_currency": data_currency,
         "chroma_index_ready": chroma_ready,
         "chroma_chunks": chunks,
         "forecast_artifacts_ready": not missing,
@@ -323,3 +360,27 @@ def examples() -> dict:
 def quota_status() -> dict:
     """What is left today. No LLM call."""
     return quota.status()
+
+
+# --------------------------------------------------------------------------- #
+# The frontend, served by this same app
+# --------------------------------------------------------------------------- #
+# Option (a) of Phase 7 §2.3: mount frontend/ here rather than leaving it to a
+# separate `python -m http.server`. It is three static files with no build step,
+# so serving them costs nothing, and it gives the "one command, whole local
+# site, one port" outcome Phase 6 was aiming at — `uvicorn api.app:app` (or
+# `docker run`) now yields a working UI, not just /docs.
+#
+# Mounted at /app rather than "/" on purpose: mounting at the root would shadow
+# the API's own paths and make the OpenAPI docs harder to reach. Serving it from
+# the same origin also means the UI needs no CORS at all; the CORS middleware
+# above stays for the separate-port development case.
+#
+# The mount is conditional so a checkout without frontend/ (or a partial Docker
+# context) still starts the API instead of crashing at import time.
+_FRONTEND_DIR = fconfig.REPO_ROOT / "frontend"
+if (_FRONTEND_DIR / "index.html").exists():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/app", StaticFiles(directory=_FRONTEND_DIR, html=True),
+              name="frontend")

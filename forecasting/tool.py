@@ -16,8 +16,8 @@ from langchain_core.tools import tool
 
 from forecasting import config
 from forecasting.clean import clean_india_climate
-from forecasting.enso import attach_oni
-from forecasting.fetch_data import load_or_fetch_region
+from forecasting.enso import attach_oni, fetch_oni
+from forecasting.fetch_data import data_currency, load_live_region
 from forecasting.split import compute_spi3, latest_window
 
 
@@ -76,8 +76,24 @@ def _artifacts(region: str):
 
 
 def _feature_frame(region: str, spi_params: dict) -> pd.DataFrame:
-    """Latest cleaned features for a region, with SPI-3 from train-only gamma params."""
-    frame = attach_oni(clean_india_climate(load_or_fetch_region(region)))
+    """Latest cleaned features for a region, with SPI-3 from train-only gamma params.
+
+    Trimmed to the last month for which *every* feature exists. In practice the
+    binding constraint is ONI: NOAA publishes it as a 3-month running mean, so it
+    trails the weather data by a month or two. Forward-filling the gap would mean
+    feeding the model a made-up ENSO value, so the frame stops where the real data
+    stops and the forecast is anchored there — which the tool then states
+    explicitly rather than letting the reader assume it starts from today.
+    """
+    # load_live_region, not load_or_fetch_region: a *live* forecast reads the
+    # fixed archive plus the rolling recent cache, so "the next three months"
+    # means the next three months from now. The evaluation path deliberately
+    # still reads the fixed archive alone (forecasting/split.py), which is why
+    # every published skill score is unaffected by a refresh.
+    cleaned = clean_india_climate(load_live_region(region))
+    oni = fetch_oni()
+    usable = cleaned.index.intersection(oni.dropna().index)
+    frame = attach_oni(cleaned.loc[usable], oni)
     frame[config.TARGET] = compute_spi3(frame, spi_params)
     return frame
 
@@ -94,6 +110,7 @@ def forecast_drought_risk(region: str = config.DEFAULT_REGION) -> dict:
     config.check_region(region)
     scaler, spi_params, manifest, models = _artifacts(region)
     frame = _feature_frame(region, spi_params)
+    anchor = frame.index[-1]        # last month with complete real inputs
 
     predicted, confidence = [], []
     for entry in manifest:
@@ -110,6 +127,10 @@ def forecast_drought_risk(region: str = config.DEFAULT_REGION) -> dict:
             "skill_score": entry["skill_score"],
             "method": entry["method"],
             "label": entry["label"],
+            # Which real month this horizon actually refers to. "t+1" alone is
+            # meaningless to a reader, and silently ambiguous if the inputs are
+            # stale — naming the month makes staleness visible instead.
+            "month": str((anchor + pd.DateOffset(months=horizon)).date()),
         })
 
     return {
@@ -119,6 +140,12 @@ def forecast_drought_risk(region: str = config.DEFAULT_REGION) -> dict:
         "risk_score": spi_to_risk_score(sum(predicted) / len(predicted)),
         "risk_flags": [spi_to_flag(v) for v in predicted],
         "model_rmse_test": manifest[0]["rmse_window_a"],
+        # Provenance of the *inputs*, so a forecast anchored to old data can
+        # never look current. See forecasting.fetch_data.data_currency.
+        "forecast_anchor_month": str(anchor.date()),
+        "forecast_months": [str((anchor + pd.DateOffset(months=h)).date())
+                            for h in (1, 2, 3)],
+        "data_currency": data_currency(region),
     }
 
 

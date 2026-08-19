@@ -22,4 +22,5 @@ retrieval/chunks.jsonl
 *.docx
 ~$*
 CLAUDE*.md
+design_export/          # the design-tool prototype; frontend/ is the real thing
 orchestrator/grounding_failures.jsonl

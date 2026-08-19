@@ -100,12 +100,6 @@ def fetch_outlooks(force: bool = True) -> dict:
     return payload
 
 
-def outlooks_for(agent: str, force: bool = True) -> list[dict]:
-    """Only the outlooks tagged as relevant to a given agent."""
-    return [o for o in fetch_outlooks(force=force)["outlooks"]
-            if agent in o["relevant_to"]]
-
-
 if __name__ == "__main__":
     payload = fetch_outlooks()
     for outlook in payload["outlooks"]:

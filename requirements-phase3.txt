@@ -1,3 +1,0 @@
-# Phase 3 — Orchestrator + Synthesis. On top of requirements-phase1/2.
-langgraph>=1.0
-langchain-google-genai>=2.0

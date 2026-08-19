@@ -320,17 +320,23 @@ Full breakdown in [`models/region_comparison.md`](./models/region_comparison.md)
 [`models/metrics_t1_ridge.json`](./models/metrics_t1_ridge.json). These numbers are
 reported as measured, never as targets.
 
-## Running it as a local API
+## Running it as a local site
 
 ```bash
-pip install -r requirements-api.txt
+pip install -r requirements.txt
 python -m scripts.setup            # regenerate everything a fresh clone lacks
 uvicorn api.app:app --reload --port 8000
 ```
 
-Then <http://localhost:8000/docs>. Full instructions, including what a fresh
-clone is missing and why, are in
-[`SETUP_FROM_CLEAN.md`](./SETUP_FROM_CLEAN.md).
+Then <http://localhost:8000/app/> for the query UI, or
+<http://localhost:8000/docs> for the API. One process serves both — the
+frontend is a `StaticFiles` mount over `frontend/`, three files with no build
+step. Full instructions, including what a fresh clone is missing and why, are
+in [`SETUP_FROM_CLEAN.md`](./SETUP_FROM_CLEAN.md).
+
+The UI shows only what the API returns: the grounding banner comes from
+`grounding.status`, and each forecast horizon keeps its own measured skill score
+and confidence label rather than being averaged into a single number.
 
 | Endpoint | Cost | What it gives you |
 |---|---|---|
@@ -440,7 +446,9 @@ tests/              # leakage, SPI-3 gamma-fit, ENSO-parse, multi-region and
 ```bash
 py -3.11 -m venv .venv
 .venv\Scripts\activate      # Windows
-pip install -r requirements-phase1.txt
+pip install -r requirements.txt
+# only if you intend to retrain the LSTM ablation path:
+# pip install -r requirements-training.txt
 ```
 
 Python 3.11 specifically — see [`CLAUDE.md`](./CLAUDE.md) §1 for why.

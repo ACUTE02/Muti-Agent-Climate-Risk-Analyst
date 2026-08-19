@@ -30,6 +30,7 @@ from heat.tool import forecast_heat_stress_risk
 from orchestrator import config
 from orchestrator.grounding import (check_grounding, log_failure,
                                     warning_banner)
+from retrieval.external import fetch_external_sources
 from retrieval.outlooks import fetch_outlooks
 from retrieval.tool import retrieve_context_tool
 
@@ -48,6 +49,7 @@ class ReportState(TypedDict, total=False):
     tool_outputs: dict[str, Any]
     retrieved_chunks: list[dict]
     type_c: dict
+    external: dict
     report: str
     grounding: dict
     attempts: int
@@ -236,7 +238,25 @@ def fetch_type_c(state: ReportState) -> ReportState:
 
     if payload.get("any_unavailable"):
         warnings.append("at least one IMD outlook was unavailable")
-    return {"type_c": payload, "warnings": warnings}
+
+    # Phase 8: the other two live sources, on the same node and under the same
+    # contract as IMD — attributed by name, never merged into this project's own
+    # tool outputs, and reported as unavailable rather than substituted for.
+    try:
+        external = fetch_external_sources(region=state.get("region"),
+                                          crop=state.get("crop"),
+                                          month=state.get("month"))
+    except Exception as exc:
+        external = {"sources": [], "any_unavailable": True,
+                    "error": f"{type(exc).__name__}: {exc}"}
+        warnings.append("external source fetch failed entirely")
+
+    for source in external.get("sources", []):
+        if not source.get("available"):
+            warnings.append(
+                f"{source['id']} unavailable: {source.get('reason', 'unknown')}")
+
+    return {"type_c": payload, "external": external, "warnings": warnings}
 
 
 def _render_sources(state: ReportState) -> str:
@@ -254,6 +274,17 @@ def _render_sources(state: ReportState) -> str:
         else:
             lines.append(f"--- IMD LIVE OUTLOOK UNAVAILABLE: {outlook['title']} "
                          f"— reason: {outlook.get('reason')}")
+    # Phase 8's two extra live sources, rendered in the same shape as IMD's so
+    # the model has no structural reason to treat them differently.
+    for source in state.get("external", {}).get("sources", []):
+        if source.get("available"):
+            lines.append(
+                f"--- EXTERNAL LIVE SOURCE ({source['publisher']}): "
+                f"{source['title']} ({source['citation']}, fetched "
+                f"{source['fetched_at']})\n{source['excerpt']}")
+        else:
+            lines.append(f"--- EXTERNAL LIVE SOURCE UNAVAILABLE: {source['title']} "
+                         f"— reason: {source.get('reason')}")
     return "\n\n".join(lines) if lines else "(no retrieved sources)"
 
 def _extract_text(content) -> str:
@@ -289,7 +320,8 @@ def synthesize(state: ReportState) -> ReportState:
         f"REQUEST: {state['request']}\n\n"
         f"TOOL OUTPUTS (JSON — the only permitted source of project figures):\n"
         f"{json.dumps(state.get('tool_outputs', {}), indent=2, default=str)}\n\n"
-        f"RETRIEVED SOURCES AND IMD OUTLOOKS:\n{_render_sources(state)}"
+        f"RETRIEVED SOURCES AND LIVE OUTSIDE SOURCES "
+        f"(IMD, NASA POWER, data.gov.in):\n{_render_sources(state)}"
         f"{retry_note}")
 
     try:
@@ -310,6 +342,10 @@ def verify_grounding(state: ReportState) -> ReportState:
     sources = list(state.get("retrieved_chunks", []))
     sources += [o for o in state.get("type_c", {}).get("outlooks", [])
                 if o.get("available")]
+    # External live sources are checkable exactly like IMD's outlook: their
+    # excerpts go into the same source blob the number checker reads.
+    sources += [s for s in state.get("external", {}).get("sources", [])
+                if s.get("available")]
 
     report = state.get("report", "")
     if not report.strip():

@@ -199,6 +199,20 @@ def daily_path(region: str) -> Path:
     return DATA_RAW / f"{check_region(region)}_daily.parquet"
 
 
+# --- Rolling recent cache (Phase 8) ---------------------------------------- #
+# Deliberately *separate files* from raw_path/daily_path. Those two are the fixed
+# 1980-2024 archive that every published skill score in PROJECT_LOG.md and
+# EVALUATION.md was measured against; appending live data to them would silently
+# move the TEST slice and invalidate all of it. The refresh path only ever writes
+# here, and the evaluation path only ever reads there.
+def recent_path(region: str) -> Path:
+    return DATA_RAW / f"{check_region(region)}_recent.parquet"
+
+
+def recent_daily_path(region: str) -> Path:
+    return DATA_RAW / f"{check_region(region)}_recent_daily.parquet"
+
+
 def processed_path(region: str) -> Path:
     return DATA_PROCESSED / f"{check_region(region)}_clean.parquet"
 

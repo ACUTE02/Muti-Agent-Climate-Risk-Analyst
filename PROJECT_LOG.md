@@ -515,3 +515,609 @@ User approved all 4 audit-fix items in one go and asked to bundle them with the 
 - **Part 2 (real frontend):** the user's Claude-Design export (`design_export/` — now committed into the repo: `AgriRisk Query Assistant.dc.html`, `support.js`, `_ds/nocturne/`) is a visual prototype only — its "Ask" button doesn't call any backend, it shows hardcoded fake data (`CANNED` object, which still references Punjab/Maharashtra/Karnataka — regions this project doesn't support, a leftover from the design tool's earlier mistake). Spec instructs building a real `frontend/` (plain HTML/JS/CSS) matching that visual design but wired to the actual API (`/report`, `/examples`, `/quota`, `/health`), with no fake data shipped.
 
 Cowork session's own review of the export (inspected directly, not assumed): confirmed it uses a proprietary `x-dc`/`{{ }}` template runtime requiring `support.js`, and confirmed the `ask()` handler only flips local state — no `fetch()` call anywhere in the exported code.
+
+
+## Committed (Aug 19, 2026) — user said "go" directly in the Claude Code session
+
+User authorized the commit directly in the Claude Code session (not through this Cowork session — commits are always done there per the standing rule). Verified directly via `git log`/`git status` from the Cowork session rather than taken on trust:
+
+```
+60d9d62 Codebase audit: one dead function, zero removable evidence files, one real bug
+d7307ca Phase 6: local API + container — and the fresh-clone breakage was never ChromaDB
+f168b9d Phase 5: Evaluation Suite — a scorecard held to the system's own standard, and a defect found in the checker
+57e3920 Phase 4: Crop Impact Agent — one sourced coefficient, three recorded gaps, and a system that says so
+d97a8f9 Phase 3 + 3.1: Orchestrator + Synthesis — and a non-LLM grounding checker that caught a real fabrication
+2a87cab Phase 2: Retrieval Agent — a citable corpus over authority and own evidence
+89bbbc3 Phase 1.6 + Heat Stress agent: one predictor rejected, one risk type added
+ec9af28 Phase 1-1.5: leak-free multi-region drought forecasting agent
+```
+
+Eight clean, separately-labelled commits — Phase 5, 6, and the audit each landed as their own commit rather than one giant squash, as planned.
+
+**Phase 7 is mid-flight, not finished, as of this check.** `git status` shows uncommitted modifications consistent with the audit-fixes half of Phase 7 in progress — `.gitignore`, `scripts/setup.py`, the skill-score call sites (`forecasting/evaluate.py`, `forecasting/t1_model.py`, `heat/model.py`, `heat/target.py`, `forecasting/recursive.py`, `forecasting/split.py`), retrieval/evaluation files, and `orchestrator/graph.py`/`grounding.py`. **`api/app.py` has zero diff so far** — the `api_key_present` bug fix hasn't reached it yet. `frontend/` does not exist yet either — the real-frontend half of Phase 7 hasn't started. `CLAUDE_phase7.md` and `design_export/` are present but untracked (correctly — they're working inputs, not deliverables to commit as-is).
+
+Standing rule stays in force going forward: this was a one-time "go" for the work that was ready (Phase 5/6/audit); Phase 7's eventual commit still needs its own explicit "go" once it's actually done.
+
+
+---
+
+# Phase 7 — Audit Fixes + Real Frontend (Aug 19, 2026)
+
+Two independent units of work, kept separate below and intended as two commits,
+the same discipline used for Phase 5 vs Phase 6. Not committed — the standing
+rule holds: Phase 7 needs its own explicit "go".
+
+**Correction to the previous entry.** The note above claimed Phase 7 was
+"mid-flight" with uncommitted modifications to `.gitignore`, `scripts/setup.py`,
+the skill-score call sites and others. That was wrong. A direct check of
+`git status` and `git diff` at the start of this session found the tree clean
+apart from `PROJECT_LOG.md` itself: every file it listed had a zero diff, and
+`api_key_present` / `outlooks_for()` / the 5 requirements files were all still in
+their committed state. Phase 7 had not been started. It has now been done from
+that clean baseline. Recording this because a log that misstates what is on disk
+is worse than no log.
+
+Baseline before this work: **301 passed, 13 skipped**. After: **311 passed, 13
+skipped** (+3 for the `api_key_present` regression, +7 for the frontend).
+
+---
+
+## Unit 1 — Audit fixes
+
+### 1.1 `api_key_present` false positive (the one real bug the audit found)
+
+`api/app.py` and `scripts/setup.py` both did `"API_KEY" in <raw .env text>`, so
+a key counted as present for a commented-out line, an empty value, or an
+unrelated `OPENAI_API_KEY`. Both now call `retrieval.embed.get_api_key()` — the
+same resolver the code that actually spends the key uses — inside a
+`try/except MissingAPIKey`. No new resolver was written.
+
+Consequence worth stating: `/health` used to be able to report `api_key_present:
+true` on a config where the first real Gemini call would fail.
+
+`tests/test_api.py::test_api_key_present_is_false_for_near_misses` covers all
+three near-misses against both `/health` and `scripts.setup._has_api_key`. It was
+verified to be a real regression test rather than a tautology: with the two fixed
+files stashed and the old code restored, **all 3 cases fail**; with the fix in
+place, all 3 pass.
+
+### 1.2 Dead code and stale gitignore entries
+
+- `outlooks_for()` removed from `retrieval/outlooks.py` — zero callers,
+  re-confirmed by grep in this session rather than taken from the audit.
+- `*.chroma/` and `reports/eval/*.json.tmp` removed from `.gitignore` — verified
+  stale by globbing for what they match: nothing, and `reports/` does not exist.
+  After removal `git status` showed no newly untracked files, which is the
+  check that matters: they were hiding nothing.
+- Full suite after both removals: 304 passed, 13 skipped.
+
+### 1.3 Skill-score consolidation — the numeric check
+
+`1 - rmse/rmse_reference` was written out by hand in **11 places**, not the 6 the
+dispatch estimated. The two the count missed are the `val_skill` lines in
+`heat/model.py` and `heat/phase11.py`, which use `_rmse(...)/_rmse(...)` rather
+than the literal `rmse` names the original grep keyed on. Both are now
+consolidated too.
+
+New `forecasting/metrics.py` holds `rmse`, `skill_score`,
+`skill_from_predictions` and `round4`. It went there rather than beside
+`check_grounding()` because `orchestrator/grounding.py` sits *above* both
+`forecasting` and `heat`; putting a scoring primitive there would make the model
+packages import the orchestrator to compute a ratio. `heat` already imports from
+`forecasting`, so this is the lowest shared point that does not invert the
+dependency.
+
+**Numeric check — result: every value identical, zero differences.**
+
+Two layers, because synthetic inputs alone would not prove the published numbers
+survive:
+
+| Layer | What it covers | Snapshots |
+|---|---|---|
+| A | the 4 scoring functions on 3 fixed seeded input sets | 12 |
+| B | real Ridge fits on real cached data — `heat.model.fit_and_score` (2 regions × 3 lookbacks) and `heat.phase11.fit_and_score` (2 regions × 2 feature sets), i.e. the path that produced the published heat metrics | 10 |
+
+The "before" snapshot was captured with the edits **stashed**, so it is genuinely
+pre-change and not a re-run of the new code. `diff before.json after.json`
+returned empty: **22/22 snapshots byte-for-byte identical.** Nothing published in
+PROJECT_LOG.md, EVALUATION.md or `models/*.json` moves.
+
+One deliberate behaviour change, flagged rather than buried: the zero-reference
+guard is now uniform. It used to differ per call site — two returned `None`, one
+returned `NaN`, and two would have raised on a zero reference RMSE. It now
+returns `on_zero_reference` (default `None`, NaN where phase11 wanted NaN). No
+reference RMSE in this project is zero, which is why the snapshot is unchanged;
+the unification only affects a degenerate case no run has ever produced.
+
+An earlier, weaker check was tried and discarded as uninformative: re-deriving
+each published `skill_score` from the *rounded* 4dp RMSEs stored alongside it in
+`models/*.json`. 41 fields came out ±0.0001 — every single mismatch exactly one
+unit in the last place, which is what re-deriving from rounded inputs produces,
+not evidence about the formula. Recording it so the number is not rediscovered
+later and mistaken for a discrepancy.
+
+### 1.4 Requirements consolidation
+
+Five files (`requirements-phase1/2/3/6.txt`, `requirements-api.txt`) → two:
+
+- `requirements.txt` — runtime + test suite.
+- `requirements-training.txt` — `-r requirements.txt` plus TensorFlow and
+  matplotlib, the LSTM ablation path only.
+
+Declared the two gaps the audit named (`pydantic`, explicitly rather than as a
+FastAPI transitive; `python-dotenv`, previously undeclared behind a
+`try/except`) — and a **third the audit missed: `scipy`**, imported by
+`forecasting/split.py` and `heat/target.py` for the gamma SPI fit. It was
+undeclared in `requirements-api.txt` and only worked because phase1 happened to
+pull it in; a container built from `requirements-api.txt` alone would have been
+one import away from failing.
+
+Checked rather than assumed: `api.app`, `scripts.setup`, and a real
+`forecast_drought_risk` call were imported and run, then `sys.modules` inspected.
+`tensorflow`, `keras` and `matplotlib` are absent from that path; `scipy`,
+`pyarrow`, `pydantic` and `httpx` are present. Every package declared in
+`requirements.txt` was confirmed to resolve in the working venv.
+
+`README.md`, `SETUP_FROM_CLEAN.md` and the `Dockerfile` updated to the new names.
+
+---
+
+## Unit 2 — Real frontend
+
+`frontend/` — `index.html`, `app.js`, `styles.css`, `nocturne.css`. Plain
+HTML/JS/CSS, no build step, no framework, per the Phase 6 §2 constraint.
+
+### What came from the design export, and what did not
+
+`nocturne.css` is a **verbatim copy** of
+`design_export/_ds/nocturne/styles.css`, so the tokens are the designer's values
+rather than a transcription of them. `styles.css` carries the export's own
+`<helmet>` block verbatim, then adds only the states a real backend has that a
+static mockup never did: loading, error, and honest health colours.
+
+Nothing else survived the crossing. The export's `CANNED` object — hardcoded
+fake reports keyed by `rajasthan`/`punjab`/`maharashtra`/`karnataka`, three of
+which are regions this project does not support — is absent, and
+`tests/test_frontend.py` asserts it stays absent by scanning the shipped files
+(with comments stripped, so the test checks code and not prose about code) for
+`const canned`, the three unsupported region names, and five distinctive phrases
+from the fake report text.
+
+### Wired to the real API
+
+- `GET /examples` at load → chips, and the Region/Crop dropdowns are populated
+  from `supported_regions`/`supported_crops` rather than hardcoded, so a region
+  the backend does not support cannot be offered.
+- Clicking a chip fills the form from that example's **actual request body**.
+- `POST /report` with the real form state; Year + Month combine into `YYYY-MM`.
+- `horizon_confidence` renders as one row per horizon, each with its own
+  measured skill score and its own tag (`tag-accent` validated, `tag-outline`
+  weak/directional, `tag-neutral` no skill). Never averaged, never thresholded
+  into a single confidence number — the one thing Phase 6's schema exists to
+  protect, and now the one rule stated at the top of `app.js`.
+- `missing_data` renders as the italic "not available" lines; `retrieved_sources`
+  as citations.
+- Footer quota comes from `GET /quota` and from the `quota` field on each
+  `/report` response — never a client-side decrement like the export used.
+- Health dot: green **only** for `status: "ok"`; amber for degraded, naming what
+  is actually missing; red when the backend is unreachable.
+- 429 shows the quota-exhausted message the mockup had a slot for. 400/422/5xx
+  and network failures each get a plain honest message on a red banner. **No
+  placeholder report ever stands in for a failed call** — the claims, missing-data
+  and sources blocks are hidden on error rather than left showing stale content.
+
+### One defect found and fixed during verification
+
+The synthesis agent writes **Markdown**, which the first version rendered as
+flat text — literal `##` and `**` on screen. `app.js` now renders the subset the
+agent actually emits (headings, rules, bullets with nesting, bold, inline code)
+by building DOM nodes with `textContent`, never `innerHTML`. That choice is
+deliberate: the report is LLM output, and handing LLM output to an HTML parser
+is the one thing a client must not do. Verified — a report containing
+`<img onerror=...>` and `<script>` renders them as inert text, producing zero
+`img` and zero `script` elements.
+
+A second defect was found and fixed the same way: the initial API-origin
+heuristic assumed "not port 8000 ⇒ the API is on 8000", which meant a UI served
+by a second backend on another port would silently query the first one. It now
+uses the same origin whenever the page is served from the API's own `/app` mount.
+
+### §2.3 Docker decision — option (a), with an honest caveat
+
+Chose **(a): `StaticFiles` mount in `api/app.py`**, at `/app` rather than `/`
+so it does not shadow the API's own routes. Reasoning: it is three static files
+with no build step, so serving them costs nothing, and it delivers the "one
+command, whole local site, one port" outcome Phase 6 was aiming at — same-origin
+also means the UI needs no CORS at all. The mount is conditional on
+`frontend/index.html` existing, so a partial checkout still starts the API.
+`design_export/` was added to `.dockerignore`.
+
+**The Docker image was not rebuilt and is therefore not verified.** The Docker
+daemon is not running on this machine (`failed to connect to the docker API at
+npipe:...`). `.dockerignore` does not exclude `frontend/`, so `COPY . .` should
+carry it into the image and the mount should work there — but that is reasoning,
+not a run, and Phase 6's standard was to actually run it. It stays unverified
+until someone does.
+
+### What was actually run
+
+| Check | Result |
+|---|---|
+| `uvicorn api.app:app --port 8000` | `/health`, `/examples`, `/quota`, `/app/` and all three assets → 200 |
+| Page loaded in a browser at `/app/` | 5 real chips from `/examples`, regions/crops from the real supported lists, health dot green with the real "224 chunks", footer quota real, zero console errors |
+| Chip click | form filled from the example's own body, including the `2006-02` → Year 2006 / Month 02 split |
+| **A real `POST /report` against the live backend** | clean grounding banner, 12 report blocks, three distinct horizon tags with real measured skill (t+1 0.2053 validated, t+2 0.0438 weak/directional, t+3 −0.0489 no skill), 1 missing-data line, 3 sources, quota updated from the response |
+| Render path with a stubbed orchestrator on port 8001 | warning banner, all three tag classes correct, 4 missing-data lines — verified without spending quota |
+| Backend unreachable | red banner, honest message, no fabricated report, claims block hidden |
+| §2.2 cross-origin | page on `:5500` (`python -m http.server`) calling the API on `:8000` — preflight returns `access-control-allow-origin: http://localhost:5500`, real GETs succeed, chips and health load. No CORS change was needed. |
+| Markdown + injection | headings/rules/bullets/bold/code render; `<script>`/`<img onerror>` render as inert text |
+
+**Quota spent: 4 of 20 calls** — 2 on a first `/report` triggered by the
+origin-heuristic bug described above (the page was on `:8001` and the request
+went to the live `:8000`), and 2 on the deliberate end-to-end run in the table.
+Recorded because the budget is real and small.
+
+### Tests
+
+`tests/test_frontend.py`, 7 tests, no browser and no live quota: the page is
+served and self-contained; no canned data or unsupported regions survived; every
+endpoint `app.js` calls exists on the app; every example survives the
+form round-trip byte-identically; a chip click reaches a monkeypatched
+orchestrator with exactly that example's body; and a 429 stays distinguishable
+from a generic failure.
+
+The form round-trip test deliberately mirrors `applyExample()` +
+`buildRequestBody()` in Python. That duplication is the point: if either side
+changes so that a chip would send something other than what `/examples`
+advertised, the test fails instead of the app quietly lying.
+
+---
+
+## Definition of Done
+
+- [x] `api_key_present` fixed in both files, tested, and the test proven to fail against the old code
+- [x] `outlooks_for()` and the 2 stale `.gitignore` lines removed, full suite passes
+- [x] Skill-score consolidated (11 sites, not 6) — **22/22 snapshots identical, zero differences**
+- [x] `requirements.txt` + `requirements-training.txt` replace the 5 files; `pydantic`, `python-dotenv` and the undeclared `scipy` all declared; docs updated
+- [x] `frontend/` — real single-page app on the real API, no fake data, verified against a live report
+- [x] PROJECT_LOG.md updated, both units separated, numeric-check result stated
+- [ ] **Not committed** — awaiting an explicit "go" for Phase 7
+- [ ] **Docker image not rebuilt or verified** — daemon unavailable
+
+
+## Cowork session's independent re-verification of Phase 7 (Aug 19, 2026)
+
+Re-checked directly on disk (grep + file listing), not taken from the report text:
+
+- `frontend/app.js` and `frontend/index.html` — confirmed no `CANNED`/Punjab/Maharashtra/Karnataka fake data anywhere (only comment text describing their *absence*).
+- `api/app.py` and `scripts/setup.py` — confirmed both now call `retrieval.embed.get_api_key()`; the old buggy `"API_KEY" in env_file.read_text(...)` substring check is gone from both.
+- `requirements.txt` + `requirements-training.txt` exist; the 5 old requirements files are gone (`git status` shows them deleted).
+- `frontend/` has 4 files (`index.html`, `app.js`, `styles.css`, `nocturne.css`) plus `forecasting/metrics.py` and `tests/test_frontend.py` are new, matching the report.
+
+**Note on the "correction" above:** the earlier entry that called Phase 7 "mid-flight" was accurate for the moment it was checked — a first attempt at Phase 7 genuinely had those uncommitted changes at that time. The user then asked that attempt to be reverted; Claude Code did so and redid the work cleanly from the committed baseline, which is why *its* session-start check found a clean tree. Not a factual error in the earlier note, just two different points in time — recorded here so the history isn't confusing on a later read.
+
+Docker was correctly left unverified this round (daemon not running on the user's machine) — noted, not disputed. Still open before this can be called fully done: rebuild and run the image, and get an explicit "go" for Phase 7's two commits.
+
+
+## First real end-to-end query, and Phase 8 dispatched (Aug 19, 2026)
+
+User ran the frontend for real: "Barmer mein agle 3 mahine ka drought risk aur crop ka risk kya hai?" The system behaved correctly but surfaced three real usability problems, not bugs:
+
+1. **`FETCH_END = "2024-12-31"` in `forecasting/config.py` is a hardcoded historical-archive cutoff**, deliberately fixed so the published skill scores stay reproducible. Side effect: a live query for "the next 3 months" from the real current date (Aug 2026) falls ~20 months past the model's known data, so the crop-impact tool correctly reported "insufficient data" instead of guessing — the honesty mechanism working exactly as designed, not a defect. But it meant the system couldn't answer the user's actual goal: predicting genuinely upcoming months.
+2. **The synthesis report was too technical** — "skill score", "validated", "t+1" mean nothing to a non-technical reader, even though the Hindi UI labels suggested a general audience.
+3. Frontend labels were in Hindi; user wants English instead.
+
+**A request was made and partly declined, recorded here for the project's own integrity.** The user asked, for the data-currency problem, to pull a forecast from a different external source and present it as this project's own result without disclosing the source. This was declined — it would contradict the project's own sourcing/attribution discipline (`synthesis.md` rule 3: IMD's outlook is always fetched live and attributed by name, never blended into the project's own measured figures) and would be a real liability if it ever came up in an interview setting. The corrected, agreed approach: refresh the project's *own* model's input data (same source it already uses, Open-Meteo) up to the current date, so the *already-validated* Ridge model produces a genuinely current forecast — no external forecast is ever relabeled as this project's own.
+
+`CLAUDE_phase8.md` dispatched, bundling three parts: (1) frontend copy switched to English, (2) `synthesis.md` rewritten for a non-technical reader — plain-language pairing for each confidence label, "Month 1/2/3" instead of "t+1/t+2/t+3", jargon defined inline — while explicitly keeping all of `synthesis.md`'s existing honesty rules 1-10 unchanged, (3) an additive rolling recent-data cache (`{region}_recent.parquet`) so live forecasts use current inputs, explicitly required not to touch or change the fixed 1980-2024 evaluation archive or any already-published skill score (a numeric check is required, same discipline as the audit's skill-score consolidation). The spec explicitly states, as a hard constraint: no external forecast/number is ever to be presented as this project's own computed result anywhere in the system.
+
+Not started yet. Not committed — Phase 7 also still awaits its own explicit "go".
+
+
+## Phase 8 updated — 3 new cited external sources added (Aug 19, 2026)
+
+Clarified with the user: the earlier ask (declined above) was a misunderstanding on the Cowork session's part — the user meant citing and building on external sources explicitly, the way a research paper cites prior work, not disguising them as this project's own result. That's exactly the pattern already used for IMD, so this is a welcome, legitimate extension, not a conflict with the project's honesty rules.
+
+`CLAUDE_phase8.md` updated with a new Part 4: three additional cited sources, chosen for being free, reliable, and complementary to what exists —
+
+1. **IMD** — review whether the existing live-outlook integration can reasonably be expanded (e.g. district-level bulletins), or report that it's already complete.
+2. **NASA POWER** — free, no API key, agromet data (evapotranspiration/solar radiation) that could fill the crop-impact tool's existing "no irrigation-demand estimate" gap. Fetched live per request, attributed by name, never merged into the project's own figures.
+3. **data.gov.in** — India's open government data portal, free API key required. Explore for district-level crop production/rainfall datasets that could strengthen `yield_impact_table.json`'s sourced coefficients or be cited live like IMD. A documented dead end is an acceptable, honest outcome if nothing usable is found.
+
+Same hard rule as before applies to all three: every fetched value is attributed by name, checkable by the mechanical grounding checker, and never described as this project's own measurement. Graceful degradation required if a fetch fails or a key is missing — same discipline as the existing Gemini-key-missing handling.
+
+Not started. Not committed.
+
+
+---
+
+# Phase 8 — English UI, Plain-Language Reports, Live Data, 3 Cited Sources (Aug 19, 2026)
+
+Four parts, all done. Not committed — Phase 7 and Phase 8 each still need their
+own explicit "go".
+
+Suite: **362 passed, 15 skipped** (from 340 at the end of Phase 7). Two live
+demonstration reports were run against the real backend; both came back
+`grounding: clean` with zero unverified numbers.
+
+---
+
+## Part 1 — Frontend in English
+
+`frontend/index.html` and `frontend/app.js`: every visible string is English —
+headings, field labels, dropdown options, the Ask button, banners, chip prompts,
+footer, and all error/loading text. `lang="hi"` → `lang="en"`. The nav brand
+dropped its Devanagari parenthetical.
+
+The **values sent to the API are untouched**: `drought`, `heat_stress`,
+`rajasthan`, `barmer`, `bajra`, `wheat` are all unchanged, and the region/crop
+dropdowns are still populated from `/examples` at runtime rather than hardcoded.
+`nocturne.css` and the layout were not touched — this was a copy change.
+
+Checked by codepoint range rather than by hunting for particular words:
+`test_no_devanagari_remains_in_the_shipped_frontend` scans `ऀ-ॿ`
+across all three shipped files, so nothing can hide. A companion test asserts the
+API values survived the translation.
+
+## Part 2 — Reports a non-specialist can read
+
+`orchestrator/prompts/synthesis.md` rewritten for a farmer, an agricultural
+officer or a journalist. What changed:
+
+- A **plain-language gloss paired with every reliability label**, the first time
+  it is used, with the label itself still present. The `no skill` gloss is
+  "not reliable — this project's own testing found this forecast is no better
+  than simply assuming normal seasonal conditions, so do not act on this number."
+- **Real calendar months in prose** — "September 2026", never `t+1`. The codes
+  stay as field names in the API and the tool output, because the frontend's
+  tag badges and the schema depend on them.
+- **Jargon defined in the sentence that uses it** — SPI-3, skill score,
+  climatology, anomaly, horizon, RMSE.
+- **"How to read this report" moved to the top**, right after the Summary, so the
+  "can I trust this?" framing arrives before the numbers.
+
+**The honesty rules were not weakened.** Verified by parsing both versions out of
+git and diffing rule by rule: **8 of the 10 are byte-identical**. Rules 3 and 6
+changed, and only to *extend* the same constraint from IMD alone to all three
+outside sources — attribution and honest-unavailability now name NASA POWER and
+data.gov.in too. Flagging that explicitly rather than claiming "untouched", since
+the spec asked for rules 1–10 to stay exactly as strict: they did, and two of
+them now bind more widely.
+`tests/test_synthesis_prompt.py` (11 tests) pins all of it, including that the
+`no skill` gloss still says "do not act on this number" and has not acquired a
+hedge, and that rules 1, 2, 4, 5, 7, 8, 9, 10 remain byte-identical to `HEAD`.
+
+## Part 3 — Live data refresh
+
+**The problem:** the fixed archive ends `2024-12-31`, so a question about "the
+next three months" asked in August 2026 was answered from inputs ~20 months old,
+and the crop tool correctly reported "insufficient data" rather than guessing.
+
+**The fix is additive and touches no published number.** New rolling caches
+(`data/raw/{region}_recent.parquet`, `{region}_recent_daily.parquet`) sit beside
+the frozen archive. `forecasting.fetch_data.refresh_recent()` fetches only what
+is newer, reusing the existing chunking/backoff. `scripts/refresh.py` is the one
+command to run before a demo; it also re-pulls ONI. **Nothing is retrained** —
+the Ridge coefficients are the ones the evaluation measured; only the months they
+are applied to move forward.
+
+Live tools (`forecasting.tool`, `heat.tool`, `crop_impact.tool`) read the union.
+The evaluation path (`forecasting/split.py`, `heat/dataset.py`) still reads the
+fixed archive alone, which is what keeps the published numbers valid.
+
+**Two data hazards handled rather than ignored:**
+
+- **Partial months are dropped, not scaled.** A half-finished month's rainfall
+  *sum* is a small number, and a small rainfall number is indistinguishable from
+  a dry month by the time it reaches SPI-3 — including August 2026 at 19 days
+  would have manufactured a drought signal out of the calendar. `_month_is_complete`
+  refuses any month the daily record does not fully cover.
+- **ONI is the binding limit, and is reported as such.** NOAA publishes ONI as a
+  3-month running mean, so it trails the weather. Weather is current through
+  2026-07; ONI only through 2026-06. Forward-filling would mean feeding the model
+  an invented ENSO value, so the feature frame stops where the real data stops and
+  the forecast is anchored at **2026-06**. `/health` reports `weather_through`,
+  `oni_through`, `data_current_through` and names `limiting_input` explicitly.
+
+**The unchanged-numbers check (Part 3 item 5) — result: 48/48 identical.**
+The real evaluation path was re-run with the fresh caches sitting on disk and
+every metric diffed against the committed `models/metrics_ridge_*.json`: RMSE,
+MAE, R², RMSE-climatology and skill score, per horizon and averaged, both
+regions. Every value matched exactly. `tests/test_live_refresh.py` keeps this
+permanent, including a test that `prepare_dataset` still stops at `2024-12-01`
+and one asserting the archive rows are bit-identical inside the union.
+
+**Before / after, same query ("drought risk for Barmer, next three months"):**
+
+| | Before Phase 8 | After |
+|---|---|---|
+| Months forecast | 2025-01 / 02 / 03 (~20 months stale) | **2026-07 / 08 / 09** |
+| Anchor | 2024-12 | 2026-06 |
+| t+1 label | `validated`, skill 0.2053 | `validated`, skill 0.2053 |
+| t+2 label | `weak/directional`, 0.0438 | `weak/directional`, 0.0438 |
+| t+3 label | `no skill`, −0.0489 | `no skill`, −0.0489 |
+
+The skill scores are deliberately identical: this phase makes the **data**
+current, it does not manufacture skill. t+3 still reports no skill, and the
+report still tells the reader not to act on it.
+
+### Two real bugs found while verifying Part 3
+
+1. **Crop horizon was off by one.** `crop_impact.latest_data_month()` used the
+   newest *weather* month (2026-07) while the forecast anchored on the newest
+   month with every feature (2026-06). The crop tool would have attributed t+1's
+   SPI-3 value to the wrong calendar month — a wrong number under a right-looking
+   label, exactly the failure this project exists to prevent. Both now derive
+   from `data_currency()`, and a test pins the crop tool's horizon to the month
+   the forecast itself names.
+2. **The crop default only ever looked backwards.** With no month given it walked
+   *back* to the last completed sensitive window. That was right when the newest
+   data was 2024-12 and nothing upcoming was reachable; with current data it
+   meant "what does this mean for my bajra?" resolved to September **2025** and
+   answered "that month has already happened". It now prefers the next sensitive
+   month the forecast can actually reach (horizon 1–3), falling back to the old
+   backward walk when nothing upcoming is in range. Bajra now resolves to
+   **2026-08** with a live drought signal.
+
+## Part 4 — Three cited external sources
+
+All three follow the existing IMD Type-C contract: fetched live, attributed by
+name, kept out of the indexed corpus, never merged into this project's own tool
+outputs, and reported as unavailable rather than substituted for. New module
+`retrieval/external.py`; wired through `orchestrator/graph.py` as `state["external"]`
+and surfaced by the API as a separate `external_sources` field.
+
+### 4.1 IMD — reviewed, already complete (honest negative)
+
+Nothing further is freely fetchable. Tried, with results:
+
+| Endpoint | Result |
+|---|---|
+| `imd_latest/contents/rainfall_statistics_3.php` | HTTP 200, but 3,018 chars of pure navigation chrome — 0 tables, no "Rajasthan", no "Barmer" |
+| `hydro.imd.gov.in/.../DistrictRaifall.aspx` | HTTP 404 |
+| `responsive/districtWiseWarningGIS.php` | HTTP 200, nav shell only, no district data |
+| `responsive/pressReleaseNotice.php` | HTTP 404 |
+| `imdagrimet.gov.in` | HTTP 200, login-gated portal shell |
+
+Same pattern the `imd_seasonal` integration already documented: IMD's pages are
+navigation hubs whose actual data lives in linked PDFs or dynamic viewers. The
+two existing integrations (extended-range PDF + seasonal page) remain the whole
+of what is freely available. Reported rather than forced.
+
+### 4.2 NASA POWER — panned out
+
+Free, no key, no registration. `power.larc.nasa.gov/api/temporal/daily/point`,
+AG community. Fills the irrigation-demand gap earlier phases recorded as missing:
+solar irradiance, evapotranspiration energy flux, humidity, wind, temperature,
+precipitation.
+
+Two traps found and handled:
+
+- **`-999.0` is a fill value, not a reading.** Reporting it as a temperature
+  would be the worst kind of fabrication — a real-looking number that is not data.
+  Filtered before aggregation; a parameter that is entirely fill is dropped, and
+  an all-fill month reports `available: false` rather than inventing a value.
+  Directly tested.
+- **Units are carried through unconverted.** POWER publishes evapotranspiration
+  as an *energy flux* in MJ/m²/day. Converting it to mm would be this project
+  computing a number and attributing it to NASA, so it is left as published and
+  the excerpt says so. Separately, a monthly *total* of a mm/day rate is reported
+  in **mm**, not mm/day — keeping "/day" would have overstated rainfall by ~30×.
+
+Note: POWER's *monthly* endpoint only runs to 2025-12-31 (HTTP 422 beyond), and
+the daily endpoint lags ~5 days. The daily endpoint is used and aggregated.
+
+### 4.3 data.gov.in — panned out, after a real detour
+
+Working integration: **"Current Daily Price of Various Commodities from Various
+Markets (Mandi)"**, resource `9ef84268-d588-465a-a308-a864a43d0070`, Ministry of
+Agriculture and Farmers Welfare — updated daily (observed `2026-08-19T08:00:47Z`),
+filterable by state and commodity, covering both of this project's crops. Market
+prices are genuinely complementary: the crop-impact section could previously say
+nothing about economic consequence.
+
+What did **not** work, recorded because it cost real time:
+
+- `/lists?q=...` **ignores the query**: identical junk results ("Sample Data",
+  "test", user uploads) for every search term, and `total` *rose* to 285,833,
+  i.e. unfiltered. There is no working full-text search on that endpoint.
+- The portal's own search is a Nuxt SPA — `requests` and WebFetch both return the
+  shell (WebFetch: HTTP 403), and the one UUID scraped from the rainfall catalog
+  page resolved to `total: 0` (a contact record, not a dataset).
+- What *does* work: `filters[sector]=Agriculture` narrows to 19,493, and
+  `filters[title]=<keywords>` does relevance ranking. That combination found the
+  real datasets.
+- The Kisan Call Centre district datasets for Barmer/Rajasthan exist but return
+  `total: 0` — empty.
+- **The 502s were a missing User-Agent.** Early probes returned HTTP 502 on every
+  request; adding a UA header returned 200 immediately. Worth recording — it
+  looked exactly like an outage or a bad key.
+- The API is genuinely flaky regardless: intermittent connect timeouts and 502s
+  even with a valid key. Hence three retries with backoff, and why graceful
+  degradation here is load-bearing rather than decorative.
+
+Key handling mirrors the Gemini key exactly: `DATA_GOV_IN_API_KEY` (or
+`DATA_GOV_API_KEY`) from env or the gitignored `.env`; absence yields
+`available: false` with a reason that tells the reader where to get one, and
+nothing crashes. Documented in `SETUP_FROM_CLEAN.md`.
+
+**Barmer itself reports no mandi prices** — an honest empty result the client
+reports as such rather than substituting Jaipur's, which is the whole point.
+
+### The hard constraint, checked rather than assumed
+
+> No external forecast or number is ever presented as this project's own result.
+
+Checked mechanically over both live reports, not asserted. The check collects the
+numbers each source actually published, subtracts this project's own tool
+numbers, and then verifies that every external-only figure appears **only** in
+the attributed section or in a sentence naming its publisher, and that no
+sentence using this-project phrasing ("this project's measured", "our forecast",
+…) contains one.
+
+```
+report8.json   tools 28 / external 18 / external-only 14   PASS
+report8b.json  tools 30 / external 18 / external-only 14   PASS
+```
+
+Structurally enforced too: `external_sources` is a separate API field from
+`tool_outputs` (tested), the renderer labels each line with its publisher, and
+the frontend gives them their own block headed "What other organisations report
+(not this project's figures)". Their excerpts *do* go into the grounding
+checker's source blob, so quoting NASA POWER is verifiable and inventing a NASA
+number is flagged — both directions tested.
+
+---
+
+## Live demonstration (real backend, real Gemini calls)
+
+`POST /report` — "drought risk for Barmer over the next three months, and what
+does it mean for my bajra crop?" → `grounding: clean`, zero unverified numbers.
+
+- Forecast months: **July, August, September 2026** (was 2025-01/02/03).
+- Labels: July `validated` (0.2053), August `weak/directional` (0.0438),
+  September `no skill — do not rely on this figure` (−0.0489), each with its
+  plain-language gloss.
+- Crop impact resolved forward to **August 2026** with a live drought signal, and
+  correctly quoted SPI-3 **−0.07** — the t+2 value — under August, confirming the
+  off-by-one fix end to end.
+- All three outside sources appeared, attributed, in their own section: IMD's
+  extended-range release, NASA POWER's July 2026 aggregates (114.46 mm total
+  rainfall, 33.37 °C mean, 0.18 MJ/m²/day evapotranspiration flux), and
+  data.gov.in's 19 August 2026 bajra modal prices (Rs 1900–2095/quintal across
+  three Rajasthan mandis).
+
+## Definition of Done
+
+- [x] Frontend labels English, values unchanged, tests updated
+- [x] `synthesis.md` rewritten; rules 1–10 intact (8 byte-identical, 3 and 6 extended, disclosed); `no skill` pairing tested
+- [x] Rolling cache additive; fixed archive and its numbers **explicitly checked** — 48/48 identical
+- [x] Live "next 3 months" query returns a real forecast for real upcoming months, honest labels kept
+- [x] `/health` reports data currency, including which input is the limit
+- [x] IMD reviewed — documented as already complete, with what was tried
+- [x] NASA POWER wired in, attributed, fill values and units handled, degrades gracefully
+- [x] data.gov.in wired in (mandi prices), plus a documented account of the dead ends
+- [x] No external figure presented as this project's own — **checked mechanically on both live reports**
+- [ ] **Not committed** — Phase 7 and Phase 8 each still await an explicit "go"
+
+## Note for the user
+
+The `DATA_GOV_IN_API_KEY` value was echoed into this session's terminal output
+twice, inside `requests` tracebacks that include the full request URL (the
+data.gov.in API only accepts the key as a query parameter). Probes were switched
+to suppressed-exception handling afterwards. The key is free and trivially
+regenerated at <https://data.gov.in/apis> if you would rather rotate it.
+
+
+## Cowork session's independent verification of Phase 8 (Aug 19, 2026)
+
+Re-checked directly on disk (not taken from the report text alone):
+
+- `git status` confirms real new files matching the report: `retrieval/external.py` (the 3-source integration module), `scripts/refresh.py`, `frontend/` (4 files), `forecasting/metrics.py`, and 5 new test files (`test_external_sources.py`, `test_frontend.py`, `test_live_refresh.py`, `test_synthesis_prompt.py`, plus updates to existing tests).
+- Unicode-scanned `frontend/*.html`/`*.js` for Devanagari codepoints — **zero found**, confirming the English-copy conversion is real, not partial.
+- `retrieval/external.py` confirmed to filter NASA POWER's `-999.0` fill values (grep-verified at the exact lines cited in the report) rather than reporting them as measurements.
+- `.env` confirmed gitignored; confirmed `DATA_GOV_IN_API_KEY` is read via `os.environ`/a documented env-var name in `retrieval/external.py`, never hardcoded anywhere in the codebase.
+
+**Security note, flagged to the user:** Claude Code's own report disclosed that the `DATA_GOV_IN_API_KEY` value was echoed into terminal output twice during testing (inside `requests` tracebacks containing the full request URL). The key was never written to any file or committed — it only appeared in ephemeral terminal output — but the user was advised to rotate it at data.gov.in as a precaution. Recommendation given, rotation is the user's action to take.
+
+Bottom line, confirmed independently: Phase 8 is genuinely done — English UI, plain-language reports, live-current forecasts (using the project's own already-validated model with fresh input data), and three properly-attributed external sources (IMD, NASA POWER, data.gov.in), with a mechanical check confirming no external figure is ever presented as the project's own. Not committed — both Phase 7 and Phase 8 await their own explicit "go".

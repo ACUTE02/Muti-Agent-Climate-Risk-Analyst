@@ -4,8 +4,6 @@ __pycache__/
 .env
 data/raw/
 data/processed/
-*.chroma/
-reports/eval/*.json.tmp
 .DS_Store
 .pytest_cache/
 ~$*.docx

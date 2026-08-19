@@ -23,11 +23,11 @@ from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_error
 
 from forecasting import config
 from forecasting.baseline_ridge import fit_ridge_baseline, flatten_windows
 from forecasting.evaluate import _scores, climatology_baseline
+from forecasting.metrics import skill_from_predictions
 from forecasting.split import SplitWindows, prepare_dataset
 
 LOOKBACKS = (12, 24, 60)
@@ -35,9 +35,7 @@ HORIZON = 1                     # t+1 only — the whole point of this model
 
 
 def _skill(y_true: np.ndarray, y_pred: np.ndarray, y_base: np.ndarray) -> float:
-    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
-    rmse_base = np.sqrt(mean_squared_error(y_true, y_base))
-    return float(1 - rmse / rmse_base)
+    return skill_from_predictions(y_true, y_pred, y_base)
 
 
 def fit_one(region: str, window_name: str, windows: SplitWindows,
