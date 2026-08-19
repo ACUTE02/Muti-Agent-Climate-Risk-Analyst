@@ -49,6 +49,6 @@ retrieval/chunks.jsonl
 # result, like the Phase-1.4 leak and the Heat-1.1 baseline bug.
 orchestrator/grounding_failures.jsonl
 
-# internal dispatch specs - not part of the public repo
-CLAUDE.md
-CLAUDE_*.md
+# internal working docs (project log, phase specs, tech spec, audit report,
+# old README draft) - not part of the public repo, kept locally only
+internal_docs/
