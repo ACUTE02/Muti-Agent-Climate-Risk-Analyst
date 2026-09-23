@@ -1,0 +1,128 @@
+{
+  "description": "Fifteen hard retrieval checks, pre-registered before any hybrid/re-ranking code exists (Track A, Phase 2), so labelling and query design cannot be shaped by seeing that system's output. Every figure, acronym and code below was verified to actually appear in retrieval/chunks.jsonl before the query was written -- none are invented. Five types: exact_figure (a specific number in one or two chunks), acronym_or_code (a real acronym/code used without expansion), paraphrase (an existing eval_queries.json question reworded with little surface overlap), cross_document_confusion (a question that could plausibly pull a similar-but-wrong chunk -- not expected to score well before Phase 3/4 fusion and Phase 4 re-ranking), and negative (a question the corpus genuinely cannot answer, excluded from any averaged metric).",
+  "k": 5,
+  "queries": [
+    {
+      "id": "q1_barmer_validated_skill",
+      "query": "What skill score did the validated 1-month-ahead drought forecast reach for the Barmer region?",
+      "doc_type": "B",
+      "type": "exact_figure",
+      "acceptable_sources": ["drought_region_comparison", "project_log"],
+      "why": "The answer is +0.2053, the second of the project's two validated t+1 results (rajasthan is +0.2622); a paraphrase-only or dense-only match risks returning the rajasthan figure instead."
+    },
+    {
+      "id": "q2_iod_oni_correlation",
+      "query": "How strongly did the Indian Ocean Dipole correlate with ONI over the 1980-2024 period this project analyzed?",
+      "doc_type": "B",
+      "type": "exact_figure",
+      "acceptable_sources": ["project_log", "drought_region_comparison"],
+      "why": "The measured correlation is r=+0.386 over the full period (+0.340 on train alone) -- the number that justified treating IOD as a distinct, non-redundant feature before it was ultimately rejected."
+    },
+    {
+      "id": "q3_heat_anomaly_skew_barmer",
+      "query": "What was the skew of the Barmer heat-anomaly target distribution on the training partition?",
+      "doc_type": "B",
+      "type": "exact_figure",
+      "acceptable_sources": ["heat_region_comparison"],
+      "why": "-0.255, from the target-distribution sanity check that confirmed heat_anomaly is near-normal before modelling began."
+    },
+    {
+      "id": "q4_ridge_barmer_t1_outlier",
+      "query": "What is the one drought skill result above +0.1 that showed up in the very first model comparison, before any dedicated 1-month-ahead model was built?",
+      "doc_type": "B",
+      "type": "exact_figure",
+      "acceptable_sources": ["drought_region_comparison", "project_log"],
+      "why": "+0.1314, Ridge (linear) at barmer, t+1 alone -- the single early positive signal, flagged as possibly noise (one of 18 numbers), that motivated building the dedicated t+1 model in the first place."
+    },
+    {
+      "id": "q5_gkms_expansion",
+      "query": "What does the GKMS in India's agromet advisory system stand for?",
+      "doc_type": "A",
+      "type": "acronym_or_code",
+      "acceptable_sources": ["imd_gkms_sop"],
+      "why": "Gramin Krishi Mausam Sewa -- tests whether the retriever finds the document that spells the acronym out, not only chunks that use it unexpanded."
+    },
+    {
+      "id": "q6_spi3_persistence_overlap",
+      "query": "Why does SPI-3 make the drought model's 1-month-ahead task partly nowcasting rather than pure forecasting?",
+      "doc_type": "B",
+      "type": "acronym_or_code",
+      "acceptable_sources": ["drought_region_comparison", "project_log"],
+      "why": "SPI-3 is a 3-month accumulation, so SPI-3 at t+1 shares two of its three months with SPI-3 at t; the persistence-vs-climatology figures (+0.1024 rajasthan, +0.0105 barmer) quantify exactly how much of the t+1 skill is really overlap."
+    },
+    {
+      "id": "q7_oni_recursive_limitation",
+      "query": "What does the ONI feature represent, and how was it handled when the drought forecast was pushed past t+1?",
+      "doc_type": "B",
+      "type": "acronym_or_code",
+      "acceptable_sources": ["project_log", "drought_region_comparison"],
+      "why": "ONI is held at its last observed value throughout the recursive t+2/t+3 path, since fabricating a future ENSO state would be worse -- a real, stated modelling limitation, not an invented one."
+    },
+    {
+      "id": "q8_paraphrase_two_month_reliability",
+      "query": "If a farmer leaned on the two-month-ahead rainfall-shortfall number to make a planting decision, how much trust would that figure actually deserve?",
+      "doc_type": "B",
+      "type": "paraphrase",
+      "acceptable_sources": ["drought_region_comparison", "project_log"],
+      "why": "Paraphrase of eval_queries.json's q6_two_month_drought_skill with almost no shared vocabulary ('reliable'/'skill score'/'2-month' all reworded) -- the answer is still +0.0766 / +0.0438, weak/directional."
+    },
+    {
+      "id": "q9_paraphrase_severe_heat_threshold",
+      "query": "At what point does a hot day on the plains officially become a dangerous heat episode, in IMD's own terms?",
+      "doc_type": "A",
+      "type": "paraphrase",
+      "acceptable_sources": ["imd_heatwave_faq", "ndma_heatwave"],
+      "why": "Paraphrase of eval_queries.json's q1/q2 (severe heat wave threshold) with different surface wording -- still targets the 40C floor / 4.5C departure criteria."
+    },
+    {
+      "id": "q10_paraphrase_spi_distribution",
+      "query": "Which statistical distribution gets fit to historical rainfall totals when building India's standard drought severity index?",
+      "doc_type": "A",
+      "type": "paraphrase",
+      "acceptable_sources": ["nih_spi_methodology"],
+      "why": "Paraphrase of eval_queries.json's q11_spi_calculation -- avoids both 'Standardized Precipitation Index' and 'probability distribution' in favor of 'drought severity index' and 'statistical distribution', still targeting the gamma fit."
+    },
+    {
+      "id": "q11_cross_barmer_t2_confusion",
+      "query": "What was Barmer's measured drought forecast skill at the t+2 horizon?",
+      "doc_type": "B",
+      "type": "cross_document_confusion",
+      "acceptable_sources": ["drought_region_comparison", "project_log"],
+      "why": "Correct answer is +0.0438, sitting in the same table right next to rajasthan's +0.0766 for the same horizon -- a system without good fusion/re-ranking can easily surface the wrong region's number. Not expected to score well before Phase 3/4."
+    },
+    {
+      "id": "q12_cross_heat_departure_ndma_vs_imd",
+      "query": "What temperature departure from normal is required for IMD to declare a heat wave, and does NDMA's own page state the same number?",
+      "doc_type": "A",
+      "type": "cross_document_confusion",
+      "acceptable_sources": ["imd_heatwave_faq", "ndma_heatwave"],
+      "why": "Both sources discuss the same 4.5C departure criterion; a chunk pulled from the wrong one still 'looks' like a correct answer, which is exactly the confusion this type is meant to stress."
+    },
+    {
+      "id": "q13_cross_heat_vs_drought_skill",
+      "query": "At a 2-month horizon, does this project's heat stress model or its drought model show more forecasting skill?",
+      "doc_type": "B",
+      "type": "cross_document_confusion",
+      "acceptable_sources": ["drought_region_comparison", "heat_region_comparison", "project_log"],
+      "why": "Answering correctly needs BOTH tables (drought's +0.0766/+0.0438 vs heat's flat-to-negative t+2 numbers); a retriever that only surfaces one document's chunks will answer from just one side and may get the comparison backwards."
+    },
+    {
+      "id": "q14_negative_flood_skill",
+      "query": "What is the measured skill score of this project's flood forecasting model?",
+      "doc_type": null,
+      "type": "negative",
+      "excluded_from_mean": true,
+      "acceptable_sources": [],
+      "why": "The project log records that Flood was one of five risk types in the original tech spec but was explicitly scoped out of this project -- no flood model, and therefore no flood skill score, exists anywhere in the corpus."
+    },
+    {
+      "id": "q15_negative_jaipur_rainfall_total",
+      "query": "What was the exact rainfall total recorded in Jaipur during the 2023 monsoon season?",
+      "doc_type": null,
+      "type": "negative",
+      "excluded_from_mean": true,
+      "acceptable_sources": [],
+      "why": "The corpus holds methodology and this project's own measured skill-score evidence, not a raw historical rainfall record for any single season -- no chunk answers this, even though 'Jaipur' and '2023' each appear elsewhere in the corpus for unrelated reasons."
+    }
+  ]
+}
