@@ -98,7 +98,7 @@ def _rrf_fuse(bm25_hits: list[dict], dense_hits: list[dict], k: int) -> list[dic
 
 
 def retrieve_context(query: str, k: int = 5, doc_type: str | None = None,
-                     mode: str | None = None) -> list[dict]:
+                     mode: str | None = None, rerank: bool = False) -> list[dict]:
     """
     Returns up to k chunks most relevant to query, each with:
       - text: the chunk content
@@ -108,22 +108,31 @@ def retrieve_context(query: str, k: int = 5, doc_type: str | None = None,
       - score: similarity score
     doc_type, if given, restricts to "A" (domain reference) or "B" (project evidence).
     mode is "dense" or "hybrid" (BM25 + dense, RRF-fused; score is then the RRF
-    score); None uses config.RETRIEVAL_MODE.
+    score); None uses config.RETRIEVAL_MODE. rerank=True pulls
+    config.RERANK_CANDIDATE_N candidates and re-orders them with a cross-encoder
+    (needs requirements-rerank.txt), adding "rerank_score" to each result.
     """
     if mode is None:
         mode = config.RETRIEVAL_MODE
+    if mode not in RETRIEVAL_MODES:
+        raise ValueError(
+            f"Unknown mode {mode!r}. Use one of {', '.join(repr(m) for m in RETRIEVAL_MODES)}, "
+            "or None for config.RETRIEVAL_MODE.")
+
+    n = config.RERANK_CANDIDATE_N if rerank else k
 
     if mode == "dense":
-        return [_format(hit) for hit in _dense_search(query, k, doc_type)]
-
-    if mode == "hybrid":
+        candidates = [_format(hit) for hit in _dense_search(query, n, doc_type)]
+    else:
         bm25_hits = bm25_search(query, n=config.BM25_TOP_N, doc_type=doc_type)
         dense_hits = _dense_search(query, config.DENSE_TOP_N, doc_type)
-        return [_format(hit) for hit in _rrf_fuse(bm25_hits, dense_hits, k)]
+        candidates = [_format(hit) for hit in _rrf_fuse(bm25_hits, dense_hits, n)]
 
-    raise ValueError(
-        f"Unknown mode {mode!r}. Use one of {', '.join(repr(m) for m in RETRIEVAL_MODES)}, "
-        "or None for config.RETRIEVAL_MODE.")
+    if not rerank:
+        return candidates
+
+    from retrieval.rerank import rerank as rerank_candidates   # optional dependency
+    return rerank_candidates(query, candidates, k)
 
 
 @tool("retrieve_context")

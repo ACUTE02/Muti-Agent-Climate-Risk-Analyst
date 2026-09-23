@@ -209,5 +209,8 @@ BM25_TOP_N = 20    # candidates pulled from BM25 before fusion (Phase 3)
 DENSE_TOP_N = 20   # candidates pulled from dense search before fusion (Phase 3)
 RRF_K = 60         # standard constant from Cormack et al. 2009; not tuned on this corpus
 
+RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+RERANK_CANDIDATE_N = 20   # how many candidates to pull before re-ranking down to k
+
 # Stays "dense" until the Phase 5 measurement justifies a change.
 RETRIEVAL_MODE = "dense"

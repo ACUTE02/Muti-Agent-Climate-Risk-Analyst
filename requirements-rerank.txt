@@ -1,0 +1,12 @@
+# Only needed for cross-encoder re-ranking (Track A, Phase 4):
+#   retrieval/rerank.py and its tests.
+#
+# Nothing the API serves depends on this yet — re-ranking is not wired into
+# the live retrieve_context_tool. sentence-transformers pulls in torch, which
+# is large, which is why the Docker image installs requirements.txt only.
+#
+#   pip install -r requirements-rerank.txt      # pulls in requirements.txt too
+
+-r requirements.txt
+
+sentence-transformers>=3.0
