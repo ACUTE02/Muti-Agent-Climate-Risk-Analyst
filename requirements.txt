@@ -33,6 +33,8 @@ chromadb>=0.5
 pypdf>=5.0
 beautifulsoup4>=4.12
 lxml>=5.0
+rank-bm25>=0.2.2         # pure Python, depends only on numpy — used by
+                         # retrieval/lexical.py
 
 # --- API --------------------------------------------------------------------
 fastapi>=0.115,<1.0

@@ -192,3 +192,22 @@ TYPE_C_SOURCES = [
 ]
 
 TYPE_LABELS = {"A": "domain_reference", "B": "project_evidence", "C": "live_outlook"}
+
+# --------------------------------------------------------------------------- #
+# Hybrid retrieval (Track A)
+# --------------------------------------------------------------------------- #
+# Single source of truth for the doc_type -> source_type filter, shared by the
+# dense search in retrieval/tool.py and the lexical search in retrieval/lexical.py.
+DOC_TYPE_FILTERS = {
+    "A": "domain_reference",
+    "B": "project_evidence",
+    "domain_reference": "domain_reference",
+    "project_evidence": "project_evidence",
+}
+
+BM25_TOP_N = 20    # candidates pulled from BM25 before fusion (Phase 3)
+DENSE_TOP_N = 20   # candidates pulled from dense search before fusion (Phase 3)
+RRF_K = 60         # standard constant from Cormack et al. 2009; not tuned on this corpus
+
+# Stays "dense" until the Phase 5 measurement justifies a change.
+RETRIEVAL_MODE = "dense"
