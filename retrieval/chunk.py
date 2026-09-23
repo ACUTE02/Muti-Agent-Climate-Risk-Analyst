@@ -17,6 +17,7 @@ Run standalone:  python -m retrieval.chunk
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 
@@ -104,7 +105,7 @@ def _split_long(text: str) -> list[str]:
 def _chunk_record(source: SourceText, text: str, doc_type: str,
                   heading: str = "") -> dict:
     return {
-        "id": f"{source.source_id}::{abs(hash(text)) % (10 ** 12):012d}",
+        "id": f"{source.source_id}::{hashlib.sha1(text.encode('utf-8')).hexdigest()[:12]}",
         "text": text,
         "source": source.title,
         "source_id": source.source_id,
