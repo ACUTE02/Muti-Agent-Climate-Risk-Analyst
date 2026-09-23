@@ -38,7 +38,7 @@ Six agents work together under a LangGraph orchestrator: a drought-forecasting a
 - 🧠 **Agentic orchestration via LangGraph** — a state graph that routes natural-language requests to the right tools using real function calling, not keyword matching
 - ✅ **Mechanical grounding checker** — extracts every number an LLM writes and verifies it against actual source data; caught and blocked a real LLM fabrication during testing
 - 🏷️ **Per-horizon honesty labels** — `validated` / `weak-directional` / `no skill`, never collapsed into a single confidence dial
-- 📚 **RAG retrieval** — ChromaDB + Gemini embeddings over a curated corpus of government/institutional climate documents, precision@5 = 1.0
+- 📚 **RAG retrieval** — ChromaDB + Gemini embeddings over a curated corpus of government/institutional climate documents, precision@5 = 1.0 (document-level: the right source document appears in the top 5)
 - 🌾 **Crop-impact assessment** — a hybrid deterministic + LLM agent that only cites sourced yield-impact coefficients, never invents one
 - 🛰️ **3 live cited external sources** — IMD, NASA POWER, and data.gov.in, each explicitly attributed, never presented as this project's own result
 - 🔌 **FastAPI backend + Docker** — a real API with `/report /health /evaluation /examples /quota` endpoints, containerized for deployment
@@ -114,7 +114,7 @@ Multi-Agent-Climate-Risk-Analyst/
 | Drought forecast, 2-month lead | +0.04 to +0.08 skill — labelled `weak/directional` |
 | Drought forecast, 3-month lead | ~0 skill — labelled `no skill`, reported for context only |
 | Heat-stress forecast (all horizons) | No skill found — 36 cells measured, honestly reported as a null result |
-| RAG retrieval precision@5 | 1.00 (12 hand-authored queries) |
+| RAG retrieval precision@5 (document-level) | 1.00 (12 hand-authored queries) |
 | Grounding checker precision / recall | 1.0 / 0.93 (F1 0.96), measured on a 40-number labelled adversarial set |
 | Automated tests | 360+ passing |
 
