@@ -26,6 +26,7 @@ MANIFEST_PATH = RETRIEVAL_DIR / "corpus_manifest.json"
 CHUNKS_PATH = RETRIEVAL_DIR / "chunks.jsonl"
 EVAL_QUERIES_PATH = RETRIEVAL_DIR / "eval_queries.json"
 EVAL_RESULTS_PATH = RETRIEVAL_DIR / "eval_results.json"
+EVAL_RESULTS_HYBRID_PATH = RETRIEVAL_DIR / "eval_results_hybrid.json"
 OUTLOOK_CACHE_PATH = CACHE_DIR / "outlooks.json"
 
 for _d in (CACHE_DIR, CHROMA_DIR):

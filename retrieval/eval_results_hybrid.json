@@ -1,0 +1,2403 @@
+{
+  "generated_at": "2026-09-23T21:16:32+00:00",
+  "metric_note": "chunk-level: chunk_precision_at_5 and mrr@10 against human chunk labels. Not the document-level precision@k of retrieval/evaluate.py.",
+  "pooling_assumption": "Chunks outside a query's labelled pool are unjudged and scored as NOT relevant.",
+  "doc_type_filter_used": true,
+  "embedding_calls": 27,
+  "retrieve_depth": 20,
+  "score_depth": 10,
+  "rerank_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "rrf_k": 60,
+  "sets": {
+    "soft": {
+      "aggregate": {
+        "dense": {
+          "n_queries": 12,
+          "chunk_precision_at_5": 0.5333,
+          "mrr": 0.7014,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "dense+rerank": {
+          "n_queries": 12,
+          "chunk_precision_at_5": 0.4833,
+          "mrr": 0.7569,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "hybrid": {
+          "n_queries": 12,
+          "chunk_precision_at_5": 0.5,
+          "mrr": 0.8403,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "hybrid+rerank": {
+          "n_queries": 12,
+          "chunk_precision_at_5": 0.4833,
+          "mrr": 0.7528,
+          "outside_pool_fraction_at_5": 0.0
+        }
+      },
+      "paired": [
+        {
+          "baseline": "dense",
+          "compared": "hybrid",
+          "improved": 2,
+          "same": 7,
+          "regressed": 3
+        },
+        {
+          "baseline": "dense",
+          "compared": "dense+rerank",
+          "improved": 2,
+          "same": 6,
+          "regressed": 4
+        },
+        {
+          "baseline": "hybrid",
+          "compared": "hybrid+rerank",
+          "improved": 1,
+          "same": 9,
+          "regressed": 2
+        }
+      ],
+      "per_query": [
+        {
+          "id": "q1_severe_heatwave_threshold",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::486126963684",
+                "imd_heatwave_faq::427669481832",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::038360316402"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::719251386753",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::486126963684"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::499919629361",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::486126963684",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::222468429906"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::719251386753",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::486126963684"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q2_heatwave_plains_criteria",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::486126963684"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::032399165931",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::719251386753"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::499919629361",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::394258920986"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::032399165931",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::719251386753"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q3_agromet_advisory_sop",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::850633773809",
+                "imd_gkms_sop::502754532390",
+                "imd_gkms_sop::568378599397",
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::693635350549",
+                "imd_gkms_sop::793756224683",
+                "imd_gkms_sop::511091902556"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::472906438569",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::502754532390",
+                "imd_gkms_sop::957961356856",
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::850633773809",
+                "imd_gkms_sop::973612981680"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::850633773809",
+                "imd_gkms_sop::568378599397",
+                "imd_gkms_sop::502754532390",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::793756224683",
+                "imd_gkms_sop::472906438569"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::472906438569",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::502754532390",
+                "imd_gkms_sop::957961356856",
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::850633773809",
+                "imd_gkms_sop::973612981680"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q4_rajasthan_agro_advisory",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "atari_jodhpur_agroadvisory::944782752902",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::878261992082",
+                "atari_jodhpur_agroadvisory::979123351956",
+                "atari_jodhpur_agroadvisory::742629919066",
+                "atari_jodhpur_agroadvisory::806415783894",
+                "atari_jodhpur_agroadvisory::003524951602",
+                "atari_jodhpur_agroadvisory::464247679586",
+                "atari_jodhpur_agroadvisory::430122021199",
+                "atari_jodhpur_agroadvisory::757669901320"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "atari_jodhpur_agroadvisory::003524951602",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::430122021199",
+                "atari_jodhpur_agroadvisory::742629919066",
+                "atari_jodhpur_agroadvisory::979123351956",
+                "atari_jodhpur_agroadvisory::944782752902",
+                "atari_jodhpur_agroadvisory::694532870462",
+                "atari_jodhpur_agroadvisory::806415783894",
+                "atari_jodhpur_agroadvisory::398077917944",
+                "atari_jodhpur_agroadvisory::464247679586"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "atari_jodhpur_agroadvisory::878261992082",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::944782752902",
+                "atari_jodhpur_agroadvisory::694532870462",
+                "atari_jodhpur_agroadvisory::464247679586",
+                "atari_jodhpur_agroadvisory::398077917944",
+                "atari_jodhpur_agroadvisory::003524951602",
+                "atari_jodhpur_agroadvisory::757669901320",
+                "atari_jodhpur_agroadvisory::806415783894",
+                "atari_jodhpur_agroadvisory::979123351956"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "atari_jodhpur_agroadvisory::003524951602",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::430122021199",
+                "atari_jodhpur_agroadvisory::742629919066",
+                "atari_jodhpur_agroadvisory::979123351956",
+                "atari_jodhpur_agroadvisory::944782752902",
+                "atari_jodhpur_agroadvisory::694532870462",
+                "atari_jodhpur_agroadvisory::806415783894",
+                "atari_jodhpur_agroadvisory::398077917944",
+                "imd_gkms_sop::843291926669"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q5_heat_health_impact",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::486126963684",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::988103181362",
+                "ndma_heatwave::000442194914",
+                "imd_heatwave_faq::394258920986",
+                "imd_heatwave_faq::431984565381",
+                "imd_heatwave_faq::032373911703",
+                "imd_heatwave_faq::027444275440",
+                "imd_heatwave_faq::460072473296"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::486126963684",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::988103181362",
+                "imd_heatwave_faq::499919629361",
+                "ndma_heatwave::000442194914",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::126407465613",
+                "imd_heatwave_faq::027444275440",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::667991131051"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::486126963684",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::988103181362",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::667991131051",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::126407465613",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::170046401647",
+                "ndma_drought_guidelines::267606879202"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::486126963684",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::988103181362",
+                "imd_heatwave_faq::499919629361",
+                "atari_jodhpur_agroadvisory::806415783894",
+                "ndma_heatwave::000442194914",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::126407465613",
+                "imd_heatwave_faq::027444275440",
+                "ndma_heatwave::260225458486"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q6_two_month_drought_skill",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::529039471468",
+                "project_log::091049849394",
+                "project_log::139891120814",
+                "drought_region_comparison::535530474305"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.16666666666666666,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::252451257607",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "project_log::806646420792",
+                "project_log::139891120814",
+                "heat_region_comparison::268676359421",
+                "drought_region_comparison::529039471468",
+                "project_log::304687973194",
+                "heat_region_comparison::226697895264",
+                "project_log::091049849394"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "drought_region_comparison::667777726207",
+                "project_log::091049849394",
+                "project_log::139891120814",
+                "project_log::252451257607",
+                "drought_region_comparison::454800627546",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::239697161187"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.16666666666666666,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::252451257607",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "project_log::806646420792",
+                "project_log::139891120814",
+                "heat_region_comparison::268676359421",
+                "drought_region_comparison::529039471468",
+                "project_log::899674769664",
+                "project_log::304687973194",
+                "project_log::181401690551"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q7_three_month_reliability",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::535530474305",
+                "project_log::091049849394",
+                "heat_region_comparison::268676359421",
+                "project_log::333326560917"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "project_log::139891120814",
+                "project_log::981025090676",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::667777726207",
+                "project_log::091049849394",
+                "drought_region_comparison::721887321358",
+                "project_log::304687973194"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "project_log::899674769664",
+                "drought_region_comparison::721887321358",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::529039471468",
+                "project_log::139891120814",
+                "project_log::981025090676",
+                "heat_region_comparison::541621107372",
+                "heat_region_comparison::268676359421"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "project_log::139891120814",
+                "project_log::981025090676",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::667777726207",
+                "project_log::252451257607",
+                "project_log::604170810375",
+                "project_log::063041487535"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q8_heat_forecast_skill",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::304687973194",
+                "heat_region_comparison::541621107372",
+                "heat_region_comparison::226697895264",
+                "heat_region_comparison::117831500387",
+                "project_log::252451257607",
+                "project_log::950680223663",
+                "project_log::981025090676",
+                "project_log::899674769664",
+                "project_log::103454225708",
+                "heat_region_comparison::086176663242"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::304687973194",
+                "project_log::252451257607",
+                "project_log::999327254338",
+                "project_log::950680223663",
+                "project_log::806646420792",
+                "project_log::806434223966",
+                "heat_region_comparison::117831500387",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::117831500387",
+                "heat_region_comparison::541621107372",
+                "project_log::950680223663",
+                "project_log::304687973194",
+                "project_log::103454225708",
+                "project_log::252451257607",
+                "project_log::806646420792",
+                "project_log::999327254338",
+                "project_log::806434223966",
+                "project_log::899674769664"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::304687973194",
+                "project_log::252451257607",
+                "project_log::999327254338",
+                "project_log::950680223663",
+                "project_log::806646420792",
+                "project_log::806434223966",
+                "heat_region_comparison::117831500387",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "project_log::464447977601"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q9_iod_rejected",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::825581475712",
+                "drought_region_comparison::818136201242",
+                "project_log::333326560917",
+                "heat_region_comparison::268676359421",
+                "project_log::091049849394",
+                "project_log::899674769664",
+                "drought_region_comparison::535530474305",
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "project_log::139891120814"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::825581475712",
+                "drought_region_comparison::818136201242",
+                "project_log::139891120814",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::333326560917",
+                "project_log::091049849394",
+                "project_log::181401690551"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::825581475712",
+                "drought_region_comparison::818136201242",
+                "project_log::333326560917",
+                "project_log::139891120814",
+                "project_log::899674769664",
+                "project_log::181401690551",
+                "project_log::091049849394",
+                "project_log::714622999364",
+                "heat_region_comparison::962669200223",
+                "drought_region_comparison::721887321358"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::825581475712",
+                "drought_region_comparison::818136201242",
+                "project_log::139891120814",
+                "project_log::899674769664",
+                "project_log::464447977601",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::333326560917",
+                "project_log::091049849394"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q10_t1_model_lookback",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "heat_region_comparison::268676359421",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::535530474305",
+                "drought_region_comparison::529039471468",
+                "project_log::091049849394",
+                "project_log::670066931028",
+                "drought_region_comparison::510489867250"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::117831500387",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::139891120814",
+                "project_log::899674769664",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::535530474305"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::670066931028",
+                "drought_region_comparison::535530474305",
+                "heat_region_comparison::117831500387",
+                "project_log::091049849394",
+                "project_log::333326560917"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::117831500387",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::139891120814",
+                "project_log::899674769664",
+                "drought_region_comparison::529039471468",
+                "project_log::252451257607"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q11_spi_calculation",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::579231277119",
+                "nih_spi_methodology::197494889680",
+                "nih_spi_methodology::128521984583",
+                "nih_spi_methodology::921394366689",
+                "nih_spi_methodology::084461679535",
+                "nih_spi_methodology::653409458153",
+                "ndma_drought_guidelines::652054762783",
+                "imd_gkms_sop::201937180526"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::653409458153",
+                "nih_spi_methodology::084461679535",
+                "imd_gkms_sop::201937180526",
+                "nih_spi_methodology::197494889680",
+                "nih_spi_methodology::921394366689",
+                "ndma_drought_guidelines::156972219570",
+                "nih_spi_methodology::128521984583",
+                "imd_gkms_sop::973612981680"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::579231277119",
+                "nih_spi_methodology::653409458153",
+                "nih_spi_methodology::921394366689",
+                "nih_spi_methodology::084461679535",
+                "nih_spi_methodology::197494889680",
+                "imd_gkms_sop::201937180526",
+                "nih_spi_methodology::128521984583",
+                "imd_gkms_sop::845877459807"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::653409458153",
+                "nih_spi_methodology::084461679535",
+                "imd_gkms_sop::201937180526",
+                "nih_spi_methodology::197494889680",
+                "nih_spi_methodology::921394366689",
+                "ndma_drought_guidelines::156972219570",
+                "nih_spi_methodology::128521984583",
+                "ndma_drought_guidelines::467923634726"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q12_drought_types_early_warning",
+          "type": null,
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_drought_guidelines::650481712376",
+                "ndma_drought_guidelines::652054762783",
+                "ndma_drought_guidelines::061732192800",
+                "ndma_drought_guidelines::486695268280",
+                "ndma_drought_guidelines::156972219570",
+                "nih_spi_methodology::653409458153",
+                "ndma_drought_guidelines::428484385322",
+                "ndma_drought_guidelines::244941577781",
+                "ndma_drought_guidelines::218046414245",
+                "ndma_drought_guidelines::399738273764"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_drought_guidelines::399738273764",
+                "ndma_drought_guidelines::486695268280",
+                "ndma_drought_guidelines::244941577781",
+                "ndma_drought_guidelines::148406542450",
+                "ndma_drought_guidelines::218046414245",
+                "ndma_drought_guidelines::934484760436",
+                "ndma_drought_guidelines::972732724962",
+                "ndma_drought_guidelines::428484385322",
+                "ndma_drought_guidelines::267606879202",
+                "ndma_drought_guidelines::650481712376"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_drought_guidelines::061732192800",
+                "ndma_drought_guidelines::244941577781",
+                "ndma_drought_guidelines::486695268280",
+                "ndma_drought_guidelines::218046414245",
+                "ndma_drought_guidelines::650481712376",
+                "ndma_drought_guidelines::934484760436",
+                "ndma_drought_guidelines::148406542450",
+                "ndma_drought_guidelines::500519731762",
+                "ndma_drought_guidelines::399738273764",
+                "ndma_drought_guidelines::258285181069"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_drought_guidelines::569290911067",
+                "ndma_drought_guidelines::399738273764",
+                "ndma_drought_guidelines::486695268280",
+                "ndma_drought_guidelines::244941577781",
+                "ndma_drought_guidelines::148406542450",
+                "ndma_drought_guidelines::218046414245",
+                "ndma_drought_guidelines::934484760436",
+                "ndma_drought_guidelines::417207389549",
+                "ndma_drought_guidelines::972732724962",
+                "ndma_drought_guidelines::428484385322"
+              ]
+            }
+          }
+        }
+      ],
+      "negatives": []
+    },
+    "hard": {
+      "aggregate": {
+        "dense": {
+          "n_queries": 13,
+          "chunk_precision_at_5": 0.3692,
+          "mrr": 0.6372,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "dense+rerank": {
+          "n_queries": 13,
+          "chunk_precision_at_5": 0.2923,
+          "mrr": 0.5429,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "hybrid": {
+          "n_queries": 13,
+          "chunk_precision_at_5": 0.3846,
+          "mrr": 0.6372,
+          "outside_pool_fraction_at_5": 0.0
+        },
+        "hybrid+rerank": {
+          "n_queries": 13,
+          "chunk_precision_at_5": 0.2923,
+          "mrr": 0.5419,
+          "outside_pool_fraction_at_5": 0.0
+        }
+      },
+      "paired": [
+        {
+          "baseline": "dense",
+          "compared": "hybrid",
+          "improved": 2,
+          "same": 10,
+          "regressed": 1
+        },
+        {
+          "baseline": "dense",
+          "compared": "dense+rerank",
+          "improved": 2,
+          "same": 6,
+          "regressed": 5
+        },
+        {
+          "baseline": "hybrid",
+          "compared": "hybrid+rerank",
+          "improved": 1,
+          "same": 7,
+          "regressed": 5
+        }
+      ],
+      "per_query": [
+        {
+          "id": "q1_barmer_validated_skill",
+          "type": "exact_figure",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::139891120814",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207",
+                "project_log::714622999364",
+                "project_log::103454225708",
+                "project_log::670066931028",
+                "drought_region_comparison::454800627546"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::139891120814",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "project_log::670066931028",
+                "project_log::981025090676",
+                "heat_region_comparison::226697895264"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::139891120814",
+                "heat_region_comparison::268676359421",
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::454800627546",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::239697161187",
+                "project_log::981025090676"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::139891120814",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "project_log::670066931028",
+                "project_log::252451257607",
+                "project_log::981025090676"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q2_iod_oni_correlation",
+          "type": "exact_figure",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::825581475712",
+                "drought_region_comparison::818136201242",
+                "project_log::333326560917",
+                "drought_region_comparison::535530474305",
+                "project_log::091049849394",
+                "drought_region_comparison::510489867250",
+                "project_log::670066931028",
+                "project_log::899674769664",
+                "heat_region_comparison::086176663242",
+                "project_log::103454225708"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::818136201242",
+                "project_log::825581475712",
+                "project_log::091049849394",
+                "project_log::981025090676",
+                "project_log::714622999364",
+                "project_log::670066931028",
+                "project_log::899674769664",
+                "project_log::859726832454",
+                "project_log::806646420792",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::818136201242",
+                "project_log::825581475712",
+                "project_log::714622999364",
+                "drought_region_comparison::535530474305",
+                "project_log::670066931028",
+                "project_log::091049849394",
+                "drought_region_comparison::529039471468",
+                "project_log::333326560917",
+                "project_log::806646420792",
+                "project_log::981025090676"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::818136201242",
+                "project_log::825581475712",
+                "project_log::091049849394",
+                "project_log::981025090676",
+                "project_log::714622999364",
+                "project_log::670066931028",
+                "project_log::899674769664",
+                "project_log::859726832454",
+                "project_log::806646420792",
+                "project_log::090966158805"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q3_heat_anomaly_skew_barmer",
+          "type": "exact_figure",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.16666666666666666,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::785063075943",
+                "project_log::103454225708",
+                "heat_region_comparison::226697895264",
+                "project_log::981025090676",
+                "project_log::806434223966",
+                "heat_region_comparison::117831500387",
+                "heat_region_comparison::086176663242",
+                "project_log::139891120814",
+                "heat_region_comparison::541621107372",
+                "heat_region_comparison::962669200223"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::785063075943",
+                "project_log::103454225708",
+                "project_log::899674769664",
+                "heat_region_comparison::086176663242",
+                "project_log::806434223966",
+                "heat_region_comparison::117831500387",
+                "project_log::950680223663",
+                "heat_region_comparison::541621107372",
+                "heat_region_comparison::226697895264",
+                "project_log::139891120814"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::785063075943",
+                "project_log::103454225708",
+                "project_log::806434223966",
+                "heat_region_comparison::226697895264",
+                "project_log::139891120814",
+                "heat_region_comparison::086176663242",
+                "project_log::899674769664",
+                "heat_region_comparison::541621107372",
+                "project_log::981025090676",
+                "drought_region_comparison::510489867250"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::785063075943",
+                "project_log::103454225708",
+                "project_log::899674769664",
+                "heat_region_comparison::086176663242",
+                "project_log::806434223966",
+                "heat_region_comparison::117831500387",
+                "project_log::950680223663",
+                "heat_region_comparison::541621107372",
+                "project_log::859726832454",
+                "project_log::670066931028"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q4_ridge_barmer_t1_outlier",
+          "type": "exact_figure",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "project_log::091049849394",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::670066931028",
+                "project_log::714622999364",
+                "project_log::139891120814",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::510489867250"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::670066931028",
+                "project_log::139891120814",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::721887321358",
+                "project_log::950680223663",
+                "project_log::091049849394",
+                "drought_region_comparison::239697161187"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::670066931028",
+                "project_log::806646420792",
+                "drought_region_comparison::529039471468",
+                "project_log::139891120814",
+                "project_log::091049849394",
+                "project_log::714622999364",
+                "project_log::181401690551",
+                "heat_region_comparison::268676359421",
+                "project_log::103454225708"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::670066931028",
+                "project_log::139891120814",
+                "heat_region_comparison::117831500387",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::721887321358",
+                "project_log::950680223663",
+                "project_log::091049849394"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q5_gkms_expansion",
+          "type": "acronym_or_code",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::081344863602",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::914498591667",
+                "imd_gkms_sop::957961356856",
+                "imd_gkms_sop::439720331102",
+                "atari_jodhpur_agroadvisory::464247679586"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::390753968381",
+                "atari_jodhpur_agroadvisory::959929533804",
+                "imd_gkms_sop::472906438569",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::070468090662",
+                "atari_jodhpur_agroadvisory::398077917944",
+                "imd_gkms_sop::914498591667"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::390753968381",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::439720331102",
+                "imd_gkms_sop::957961356856",
+                "imd_gkms_sop::793756224683",
+                "imd_gkms_sop::914498591667",
+                "imd_gkms_sop::081344863602"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_gkms_sop::046715404365",
+                "imd_gkms_sop::843291926669",
+                "imd_gkms_sop::511091902556",
+                "imd_gkms_sop::390753968381",
+                "atari_jodhpur_agroadvisory::959929533804",
+                "imd_gkms_sop::472906438569",
+                "imd_gkms_sop::903155659108",
+                "imd_gkms_sop::070468090662",
+                "atari_jodhpur_agroadvisory::398077917944",
+                "imd_gkms_sop::914498591667"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q6_spi3_persistence_overlap",
+          "type": "acronym_or_code",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "drought_region_comparison::721887321358",
+                "project_log::091049849394",
+                "project_log::714622999364",
+                "drought_region_comparison::535530474305",
+                "project_log::899674769664",
+                "drought_region_comparison::510489867250",
+                "project_log::181401690551",
+                "project_log::859726832454",
+                "project_log::670066931028"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "drought_region_comparison::721887321358",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "project_log::091049849394",
+                "project_log::139891120814",
+                "project_log::950680223663",
+                "project_log::604170810375",
+                "project_log::181401690551",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "project_log::091049849394",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "drought_region_comparison::535530474305",
+                "project_log::181401690551",
+                "project_log::950680223663",
+                "project_log::139891120814",
+                "project_log::670066931028"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::806646420792",
+                "drought_region_comparison::721887321358",
+                "project_log::899674769664",
+                "project_log::714622999364",
+                "project_log::091049849394",
+                "project_log::139891120814",
+                "project_log::950680223663",
+                "project_log::252451257607",
+                "project_log::181401690551",
+                "project_log::981025090676"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q7_oni_recursive_limitation",
+          "type": "acronym_or_code",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::333326560917",
+                "project_log::091049849394",
+                "drought_region_comparison::818136201242",
+                "project_log::714622999364",
+                "drought_region_comparison::535530474305",
+                "project_log::806646420792",
+                "project_log::638155852787",
+                "project_log::825581475712",
+                "project_log::181401690551",
+                "drought_region_comparison::510489867250"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.125,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "project_log::806434223966",
+                "project_log::139891120814",
+                "project_log::806646420792",
+                "drought_region_comparison::818136201242",
+                "project_log::181401690551",
+                "project_log::091049849394",
+                "project_log::063041487535",
+                "project_log::825581475712"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::818136201242",
+                "project_log::091049849394",
+                "project_log::333326560917",
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "drought_region_comparison::535530474305",
+                "project_log::806434223966",
+                "project_log::825581475712",
+                "project_log::806646420792",
+                "project_log::139891120814"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.1111111111111111,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::899674769664",
+                "drought_region_comparison::667777726207",
+                "project_log::806434223966",
+                "project_log::139891120814",
+                "project_log::806646420792",
+                "drought_region_comparison::818136201242",
+                "project_log::181401690551",
+                "project_log::091049849394",
+                "project_log::825581475712"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q8_paraphrase_two_month_reliability",
+          "type": "paraphrase",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::535530474305",
+                "project_log::670066931028",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207",
+                "drought_region_comparison::510489867250",
+                "project_log::091049849394"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "drought_region_comparison::529039471468",
+                "project_log::139891120814",
+                "heat_region_comparison::541621107372",
+                "project_log::670066931028",
+                "project_log::103454225708"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::535530474305",
+                "drought_region_comparison::721887321358",
+                "project_log::806646420792",
+                "project_log::139891120814",
+                "project_log::304687973194",
+                "project_log::670066931028",
+                "project_log::181401690551"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::721887321358",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "project_log::063041487535",
+                "drought_region_comparison::529039471468",
+                "project_log::139891120814",
+                "project_log::806434223966",
+                "project_log::670066931028"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q9_paraphrase_severe_heat_threshold",
+          "type": "paraphrase",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::486126963684",
+                "imd_heatwave_faq::667991131051",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::460072473296"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::719251386753",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::170046401647"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::394258920986",
+                "imd_heatwave_faq::222468429906",
+                "imd_heatwave_faq::667991131051"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::460072473296",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::222468429906"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q10_paraphrase_spi_distribution",
+          "type": "paraphrase",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::921394366689",
+                "nih_spi_methodology::084461679535",
+                "nih_spi_methodology::653409458153",
+                "nih_spi_methodology::197494889680",
+                "nih_spi_methodology::579231277119",
+                "ndma_drought_guidelines::652054762783",
+                "ndma_drought_guidelines::650481712376",
+                "nih_spi_methodology::128521984583"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::084461679535",
+                "nih_spi_methodology::921394366689",
+                "nih_spi_methodology::937684595995",
+                "ndma_drought_guidelines::652054762783",
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::197494889680",
+                "ndma_drought_guidelines::700104384643",
+                "ndma_drought_guidelines::650481712376",
+                "ndma_drought_guidelines::156972219570",
+                "nih_spi_methodology::653409458153"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::937684595995",
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::653409458153",
+                "nih_spi_methodology::579231277119",
+                "ndma_drought_guidelines::700104384643",
+                "nih_spi_methodology::197494889680",
+                "ndma_drought_guidelines::218046414245",
+                "ndma_drought_guidelines::428484385322",
+                "ndma_drought_guidelines::628889767920",
+                "imd_gkms_sop::973612981680"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.25,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::084461679535",
+                "nih_spi_methodology::921394366689",
+                "nih_spi_methodology::937684595995",
+                "ndma_drought_guidelines::652054762783",
+                "nih_spi_methodology::757352796103",
+                "nih_spi_methodology::197494889680",
+                "ndma_drought_guidelines::700104384643",
+                "ndma_drought_guidelines::650481712376",
+                "ndma_drought_guidelines::972732724962",
+                "nih_spi_methodology::653409458153"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q11_cross_barmer_t2_confusion",
+          "type": "cross_document_confusion",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::139891120814",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::187275351963",
+                "project_log::714622999364",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "project_log::103454225708",
+                "drought_region_comparison::454800627546",
+                "project_log::670066931028",
+                "drought_region_comparison::535530474305"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::667777726207",
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "drought_region_comparison::529039471468",
+                "project_log::333326560917",
+                "project_log::139891120814",
+                "heat_region_comparison::268676359421",
+                "drought_region_comparison::454800627546",
+                "drought_region_comparison::239697161187",
+                "project_log::981025090676"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::187275351963",
+                "project_log::806646420792",
+                "heat_region_comparison::268676359421",
+                "project_log::139891120814",
+                "drought_region_comparison::454800627546",
+                "drought_region_comparison::535530474305",
+                "project_log::333326560917",
+                "drought_region_comparison::818136201242"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "drought_region_comparison::667777726207",
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "drought_region_comparison::529039471468",
+                "project_log::333326560917",
+                "project_log::139891120814",
+                "heat_region_comparison::268676359421",
+                "project_log::252451257607",
+                "drought_region_comparison::454800627546",
+                "drought_region_comparison::239697161187"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q12_cross_heat_departure_ndma_vs_imd",
+          "type": "cross_document_confusion",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::170046401647"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::719251386753"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::260225458486",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::032399165931"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 1.0,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "imd_heatwave_faq::587458398464",
+                "ndma_heatwave::911351110640",
+                "imd_heatwave_faq::174866929326",
+                "imd_heatwave_faq::667991131051",
+                "imd_heatwave_faq::032399165931",
+                "imd_heatwave_faq::427669481832",
+                "imd_heatwave_faq::499919629361",
+                "imd_heatwave_faq::170046401647",
+                "imd_heatwave_faq::038360316402",
+                "imd_heatwave_faq::719251386753"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q13_cross_heat_vs_drought_skill",
+          "type": "cross_document_confusion",
+          "negative": false,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.4,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::541621107372",
+                "heat_region_comparison::117831500387",
+                "project_log::806646420792",
+                "project_log::252451257607",
+                "project_log::899674769664",
+                "drought_region_comparison::535530474305",
+                "project_log::304687973194",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::252451257607",
+                "project_log::304687973194",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "heat_region_comparison::117831500387",
+                "project_log::899674769664",
+                "project_log::806434223966",
+                "drought_region_comparison::529039471468",
+                "project_log::950680223663",
+                "project_log::139891120814"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::806646420792",
+                "heat_region_comparison::117831500387",
+                "project_log::252451257607",
+                "project_log::950680223663",
+                "drought_region_comparison::529039471468",
+                "project_log::899674769664",
+                "drought_region_comparison::535530474305",
+                "project_log::304687973194",
+                "project_log::103454225708"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.2,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::252451257607",
+                "project_log::304687973194",
+                "project_log::806646420792",
+                "project_log::714622999364",
+                "heat_region_comparison::117831500387",
+                "project_log::999327254338",
+                "project_log::899674769664",
+                "drought_region_comparison::529039471468",
+                "project_log::950680223663",
+                "project_log::139891120814"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q14_negative_flood_skill",
+          "type": "negative",
+          "negative": true,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::454800627546",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "drought_region_comparison::535530474305",
+                "project_log::181401690551"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::252451257607",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::454800627546",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "drought_region_comparison::721887321358",
+                "heat_region_comparison::268676359421"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::454800627546",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "drought_region_comparison::529039471468",
+                "project_log::252451257607",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::252451257607",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "project_log::464447977601",
+                "drought_region_comparison::454800627546",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "project_log::333326560917"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q15_negative_jaipur_rainfall_total",
+          "type": "negative",
+          "negative": true,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.125,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::899674769664",
+                "imd_heatwave_faq::719251386753",
+                "project_log::103454225708",
+                "drought_region_comparison::529039471468",
+                "project_log::981025090676",
+                "project_log::806646420792",
+                "project_log::825581475712",
+                "drought_region_comparison::239697161187",
+                "heat_region_comparison::226697895264",
+                "nih_spi_methodology::197494889680"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::226697895264",
+                "project_log::181401690551",
+                "nih_spi_methodology::197494889680",
+                "project_log::899674769664",
+                "ndma_drought_guidelines::870097274257",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "project_log::825581475712",
+                "imd_gkms_sop::201937180526",
+                "project_log::464447977601",
+                "project_log::103454225708"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::197494889680",
+                "ndma_drought_guidelines::870097274257",
+                "imd_gkms_sop::201937180526",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::126700242989",
+                "project_log::899674769664",
+                "imd_heatwave_faq::719251386753",
+                "imd_gkms_sop::242995120813",
+                "project_log::103454225708",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::226697895264",
+                "nih_spi_methodology::197494889680",
+                "project_log::899674769664",
+                "ndma_drought_guidelines::870097274257",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "project_log::825581475712",
+                "imd_gkms_sop::242995120813",
+                "atari_jodhpur_agroadvisory::802301076133",
+                "imd_gkms_sop::201937180526",
+                "atari_jodhpur_agroadvisory::126700242989"
+              ]
+            }
+          }
+        }
+      ],
+      "negatives": [
+        {
+          "id": "q14_negative_flood_skill",
+          "type": "negative",
+          "negative": true,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::454800627546",
+                "drought_region_comparison::667777726207",
+                "heat_region_comparison::187275351963",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "heat_region_comparison::268676359421",
+                "project_log::806646420792",
+                "drought_region_comparison::535530474305",
+                "project_log::181401690551"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::252451257607",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "drought_region_comparison::454800627546",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "drought_region_comparison::721887321358",
+                "heat_region_comparison::268676359421"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.8,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "drought_region_comparison::454800627546",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "drought_region_comparison::529039471468",
+                "project_log::252451257607",
+                "drought_region_comparison::721887321358",
+                "drought_region_comparison::667777726207"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.6,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::714622999364",
+                "project_log::252451257607",
+                "project_log::806646420792",
+                "drought_region_comparison::239697161187",
+                "drought_region_comparison::529039471468",
+                "project_log::464447977601",
+                "drought_region_comparison::454800627546",
+                "project_log::091049849394",
+                "project_log::181401690551",
+                "project_log::333326560917"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q15_negative_jaipur_rainfall_total",
+          "type": "negative",
+          "negative": true,
+          "configs": {
+            "dense": {
+              "chunk_precision_at_5": 0.0,
+              "mrr": 0.125,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "project_log::899674769664",
+                "imd_heatwave_faq::719251386753",
+                "project_log::103454225708",
+                "drought_region_comparison::529039471468",
+                "project_log::981025090676",
+                "project_log::806646420792",
+                "project_log::825581475712",
+                "drought_region_comparison::239697161187",
+                "heat_region_comparison::226697895264",
+                "nih_spi_methodology::197494889680"
+              ]
+            },
+            "dense+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.3333333333333333,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::226697895264",
+                "project_log::181401690551",
+                "nih_spi_methodology::197494889680",
+                "project_log::899674769664",
+                "ndma_drought_guidelines::870097274257",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "project_log::825581475712",
+                "imd_gkms_sop::201937180526",
+                "project_log::464447977601",
+                "project_log::103454225708"
+              ]
+            },
+            "hybrid": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 1.0,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "nih_spi_methodology::197494889680",
+                "ndma_drought_guidelines::870097274257",
+                "imd_gkms_sop::201937180526",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "atari_jodhpur_agroadvisory::126700242989",
+                "project_log::899674769664",
+                "imd_heatwave_faq::719251386753",
+                "imd_gkms_sop::242995120813",
+                "project_log::103454225708",
+                "drought_region_comparison::529039471468"
+              ]
+            },
+            "hybrid+rerank": {
+              "chunk_precision_at_5": 0.2,
+              "mrr": 0.5,
+              "outside_pool_at_5": 0,
+              "ranked_ids": [
+                "heat_region_comparison::226697895264",
+                "nih_spi_methodology::197494889680",
+                "project_log::899674769664",
+                "ndma_drought_guidelines::870097274257",
+                "atari_jodhpur_agroadvisory::044209010314",
+                "project_log::825581475712",
+                "imd_gkms_sop::242995120813",
+                "atari_jodhpur_agroadvisory::802301076133",
+                "imd_gkms_sop::201937180526",
+                "atari_jodhpur_agroadvisory::126700242989"
+              ]
+            }
+          }
+        }
+      ],
+      "by_type": {
+        "acronym_or_code": {
+          "dense": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.2667,
+            "mrr": 0.5833,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "dense+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.1333,
+            "mrr": 0.5417,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.2667,
+            "mrr": 0.6111,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.1333,
+            "mrr": 0.537,
+            "outside_pool_fraction_at_5": 0.0
+          }
+        },
+        "cross_document_confusion": {
+          "dense": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.5333,
+            "mrr": 0.6111,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "dense+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.4667,
+            "mrr": 0.4667,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.4667,
+            "mrr": 0.5556,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.4667,
+            "mrr": 0.4667,
+            "outside_pool_fraction_at_5": 0.0
+          }
+        },
+        "exact_figure": {
+          "dense": {
+            "n_queries": 4,
+            "chunk_precision_at_5": 0.35,
+            "mrr": 0.7917,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "dense+rerank": {
+            "n_queries": 4,
+            "chunk_precision_at_5": 0.35,
+            "mrr": 0.8333,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid": {
+            "n_queries": 4,
+            "chunk_precision_at_5": 0.4,
+            "mrr": 0.8,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid+rerank": {
+            "n_queries": 4,
+            "chunk_precision_at_5": 0.35,
+            "mrr": 0.8333,
+            "outside_pool_fraction_at_5": 0.0
+          }
+        },
+        "paraphrase": {
+          "dense": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.3333,
+            "mrr": 0.5111,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "dense+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.2,
+            "mrr": 0.2333,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.4,
+            "mrr": 0.5278,
+            "outside_pool_fraction_at_5": 0.0
+          },
+          "hybrid+rerank": {
+            "n_queries": 3,
+            "chunk_precision_at_5": 0.2,
+            "mrr": 0.2333,
+            "outside_pool_fraction_at_5": 0.0
+          }
+        }
+      }
+    }
+  }
+}
