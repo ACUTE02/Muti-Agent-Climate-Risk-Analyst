@@ -33,24 +33,25 @@ class SourceText:
 
 
 def fetch_bytes(url: str, cache_name: str | None = None,
-                force: bool = False) -> bytes:
+                force: bool = False, timeout=None, attempts: int = 3) -> bytes:
     """Download with a browser UA, caching to disk so a rebuild is offline."""
     cache_path = config.CACHE_DIR / cache_name if cache_name else None
     if cache_path and cache_path.exists() and not force:
         return cache_path.read_bytes()
 
     last_error = None
-    for attempt in range(3):
+    for attempt in range(attempts):
         try:
             resp = requests.get(url, headers={"User-Agent": config.USER_AGENT},
-                                timeout=config.FETCH_TIMEOUT)
+                                timeout=timeout or config.FETCH_TIMEOUT)
             resp.raise_for_status()
             if cache_path:
                 cache_path.write_bytes(resp.content)
             return resp.content
         except Exception as exc:           # network flakiness, not a logic error
             last_error = exc
-            time.sleep(5 * (attempt + 1))
+            if attempt < attempts - 1:
+                time.sleep(5 * (attempt + 1))
     raise RuntimeError(f"could not fetch {url}: {last_error}")
 
 

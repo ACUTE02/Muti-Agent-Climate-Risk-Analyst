@@ -44,9 +44,11 @@ from datetime import datetime, timezone
 import requests
 
 from forecasting import config as fconfig
+from retrieval import config as rconfig
+from retrieval.live import gather_with_deadline
 
-REQUEST_TIMEOUT = 60
-RETRIES = 3
+REQUEST_TIMEOUT = rconfig.LIVE_FETCH_TIMEOUT
+RETRIES = rconfig.LIVE_FETCH_ATTEMPTS
 
 # data.gov.in intermittently returns 502s and connection timeouts even for a
 # valid key — observed repeatedly while building this. Hence the retry loop, and
@@ -99,11 +101,15 @@ def _month_bounds(month: str | None) -> tuple[str, str, str]:
     return start.strftime("%Y%m%d"), end.strftime("%Y%m%d"), start.strftime("%Y-%m")
 
 
-def fetch_nasa_power(region: str, month: str | None = None) -> dict:
-    """Agrometeorology for one region-month. Never raises."""
-    record = _base_record(
+def _nasa_record() -> dict:
+    return _base_record(
         "nasa_power", "NASA POWER agrometeorology (daily, aggregated to the month)",
         "NASA Langley Research Center", POWER_CITATION, ["drought", "crop_impact"])
+
+
+def fetch_nasa_power(region: str, month: str | None = None) -> dict:
+    """Agrometeorology for one region-month. Never raises."""
+    record = _nasa_record()
     try:
         fconfig.check_region(region)
         meta = fconfig.REGIONS[region]
@@ -211,12 +217,16 @@ def _scrub_key(text: str, key: str | None) -> str:
     return re.sub(r"(api-key=)[^&\s'\"]+", r"\1<redacted>", text)
 
 
-def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
-    """Today's official mandi prices for a crop in the region's state."""
-    record = _base_record(
+def _mandi_record() -> dict:
+    return _base_record(
         "data_gov_in_mandi", "data.gov.in daily mandi prices",
         "Ministry of Agriculture and Farmers Welfare (via data.gov.in)",
         MANDI_CITATION, ["crop_impact"])
+
+
+def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
+    """Today's official mandi prices for a crop in the region's state."""
+    record = _mandi_record()
 
     key = get_data_gov_key()
     if not key:
@@ -250,7 +260,8 @@ def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
                         "reason": "data.gov.in rejected the API key (HTTP 403)"}
             if response.status_code != 200:
                 last_error = f"HTTP {response.status_code}"
-                time.sleep(2 * (attempt + 1))
+                if attempt < RETRIES - 1:
+                    time.sleep(2 * (attempt + 1))
                 continue
 
             records = response.json().get("records", [])
@@ -282,7 +293,8 @@ def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
             return {**record, "available": True}
         except Exception as exc:
             last_error = _scrub_key(f"{type(exc).__name__}: {exc}", key)
-            time.sleep(2 * (attempt + 1))
+            if attempt < RETRIES - 1:
+                time.sleep(2 * (attempt + 1))
 
     return {**record, "available": False,
             "reason": f"data.gov.in unreachable after {RETRIES} attempts "
@@ -293,10 +305,18 @@ def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
 # Aggregate
 # --------------------------------------------------------------------------- #
 def fetch_external_sources(region: str | None = None, crop: str | None = None,
-                           month: str | None = None) -> dict:
-    """Every non-IMD live source for one request. Never raises."""
+                           month: str | None = None,
+                           deadline_s: float | None = None) -> dict:
+    """Every non-IMD live source for one request, in parallel. Never raises."""
     region = region or fconfig.DEFAULT_REGION
-    sources = [fetch_nasa_power(region, month), fetch_mandi_prices(region, crop)]
+    deadline_s = rconfig.LIVE_FETCH_DEADLINE_S if deadline_s is None else deadline_s
+    empty_records = [_nasa_record, _mandi_record]
+    sources = gather_with_deadline(
+        [lambda: fetch_nasa_power(region, month),
+         lambda: fetch_mandi_prices(region, crop)],
+        deadline_s,
+        lambda i: {**empty_records[i](), "available": False,
+                   "reason": f"no response within {deadline_s:g}s"})
     return {
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sources": sources,

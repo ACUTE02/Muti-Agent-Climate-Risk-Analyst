@@ -26,6 +26,7 @@ import re
 from datetime import datetime, timezone
 
 from retrieval import config
+from retrieval.live import gather_with_deadline
 from retrieval.sources import extract_html_text, extract_pdf_text, fetch_bytes
 
 MAX_EXCERPT_CHARS = 1500
@@ -54,9 +55,8 @@ def _excerpt_seasonal_html(text: str) -> str:
     return " ".join(keep)[:MAX_EXCERPT_CHARS]
 
 
-def fetch_outlook(source: dict, force: bool = True) -> dict:
-    """One live source. Never raises — an unavailable outlook is a reportable state."""
-    record = {
+def _record(source: dict) -> dict:
+    return {
         "id": source["id"],
         "title": source["title"],
         "publisher": source["publisher"],
@@ -64,9 +64,15 @@ def fetch_outlook(source: dict, force: bool = True) -> dict:
         "relevant_to": source["relevant_to"],
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
+
+
+def fetch_outlook(source: dict, force: bool = True) -> dict:
+    """One live source. Never raises — an unavailable outlook is a reportable state."""
+    record = _record(source)
     try:
         raw = fetch_bytes(source["url"], f"outlook_{source['id']}.{source['format']}",
-                          force=force)
+                          force=force, timeout=config.LIVE_FETCH_TIMEOUT,
+                          attempts=config.LIVE_FETCH_ATTEMPTS)
         if source["format"] == "pdf":
             text, stats = extract_pdf_text(raw, f"outlook_{source['id']}.pdf")
             excerpt = _excerpt_pdf(text)
@@ -86,9 +92,15 @@ def fetch_outlook(source: dict, force: bool = True) -> dict:
                 "reason": f"{type(exc).__name__}: {exc}"}
 
 
-def fetch_outlooks(force: bool = True) -> dict:
-    """All Type C sources, plus a cached copy written for inspection."""
-    outlooks = [fetch_outlook(src, force=force) for src in config.TYPE_C_SOURCES]
+def fetch_outlooks(force: bool = True, deadline_s: float | None = None) -> dict:
+    """All Type C sources, fetched in parallel, plus a cached copy for inspection."""
+    deadline_s = config.LIVE_FETCH_DEADLINE_S if deadline_s is None else deadline_s
+    sources = config.TYPE_C_SOURCES
+    outlooks = gather_with_deadline(
+        [lambda src=src: fetch_outlook(src, force=force) for src in sources],
+        deadline_s,
+        lambda i: {**_record(sources[i]), "available": False,
+                   "reason": f"no response within {deadline_s:g}s"})
     payload = {
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "outlooks": outlooks,
