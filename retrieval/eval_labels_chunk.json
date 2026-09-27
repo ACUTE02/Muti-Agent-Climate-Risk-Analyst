@@ -5,7 +5,7 @@
       "query": "What is the IMD threshold for declaring a severe heat wave?",
       "candidates": [
         {
-          "id": "imd_gkms_sop::845877459807",
+          "id": "imd_gkms_sop::103ed7049588",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -15,7 +15,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::957961356856",
+          "id": "imd_gkms_sop::b74863d2a63e",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -25,7 +25,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::027444275440",
+          "id": "imd_heatwave_faq::6c92d8b874b3",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -35,7 +35,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::032399165931",
+          "id": "imd_heatwave_faq::8e300b4b3377",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -46,7 +46,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::038360316402",
+          "id": "imd_heatwave_faq::1c75fe32f053",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -57,7 +57,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::170046401647",
+          "id": "imd_heatwave_faq::728c08e25616",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -68,7 +68,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::174866929326",
+          "id": "imd_heatwave_faq::42775437ad05",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -80,7 +80,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::222468429906",
+          "id": "imd_heatwave_faq::a78a2cc2eb1d",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -91,7 +91,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::394258920986",
+          "id": "imd_heatwave_faq::cc1ea5645860",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -102,7 +102,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::427669481832",
+          "id": "imd_heatwave_faq::2ed6ffb56864",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -113,7 +113,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::460072473296",
+          "id": "imd_heatwave_faq::b923b2280da2",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -124,7 +124,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::486126963684",
+          "id": "imd_heatwave_faq::4b67e1c84eed",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -135,7 +135,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::499919629361",
+          "id": "imd_heatwave_faq::1b0fb9a43b14",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -146,7 +146,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::587458398464",
+          "id": "imd_heatwave_faq::81abf89a0561",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -158,7 +158,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::667991131051",
+          "id": "imd_heatwave_faq::fdfe4c02b9b1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -169,7 +169,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::719251386753",
+          "id": "imd_heatwave_faq::ff289fc67505",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -180,7 +180,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::736532374160",
+          "id": "imd_heatwave_faq::fdadbf81b9c0",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -190,7 +190,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::988103181362",
+          "id": "imd_heatwave_faq::e274a0db2059",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -200,7 +200,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::093836893088",
+          "id": "ndma_drought_guidelines::513cc2612824",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -210,7 +210,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::244941577781",
+          "id": "ndma_drought_guidelines::3e15020bd3d9",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -220,7 +220,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::258285181069",
+          "id": "ndma_drought_guidelines::f1ae0aa6a0bf",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -231,7 +231,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::486695268280",
+          "id": "ndma_drought_guidelines::f73bacb9d3ec",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -241,7 +241,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::546499180872",
+          "id": "ndma_drought_guidelines::256a9f02e957",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -252,7 +252,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::569290911067",
+          "id": "ndma_drought_guidelines::a70dcac86910",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -263,7 +263,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::000442194914",
+          "id": "ndma_heatwave::1ace7106fd13",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -273,7 +273,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_heatwave::260225458486",
+          "id": "ndma_heatwave::6036d8d6913f",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -284,7 +284,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::774105229205",
+          "id": "ndma_heatwave::1d6d97ffc995",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -294,7 +294,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::911351110640",
+          "id": "ndma_heatwave::b355a34f309d",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -305,7 +305,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::937684595995",
+          "id": "nih_spi_methodology::2f8658612eaf",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -320,7 +320,7 @@
       "query": "When is a heat wave declared over the plains of India, and what departure from normal temperature is required?",
       "candidates": [
         {
-          "id": "atari_jodhpur_agroadvisory::151069424340",
+          "id": "atari_jodhpur_agroadvisory::2ab84917ca21",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -330,7 +330,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::027444275440",
+          "id": "imd_heatwave_faq::6c92d8b874b3",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -341,7 +341,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::032373911703",
+          "id": "imd_heatwave_faq::553a23a886d1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -351,7 +351,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::032399165931",
+          "id": "imd_heatwave_faq::8e300b4b3377",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -362,7 +362,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::038360316402",
+          "id": "imd_heatwave_faq::1c75fe32f053",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -373,7 +373,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::170046401647",
+          "id": "imd_heatwave_faq::728c08e25616",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -384,7 +384,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::174866929326",
+          "id": "imd_heatwave_faq::42775437ad05",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -396,7 +396,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::222468429906",
+          "id": "imd_heatwave_faq::a78a2cc2eb1d",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -407,7 +407,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::394258920986",
+          "id": "imd_heatwave_faq::cc1ea5645860",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -418,7 +418,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::427669481832",
+          "id": "imd_heatwave_faq::2ed6ffb56864",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -429,7 +429,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::460072473296",
+          "id": "imd_heatwave_faq::b923b2280da2",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -441,7 +441,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::486126963684",
+          "id": "imd_heatwave_faq::4b67e1c84eed",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -452,7 +452,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::499919629361",
+          "id": "imd_heatwave_faq::1b0fb9a43b14",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -463,7 +463,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::587458398464",
+          "id": "imd_heatwave_faq::81abf89a0561",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -475,7 +475,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::667991131051",
+          "id": "imd_heatwave_faq::fdfe4c02b9b1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -486,7 +486,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::719251386753",
+          "id": "imd_heatwave_faq::ff289fc67505",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -496,7 +496,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::736532374160",
+          "id": "imd_heatwave_faq::fdadbf81b9c0",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -506,7 +506,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::988103181362",
+          "id": "imd_heatwave_faq::e274a0db2059",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -517,7 +517,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::156972219570",
+          "id": "ndma_drought_guidelines::1783a8b16752",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -527,7 +527,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::244941577781",
+          "id": "ndma_drought_guidelines::3e15020bd3d9",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -537,7 +537,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::492241367653",
+          "id": "ndma_drought_guidelines::d38ea59ddaca",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -547,7 +547,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::628889767920",
+          "id": "ndma_drought_guidelines::65c2d0591388",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -557,7 +557,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::652054762783",
+          "id": "ndma_drought_guidelines::a39d5a541ee5",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -567,7 +567,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::972732724962",
+          "id": "ndma_drought_guidelines::99fc053bbf76",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -577,7 +577,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::983519046294",
+          "id": "ndma_drought_guidelines::5d30dcda84ca",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -587,7 +587,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::260225458486",
+          "id": "ndma_heatwave::6036d8d6913f",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -598,7 +598,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::774105229205",
+          "id": "ndma_heatwave::1d6d97ffc995",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -608,7 +608,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::911351110640",
+          "id": "ndma_heatwave::b355a34f309d",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -620,7 +620,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::579231277119",
+          "id": "nih_spi_methodology::e7ced7282779",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -635,7 +635,7 @@
       "query": "What is the standard operating procedure for preparing district level agromet advisory bulletins?",
       "candidates": [
         {
-          "id": "atari_jodhpur_agroadvisory::126700242989",
+          "id": "atari_jodhpur_agroadvisory::198b118ebff3",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -645,7 +645,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::046715404365",
+          "id": "imd_gkms_sop::b0bb9e5e7851",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -657,7 +657,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::070468090662",
+          "id": "imd_gkms_sop::3e60f03e9751",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -667,7 +667,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::390753968381",
+          "id": "imd_gkms_sop::b30482a5382c",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -679,7 +679,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::439720331102",
+          "id": "imd_gkms_sop::dd567a9e535f",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -690,7 +690,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::450203716240",
+          "id": "imd_gkms_sop::47bb51d2856f",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -702,7 +702,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::458857566342",
+          "id": "imd_gkms_sop::ea1d73c1324c",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -712,7 +712,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::472906438569",
+          "id": "imd_gkms_sop::be8d5c0b5027",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -724,7 +724,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::502754532390",
+          "id": "imd_gkms_sop::3b290fb15719",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -735,7 +735,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::511091902556",
+          "id": "imd_gkms_sop::ab99841efda8",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -747,7 +747,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::516713998522",
+          "id": "imd_gkms_sop::448c4a609804",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -757,7 +757,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::568378599397",
+          "id": "imd_gkms_sop::5a048fb16d49",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -769,7 +769,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::662597397171",
+          "id": "imd_gkms_sop::47f2819a38d3",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -779,7 +779,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::693635350549",
+          "id": "imd_gkms_sop::0a11718d0cb7",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -789,7 +789,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::737732455778",
+          "id": "imd_gkms_sop::984092d05364",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -800,7 +800,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::793756224683",
+          "id": "imd_gkms_sop::2e5dc6921185",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -811,7 +811,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::843291926669",
+          "id": "imd_gkms_sop::8ad694212ff5",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -823,7 +823,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::845877459807",
+          "id": "imd_gkms_sop::103ed7049588",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -834,7 +834,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::850633773809",
+          "id": "imd_gkms_sop::81518a9a63a1",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -846,7 +846,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::903155659108",
+          "id": "imd_gkms_sop::0c0c69c7b5eb",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -858,7 +858,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::914498591667",
+          "id": "imd_gkms_sop::c2f9b386d888",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -869,7 +869,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::957961356856",
+          "id": "imd_gkms_sop::b74863d2a63e",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -880,7 +880,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::973612981680",
+          "id": "imd_gkms_sop::ec089aaa9e7d",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -891,7 +891,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::038360316402",
+          "id": "imd_heatwave_faq::1c75fe32f053",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -901,7 +901,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::222468429906",
+          "id": "imd_heatwave_faq::a78a2cc2eb1d",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -912,7 +912,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::587458398464",
+          "id": "imd_heatwave_faq::81abf89a0561",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -922,7 +922,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::667991131051",
+          "id": "imd_heatwave_faq::fdfe4c02b9b1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -932,7 +932,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::145905415978",
+          "id": "ndma_drought_guidelines::644f4f6e62c3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -942,7 +942,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::218046414245",
+          "id": "ndma_drought_guidelines::28e1fe6c74c3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -952,7 +952,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::228737579997",
+          "id": "ndma_drought_guidelines::bc9bb7a168ed",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -962,7 +962,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::351871976929",
+          "id": "ndma_drought_guidelines::4242f2e4d1e6",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -972,7 +972,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::406376674143",
+          "id": "ndma_drought_guidelines::3df556ef04b1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -983,7 +983,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::492241367653",
+          "id": "ndma_drought_guidelines::d38ea59ddaca",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -993,7 +993,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::691390120349",
+          "id": "ndma_drought_guidelines::fcb3695e8fb1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1003,7 +1003,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::760872556267",
+          "id": "ndma_drought_guidelines::b0ba7180370e",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1013,7 +1013,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::800042022673",
+          "id": "ndma_drought_guidelines::7eb6d07c29aa",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1023,7 +1023,7 @@
           "relevant": true
         },
         {
-          "id": "nih_spi_methodology::084461679535",
+          "id": "nih_spi_methodology::82b8ca99fca8",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -1038,7 +1038,7 @@
       "query": "What agro advisory services are provided to farmers in Rajasthan and the arid western zone?",
       "candidates": [
         {
-          "id": "atari_jodhpur_agroadvisory::003524951602",
+          "id": "atari_jodhpur_agroadvisory::045d62ca8b6b",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1050,7 +1050,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::044209010314",
+          "id": "atari_jodhpur_agroadvisory::ce958cbbd922",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1062,7 +1062,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::151069424340",
+          "id": "atari_jodhpur_agroadvisory::2ab84917ca21",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1072,7 +1072,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::238265361943",
+          "id": "atari_jodhpur_agroadvisory::3eba015e0343",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1083,7 +1083,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::281798711279",
+          "id": "atari_jodhpur_agroadvisory::fa7e6ed563f1",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1094,7 +1094,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::398077917944",
+          "id": "atari_jodhpur_agroadvisory::031a146a0c56",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1106,7 +1106,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::430122021199",
+          "id": "atari_jodhpur_agroadvisory::232a82e4db76",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1117,7 +1117,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::461729613146",
+          "id": "atari_jodhpur_agroadvisory::89d675e0e0bf",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1128,7 +1128,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::464247679586",
+          "id": "atari_jodhpur_agroadvisory::fd49986010b1",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1140,7 +1140,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::472917378462",
+          "id": "atari_jodhpur_agroadvisory::77b5f9858b1c",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1150,7 +1150,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::487492716024",
+          "id": "atari_jodhpur_agroadvisory::6492d0b7a37e",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1160,7 +1160,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::487849076832",
+          "id": "atari_jodhpur_agroadvisory::c835a5487cd9",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1170,7 +1170,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::538678187929",
+          "id": "atari_jodhpur_agroadvisory::00b2ff0f6918",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1180,7 +1180,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::565482800447",
+          "id": "atari_jodhpur_agroadvisory::1cabb6173d20",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1190,7 +1190,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::694532870462",
+          "id": "atari_jodhpur_agroadvisory::3966c7d9738c",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1201,7 +1201,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::742629919066",
+          "id": "atari_jodhpur_agroadvisory::798934243874",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1211,7 +1211,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::748726955474",
+          "id": "atari_jodhpur_agroadvisory::08bd07fdaf23",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1221,7 +1221,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::757669901320",
+          "id": "atari_jodhpur_agroadvisory::6068ef2cffc7",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1233,7 +1233,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::802301076133",
+          "id": "atari_jodhpur_agroadvisory::2964450226d9",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1243,7 +1243,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::806415783894",
+          "id": "atari_jodhpur_agroadvisory::85d08e47642c",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1255,7 +1255,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::878261992082",
+          "id": "atari_jodhpur_agroadvisory::0e0922d1613f",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1267,7 +1267,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::944782752902",
+          "id": "atari_jodhpur_agroadvisory::04e784398461",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1278,7 +1278,7 @@
           "relevant": true
         },
         {
-          "id": "atari_jodhpur_agroadvisory::979123351956",
+          "id": "atari_jodhpur_agroadvisory::30abadb8daab",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1290,7 +1290,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::046715404365",
+          "id": "imd_gkms_sop::b0bb9e5e7851",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1300,7 +1300,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::242995120813",
+          "id": "imd_gkms_sop::6bdd53977385",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1310,7 +1310,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::439720331102",
+          "id": "imd_gkms_sop::dd567a9e535f",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1321,7 +1321,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::450203716240",
+          "id": "imd_gkms_sop::47bb51d2856f",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1331,7 +1331,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::511091902556",
+          "id": "imd_gkms_sop::ab99841efda8",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1341,7 +1341,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::843291926669",
+          "id": "imd_gkms_sop::8ad694212ff5",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1352,7 +1352,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::903155659108",
+          "id": "imd_gkms_sop::0c0c69c7b5eb",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1363,7 +1363,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::957961356856",
+          "id": "imd_gkms_sop::b74863d2a63e",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1374,7 +1374,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::988103181362",
+          "id": "imd_heatwave_faq::e274a0db2059",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1384,7 +1384,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::093836893088",
+          "id": "ndma_drought_guidelines::513cc2612824",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1394,7 +1394,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::102383928943",
+          "id": "ndma_drought_guidelines::aa77160e370d",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1404,7 +1404,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::155962888788",
+          "id": "ndma_drought_guidelines::93a97962198a",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1414,7 +1414,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::156972219570",
+          "id": "ndma_drought_guidelines::1783a8b16752",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1424,7 +1424,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::166752747957",
+          "id": "ndma_drought_guidelines::7e30ac1e8676",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1434,7 +1434,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::231228963474",
+          "id": "ndma_drought_guidelines::3fbc6ada09e4",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1444,7 +1444,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::248944026595",
+          "id": "ndma_drought_guidelines::f10970b06884",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1454,7 +1454,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::406376674143",
+          "id": "ndma_drought_guidelines::3df556ef04b1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1464,7 +1464,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::530080173787",
+          "id": "ndma_drought_guidelines::070a509d5d4b",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1474,7 +1474,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::652265906768",
+          "id": "ndma_drought_guidelines::152daaffd90c",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1484,7 +1484,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::700104384643",
+          "id": "ndma_drought_guidelines::e5ea72a88376",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1494,7 +1494,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::808836359293",
+          "id": "ndma_drought_guidelines::ddbf06dd47ac",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1505,7 +1505,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::837241541680",
+          "id": "ndma_drought_guidelines::2231ba3b5b91",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1515,7 +1515,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::867657428202",
+          "id": "ndma_drought_guidelines::c285400e6aa7",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1525,7 +1525,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::870097274257",
+          "id": "ndma_drought_guidelines::314b74c0f37d",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1535,7 +1535,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::972732724962",
+          "id": "ndma_drought_guidelines::99fc053bbf76",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1545,7 +1545,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::260225458486",
+          "id": "ndma_heatwave::6036d8d6913f",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -1560,7 +1560,7 @@
       "query": "What are the health effects of extreme heat and who is most vulnerable?",
       "candidates": [
         {
-          "id": "atari_jodhpur_agroadvisory::238265361943",
+          "id": "atari_jodhpur_agroadvisory::3eba015e0343",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1571,7 +1571,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::565482800447",
+          "id": "atari_jodhpur_agroadvisory::1cabb6173d20",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1582,7 +1582,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::668044866956",
+          "id": "atari_jodhpur_agroadvisory::46e005a27054",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1592,7 +1592,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::742629919066",
+          "id": "atari_jodhpur_agroadvisory::798934243874",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1603,7 +1603,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::806415783894",
+          "id": "atari_jodhpur_agroadvisory::85d08e47642c",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -1614,7 +1614,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::511091902556",
+          "id": "imd_gkms_sop::ab99841efda8",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -1624,7 +1624,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::027444275440",
+          "id": "imd_heatwave_faq::6c92d8b874b3",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1634,7 +1634,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::032373911703",
+          "id": "imd_heatwave_faq::553a23a886d1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1644,7 +1644,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::032399165931",
+          "id": "imd_heatwave_faq::8e300b4b3377",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1654,7 +1654,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::038360316402",
+          "id": "imd_heatwave_faq::1c75fe32f053",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1664,7 +1664,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::126407465613",
+          "id": "imd_heatwave_faq::11bb170463bb",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1675,7 +1675,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::170046401647",
+          "id": "imd_heatwave_faq::728c08e25616",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1686,7 +1686,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::174866929326",
+          "id": "imd_heatwave_faq::42775437ad05",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1696,7 +1696,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::222468429906",
+          "id": "imd_heatwave_faq::a78a2cc2eb1d",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1706,7 +1706,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::394258920986",
+          "id": "imd_heatwave_faq::cc1ea5645860",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1716,7 +1716,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::427669481832",
+          "id": "imd_heatwave_faq::2ed6ffb56864",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1726,7 +1726,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::431984565381",
+          "id": "imd_heatwave_faq::cd42db29f211",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1736,7 +1736,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::460072473296",
+          "id": "imd_heatwave_faq::b923b2280da2",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1747,7 +1747,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::486126963684",
+          "id": "imd_heatwave_faq::4b67e1c84eed",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1759,7 +1759,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::499919629361",
+          "id": "imd_heatwave_faq::1b0fb9a43b14",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1771,7 +1771,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::587458398464",
+          "id": "imd_heatwave_faq::81abf89a0561",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1781,7 +1781,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::667991131051",
+          "id": "imd_heatwave_faq::fdfe4c02b9b1",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1793,7 +1793,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::736532374160",
+          "id": "imd_heatwave_faq::fdadbf81b9c0",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1803,7 +1803,7 @@
           "relevant": false
         },
         {
-          "id": "imd_heatwave_faq::988103181362",
+          "id": "imd_heatwave_faq::e274a0db2059",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -1815,7 +1815,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::061732192800",
+          "id": "ndma_drought_guidelines::582b7920fa69",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1826,7 +1826,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::145905415978",
+          "id": "ndma_drought_guidelines::644f4f6e62c3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1836,7 +1836,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::148406542450",
+          "id": "ndma_drought_guidelines::c40e8c7ac326",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1846,7 +1846,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::228737579997",
+          "id": "ndma_drought_guidelines::bc9bb7a168ed",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1856,7 +1856,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::231228963474",
+          "id": "ndma_drought_guidelines::3fbc6ada09e4",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1867,7 +1867,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::267606879202",
+          "id": "ndma_drought_guidelines::abbbc9e933e4",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1878,7 +1878,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::406376674143",
+          "id": "ndma_drought_guidelines::3df556ef04b1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1888,7 +1888,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::445576863211",
+          "id": "ndma_drought_guidelines::c3337dd2078c",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1898,7 +1898,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::486695268280",
+          "id": "ndma_drought_guidelines::f73bacb9d3ec",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1908,7 +1908,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::628889767920",
+          "id": "ndma_drought_guidelines::65c2d0591388",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1918,7 +1918,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::645902512077",
+          "id": "ndma_drought_guidelines::c60189aadc33",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1928,7 +1928,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::808836359293",
+          "id": "ndma_drought_guidelines::ddbf06dd47ac",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -1939,7 +1939,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::000442194914",
+          "id": "ndma_heatwave::1ace7106fd13",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -1949,7 +1949,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::260225458486",
+          "id": "ndma_heatwave::6036d8d6913f",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -1960,7 +1960,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::774105229205",
+          "id": "ndma_heatwave::1d6d97ffc995",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -1970,7 +1970,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_heatwave::911351110640",
+          "id": "ndma_heatwave::b355a34f309d",
           "source_id": "ndma_heatwave",
           "section": "",
           "pools": [
@@ -1986,7 +1986,7 @@
       "query": "What is the measured skill score for the 2-month drought forecast?",
       "candidates": [
         {
-          "id": "drought_region_comparison::239697161187",
+          "id": "drought_region_comparison::77fb3043e90d",
           "source_id": "drought_region_comparison",
           "section": "Model / region comparison — averaged over horizons t+1, t+2, t+3",
           "pools": [
@@ -1998,7 +1998,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::454800627546",
+          "id": "drought_region_comparison::a4c908ff66b8",
           "source_id": "drought_region_comparison",
           "section": "Skill score by horizon",
           "pools": [
@@ -2010,7 +2010,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::510489867250",
+          "id": "drought_region_comparison::ec1777ecfd69",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.4 — does the t+1 signal replicate?",
           "pools": [
@@ -2020,7 +2020,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::529039471468",
+          "id": "drought_region_comparison::cf0631412c56",
           "source_id": "drought_region_comparison",
           "section": "Did the small LSTM's val_loss ever beat climatology?",
           "pools": [
@@ -2030,7 +2030,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::535530474305",
+          "id": "drought_region_comparison::63eadb208744",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.5 — recursive vs. direct for t+2 and t+3",
           "pools": [
@@ -2041,7 +2041,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::667777726207",
+          "id": "drought_region_comparison::168554e799b8",
           "source_id": "drought_region_comparison",
           "section": "Final per-horizon verdict",
           "pools": [
@@ -2052,7 +2052,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::721887321358",
+          "id": "drought_region_comparison::e67a8703cb25",
           "source_id": "drought_region_comparison",
           "section": "Dedicated 1-month-ahead model",
           "pools": [
@@ -2062,7 +2062,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::117831500387",
+          "id": "heat_region_comparison::5a751d0a51ad",
           "source_id": "heat_region_comparison",
           "section": "Heat Stress — model / region comparison",
           "pools": [
@@ -2072,7 +2072,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::187275351963",
+          "id": "heat_region_comparison::1e173b453f70",
           "source_id": "heat_region_comparison",
           "section": "Skill by horizon — vs climatology and vs persistence",
           "pools": [
@@ -2083,7 +2083,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::226697895264",
+          "id": "heat_region_comparison::3d4d8c5bc563",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -2093,7 +2093,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::268676359421",
+          "id": "heat_region_comparison::a4ebf860162b",
           "source_id": "heat_region_comparison",
           "section": "Lookback selection (validation skill)",
           "pools": [
@@ -2105,7 +2105,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::541621107372",
+          "id": "heat_region_comparison::5734e8de761e",
           "source_id": "heat_region_comparison",
           "section": "Winter sanity check (Dec-Feb, t+1)",
           "pools": [
@@ -2115,7 +2115,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::090966158805",
+          "id": "project_log::59885f1dda80",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -2126,7 +2126,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::091049849394",
+          "id": "project_log::db070b8f0441",
           "source_id": "project_log",
           "section": "Phase 1.1 — Real SPI-3 + ENSO exogenous feature (Aug 17, 2026)",
           "pools": [
@@ -2138,7 +2138,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::103454225708",
+          "id": "project_log::e126a0eb4e11",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2148,7 +2148,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::117625540680",
+          "id": "project_log::b2d34a6440a5",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -2159,7 +2159,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::139891120814",
+          "id": "project_log::fb612629740a",
           "source_id": "project_log",
           "section": "Phase 1.2 — Second region: Barmer, and a clean 3-way comparison (Aug 17, 2026)",
           "pools": [
@@ -2171,7 +2171,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::181401690551",
+          "id": "project_log::03d74505df3c",
           "source_id": "project_log",
           "section": "Phase 1 — Forecasting Agent, first pass (Aug 17, 2026)",
           "pools": [
@@ -2182,7 +2182,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::252451257607",
+          "id": "project_log::7be940229a0a",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2194,7 +2194,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::304687973194",
+          "id": "project_log::d81815944b17",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2205,7 +2205,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::333326560917",
+          "id": "project_log::0dbb8e31a169",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -2217,7 +2217,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::464447977601",
+          "id": "project_log::23742122d7d9",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -2228,7 +2228,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::670066931028",
+          "id": "project_log::a6d0d984e27d",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -2238,7 +2238,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::714622999364",
+          "id": "project_log::ce0f0cabb7e9",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -2250,7 +2250,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::806434223966",
+          "id": "project_log::41dcfa969717",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2261,7 +2261,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::806646420792",
+          "id": "project_log::e1ea5776ef57",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -2273,7 +2273,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::899674769664",
+          "id": "project_log::9e867f63c0ac",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2284,7 +2284,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::950680223663",
+          "id": "project_log::4cf1db424977",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2294,7 +2294,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::999327254338",
+          "id": "project_log::910fec6e427c",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.2: interface trimmed (Aug 18, 2026)",
           "pools": [
@@ -2310,7 +2310,7 @@
       "query": "How reliable is the 3-month drought forecast and should it be relied on?",
       "candidates": [
         {
-          "id": "drought_region_comparison::239697161187",
+          "id": "drought_region_comparison::77fb3043e90d",
           "source_id": "drought_region_comparison",
           "section": "Model / region comparison — averaged over horizons t+1, t+2, t+3",
           "pools": [
@@ -2320,7 +2320,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::510489867250",
+          "id": "drought_region_comparison::ec1777ecfd69",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.4 — does the t+1 signal replicate?",
           "pools": [
@@ -2330,7 +2330,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::529039471468",
+          "id": "drought_region_comparison::cf0631412c56",
           "source_id": "drought_region_comparison",
           "section": "Did the small LSTM's val_loss ever beat climatology?",
           "pools": [
@@ -2341,7 +2341,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::535530474305",
+          "id": "drought_region_comparison::63eadb208744",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.5 — recursive vs. direct for t+2 and t+3",
           "pools": [
@@ -2351,7 +2351,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::667777726207",
+          "id": "drought_region_comparison::168554e799b8",
           "source_id": "drought_region_comparison",
           "section": "Final per-horizon verdict",
           "pools": [
@@ -2362,7 +2362,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::721887321358",
+          "id": "drought_region_comparison::e67a8703cb25",
           "source_id": "drought_region_comparison",
           "section": "Dedicated 1-month-ahead model",
           "pools": [
@@ -2374,7 +2374,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::818136201242",
+          "id": "drought_region_comparison::b648576d9edc",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.6 — does the Indian Ocean Dipole add anything?",
           "pools": [
@@ -2384,7 +2384,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::117831500387",
+          "id": "heat_region_comparison::5a751d0a51ad",
           "source_id": "heat_region_comparison",
           "section": "Heat Stress — model / region comparison",
           "pools": [
@@ -2394,7 +2394,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::187275351963",
+          "id": "heat_region_comparison::1e173b453f70",
           "source_id": "heat_region_comparison",
           "section": "Skill by horizon — vs climatology and vs persistence",
           "pools": [
@@ -2404,7 +2404,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::226697895264",
+          "id": "heat_region_comparison::3d4d8c5bc563",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -2414,7 +2414,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::268676359421",
+          "id": "heat_region_comparison::a4ebf860162b",
           "source_id": "heat_region_comparison",
           "section": "Lookback selection (validation skill)",
           "pools": [
@@ -2425,7 +2425,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::541621107372",
+          "id": "heat_region_comparison::5734e8de761e",
           "source_id": "heat_region_comparison",
           "section": "Winter sanity check (Dec-Feb, t+1)",
           "pools": [
@@ -2436,7 +2436,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::063041487535",
+          "id": "project_log::498a79d3779c",
           "source_id": "project_log",
           "section": "Scope Decision — Multi-Risk-Type Expansion (Aug 17, 2026)",
           "pools": [
@@ -2446,7 +2446,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::090966158805",
+          "id": "project_log::59885f1dda80",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -2456,7 +2456,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::091049849394",
+          "id": "project_log::db070b8f0441",
           "source_id": "project_log",
           "section": "Phase 1.1 — Real SPI-3 + ENSO exogenous feature (Aug 17, 2026)",
           "pools": [
@@ -2466,7 +2466,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::117625540680",
+          "id": "project_log::b2d34a6440a5",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -2476,7 +2476,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::139891120814",
+          "id": "project_log::fb612629740a",
           "source_id": "project_log",
           "section": "Phase 1.2 — Second region: Barmer, and a clean 3-way comparison (Aug 17, 2026)",
           "pools": [
@@ -2488,7 +2488,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::252451257607",
+          "id": "project_log::7be940229a0a",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2498,7 +2498,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::304687973194",
+          "id": "project_log::d81815944b17",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2509,7 +2509,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::333326560917",
+          "id": "project_log::0dbb8e31a169",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -2519,7 +2519,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::604170810375",
+          "id": "project_log::4ff463dd2fdc",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -2530,7 +2530,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::638155852787",
+          "id": "project_log::ee057c5c01d3",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -2540,7 +2540,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::670066931028",
+          "id": "project_log::a6d0d984e27d",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -2550,7 +2550,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::714622999364",
+          "id": "project_log::ce0f0cabb7e9",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -2561,7 +2561,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::806434223966",
+          "id": "project_log::41dcfa969717",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2571,7 +2571,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::806646420792",
+          "id": "project_log::e1ea5776ef57",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -2583,7 +2583,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::899674769664",
+          "id": "project_log::9e867f63c0ac",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2595,7 +2595,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::981025090676",
+          "id": "project_log::ec405b75e5b9",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2607,7 +2607,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::999327254338",
+          "id": "project_log::910fec6e427c",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.2: interface trimmed (Aug 18, 2026)",
           "pools": [
@@ -2622,7 +2622,7 @@
       "query": "Does the heat stress model have any usable forecasting skill?",
       "candidates": [
         {
-          "id": "drought_region_comparison::239697161187",
+          "id": "drought_region_comparison::77fb3043e90d",
           "source_id": "drought_region_comparison",
           "section": "Model / region comparison — averaged over horizons t+1, t+2, t+3",
           "pools": [
@@ -2632,7 +2632,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::454800627546",
+          "id": "drought_region_comparison::a4c908ff66b8",
           "source_id": "drought_region_comparison",
           "section": "Skill score by horizon",
           "pools": [
@@ -2642,7 +2642,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::529039471468",
+          "id": "drought_region_comparison::cf0631412c56",
           "source_id": "drought_region_comparison",
           "section": "Did the small LSTM's val_loss ever beat climatology?",
           "pools": [
@@ -2652,7 +2652,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::667777726207",
+          "id": "drought_region_comparison::168554e799b8",
           "source_id": "drought_region_comparison",
           "section": "Final per-horizon verdict",
           "pools": [
@@ -2662,7 +2662,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::721887321358",
+          "id": "drought_region_comparison::e67a8703cb25",
           "source_id": "drought_region_comparison",
           "section": "Dedicated 1-month-ahead model",
           "pools": [
@@ -2672,7 +2672,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::086176663242",
+          "id": "heat_region_comparison::57c86f915dd2",
           "source_id": "heat_region_comparison",
           "section": "Phase 1.1 — new targets and the SPI-3 cross-agent feature",
           "pools": [
@@ -2683,7 +2683,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::117831500387",
+          "id": "heat_region_comparison::5a751d0a51ad",
           "source_id": "heat_region_comparison",
           "section": "Heat Stress — model / region comparison",
           "pools": [
@@ -2694,7 +2694,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::187275351963",
+          "id": "heat_region_comparison::1e173b453f70",
           "source_id": "heat_region_comparison",
           "section": "Skill by horizon — vs climatology and vs persistence",
           "pools": [
@@ -2704,7 +2704,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::226697895264",
+          "id": "heat_region_comparison::3d4d8c5bc563",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -2714,7 +2714,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::268676359421",
+          "id": "heat_region_comparison::a4ebf860162b",
           "source_id": "heat_region_comparison",
           "section": "Lookback selection (validation skill)",
           "pools": [
@@ -2725,7 +2725,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::541621107372",
+          "id": "heat_region_comparison::5734e8de761e",
           "source_id": "heat_region_comparison",
           "section": "Winter sanity check (Dec-Feb, t+1)",
           "pools": [
@@ -2736,7 +2736,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::962669200223",
+          "id": "heat_region_comparison::0b11beacf5e0",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -2747,7 +2747,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::103454225708",
+          "id": "project_log::e126a0eb4e11",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2758,7 +2758,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::181401690551",
+          "id": "project_log::03d74505df3c",
           "source_id": "project_log",
           "section": "Phase 1 — Forecasting Agent, first pass (Aug 17, 2026)",
           "pools": [
@@ -2768,7 +2768,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::252451257607",
+          "id": "project_log::7be940229a0a",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2779,7 +2779,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::304687973194",
+          "id": "project_log::d81815944b17",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2790,7 +2790,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::464447977601",
+          "id": "project_log::23742122d7d9",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -2800,7 +2800,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::714622999364",
+          "id": "project_log::ce0f0cabb7e9",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -2811,7 +2811,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::806434223966",
+          "id": "project_log::41dcfa969717",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2822,7 +2822,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::806646420792",
+          "id": "project_log::e1ea5776ef57",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -2833,7 +2833,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::859726832454",
+          "id": "project_log::2cb1c7ba2fa7",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -2843,7 +2843,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::899674769664",
+          "id": "project_log::9e867f63c0ac",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2854,7 +2854,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::950680223663",
+          "id": "project_log::4cf1db424977",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -2865,7 +2865,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::981025090676",
+          "id": "project_log::ec405b75e5b9",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -2876,7 +2876,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::999327254338",
+          "id": "project_log::910fec6e427c",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.2: interface trimmed (Aug 18, 2026)",
           "pools": [
@@ -2892,7 +2892,7 @@
       "query": "Why was the Indian Ocean Dipole rejected as a predictor for the drought model?",
       "candidates": [
         {
-          "id": "drought_region_comparison::239697161187",
+          "id": "drought_region_comparison::77fb3043e90d",
           "source_id": "drought_region_comparison",
           "section": "Model / region comparison — averaged over horizons t+1, t+2, t+3",
           "pools": [
@@ -2902,7 +2902,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::454800627546",
+          "id": "drought_region_comparison::a4c908ff66b8",
           "source_id": "drought_region_comparison",
           "section": "Skill score by horizon",
           "pools": [
@@ -2912,7 +2912,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::510489867250",
+          "id": "drought_region_comparison::ec1777ecfd69",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.4 — does the t+1 signal replicate?",
           "pools": [
@@ -2922,7 +2922,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::529039471468",
+          "id": "drought_region_comparison::cf0631412c56",
           "source_id": "drought_region_comparison",
           "section": "Did the small LSTM's val_loss ever beat climatology?",
           "pools": [
@@ -2934,7 +2934,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::535530474305",
+          "id": "drought_region_comparison::63eadb208744",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.5 — recursive vs. direct for t+2 and t+3",
           "pools": [
@@ -2945,7 +2945,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::721887321358",
+          "id": "drought_region_comparison::e67a8703cb25",
           "source_id": "drought_region_comparison",
           "section": "Dedicated 1-month-ahead model",
           "pools": [
@@ -2956,7 +2956,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::818136201242",
+          "id": "drought_region_comparison::b648576d9edc",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.6 — does the Indian Ocean Dipole add anything?",
           "pools": [
@@ -2968,7 +2968,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::086176663242",
+          "id": "heat_region_comparison::57c86f915dd2",
           "source_id": "heat_region_comparison",
           "section": "Phase 1.1 — new targets and the SPI-3 cross-agent feature",
           "pools": [
@@ -2978,7 +2978,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::117831500387",
+          "id": "heat_region_comparison::5a751d0a51ad",
           "source_id": "heat_region_comparison",
           "section": "Heat Stress — model / region comparison",
           "pools": [
@@ -2988,7 +2988,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::268676359421",
+          "id": "heat_region_comparison::a4ebf860162b",
           "source_id": "heat_region_comparison",
           "section": "Lookback selection (validation skill)",
           "pools": [
@@ -2998,7 +2998,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::541621107372",
+          "id": "heat_region_comparison::5734e8de761e",
           "source_id": "heat_region_comparison",
           "section": "Winter sanity check (Dec-Feb, t+1)",
           "pools": [
@@ -3008,7 +3008,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::962669200223",
+          "id": "heat_region_comparison::0b11beacf5e0",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -3019,7 +3019,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::006071177563",
+          "id": "project_log::6cfde9c17150",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation: is it really a data problem, not a model problem? (in progress)",
           "pools": [
@@ -3029,7 +3029,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::091049849394",
+          "id": "project_log::db070b8f0441",
           "source_id": "project_log",
           "section": "Phase 1.1 — Real SPI-3 + ENSO exogenous feature (Aug 17, 2026)",
           "pools": [
@@ -3041,7 +3041,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::103454225708",
+          "id": "project_log::e126a0eb4e11",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -3052,7 +3052,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::139891120814",
+          "id": "project_log::fb612629740a",
           "source_id": "project_log",
           "section": "Phase 1.2 — Second region: Barmer, and a clean 3-way comparison (Aug 17, 2026)",
           "pools": [
@@ -3064,7 +3064,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::181401690551",
+          "id": "project_log::03d74505df3c",
           "source_id": "project_log",
           "section": "Phase 1 — Forecasting Agent, first pass (Aug 17, 2026)",
           "pools": [
@@ -3076,7 +3076,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::333326560917",
+          "id": "project_log::0dbb8e31a169",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -3088,7 +3088,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::464447977601",
+          "id": "project_log::23742122d7d9",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -3099,7 +3099,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::604170810375",
+          "id": "project_log::4ff463dd2fdc",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -3110,7 +3110,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::714622999364",
+          "id": "project_log::ce0f0cabb7e9",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -3121,7 +3121,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::806646420792",
+          "id": "project_log::e1ea5776ef57",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -3132,7 +3132,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::825581475712",
+          "id": "project_log::162e59ecfe1b",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -3144,7 +3144,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::859726832454",
+          "id": "project_log::2cb1c7ba2fa7",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -3154,7 +3154,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::899674769664",
+          "id": "project_log::9e867f63c0ac",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -3165,7 +3165,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::981025090676",
+          "id": "project_log::ec405b75e5b9",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -3180,7 +3180,7 @@
       "query": "What lookback window does the validated 1-month drought model use, and how well does it score?",
       "candidates": [
         {
-          "id": "drought_region_comparison::239697161187",
+          "id": "drought_region_comparison::77fb3043e90d",
           "source_id": "drought_region_comparison",
           "section": "Model / region comparison — averaged over horizons t+1, t+2, t+3",
           "pools": [
@@ -3192,7 +3192,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::454800627546",
+          "id": "drought_region_comparison::a4c908ff66b8",
           "source_id": "drought_region_comparison",
           "section": "Skill score by horizon",
           "pools": [
@@ -3204,7 +3204,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::510489867250",
+          "id": "drought_region_comparison::ec1777ecfd69",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.4 — does the t+1 signal replicate?",
           "pools": [
@@ -3216,7 +3216,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::529039471468",
+          "id": "drought_region_comparison::cf0631412c56",
           "source_id": "drought_region_comparison",
           "section": "Did the small LSTM's val_loss ever beat climatology?",
           "pools": [
@@ -3227,7 +3227,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::535530474305",
+          "id": "drought_region_comparison::63eadb208744",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.5 — recursive vs. direct for t+2 and t+3",
           "pools": [
@@ -3239,7 +3239,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::667777726207",
+          "id": "drought_region_comparison::168554e799b8",
           "source_id": "drought_region_comparison",
           "section": "Final per-horizon verdict",
           "pools": [
@@ -3251,7 +3251,7 @@
           "relevant": false
         },
         {
-          "id": "drought_region_comparison::721887321358",
+          "id": "drought_region_comparison::e67a8703cb25",
           "source_id": "drought_region_comparison",
           "section": "Dedicated 1-month-ahead model",
           "pools": [
@@ -3263,7 +3263,7 @@
           "relevant": true
         },
         {
-          "id": "drought_region_comparison::818136201242",
+          "id": "drought_region_comparison::b648576d9edc",
           "source_id": "drought_region_comparison",
           "section": "Phase 1.6 — does the Indian Ocean Dipole add anything?",
           "pools": [
@@ -3273,7 +3273,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::086176663242",
+          "id": "heat_region_comparison::57c86f915dd2",
           "source_id": "heat_region_comparison",
           "section": "Phase 1.1 — new targets and the SPI-3 cross-agent feature",
           "pools": [
@@ -3283,7 +3283,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::117831500387",
+          "id": "heat_region_comparison::5a751d0a51ad",
           "source_id": "heat_region_comparison",
           "section": "Heat Stress — model / region comparison",
           "pools": [
@@ -3295,7 +3295,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::187275351963",
+          "id": "heat_region_comparison::1e173b453f70",
           "source_id": "heat_region_comparison",
           "section": "Skill by horizon — vs climatology and vs persistence",
           "pools": [
@@ -3306,7 +3306,7 @@
           "relevant": false
         },
         {
-          "id": "heat_region_comparison::226697895264",
+          "id": "heat_region_comparison::3d4d8c5bc563",
           "source_id": "heat_region_comparison",
           "section": "The count target is zero-inflated",
           "pools": [
@@ -3316,7 +3316,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::268676359421",
+          "id": "heat_region_comparison::a4ebf860162b",
           "source_id": "heat_region_comparison",
           "section": "Lookback selection (validation skill)",
           "pools": [
@@ -3328,7 +3328,7 @@
           "relevant": true
         },
         {
-          "id": "heat_region_comparison::541621107372",
+          "id": "heat_region_comparison::5734e8de761e",
           "source_id": "heat_region_comparison",
           "section": "Winter sanity check (Dec-Feb, t+1)",
           "pools": [
@@ -3338,7 +3338,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::091049849394",
+          "id": "project_log::db070b8f0441",
           "source_id": "project_log",
           "section": "Phase 1.1 — Real SPI-3 + ENSO exogenous feature (Aug 17, 2026)",
           "pools": [
@@ -3350,7 +3350,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::117625540680",
+          "id": "project_log::b2d34a6440a5",
           "source_id": "project_log",
           "section": "Phase 2 — Retrieval Agent (RAG) (Aug 18, 2026)",
           "pools": [
@@ -3360,7 +3360,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::139891120814",
+          "id": "project_log::fb612629740a",
           "source_id": "project_log",
           "section": "Phase 1.2 — Second region: Barmer, and a clean 3-way comparison (Aug 17, 2026)",
           "pools": [
@@ -3372,7 +3372,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::181401690551",
+          "id": "project_log::03d74505df3c",
           "source_id": "project_log",
           "section": "Phase 1 — Forecasting Agent, first pass (Aug 17, 2026)",
           "pools": [
@@ -3384,7 +3384,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::252451257607",
+          "id": "project_log::7be940229a0a",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -3395,7 +3395,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::333326560917",
+          "id": "project_log::0dbb8e31a169",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -3407,7 +3407,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::464447977601",
+          "id": "project_log::23742122d7d9",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -3418,7 +3418,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::604170810375",
+          "id": "project_log::4ff463dd2fdc",
           "source_id": "project_log",
           "section": "Phase 1.3 — Architecture ablation (Aug 18, 2026)",
           "pools": [
@@ -3428,7 +3428,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::670066931028",
+          "id": "project_log::a6d0d984e27d",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -3440,7 +3440,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::714622999364",
+          "id": "project_log::ce0f0cabb7e9",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -3452,7 +3452,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::806434223966",
+          "id": "project_log::41dcfa969717",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -3462,7 +3462,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::806646420792",
+          "id": "project_log::e1ea5776ef57",
           "source_id": "project_log",
           "section": "Phase 1.4 — Is the t+1 signal real? (Aug 18, 2026) — **first genuine positive result**",
           "pools": [
@@ -3474,7 +3474,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::825581475712",
+          "id": "project_log::162e59ecfe1b",
           "source_id": "project_log",
           "section": "Phase 1.6 — Indian Ocean Dipole tested and rejected (Aug 18, 2026)",
           "pools": [
@@ -3484,7 +3484,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::859726832454",
+          "id": "project_log::2cb1c7ba2fa7",
           "source_id": "project_log",
           "section": "Phase 1.5 — Recursive vs. direct + honest per-horizon confidence (Aug 18, 2026) — **Forecasting Agent closed**",
           "pools": [
@@ -3495,7 +3495,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::899674769664",
+          "id": "project_log::9e867f63c0ac",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -3507,7 +3507,7 @@
           "relevant": true
         },
         {
-          "id": "project_log::950680223663",
+          "id": "project_log::4cf1db424977",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1.1: extremes target, count target, SPI-3 feature (Aug 18, 2026)",
           "pools": [
@@ -3517,7 +3517,7 @@
           "relevant": false
         },
         {
-          "id": "project_log::981025090676",
+          "id": "project_log::ec405b75e5b9",
           "source_id": "project_log",
           "section": "Heat Stress Agent — Phase 1 (Aug 18, 2026) — second risk type, no skill",
           "pools": [
@@ -3533,7 +3533,7 @@
       "query": "How is the Standardized Precipitation Index calculated, and what probability distribution is fitted to rainfall?",
       "candidates": [
         {
-          "id": "imd_gkms_sop::201937180526",
+          "id": "imd_gkms_sop::43aa15089a1e",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3545,7 +3545,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::242995120813",
+          "id": "imd_gkms_sop::6bdd53977385",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3556,7 +3556,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::390753968381",
+          "id": "imd_gkms_sop::b30482a5382c",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3566,7 +3566,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::458857566342",
+          "id": "imd_gkms_sop::ea1d73c1324c",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3576,7 +3576,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::520836594566",
+          "id": "imd_gkms_sop::b648c6d03017",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3588,7 +3588,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::793756224683",
+          "id": "imd_gkms_sop::2e5dc6921185",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3598,7 +3598,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::845877459807",
+          "id": "imd_gkms_sop::103ed7049588",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3610,7 +3610,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::914498591667",
+          "id": "imd_gkms_sop::c2f9b386d888",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3620,7 +3620,7 @@
           "relevant": false
         },
         {
-          "id": "imd_gkms_sop::957961356856",
+          "id": "imd_gkms_sop::b74863d2a63e",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3631,7 +3631,7 @@
           "relevant": true
         },
         {
-          "id": "imd_gkms_sop::973612981680",
+          "id": "imd_gkms_sop::ec089aaa9e7d",
           "source_id": "imd_gkms_sop",
           "section": "",
           "pools": [
@@ -3642,7 +3642,7 @@
           "relevant": true
         },
         {
-          "id": "imd_heatwave_faq::170046401647",
+          "id": "imd_heatwave_faq::728c08e25616",
           "source_id": "imd_heatwave_faq",
           "section": "",
           "pools": [
@@ -3652,7 +3652,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::061732192800",
+          "id": "ndma_drought_guidelines::582b7920fa69",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3662,7 +3662,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::156972219570",
+          "id": "ndma_drought_guidelines::1783a8b16752",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3672,7 +3672,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::218046414245",
+          "id": "ndma_drought_guidelines::28e1fe6c74c3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3682,7 +3682,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::467923634726",
+          "id": "ndma_drought_guidelines::b30984b0c0c1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3693,7 +3693,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::486695268280",
+          "id": "ndma_drought_guidelines::f73bacb9d3ec",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3703,7 +3703,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::650481712376",
+          "id": "ndma_drought_guidelines::df240ed6453e",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3713,7 +3713,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::652054762783",
+          "id": "ndma_drought_guidelines::a39d5a541ee5",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3723,7 +3723,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::700104384643",
+          "id": "ndma_drought_guidelines::e5ea72a88376",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3733,7 +3733,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::868524470997",
+          "id": "ndma_drought_guidelines::a6713bfd6202",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3743,7 +3743,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::870097274257",
+          "id": "ndma_drought_guidelines::314b74c0f37d",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3753,7 +3753,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::972732724962",
+          "id": "ndma_drought_guidelines::99fc053bbf76",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3764,7 +3764,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::084461679535",
+          "id": "nih_spi_methodology::82b8ca99fca8",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3776,7 +3776,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::128521984583",
+          "id": "nih_spi_methodology::8af6bc630163",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3787,7 +3787,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::197494889680",
+          "id": "nih_spi_methodology::def852feee7b",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3798,7 +3798,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::579231277119",
+          "id": "nih_spi_methodology::e7ced7282779",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3810,7 +3810,7 @@
           "relevant": true
         },
         {
-          "id": "nih_spi_methodology::653409458153",
+          "id": "nih_spi_methodology::a0ac8c85d004",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3822,7 +3822,7 @@
           "relevant": true
         },
         {
-          "id": "nih_spi_methodology::757352796103",
+          "id": "nih_spi_methodology::4ac82ff0926d",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3834,7 +3834,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::921394366689",
+          "id": "nih_spi_methodology::afd7651a00ec",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3846,7 +3846,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::937684595995",
+          "id": "nih_spi_methodology::2f8658612eaf",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -3863,7 +3863,7 @@
       "query": "What are the different types of drought and how does India's drought early warning and declaration system work?",
       "candidates": [
         {
-          "id": "atari_jodhpur_agroadvisory::464247679586",
+          "id": "atari_jodhpur_agroadvisory::fd49986010b1",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -3873,7 +3873,7 @@
           "relevant": false
         },
         {
-          "id": "atari_jodhpur_agroadvisory::748726955474",
+          "id": "atari_jodhpur_agroadvisory::08bd07fdaf23",
           "source_id": "atari_jodhpur_agroadvisory",
           "section": "",
           "pools": [
@@ -3883,7 +3883,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::061732192800",
+          "id": "ndma_drought_guidelines::582b7920fa69",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3895,7 +3895,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::093836893088",
+          "id": "ndma_drought_guidelines::513cc2612824",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3905,7 +3905,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::106087647278",
+          "id": "ndma_drought_guidelines::eaa0be6fab12",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3915,7 +3915,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::148406542450",
+          "id": "ndma_drought_guidelines::c40e8c7ac326",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3927,7 +3927,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::156972219570",
+          "id": "ndma_drought_guidelines::1783a8b16752",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3937,7 +3937,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::218046414245",
+          "id": "ndma_drought_guidelines::28e1fe6c74c3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3948,7 +3948,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::228737579997",
+          "id": "ndma_drought_guidelines::bc9bb7a168ed",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3959,7 +3959,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::231228963474",
+          "id": "ndma_drought_guidelines::3fbc6ada09e4",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3969,7 +3969,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::244941577781",
+          "id": "ndma_drought_guidelines::3e15020bd3d9",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3981,7 +3981,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::258285181069",
+          "id": "ndma_drought_guidelines::f1ae0aa6a0bf",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -3993,7 +3993,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::267606879202",
+          "id": "ndma_drought_guidelines::abbbc9e933e4",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4004,7 +4004,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::307960121873",
+          "id": "ndma_drought_guidelines::0e29e9252759",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4014,7 +4014,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::399738273764",
+          "id": "ndma_drought_guidelines::d7c433743850",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4025,7 +4025,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::406376674143",
+          "id": "ndma_drought_guidelines::3df556ef04b1",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4036,7 +4036,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::417207389549",
+          "id": "ndma_drought_guidelines::fbebefe336f8",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4046,7 +4046,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::428484385322",
+          "id": "ndma_drought_guidelines::703b5c5e0b9a",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4057,7 +4057,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::486695268280",
+          "id": "ndma_drought_guidelines::f73bacb9d3ec",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4069,7 +4069,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::492241367653",
+          "id": "ndma_drought_guidelines::d38ea59ddaca",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4080,7 +4080,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::500519731762",
+          "id": "ndma_drought_guidelines::e322e9075a77",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4092,7 +4092,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::561368650651",
+          "id": "ndma_drought_guidelines::22a8f54eebb3",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4102,7 +4102,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::569290911067",
+          "id": "ndma_drought_guidelines::a70dcac86910",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4112,7 +4112,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::593947989251",
+          "id": "ndma_drought_guidelines::defed10477c5",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4122,7 +4122,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::628889767920",
+          "id": "ndma_drought_guidelines::65c2d0591388",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4133,7 +4133,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::650481712376",
+          "id": "ndma_drought_guidelines::df240ed6453e",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4145,7 +4145,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::652054762783",
+          "id": "ndma_drought_guidelines::a39d5a541ee5",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4155,7 +4155,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::700104384643",
+          "id": "ndma_drought_guidelines::e5ea72a88376",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4165,7 +4165,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::751880270738",
+          "id": "ndma_drought_guidelines::c7cd59a28fa2",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4175,7 +4175,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::760872556267",
+          "id": "ndma_drought_guidelines::b0ba7180370e",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4185,7 +4185,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::790984712332",
+          "id": "ndma_drought_guidelines::dbf31695954c",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4195,7 +4195,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::816671318445",
+          "id": "ndma_drought_guidelines::bab955412940",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4205,7 +4205,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::868524470997",
+          "id": "ndma_drought_guidelines::a6713bfd6202",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4215,7 +4215,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::870097274257",
+          "id": "ndma_drought_guidelines::314b74c0f37d",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4225,7 +4225,7 @@
           "relevant": false
         },
         {
-          "id": "ndma_drought_guidelines::934484760436",
+          "id": "ndma_drought_guidelines::8482314a7628",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4237,7 +4237,7 @@
           "relevant": true
         },
         {
-          "id": "ndma_drought_guidelines::972732724962",
+          "id": "ndma_drought_guidelines::99fc053bbf76",
           "source_id": "ndma_drought_guidelines",
           "section": "",
           "pools": [
@@ -4249,7 +4249,7 @@
           "relevant": false
         },
         {
-          "id": "nih_spi_methodology::084461679535",
+          "id": "nih_spi_methodology::82b8ca99fca8",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [
@@ -4260,7 +4260,7 @@
           "relevant": true
         },
         {
-          "id": "nih_spi_methodology::653409458153",
+          "id": "nih_spi_methodology::a0ac8c85d004",
           "source_id": "nih_spi_methodology",
           "section": "",
           "pools": [

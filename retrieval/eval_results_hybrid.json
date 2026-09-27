@@ -70,16 +70,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::486126963684",
-                "imd_heatwave_faq::427669481832",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::038360316402"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::4b67e1c84eed",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::1c75fe32f053"
               ]
             },
             "dense+rerank": {
@@ -87,16 +87,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::719251386753",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::486126963684"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::ff289fc67505",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::4b67e1c84eed"
               ]
             },
             "hybrid": {
@@ -104,16 +104,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::499919629361",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::486126963684",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::222468429906"
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::4b67e1c84eed",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::a78a2cc2eb1d"
               ]
             },
             "hybrid+rerank": {
@@ -121,16 +121,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::719251386753",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::486126963684"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::ff289fc67505",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::4b67e1c84eed"
               ]
             }
           }
@@ -145,16 +145,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::486126963684"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::4b67e1c84eed"
               ]
             },
             "dense+rerank": {
@@ -162,16 +162,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::032399165931",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::719251386753"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::8e300b4b3377",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::ff289fc67505"
               ]
             },
             "hybrid": {
@@ -179,16 +179,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::499919629361",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::394258920986"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::cc1ea5645860"
               ]
             },
             "hybrid+rerank": {
@@ -196,16 +196,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::032399165931",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::719251386753"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::8e300b4b3377",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::ff289fc67505"
               ]
             }
           }
@@ -220,16 +220,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::850633773809",
-                "imd_gkms_sop::502754532390",
-                "imd_gkms_sop::568378599397",
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::693635350549",
-                "imd_gkms_sop::793756224683",
-                "imd_gkms_sop::511091902556"
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::81518a9a63a1",
+                "imd_gkms_sop::3b290fb15719",
+                "imd_gkms_sop::5a048fb16d49",
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::0a11718d0cb7",
+                "imd_gkms_sop::2e5dc6921185",
+                "imd_gkms_sop::ab99841efda8"
               ]
             },
             "dense+rerank": {
@@ -237,16 +237,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::472906438569",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::502754532390",
-                "imd_gkms_sop::957961356856",
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::850633773809",
-                "imd_gkms_sop::973612981680"
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::be8d5c0b5027",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::3b290fb15719",
+                "imd_gkms_sop::b74863d2a63e",
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::81518a9a63a1",
+                "imd_gkms_sop::ec089aaa9e7d"
               ]
             },
             "hybrid": {
@@ -254,16 +254,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::850633773809",
-                "imd_gkms_sop::568378599397",
-                "imd_gkms_sop::502754532390",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::793756224683",
-                "imd_gkms_sop::472906438569"
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::81518a9a63a1",
+                "imd_gkms_sop::5a048fb16d49",
+                "imd_gkms_sop::3b290fb15719",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::2e5dc6921185",
+                "imd_gkms_sop::be8d5c0b5027"
               ]
             },
             "hybrid+rerank": {
@@ -271,16 +271,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::472906438569",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::502754532390",
-                "imd_gkms_sop::957961356856",
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::850633773809",
-                "imd_gkms_sop::973612981680"
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::be8d5c0b5027",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::3b290fb15719",
+                "imd_gkms_sop::b74863d2a63e",
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::81518a9a63a1",
+                "imd_gkms_sop::ec089aaa9e7d"
               ]
             }
           }
@@ -295,16 +295,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "atari_jodhpur_agroadvisory::944782752902",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::878261992082",
-                "atari_jodhpur_agroadvisory::979123351956",
-                "atari_jodhpur_agroadvisory::742629919066",
-                "atari_jodhpur_agroadvisory::806415783894",
-                "atari_jodhpur_agroadvisory::003524951602",
-                "atari_jodhpur_agroadvisory::464247679586",
-                "atari_jodhpur_agroadvisory::430122021199",
-                "atari_jodhpur_agroadvisory::757669901320"
+                "atari_jodhpur_agroadvisory::04e784398461",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::0e0922d1613f",
+                "atari_jodhpur_agroadvisory::30abadb8daab",
+                "atari_jodhpur_agroadvisory::798934243874",
+                "atari_jodhpur_agroadvisory::85d08e47642c",
+                "atari_jodhpur_agroadvisory::045d62ca8b6b",
+                "atari_jodhpur_agroadvisory::fd49986010b1",
+                "atari_jodhpur_agroadvisory::232a82e4db76",
+                "atari_jodhpur_agroadvisory::6068ef2cffc7"
               ]
             },
             "dense+rerank": {
@@ -312,16 +312,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "atari_jodhpur_agroadvisory::003524951602",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::430122021199",
-                "atari_jodhpur_agroadvisory::742629919066",
-                "atari_jodhpur_agroadvisory::979123351956",
-                "atari_jodhpur_agroadvisory::944782752902",
-                "atari_jodhpur_agroadvisory::694532870462",
-                "atari_jodhpur_agroadvisory::806415783894",
-                "atari_jodhpur_agroadvisory::398077917944",
-                "atari_jodhpur_agroadvisory::464247679586"
+                "atari_jodhpur_agroadvisory::045d62ca8b6b",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::232a82e4db76",
+                "atari_jodhpur_agroadvisory::798934243874",
+                "atari_jodhpur_agroadvisory::30abadb8daab",
+                "atari_jodhpur_agroadvisory::04e784398461",
+                "atari_jodhpur_agroadvisory::3966c7d9738c",
+                "atari_jodhpur_agroadvisory::85d08e47642c",
+                "atari_jodhpur_agroadvisory::031a146a0c56",
+                "atari_jodhpur_agroadvisory::fd49986010b1"
               ]
             },
             "hybrid": {
@@ -329,16 +329,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "atari_jodhpur_agroadvisory::878261992082",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::944782752902",
-                "atari_jodhpur_agroadvisory::694532870462",
-                "atari_jodhpur_agroadvisory::464247679586",
-                "atari_jodhpur_agroadvisory::398077917944",
-                "atari_jodhpur_agroadvisory::003524951602",
-                "atari_jodhpur_agroadvisory::757669901320",
-                "atari_jodhpur_agroadvisory::806415783894",
-                "atari_jodhpur_agroadvisory::979123351956"
+                "atari_jodhpur_agroadvisory::0e0922d1613f",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::04e784398461",
+                "atari_jodhpur_agroadvisory::3966c7d9738c",
+                "atari_jodhpur_agroadvisory::fd49986010b1",
+                "atari_jodhpur_agroadvisory::031a146a0c56",
+                "atari_jodhpur_agroadvisory::045d62ca8b6b",
+                "atari_jodhpur_agroadvisory::6068ef2cffc7",
+                "atari_jodhpur_agroadvisory::85d08e47642c",
+                "atari_jodhpur_agroadvisory::30abadb8daab"
               ]
             },
             "hybrid+rerank": {
@@ -346,16 +346,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "atari_jodhpur_agroadvisory::003524951602",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::430122021199",
-                "atari_jodhpur_agroadvisory::742629919066",
-                "atari_jodhpur_agroadvisory::979123351956",
-                "atari_jodhpur_agroadvisory::944782752902",
-                "atari_jodhpur_agroadvisory::694532870462",
-                "atari_jodhpur_agroadvisory::806415783894",
-                "atari_jodhpur_agroadvisory::398077917944",
-                "imd_gkms_sop::843291926669"
+                "atari_jodhpur_agroadvisory::045d62ca8b6b",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::232a82e4db76",
+                "atari_jodhpur_agroadvisory::798934243874",
+                "atari_jodhpur_agroadvisory::30abadb8daab",
+                "atari_jodhpur_agroadvisory::04e784398461",
+                "atari_jodhpur_agroadvisory::3966c7d9738c",
+                "atari_jodhpur_agroadvisory::85d08e47642c",
+                "atari_jodhpur_agroadvisory::031a146a0c56",
+                "imd_gkms_sop::8ad694212ff5"
               ]
             }
           }
@@ -370,16 +370,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::486126963684",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::988103181362",
-                "ndma_heatwave::000442194914",
-                "imd_heatwave_faq::394258920986",
-                "imd_heatwave_faq::431984565381",
-                "imd_heatwave_faq::032373911703",
-                "imd_heatwave_faq::027444275440",
-                "imd_heatwave_faq::460072473296"
+                "imd_heatwave_faq::4b67e1c84eed",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::e274a0db2059",
+                "ndma_heatwave::1ace7106fd13",
+                "imd_heatwave_faq::cc1ea5645860",
+                "imd_heatwave_faq::cd42db29f211",
+                "imd_heatwave_faq::553a23a886d1",
+                "imd_heatwave_faq::6c92d8b874b3",
+                "imd_heatwave_faq::b923b2280da2"
               ]
             },
             "dense+rerank": {
@@ -387,16 +387,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::486126963684",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::988103181362",
-                "imd_heatwave_faq::499919629361",
-                "ndma_heatwave::000442194914",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::126407465613",
-                "imd_heatwave_faq::027444275440",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::667991131051"
+                "imd_heatwave_faq::4b67e1c84eed",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::e274a0db2059",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "ndma_heatwave::1ace7106fd13",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::11bb170463bb",
+                "imd_heatwave_faq::6c92d8b874b3",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::fdfe4c02b9b1"
               ]
             },
             "hybrid": {
@@ -404,16 +404,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::486126963684",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::988103181362",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::667991131051",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::126407465613",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::170046401647",
-                "ndma_drought_guidelines::267606879202"
+                "imd_heatwave_faq::4b67e1c84eed",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::e274a0db2059",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::11bb170463bb",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::728c08e25616",
+                "ndma_drought_guidelines::abbbc9e933e4"
               ]
             },
             "hybrid+rerank": {
@@ -421,16 +421,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::486126963684",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::988103181362",
-                "imd_heatwave_faq::499919629361",
-                "atari_jodhpur_agroadvisory::806415783894",
-                "ndma_heatwave::000442194914",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::126407465613",
-                "imd_heatwave_faq::027444275440",
-                "ndma_heatwave::260225458486"
+                "imd_heatwave_faq::4b67e1c84eed",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::e274a0db2059",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "atari_jodhpur_agroadvisory::85d08e47642c",
+                "ndma_heatwave::1ace7106fd13",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::11bb170463bb",
+                "imd_heatwave_faq::6c92d8b874b3",
+                "ndma_heatwave::6036d8d6913f"
               ]
             }
           }
@@ -445,16 +445,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::529039471468",
-                "project_log::091049849394",
-                "project_log::139891120814",
-                "drought_region_comparison::535530474305"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::db070b8f0441",
+                "project_log::fb612629740a",
+                "drought_region_comparison::63eadb208744"
               ]
             },
             "dense+rerank": {
@@ -462,16 +462,16 @@
               "mrr": 0.16666666666666666,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::252451257607",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "project_log::806646420792",
-                "project_log::139891120814",
-                "heat_region_comparison::268676359421",
-                "drought_region_comparison::529039471468",
-                "project_log::304687973194",
-                "heat_region_comparison::226697895264",
-                "project_log::091049849394"
+                "project_log::7be940229a0a",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "project_log::e1ea5776ef57",
+                "project_log::fb612629740a",
+                "heat_region_comparison::a4ebf860162b",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::d81815944b17",
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::db070b8f0441"
               ]
             },
             "hybrid": {
@@ -479,16 +479,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "drought_region_comparison::667777726207",
-                "project_log::091049849394",
-                "project_log::139891120814",
-                "project_log::252451257607",
-                "drought_region_comparison::454800627546",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::239697161187"
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::168554e799b8",
+                "project_log::db070b8f0441",
+                "project_log::fb612629740a",
+                "project_log::7be940229a0a",
+                "drought_region_comparison::a4c908ff66b8",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::77fb3043e90d"
               ]
             },
             "hybrid+rerank": {
@@ -496,16 +496,16 @@
               "mrr": 0.16666666666666666,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::252451257607",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "project_log::806646420792",
-                "project_log::139891120814",
-                "heat_region_comparison::268676359421",
-                "drought_region_comparison::529039471468",
-                "project_log::899674769664",
-                "project_log::304687973194",
-                "project_log::181401690551"
+                "project_log::7be940229a0a",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "project_log::e1ea5776ef57",
+                "project_log::fb612629740a",
+                "heat_region_comparison::a4ebf860162b",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::9e867f63c0ac",
+                "project_log::d81815944b17",
+                "project_log::03d74505df3c"
               ]
             }
           }
@@ -520,16 +520,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::535530474305",
-                "project_log::091049849394",
-                "heat_region_comparison::268676359421",
-                "project_log::333326560917"
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::63eadb208744",
+                "project_log::db070b8f0441",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::0dbb8e31a169"
               ]
             },
             "dense+rerank": {
@@ -537,16 +537,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "project_log::139891120814",
-                "project_log::981025090676",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::667777726207",
-                "project_log::091049849394",
-                "drought_region_comparison::721887321358",
-                "project_log::304687973194"
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "project_log::fb612629740a",
+                "project_log::ec405b75e5b9",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::168554e799b8",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::d81815944b17"
               ]
             },
             "hybrid": {
@@ -554,16 +554,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "project_log::899674769664",
-                "drought_region_comparison::721887321358",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::529039471468",
-                "project_log::139891120814",
-                "project_log::981025090676",
-                "heat_region_comparison::541621107372",
-                "heat_region_comparison::268676359421"
+                "project_log::e1ea5776ef57",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::fb612629740a",
+                "project_log::ec405b75e5b9",
+                "heat_region_comparison::5734e8de761e",
+                "heat_region_comparison::a4ebf860162b"
               ]
             },
             "hybrid+rerank": {
@@ -571,16 +571,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "project_log::139891120814",
-                "project_log::981025090676",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::667777726207",
-                "project_log::252451257607",
-                "project_log::604170810375",
-                "project_log::063041487535"
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "project_log::fb612629740a",
+                "project_log::ec405b75e5b9",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::168554e799b8",
+                "project_log::7be940229a0a",
+                "project_log::4ff463dd2fdc",
+                "project_log::498a79d3779c"
               ]
             }
           }
@@ -595,16 +595,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::304687973194",
-                "heat_region_comparison::541621107372",
-                "heat_region_comparison::226697895264",
-                "heat_region_comparison::117831500387",
-                "project_log::252451257607",
-                "project_log::950680223663",
-                "project_log::981025090676",
-                "project_log::899674769664",
-                "project_log::103454225708",
-                "heat_region_comparison::086176663242"
+                "project_log::d81815944b17",
+                "heat_region_comparison::5734e8de761e",
+                "heat_region_comparison::3d4d8c5bc563",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::7be940229a0a",
+                "project_log::4cf1db424977",
+                "project_log::ec405b75e5b9",
+                "project_log::9e867f63c0ac",
+                "project_log::e126a0eb4e11",
+                "heat_region_comparison::57c86f915dd2"
               ]
             },
             "dense+rerank": {
@@ -612,16 +612,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::304687973194",
-                "project_log::252451257607",
-                "project_log::999327254338",
-                "project_log::950680223663",
-                "project_log::806646420792",
-                "project_log::806434223966",
-                "heat_region_comparison::117831500387",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468"
+                "project_log::d81815944b17",
+                "project_log::7be940229a0a",
+                "project_log::910fec6e427c",
+                "project_log::4cf1db424977",
+                "project_log::e1ea5776ef57",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "hybrid": {
@@ -629,16 +629,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::117831500387",
-                "heat_region_comparison::541621107372",
-                "project_log::950680223663",
-                "project_log::304687973194",
-                "project_log::103454225708",
-                "project_log::252451257607",
-                "project_log::806646420792",
-                "project_log::999327254338",
-                "project_log::806434223966",
-                "project_log::899674769664"
+                "heat_region_comparison::5a751d0a51ad",
+                "heat_region_comparison::5734e8de761e",
+                "project_log::4cf1db424977",
+                "project_log::d81815944b17",
+                "project_log::e126a0eb4e11",
+                "project_log::7be940229a0a",
+                "project_log::e1ea5776ef57",
+                "project_log::910fec6e427c",
+                "project_log::41dcfa969717",
+                "project_log::9e867f63c0ac"
               ]
             },
             "hybrid+rerank": {
@@ -646,16 +646,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::304687973194",
-                "project_log::252451257607",
-                "project_log::999327254338",
-                "project_log::950680223663",
-                "project_log::806646420792",
-                "project_log::806434223966",
-                "heat_region_comparison::117831500387",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "project_log::464447977601"
+                "project_log::d81815944b17",
+                "project_log::7be940229a0a",
+                "project_log::910fec6e427c",
+                "project_log::4cf1db424977",
+                "project_log::e1ea5776ef57",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "project_log::23742122d7d9"
               ]
             }
           }
@@ -670,16 +670,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::825581475712",
-                "drought_region_comparison::818136201242",
-                "project_log::333326560917",
-                "heat_region_comparison::268676359421",
-                "project_log::091049849394",
-                "project_log::899674769664",
-                "drought_region_comparison::535530474305",
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "project_log::139891120814"
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::0dbb8e31a169",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::db070b8f0441",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::63eadb208744",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "project_log::fb612629740a"
               ]
             },
             "dense+rerank": {
@@ -687,16 +687,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::825581475712",
-                "drought_region_comparison::818136201242",
-                "project_log::139891120814",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::333326560917",
-                "project_log::091049849394",
-                "project_log::181401690551"
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::fb612629740a",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::0dbb8e31a169",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c"
               ]
             },
             "hybrid": {
@@ -704,16 +704,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::825581475712",
-                "drought_region_comparison::818136201242",
-                "project_log::333326560917",
-                "project_log::139891120814",
-                "project_log::899674769664",
-                "project_log::181401690551",
-                "project_log::091049849394",
-                "project_log::714622999364",
-                "heat_region_comparison::962669200223",
-                "drought_region_comparison::721887321358"
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::0dbb8e31a169",
+                "project_log::fb612629740a",
+                "project_log::9e867f63c0ac",
+                "project_log::03d74505df3c",
+                "project_log::db070b8f0441",
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::0b11beacf5e0",
+                "drought_region_comparison::e67a8703cb25"
               ]
             },
             "hybrid+rerank": {
@@ -721,16 +721,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::825581475712",
-                "drought_region_comparison::818136201242",
-                "project_log::139891120814",
-                "project_log::899674769664",
-                "project_log::464447977601",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::333326560917",
-                "project_log::091049849394"
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::fb612629740a",
+                "project_log::9e867f63c0ac",
+                "project_log::23742122d7d9",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::0dbb8e31a169",
+                "project_log::db070b8f0441"
               ]
             }
           }
@@ -745,16 +745,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "heat_region_comparison::268676359421",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::535530474305",
-                "drought_region_comparison::529039471468",
-                "project_log::091049849394",
-                "project_log::670066931028",
-                "drought_region_comparison::510489867250"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::a4ebf860162b",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::63eadb208744",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::db070b8f0441",
+                "project_log::a6d0d984e27d",
+                "drought_region_comparison::ec1777ecfd69"
               ]
             },
             "dense+rerank": {
@@ -762,16 +762,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::117831500387",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::139891120814",
-                "project_log::899674769664",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::535530474305"
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::fb612629740a",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::63eadb208744"
               ]
             },
             "hybrid": {
@@ -779,16 +779,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::670066931028",
-                "drought_region_comparison::535530474305",
-                "heat_region_comparison::117831500387",
-                "project_log::091049849394",
-                "project_log::333326560917"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::a6d0d984e27d",
+                "drought_region_comparison::63eadb208744",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::db070b8f0441",
+                "project_log::0dbb8e31a169"
               ]
             },
             "hybrid+rerank": {
@@ -796,16 +796,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::117831500387",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::139891120814",
-                "project_log::899674769664",
-                "drought_region_comparison::529039471468",
-                "project_log::252451257607"
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::fb612629740a",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::7be940229a0a"
               ]
             }
           }
@@ -820,16 +820,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::579231277119",
-                "nih_spi_methodology::197494889680",
-                "nih_spi_methodology::128521984583",
-                "nih_spi_methodology::921394366689",
-                "nih_spi_methodology::084461679535",
-                "nih_spi_methodology::653409458153",
-                "ndma_drought_guidelines::652054762783",
-                "imd_gkms_sop::201937180526"
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::e7ced7282779",
+                "nih_spi_methodology::def852feee7b",
+                "nih_spi_methodology::8af6bc630163",
+                "nih_spi_methodology::afd7651a00ec",
+                "nih_spi_methodology::82b8ca99fca8",
+                "nih_spi_methodology::a0ac8c85d004",
+                "ndma_drought_guidelines::a39d5a541ee5",
+                "imd_gkms_sop::43aa15089a1e"
               ]
             },
             "dense+rerank": {
@@ -837,16 +837,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::653409458153",
-                "nih_spi_methodology::084461679535",
-                "imd_gkms_sop::201937180526",
-                "nih_spi_methodology::197494889680",
-                "nih_spi_methodology::921394366689",
-                "ndma_drought_guidelines::156972219570",
-                "nih_spi_methodology::128521984583",
-                "imd_gkms_sop::973612981680"
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::a0ac8c85d004",
+                "nih_spi_methodology::82b8ca99fca8",
+                "imd_gkms_sop::43aa15089a1e",
+                "nih_spi_methodology::def852feee7b",
+                "nih_spi_methodology::afd7651a00ec",
+                "ndma_drought_guidelines::1783a8b16752",
+                "nih_spi_methodology::8af6bc630163",
+                "imd_gkms_sop::ec089aaa9e7d"
               ]
             },
             "hybrid": {
@@ -854,16 +854,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::579231277119",
-                "nih_spi_methodology::653409458153",
-                "nih_spi_methodology::921394366689",
-                "nih_spi_methodology::084461679535",
-                "nih_spi_methodology::197494889680",
-                "imd_gkms_sop::201937180526",
-                "nih_spi_methodology::128521984583",
-                "imd_gkms_sop::845877459807"
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::e7ced7282779",
+                "nih_spi_methodology::a0ac8c85d004",
+                "nih_spi_methodology::afd7651a00ec",
+                "nih_spi_methodology::82b8ca99fca8",
+                "nih_spi_methodology::def852feee7b",
+                "imd_gkms_sop::43aa15089a1e",
+                "nih_spi_methodology::8af6bc630163",
+                "imd_gkms_sop::103ed7049588"
               ]
             },
             "hybrid+rerank": {
@@ -871,16 +871,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::653409458153",
-                "nih_spi_methodology::084461679535",
-                "imd_gkms_sop::201937180526",
-                "nih_spi_methodology::197494889680",
-                "nih_spi_methodology::921394366689",
-                "ndma_drought_guidelines::156972219570",
-                "nih_spi_methodology::128521984583",
-                "ndma_drought_guidelines::467923634726"
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::a0ac8c85d004",
+                "nih_spi_methodology::82b8ca99fca8",
+                "imd_gkms_sop::43aa15089a1e",
+                "nih_spi_methodology::def852feee7b",
+                "nih_spi_methodology::afd7651a00ec",
+                "ndma_drought_guidelines::1783a8b16752",
+                "nih_spi_methodology::8af6bc630163",
+                "ndma_drought_guidelines::b30984b0c0c1"
               ]
             }
           }
@@ -895,16 +895,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_drought_guidelines::650481712376",
-                "ndma_drought_guidelines::652054762783",
-                "ndma_drought_guidelines::061732192800",
-                "ndma_drought_guidelines::486695268280",
-                "ndma_drought_guidelines::156972219570",
-                "nih_spi_methodology::653409458153",
-                "ndma_drought_guidelines::428484385322",
-                "ndma_drought_guidelines::244941577781",
-                "ndma_drought_guidelines::218046414245",
-                "ndma_drought_guidelines::399738273764"
+                "ndma_drought_guidelines::df240ed6453e",
+                "ndma_drought_guidelines::a39d5a541ee5",
+                "ndma_drought_guidelines::582b7920fa69",
+                "ndma_drought_guidelines::f73bacb9d3ec",
+                "ndma_drought_guidelines::1783a8b16752",
+                "nih_spi_methodology::a0ac8c85d004",
+                "ndma_drought_guidelines::703b5c5e0b9a",
+                "ndma_drought_guidelines::3e15020bd3d9",
+                "ndma_drought_guidelines::28e1fe6c74c3",
+                "ndma_drought_guidelines::d7c433743850"
               ]
             },
             "dense+rerank": {
@@ -912,16 +912,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_drought_guidelines::399738273764",
-                "ndma_drought_guidelines::486695268280",
-                "ndma_drought_guidelines::244941577781",
-                "ndma_drought_guidelines::148406542450",
-                "ndma_drought_guidelines::218046414245",
-                "ndma_drought_guidelines::934484760436",
-                "ndma_drought_guidelines::972732724962",
-                "ndma_drought_guidelines::428484385322",
-                "ndma_drought_guidelines::267606879202",
-                "ndma_drought_guidelines::650481712376"
+                "ndma_drought_guidelines::d7c433743850",
+                "ndma_drought_guidelines::f73bacb9d3ec",
+                "ndma_drought_guidelines::3e15020bd3d9",
+                "ndma_drought_guidelines::c40e8c7ac326",
+                "ndma_drought_guidelines::28e1fe6c74c3",
+                "ndma_drought_guidelines::8482314a7628",
+                "ndma_drought_guidelines::99fc053bbf76",
+                "ndma_drought_guidelines::703b5c5e0b9a",
+                "ndma_drought_guidelines::abbbc9e933e4",
+                "ndma_drought_guidelines::df240ed6453e"
               ]
             },
             "hybrid": {
@@ -929,16 +929,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_drought_guidelines::061732192800",
-                "ndma_drought_guidelines::244941577781",
-                "ndma_drought_guidelines::486695268280",
-                "ndma_drought_guidelines::218046414245",
-                "ndma_drought_guidelines::650481712376",
-                "ndma_drought_guidelines::934484760436",
-                "ndma_drought_guidelines::148406542450",
-                "ndma_drought_guidelines::500519731762",
-                "ndma_drought_guidelines::399738273764",
-                "ndma_drought_guidelines::258285181069"
+                "ndma_drought_guidelines::582b7920fa69",
+                "ndma_drought_guidelines::3e15020bd3d9",
+                "ndma_drought_guidelines::f73bacb9d3ec",
+                "ndma_drought_guidelines::28e1fe6c74c3",
+                "ndma_drought_guidelines::df240ed6453e",
+                "ndma_drought_guidelines::8482314a7628",
+                "ndma_drought_guidelines::c40e8c7ac326",
+                "ndma_drought_guidelines::e322e9075a77",
+                "ndma_drought_guidelines::d7c433743850",
+                "ndma_drought_guidelines::f1ae0aa6a0bf"
               ]
             },
             "hybrid+rerank": {
@@ -946,16 +946,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_drought_guidelines::569290911067",
-                "ndma_drought_guidelines::399738273764",
-                "ndma_drought_guidelines::486695268280",
-                "ndma_drought_guidelines::244941577781",
-                "ndma_drought_guidelines::148406542450",
-                "ndma_drought_guidelines::218046414245",
-                "ndma_drought_guidelines::934484760436",
-                "ndma_drought_guidelines::417207389549",
-                "ndma_drought_guidelines::972732724962",
-                "ndma_drought_guidelines::428484385322"
+                "ndma_drought_guidelines::a70dcac86910",
+                "ndma_drought_guidelines::d7c433743850",
+                "ndma_drought_guidelines::f73bacb9d3ec",
+                "ndma_drought_guidelines::3e15020bd3d9",
+                "ndma_drought_guidelines::c40e8c7ac326",
+                "ndma_drought_guidelines::28e1fe6c74c3",
+                "ndma_drought_guidelines::8482314a7628",
+                "ndma_drought_guidelines::fbebefe336f8",
+                "ndma_drought_guidelines::99fc053bbf76",
+                "ndma_drought_guidelines::703b5c5e0b9a"
               ]
             }
           }
@@ -1024,16 +1024,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::139891120814",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207",
-                "project_log::714622999364",
-                "project_log::103454225708",
-                "project_log::670066931028",
-                "drought_region_comparison::454800627546"
+                "project_log::fb612629740a",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e126a0eb4e11",
+                "project_log::a6d0d984e27d",
+                "drought_region_comparison::a4c908ff66b8"
               ]
             },
             "dense+rerank": {
@@ -1041,16 +1041,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::139891120814",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "project_log::670066931028",
-                "project_log::981025090676",
-                "heat_region_comparison::226697895264"
+                "project_log::fb612629740a",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "project_log::a6d0d984e27d",
+                "project_log::ec405b75e5b9",
+                "heat_region_comparison::3d4d8c5bc563"
               ]
             },
             "hybrid": {
@@ -1058,16 +1058,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::139891120814",
-                "heat_region_comparison::268676359421",
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::454800627546",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::239697161187",
-                "project_log::981025090676"
+                "project_log::fb612629740a",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::a4c908ff66b8",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::77fb3043e90d",
+                "project_log::ec405b75e5b9"
               ]
             },
             "hybrid+rerank": {
@@ -1075,16 +1075,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::139891120814",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "project_log::670066931028",
-                "project_log::252451257607",
-                "project_log::981025090676"
+                "project_log::fb612629740a",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "project_log::a6d0d984e27d",
+                "project_log::7be940229a0a",
+                "project_log::ec405b75e5b9"
               ]
             }
           }
@@ -1099,16 +1099,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::825581475712",
-                "drought_region_comparison::818136201242",
-                "project_log::333326560917",
-                "drought_region_comparison::535530474305",
-                "project_log::091049849394",
-                "drought_region_comparison::510489867250",
-                "project_log::670066931028",
-                "project_log::899674769664",
-                "heat_region_comparison::086176663242",
-                "project_log::103454225708"
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::0dbb8e31a169",
+                "drought_region_comparison::63eadb208744",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::ec1777ecfd69",
+                "project_log::a6d0d984e27d",
+                "project_log::9e867f63c0ac",
+                "heat_region_comparison::57c86f915dd2",
+                "project_log::e126a0eb4e11"
               ]
             },
             "dense+rerank": {
@@ -1116,16 +1116,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::818136201242",
-                "project_log::825581475712",
-                "project_log::091049849394",
-                "project_log::981025090676",
-                "project_log::714622999364",
-                "project_log::670066931028",
-                "project_log::899674769664",
-                "project_log::859726832454",
-                "project_log::806646420792",
-                "drought_region_comparison::529039471468"
+                "drought_region_comparison::b648576d9edc",
+                "project_log::162e59ecfe1b",
+                "project_log::db070b8f0441",
+                "project_log::ec405b75e5b9",
+                "project_log::ce0f0cabb7e9",
+                "project_log::a6d0d984e27d",
+                "project_log::9e867f63c0ac",
+                "project_log::2cb1c7ba2fa7",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "hybrid": {
@@ -1133,16 +1133,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::818136201242",
-                "project_log::825581475712",
-                "project_log::714622999364",
-                "drought_region_comparison::535530474305",
-                "project_log::670066931028",
-                "project_log::091049849394",
-                "drought_region_comparison::529039471468",
-                "project_log::333326560917",
-                "project_log::806646420792",
-                "project_log::981025090676"
+                "drought_region_comparison::b648576d9edc",
+                "project_log::162e59ecfe1b",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::63eadb208744",
+                "project_log::a6d0d984e27d",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::0dbb8e31a169",
+                "project_log::e1ea5776ef57",
+                "project_log::ec405b75e5b9"
               ]
             },
             "hybrid+rerank": {
@@ -1150,16 +1150,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::818136201242",
-                "project_log::825581475712",
-                "project_log::091049849394",
-                "project_log::981025090676",
-                "project_log::714622999364",
-                "project_log::670066931028",
-                "project_log::899674769664",
-                "project_log::859726832454",
-                "project_log::806646420792",
-                "project_log::090966158805"
+                "drought_region_comparison::b648576d9edc",
+                "project_log::162e59ecfe1b",
+                "project_log::db070b8f0441",
+                "project_log::ec405b75e5b9",
+                "project_log::ce0f0cabb7e9",
+                "project_log::a6d0d984e27d",
+                "project_log::9e867f63c0ac",
+                "project_log::2cb1c7ba2fa7",
+                "project_log::e1ea5776ef57",
+                "project_log::59885f1dda80"
               ]
             }
           }
@@ -1174,16 +1174,16 @@
               "mrr": 0.16666666666666666,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::785063075943",
-                "project_log::103454225708",
-                "heat_region_comparison::226697895264",
-                "project_log::981025090676",
-                "project_log::806434223966",
-                "heat_region_comparison::117831500387",
-                "heat_region_comparison::086176663242",
-                "project_log::139891120814",
-                "heat_region_comparison::541621107372",
-                "heat_region_comparison::962669200223"
+                "heat_region_comparison::2bc6a6ee5969",
+                "project_log::e126a0eb4e11",
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::ec405b75e5b9",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::5a751d0a51ad",
+                "heat_region_comparison::57c86f915dd2",
+                "project_log::fb612629740a",
+                "heat_region_comparison::5734e8de761e",
+                "heat_region_comparison::0b11beacf5e0"
               ]
             },
             "dense+rerank": {
@@ -1191,16 +1191,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::785063075943",
-                "project_log::103454225708",
-                "project_log::899674769664",
-                "heat_region_comparison::086176663242",
-                "project_log::806434223966",
-                "heat_region_comparison::117831500387",
-                "project_log::950680223663",
-                "heat_region_comparison::541621107372",
-                "heat_region_comparison::226697895264",
-                "project_log::139891120814"
+                "heat_region_comparison::2bc6a6ee5969",
+                "project_log::e126a0eb4e11",
+                "project_log::9e867f63c0ac",
+                "heat_region_comparison::57c86f915dd2",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::4cf1db424977",
+                "heat_region_comparison::5734e8de761e",
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::fb612629740a"
               ]
             },
             "hybrid": {
@@ -1208,16 +1208,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::785063075943",
-                "project_log::103454225708",
-                "project_log::806434223966",
-                "heat_region_comparison::226697895264",
-                "project_log::139891120814",
-                "heat_region_comparison::086176663242",
-                "project_log::899674769664",
-                "heat_region_comparison::541621107372",
-                "project_log::981025090676",
-                "drought_region_comparison::510489867250"
+                "heat_region_comparison::2bc6a6ee5969",
+                "project_log::e126a0eb4e11",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::fb612629740a",
+                "heat_region_comparison::57c86f915dd2",
+                "project_log::9e867f63c0ac",
+                "heat_region_comparison::5734e8de761e",
+                "project_log::ec405b75e5b9",
+                "drought_region_comparison::ec1777ecfd69"
               ]
             },
             "hybrid+rerank": {
@@ -1225,16 +1225,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::785063075943",
-                "project_log::103454225708",
-                "project_log::899674769664",
-                "heat_region_comparison::086176663242",
-                "project_log::806434223966",
-                "heat_region_comparison::117831500387",
-                "project_log::950680223663",
-                "heat_region_comparison::541621107372",
-                "project_log::859726832454",
-                "project_log::670066931028"
+                "heat_region_comparison::2bc6a6ee5969",
+                "project_log::e126a0eb4e11",
+                "project_log::9e867f63c0ac",
+                "heat_region_comparison::57c86f915dd2",
+                "project_log::41dcfa969717",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::4cf1db424977",
+                "heat_region_comparison::5734e8de761e",
+                "project_log::2cb1c7ba2fa7",
+                "project_log::a6d0d984e27d"
               ]
             }
           }
@@ -1249,16 +1249,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "project_log::091049849394",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::670066931028",
-                "project_log::714622999364",
-                "project_log::139891120814",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::510489867250"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::a6d0d984e27d",
+                "project_log::ce0f0cabb7e9",
+                "project_log::fb612629740a",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::ec1777ecfd69"
               ]
             },
             "dense+rerank": {
@@ -1266,16 +1266,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::670066931028",
-                "project_log::139891120814",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::721887321358",
-                "project_log::950680223663",
-                "project_log::091049849394",
-                "drought_region_comparison::239697161187"
+                "project_log::a6d0d984e27d",
+                "project_log::fb612629740a",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::4cf1db424977",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::77fb3043e90d"
               ]
             },
             "hybrid": {
@@ -1283,16 +1283,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::670066931028",
-                "project_log::806646420792",
-                "drought_region_comparison::529039471468",
-                "project_log::139891120814",
-                "project_log::091049849394",
-                "project_log::714622999364",
-                "project_log::181401690551",
-                "heat_region_comparison::268676359421",
-                "project_log::103454225708"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::a6d0d984e27d",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::fb612629740a",
+                "project_log::db070b8f0441",
+                "project_log::ce0f0cabb7e9",
+                "project_log::03d74505df3c",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e126a0eb4e11"
               ]
             },
             "hybrid+rerank": {
@@ -1300,16 +1300,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::670066931028",
-                "project_log::139891120814",
-                "heat_region_comparison::117831500387",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::721887321358",
-                "project_log::950680223663",
-                "project_log::091049849394"
+                "project_log::a6d0d984e27d",
+                "project_log::fb612629740a",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::4cf1db424977",
+                "project_log::db070b8f0441"
               ]
             }
           }
@@ -1324,16 +1324,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::081344863602",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::914498591667",
-                "imd_gkms_sop::957961356856",
-                "imd_gkms_sop::439720331102",
-                "atari_jodhpur_agroadvisory::464247679586"
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::38b43bac2892",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::c2f9b386d888",
+                "imd_gkms_sop::b74863d2a63e",
+                "imd_gkms_sop::dd567a9e535f",
+                "atari_jodhpur_agroadvisory::fd49986010b1"
               ]
             },
             "dense+rerank": {
@@ -1341,16 +1341,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::390753968381",
-                "atari_jodhpur_agroadvisory::959929533804",
-                "imd_gkms_sop::472906438569",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::070468090662",
-                "atari_jodhpur_agroadvisory::398077917944",
-                "imd_gkms_sop::914498591667"
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::b30482a5382c",
+                "atari_jodhpur_agroadvisory::e10b35fe80d4",
+                "imd_gkms_sop::be8d5c0b5027",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::3e60f03e9751",
+                "atari_jodhpur_agroadvisory::031a146a0c56",
+                "imd_gkms_sop::c2f9b386d888"
               ]
             },
             "hybrid": {
@@ -1358,16 +1358,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::390753968381",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::439720331102",
-                "imd_gkms_sop::957961356856",
-                "imd_gkms_sop::793756224683",
-                "imd_gkms_sop::914498591667",
-                "imd_gkms_sop::081344863602"
+                "imd_gkms_sop::b30482a5382c",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::dd567a9e535f",
+                "imd_gkms_sop::b74863d2a63e",
+                "imd_gkms_sop::2e5dc6921185",
+                "imd_gkms_sop::c2f9b386d888",
+                "imd_gkms_sop::38b43bac2892"
               ]
             },
             "hybrid+rerank": {
@@ -1375,16 +1375,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_gkms_sop::046715404365",
-                "imd_gkms_sop::843291926669",
-                "imd_gkms_sop::511091902556",
-                "imd_gkms_sop::390753968381",
-                "atari_jodhpur_agroadvisory::959929533804",
-                "imd_gkms_sop::472906438569",
-                "imd_gkms_sop::903155659108",
-                "imd_gkms_sop::070468090662",
-                "atari_jodhpur_agroadvisory::398077917944",
-                "imd_gkms_sop::914498591667"
+                "imd_gkms_sop::b0bb9e5e7851",
+                "imd_gkms_sop::8ad694212ff5",
+                "imd_gkms_sop::ab99841efda8",
+                "imd_gkms_sop::b30482a5382c",
+                "atari_jodhpur_agroadvisory::e10b35fe80d4",
+                "imd_gkms_sop::be8d5c0b5027",
+                "imd_gkms_sop::0c0c69c7b5eb",
+                "imd_gkms_sop::3e60f03e9751",
+                "atari_jodhpur_agroadvisory::031a146a0c56",
+                "imd_gkms_sop::c2f9b386d888"
               ]
             }
           }
@@ -1399,16 +1399,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "drought_region_comparison::721887321358",
-                "project_log::091049849394",
-                "project_log::714622999364",
-                "drought_region_comparison::535530474305",
-                "project_log::899674769664",
-                "drought_region_comparison::510489867250",
-                "project_log::181401690551",
-                "project_log::859726832454",
-                "project_log::670066931028"
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::db070b8f0441",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::63eadb208744",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::ec1777ecfd69",
+                "project_log::03d74505df3c",
+                "project_log::2cb1c7ba2fa7",
+                "project_log::a6d0d984e27d"
               ]
             },
             "dense+rerank": {
@@ -1416,16 +1416,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "drought_region_comparison::721887321358",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "project_log::091049849394",
-                "project_log::139891120814",
-                "project_log::950680223663",
-                "project_log::604170810375",
-                "project_log::181401690551",
-                "drought_region_comparison::529039471468"
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "project_log::db070b8f0441",
+                "project_log::fb612629740a",
+                "project_log::4cf1db424977",
+                "project_log::4ff463dd2fdc",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "hybrid": {
@@ -1433,16 +1433,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "project_log::091049849394",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "drought_region_comparison::535530474305",
-                "project_log::181401690551",
-                "project_log::950680223663",
-                "project_log::139891120814",
-                "project_log::670066931028"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "project_log::db070b8f0441",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::63eadb208744",
+                "project_log::03d74505df3c",
+                "project_log::4cf1db424977",
+                "project_log::fb612629740a",
+                "project_log::a6d0d984e27d"
               ]
             },
             "hybrid+rerank": {
@@ -1450,16 +1450,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::806646420792",
-                "drought_region_comparison::721887321358",
-                "project_log::899674769664",
-                "project_log::714622999364",
-                "project_log::091049849394",
-                "project_log::139891120814",
-                "project_log::950680223663",
-                "project_log::252451257607",
-                "project_log::181401690551",
-                "project_log::981025090676"
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::9e867f63c0ac",
+                "project_log::ce0f0cabb7e9",
+                "project_log::db070b8f0441",
+                "project_log::fb612629740a",
+                "project_log::4cf1db424977",
+                "project_log::7be940229a0a",
+                "project_log::03d74505df3c",
+                "project_log::ec405b75e5b9"
               ]
             }
           }
@@ -1474,16 +1474,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::333326560917",
-                "project_log::091049849394",
-                "drought_region_comparison::818136201242",
-                "project_log::714622999364",
-                "drought_region_comparison::535530474305",
-                "project_log::806646420792",
-                "project_log::638155852787",
-                "project_log::825581475712",
-                "project_log::181401690551",
-                "drought_region_comparison::510489867250"
+                "project_log::0dbb8e31a169",
+                "project_log::db070b8f0441",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::63eadb208744",
+                "project_log::e1ea5776ef57",
+                "project_log::ee057c5c01d3",
+                "project_log::162e59ecfe1b",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::ec1777ecfd69"
               ]
             },
             "dense+rerank": {
@@ -1491,16 +1491,16 @@
               "mrr": 0.125,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "project_log::806434223966",
-                "project_log::139891120814",
-                "project_log::806646420792",
-                "drought_region_comparison::818136201242",
-                "project_log::181401690551",
-                "project_log::091049849394",
-                "project_log::063041487535",
-                "project_log::825581475712"
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "project_log::41dcfa969717",
+                "project_log::fb612629740a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::03d74505df3c",
+                "project_log::db070b8f0441",
+                "project_log::498a79d3779c",
+                "project_log::162e59ecfe1b"
               ]
             },
             "hybrid": {
@@ -1508,16 +1508,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::818136201242",
-                "project_log::091049849394",
-                "project_log::333326560917",
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "drought_region_comparison::535530474305",
-                "project_log::806434223966",
-                "project_log::825581475712",
-                "project_log::806646420792",
-                "project_log::139891120814"
+                "drought_region_comparison::b648576d9edc",
+                "project_log::db070b8f0441",
+                "project_log::0dbb8e31a169",
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::63eadb208744",
+                "project_log::41dcfa969717",
+                "project_log::162e59ecfe1b",
+                "project_log::e1ea5776ef57",
+                "project_log::fb612629740a"
               ]
             },
             "hybrid+rerank": {
@@ -1525,16 +1525,16 @@
               "mrr": 0.1111111111111111,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::899674769664",
-                "drought_region_comparison::667777726207",
-                "project_log::806434223966",
-                "project_log::139891120814",
-                "project_log::806646420792",
-                "drought_region_comparison::818136201242",
-                "project_log::181401690551",
-                "project_log::091049849394",
-                "project_log::825581475712"
+                "project_log::ce0f0cabb7e9",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::168554e799b8",
+                "project_log::41dcfa969717",
+                "project_log::fb612629740a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::b648576d9edc",
+                "project_log::03d74505df3c",
+                "project_log::db070b8f0441",
+                "project_log::162e59ecfe1b"
               ]
             }
           }
@@ -1549,16 +1549,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::535530474305",
-                "project_log::670066931028",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207",
-                "drought_region_comparison::510489867250",
-                "project_log::091049849394"
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::63eadb208744",
+                "project_log::a6d0d984e27d",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8",
+                "drought_region_comparison::ec1777ecfd69",
+                "project_log::db070b8f0441"
               ]
             },
             "dense+rerank": {
@@ -1566,16 +1566,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "drought_region_comparison::529039471468",
-                "project_log::139891120814",
-                "heat_region_comparison::541621107372",
-                "project_log::670066931028",
-                "project_log::103454225708"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::fb612629740a",
+                "heat_region_comparison::5734e8de761e",
+                "project_log::a6d0d984e27d",
+                "project_log::e126a0eb4e11"
               ]
             },
             "hybrid": {
@@ -1583,16 +1583,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::535530474305",
-                "drought_region_comparison::721887321358",
-                "project_log::806646420792",
-                "project_log::139891120814",
-                "project_log::304687973194",
-                "project_log::670066931028",
-                "project_log::181401690551"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::63eadb208744",
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::e1ea5776ef57",
+                "project_log::fb612629740a",
+                "project_log::d81815944b17",
+                "project_log::a6d0d984e27d",
+                "project_log::03d74505df3c"
               ]
             },
             "hybrid+rerank": {
@@ -1600,16 +1600,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::721887321358",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "project_log::063041487535",
-                "drought_region_comparison::529039471468",
-                "project_log::139891120814",
-                "project_log::806434223966",
-                "project_log::670066931028"
+                "drought_region_comparison::e67a8703cb25",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "project_log::498a79d3779c",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::fb612629740a",
+                "project_log::41dcfa969717",
+                "project_log::a6d0d984e27d"
               ]
             }
           }
@@ -1624,16 +1624,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::486126963684",
-                "imd_heatwave_faq::667991131051",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::460072473296"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::4b67e1c84eed",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::b923b2280da2"
               ]
             },
             "dense+rerank": {
@@ -1641,16 +1641,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::719251386753",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::170046401647"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::ff289fc67505",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::728c08e25616"
               ]
             },
             "hybrid": {
@@ -1658,16 +1658,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::394258920986",
-                "imd_heatwave_faq::222468429906",
-                "imd_heatwave_faq::667991131051"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::cc1ea5645860",
+                "imd_heatwave_faq::a78a2cc2eb1d",
+                "imd_heatwave_faq::fdfe4c02b9b1"
               ]
             },
             "hybrid+rerank": {
@@ -1675,16 +1675,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::460072473296",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::222468429906"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::b923b2280da2",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::a78a2cc2eb1d"
               ]
             }
           }
@@ -1699,16 +1699,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::921394366689",
-                "nih_spi_methodology::084461679535",
-                "nih_spi_methodology::653409458153",
-                "nih_spi_methodology::197494889680",
-                "nih_spi_methodology::579231277119",
-                "ndma_drought_guidelines::652054762783",
-                "ndma_drought_guidelines::650481712376",
-                "nih_spi_methodology::128521984583"
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::afd7651a00ec",
+                "nih_spi_methodology::82b8ca99fca8",
+                "nih_spi_methodology::a0ac8c85d004",
+                "nih_spi_methodology::def852feee7b",
+                "nih_spi_methodology::e7ced7282779",
+                "ndma_drought_guidelines::a39d5a541ee5",
+                "ndma_drought_guidelines::df240ed6453e",
+                "nih_spi_methodology::8af6bc630163"
               ]
             },
             "dense+rerank": {
@@ -1716,16 +1716,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::084461679535",
-                "nih_spi_methodology::921394366689",
-                "nih_spi_methodology::937684595995",
-                "ndma_drought_guidelines::652054762783",
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::197494889680",
-                "ndma_drought_guidelines::700104384643",
-                "ndma_drought_guidelines::650481712376",
-                "ndma_drought_guidelines::156972219570",
-                "nih_spi_methodology::653409458153"
+                "nih_spi_methodology::82b8ca99fca8",
+                "nih_spi_methodology::afd7651a00ec",
+                "nih_spi_methodology::2f8658612eaf",
+                "ndma_drought_guidelines::a39d5a541ee5",
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::def852feee7b",
+                "ndma_drought_guidelines::e5ea72a88376",
+                "ndma_drought_guidelines::df240ed6453e",
+                "ndma_drought_guidelines::1783a8b16752",
+                "nih_spi_methodology::a0ac8c85d004"
               ]
             },
             "hybrid": {
@@ -1733,16 +1733,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::937684595995",
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::653409458153",
-                "nih_spi_methodology::579231277119",
-                "ndma_drought_guidelines::700104384643",
-                "nih_spi_methodology::197494889680",
-                "ndma_drought_guidelines::218046414245",
-                "ndma_drought_guidelines::428484385322",
-                "ndma_drought_guidelines::628889767920",
-                "imd_gkms_sop::973612981680"
+                "nih_spi_methodology::2f8658612eaf",
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::a0ac8c85d004",
+                "nih_spi_methodology::e7ced7282779",
+                "ndma_drought_guidelines::e5ea72a88376",
+                "nih_spi_methodology::def852feee7b",
+                "ndma_drought_guidelines::28e1fe6c74c3",
+                "ndma_drought_guidelines::703b5c5e0b9a",
+                "ndma_drought_guidelines::65c2d0591388",
+                "imd_gkms_sop::ec089aaa9e7d"
               ]
             },
             "hybrid+rerank": {
@@ -1750,16 +1750,16 @@
               "mrr": 0.25,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::084461679535",
-                "nih_spi_methodology::921394366689",
-                "nih_spi_methodology::937684595995",
-                "ndma_drought_guidelines::652054762783",
-                "nih_spi_methodology::757352796103",
-                "nih_spi_methodology::197494889680",
-                "ndma_drought_guidelines::700104384643",
-                "ndma_drought_guidelines::650481712376",
-                "ndma_drought_guidelines::972732724962",
-                "nih_spi_methodology::653409458153"
+                "nih_spi_methodology::82b8ca99fca8",
+                "nih_spi_methodology::afd7651a00ec",
+                "nih_spi_methodology::2f8658612eaf",
+                "ndma_drought_guidelines::a39d5a541ee5",
+                "nih_spi_methodology::4ac82ff0926d",
+                "nih_spi_methodology::def852feee7b",
+                "ndma_drought_guidelines::e5ea72a88376",
+                "ndma_drought_guidelines::df240ed6453e",
+                "ndma_drought_guidelines::99fc053bbf76",
+                "nih_spi_methodology::a0ac8c85d004"
               ]
             }
           }
@@ -1774,16 +1774,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::139891120814",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::187275351963",
-                "project_log::714622999364",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "project_log::103454225708",
-                "drought_region_comparison::454800627546",
-                "project_log::670066931028",
-                "drought_region_comparison::535530474305"
+                "project_log::fb612629740a",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::1e173b453f70",
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "project_log::e126a0eb4e11",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::a6d0d984e27d",
+                "drought_region_comparison::63eadb208744"
               ]
             },
             "dense+rerank": {
@@ -1791,16 +1791,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::667777726207",
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "drought_region_comparison::529039471468",
-                "project_log::333326560917",
-                "project_log::139891120814",
-                "heat_region_comparison::268676359421",
-                "drought_region_comparison::454800627546",
-                "drought_region_comparison::239697161187",
-                "project_log::981025090676"
+                "drought_region_comparison::168554e799b8",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::0dbb8e31a169",
+                "project_log::fb612629740a",
+                "heat_region_comparison::a4ebf860162b",
+                "drought_region_comparison::a4c908ff66b8",
+                "drought_region_comparison::77fb3043e90d",
+                "project_log::ec405b75e5b9"
               ]
             },
             "hybrid": {
@@ -1808,16 +1808,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::187275351963",
-                "project_log::806646420792",
-                "heat_region_comparison::268676359421",
-                "project_log::139891120814",
-                "drought_region_comparison::454800627546",
-                "drought_region_comparison::535530474305",
-                "project_log::333326560917",
-                "drought_region_comparison::818136201242"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::1e173b453f70",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::fb612629740a",
+                "drought_region_comparison::a4c908ff66b8",
+                "drought_region_comparison::63eadb208744",
+                "project_log::0dbb8e31a169",
+                "drought_region_comparison::b648576d9edc"
               ]
             },
             "hybrid+rerank": {
@@ -1825,16 +1825,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "drought_region_comparison::667777726207",
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "drought_region_comparison::529039471468",
-                "project_log::333326560917",
-                "project_log::139891120814",
-                "heat_region_comparison::268676359421",
-                "project_log::252451257607",
-                "drought_region_comparison::454800627546",
-                "drought_region_comparison::239697161187"
+                "drought_region_comparison::168554e799b8",
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::0dbb8e31a169",
+                "project_log::fb612629740a",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::7be940229a0a",
+                "drought_region_comparison::a4c908ff66b8",
+                "drought_region_comparison::77fb3043e90d"
               ]
             }
           }
@@ -1849,16 +1849,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::170046401647"
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::728c08e25616"
               ]
             },
             "dense+rerank": {
@@ -1866,16 +1866,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::719251386753"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::ff289fc67505"
               ]
             },
             "hybrid": {
@@ -1883,16 +1883,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::260225458486",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::032399165931"
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::6036d8d6913f",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::8e300b4b3377"
               ]
             },
             "hybrid+rerank": {
@@ -1900,16 +1900,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "imd_heatwave_faq::587458398464",
-                "ndma_heatwave::911351110640",
-                "imd_heatwave_faq::174866929326",
-                "imd_heatwave_faq::667991131051",
-                "imd_heatwave_faq::032399165931",
-                "imd_heatwave_faq::427669481832",
-                "imd_heatwave_faq::499919629361",
-                "imd_heatwave_faq::170046401647",
-                "imd_heatwave_faq::038360316402",
-                "imd_heatwave_faq::719251386753"
+                "imd_heatwave_faq::81abf89a0561",
+                "ndma_heatwave::b355a34f309d",
+                "imd_heatwave_faq::42775437ad05",
+                "imd_heatwave_faq::fdfe4c02b9b1",
+                "imd_heatwave_faq::8e300b4b3377",
+                "imd_heatwave_faq::2ed6ffb56864",
+                "imd_heatwave_faq::1b0fb9a43b14",
+                "imd_heatwave_faq::728c08e25616",
+                "imd_heatwave_faq::1c75fe32f053",
+                "imd_heatwave_faq::ff289fc67505"
               ]
             }
           }
@@ -1924,16 +1924,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::541621107372",
-                "heat_region_comparison::117831500387",
-                "project_log::806646420792",
-                "project_log::252451257607",
-                "project_log::899674769664",
-                "drought_region_comparison::535530474305",
-                "project_log::304687973194",
-                "drought_region_comparison::529039471468"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::5734e8de761e",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::e1ea5776ef57",
+                "project_log::7be940229a0a",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::63eadb208744",
+                "project_log::d81815944b17",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "dense+rerank": {
@@ -1941,16 +1941,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::252451257607",
-                "project_log::304687973194",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "heat_region_comparison::117831500387",
-                "project_log::899674769664",
-                "project_log::806434223966",
-                "drought_region_comparison::529039471468",
-                "project_log::950680223663",
-                "project_log::139891120814"
+                "project_log::7be940229a0a",
+                "project_log::d81815944b17",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::9e867f63c0ac",
+                "project_log::41dcfa969717",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::4cf1db424977",
+                "project_log::fb612629740a"
               ]
             },
             "hybrid": {
@@ -1958,16 +1958,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::806646420792",
-                "heat_region_comparison::117831500387",
-                "project_log::252451257607",
-                "project_log::950680223663",
-                "drought_region_comparison::529039471468",
-                "project_log::899674769664",
-                "drought_region_comparison::535530474305",
-                "project_log::304687973194",
-                "project_log::103454225708"
+                "project_log::ce0f0cabb7e9",
+                "project_log::e1ea5776ef57",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::7be940229a0a",
+                "project_log::4cf1db424977",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::63eadb208744",
+                "project_log::d81815944b17",
+                "project_log::e126a0eb4e11"
               ]
             },
             "hybrid+rerank": {
@@ -1975,16 +1975,16 @@
               "mrr": 0.2,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::252451257607",
-                "project_log::304687973194",
-                "project_log::806646420792",
-                "project_log::714622999364",
-                "heat_region_comparison::117831500387",
-                "project_log::999327254338",
-                "project_log::899674769664",
-                "drought_region_comparison::529039471468",
-                "project_log::950680223663",
-                "project_log::139891120814"
+                "project_log::7be940229a0a",
+                "project_log::d81815944b17",
+                "project_log::e1ea5776ef57",
+                "project_log::ce0f0cabb7e9",
+                "heat_region_comparison::5a751d0a51ad",
+                "project_log::910fec6e427c",
+                "project_log::9e867f63c0ac",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::4cf1db424977",
+                "project_log::fb612629740a"
               ]
             }
           }
@@ -1999,16 +1999,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::454800627546",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "drought_region_comparison::535530474305",
-                "project_log::181401690551"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::a4c908ff66b8",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::63eadb208744",
+                "project_log::03d74505df3c"
               ]
             },
             "dense+rerank": {
@@ -2016,16 +2016,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::252451257607",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::454800627546",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "drought_region_comparison::721887321358",
-                "heat_region_comparison::268676359421"
+                "project_log::ce0f0cabb7e9",
+                "project_log::7be940229a0a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::e67a8703cb25",
+                "heat_region_comparison::a4ebf860162b"
               ]
             },
             "hybrid": {
@@ -2033,16 +2033,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::454800627546",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "drought_region_comparison::529039471468",
-                "project_log::252451257607",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::7be940229a0a",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8"
               ]
             },
             "hybrid+rerank": {
@@ -2050,16 +2050,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::252451257607",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "project_log::464447977601",
-                "drought_region_comparison::454800627546",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "project_log::333326560917"
+                "project_log::ce0f0cabb7e9",
+                "project_log::7be940229a0a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::23742122d7d9",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "project_log::0dbb8e31a169"
               ]
             }
           }
@@ -2074,16 +2074,16 @@
               "mrr": 0.125,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::899674769664",
-                "imd_heatwave_faq::719251386753",
-                "project_log::103454225708",
-                "drought_region_comparison::529039471468",
-                "project_log::981025090676",
-                "project_log::806646420792",
-                "project_log::825581475712",
-                "drought_region_comparison::239697161187",
-                "heat_region_comparison::226697895264",
-                "nih_spi_methodology::197494889680"
+                "project_log::9e867f63c0ac",
+                "imd_heatwave_faq::ff289fc67505",
+                "project_log::e126a0eb4e11",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::ec405b75e5b9",
+                "project_log::e1ea5776ef57",
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::77fb3043e90d",
+                "heat_region_comparison::3d4d8c5bc563",
+                "nih_spi_methodology::def852feee7b"
               ]
             },
             "dense+rerank": {
@@ -2091,16 +2091,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::226697895264",
-                "project_log::181401690551",
-                "nih_spi_methodology::197494889680",
-                "project_log::899674769664",
-                "ndma_drought_guidelines::870097274257",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "project_log::825581475712",
-                "imd_gkms_sop::201937180526",
-                "project_log::464447977601",
-                "project_log::103454225708"
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::03d74505df3c",
+                "nih_spi_methodology::def852feee7b",
+                "project_log::9e867f63c0ac",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "project_log::162e59ecfe1b",
+                "imd_gkms_sop::43aa15089a1e",
+                "project_log::23742122d7d9",
+                "project_log::e126a0eb4e11"
               ]
             },
             "hybrid": {
@@ -2108,16 +2108,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::197494889680",
-                "ndma_drought_guidelines::870097274257",
-                "imd_gkms_sop::201937180526",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::126700242989",
-                "project_log::899674769664",
-                "imd_heatwave_faq::719251386753",
-                "imd_gkms_sop::242995120813",
-                "project_log::103454225708",
-                "drought_region_comparison::529039471468"
+                "nih_spi_methodology::def852feee7b",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "imd_gkms_sop::43aa15089a1e",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::198b118ebff3",
+                "project_log::9e867f63c0ac",
+                "imd_heatwave_faq::ff289fc67505",
+                "imd_gkms_sop::6bdd53977385",
+                "project_log::e126a0eb4e11",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "hybrid+rerank": {
@@ -2125,16 +2125,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::226697895264",
-                "nih_spi_methodology::197494889680",
-                "project_log::899674769664",
-                "ndma_drought_guidelines::870097274257",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "project_log::825581475712",
-                "imd_gkms_sop::242995120813",
-                "atari_jodhpur_agroadvisory::802301076133",
-                "imd_gkms_sop::201937180526",
-                "atari_jodhpur_agroadvisory::126700242989"
+                "heat_region_comparison::3d4d8c5bc563",
+                "nih_spi_methodology::def852feee7b",
+                "project_log::9e867f63c0ac",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "project_log::162e59ecfe1b",
+                "imd_gkms_sop::6bdd53977385",
+                "atari_jodhpur_agroadvisory::2964450226d9",
+                "imd_gkms_sop::43aa15089a1e",
+                "atari_jodhpur_agroadvisory::198b118ebff3"
               ]
             }
           }
@@ -2151,16 +2151,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::454800627546",
-                "drought_region_comparison::667777726207",
-                "heat_region_comparison::187275351963",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "heat_region_comparison::268676359421",
-                "project_log::806646420792",
-                "drought_region_comparison::535530474305",
-                "project_log::181401690551"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::a4c908ff66b8",
+                "drought_region_comparison::168554e799b8",
+                "heat_region_comparison::1e173b453f70",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "heat_region_comparison::a4ebf860162b",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::63eadb208744",
+                "project_log::03d74505df3c"
               ]
             },
             "dense+rerank": {
@@ -2168,16 +2168,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::252451257607",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "drought_region_comparison::454800627546",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "drought_region_comparison::721887321358",
-                "heat_region_comparison::268676359421"
+                "project_log::ce0f0cabb7e9",
+                "project_log::7be940229a0a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::e67a8703cb25",
+                "heat_region_comparison::a4ebf860162b"
               ]
             },
             "hybrid": {
@@ -2185,16 +2185,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "drought_region_comparison::454800627546",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "drought_region_comparison::529039471468",
-                "project_log::252451257607",
-                "drought_region_comparison::721887321358",
-                "drought_region_comparison::667777726207"
+                "project_log::ce0f0cabb7e9",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::7be940229a0a",
+                "drought_region_comparison::e67a8703cb25",
+                "drought_region_comparison::168554e799b8"
               ]
             },
             "hybrid+rerank": {
@@ -2202,16 +2202,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::714622999364",
-                "project_log::252451257607",
-                "project_log::806646420792",
-                "drought_region_comparison::239697161187",
-                "drought_region_comparison::529039471468",
-                "project_log::464447977601",
-                "drought_region_comparison::454800627546",
-                "project_log::091049849394",
-                "project_log::181401690551",
-                "project_log::333326560917"
+                "project_log::ce0f0cabb7e9",
+                "project_log::7be940229a0a",
+                "project_log::e1ea5776ef57",
+                "drought_region_comparison::77fb3043e90d",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::23742122d7d9",
+                "drought_region_comparison::a4c908ff66b8",
+                "project_log::db070b8f0441",
+                "project_log::03d74505df3c",
+                "project_log::0dbb8e31a169"
               ]
             }
           }
@@ -2226,16 +2226,16 @@
               "mrr": 0.125,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "project_log::899674769664",
-                "imd_heatwave_faq::719251386753",
-                "project_log::103454225708",
-                "drought_region_comparison::529039471468",
-                "project_log::981025090676",
-                "project_log::806646420792",
-                "project_log::825581475712",
-                "drought_region_comparison::239697161187",
-                "heat_region_comparison::226697895264",
-                "nih_spi_methodology::197494889680"
+                "project_log::9e867f63c0ac",
+                "imd_heatwave_faq::ff289fc67505",
+                "project_log::e126a0eb4e11",
+                "drought_region_comparison::cf0631412c56",
+                "project_log::ec405b75e5b9",
+                "project_log::e1ea5776ef57",
+                "project_log::162e59ecfe1b",
+                "drought_region_comparison::77fb3043e90d",
+                "heat_region_comparison::3d4d8c5bc563",
+                "nih_spi_methodology::def852feee7b"
               ]
             },
             "dense+rerank": {
@@ -2243,16 +2243,16 @@
               "mrr": 0.3333333333333333,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::226697895264",
-                "project_log::181401690551",
-                "nih_spi_methodology::197494889680",
-                "project_log::899674769664",
-                "ndma_drought_guidelines::870097274257",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "project_log::825581475712",
-                "imd_gkms_sop::201937180526",
-                "project_log::464447977601",
-                "project_log::103454225708"
+                "heat_region_comparison::3d4d8c5bc563",
+                "project_log::03d74505df3c",
+                "nih_spi_methodology::def852feee7b",
+                "project_log::9e867f63c0ac",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "project_log::162e59ecfe1b",
+                "imd_gkms_sop::43aa15089a1e",
+                "project_log::23742122d7d9",
+                "project_log::e126a0eb4e11"
               ]
             },
             "hybrid": {
@@ -2260,16 +2260,16 @@
               "mrr": 1.0,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "nih_spi_methodology::197494889680",
-                "ndma_drought_guidelines::870097274257",
-                "imd_gkms_sop::201937180526",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "atari_jodhpur_agroadvisory::126700242989",
-                "project_log::899674769664",
-                "imd_heatwave_faq::719251386753",
-                "imd_gkms_sop::242995120813",
-                "project_log::103454225708",
-                "drought_region_comparison::529039471468"
+                "nih_spi_methodology::def852feee7b",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "imd_gkms_sop::43aa15089a1e",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "atari_jodhpur_agroadvisory::198b118ebff3",
+                "project_log::9e867f63c0ac",
+                "imd_heatwave_faq::ff289fc67505",
+                "imd_gkms_sop::6bdd53977385",
+                "project_log::e126a0eb4e11",
+                "drought_region_comparison::cf0631412c56"
               ]
             },
             "hybrid+rerank": {
@@ -2277,16 +2277,16 @@
               "mrr": 0.5,
               "outside_pool_at_5": 0,
               "ranked_ids": [
-                "heat_region_comparison::226697895264",
-                "nih_spi_methodology::197494889680",
-                "project_log::899674769664",
-                "ndma_drought_guidelines::870097274257",
-                "atari_jodhpur_agroadvisory::044209010314",
-                "project_log::825581475712",
-                "imd_gkms_sop::242995120813",
-                "atari_jodhpur_agroadvisory::802301076133",
-                "imd_gkms_sop::201937180526",
-                "atari_jodhpur_agroadvisory::126700242989"
+                "heat_region_comparison::3d4d8c5bc563",
+                "nih_spi_methodology::def852feee7b",
+                "project_log::9e867f63c0ac",
+                "ndma_drought_guidelines::314b74c0f37d",
+                "atari_jodhpur_agroadvisory::ce958cbbd922",
+                "project_log::162e59ecfe1b",
+                "imd_gkms_sop::6bdd53977385",
+                "atari_jodhpur_agroadvisory::2964450226d9",
+                "imd_gkms_sop::43aa15089a1e",
+                "atari_jodhpur_agroadvisory::198b118ebff3"
               ]
             }
           }

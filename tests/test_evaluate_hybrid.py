@@ -93,6 +93,38 @@ class TestAggregation:
 
 
 # --------------------------------------------------------------------------- #
+# Labels must belong to this corpus build
+# --------------------------------------------------------------------------- #
+class TestLabelCorpusGuard:
+    def test_passes_when_every_label_id_is_in_the_corpus(self):
+        eh.check_labels_match_corpus({"soft": {"q": LABELS}}, set(LABELS) | {"z"})
+
+    def test_raises_when_a_label_id_is_missing(self):
+        with pytest.raises(ValueError, match="migrate_chunk_ids"):
+            eh.check_labels_match_corpus({"soft": {"q": LABELS}}, {"a", "b"})
+
+    def test_evaluate_refuses_before_spending_any_embedding_call(self, monkeypatch):
+        monkeypatch.setattr(eh, "read_chunks", lambda: [])
+
+        def no_embedding(query):
+            raise AssertionError("must fail before embedding")
+
+        monkeypatch.setattr(tool, "embed_query", no_embedding)
+        with pytest.raises(ValueError, match="not in chunks.jsonl"):
+            eh.evaluate()
+
+
+@needs_corpus
+def test_committed_labels_resolve_against_the_current_corpus():
+    """Catches a rebuild or id-scheme change that would orphan the labels."""
+    from retrieval.chunk import read_chunks
+
+    corpus_ids = {c["id"] for c in read_chunks()}
+    eh.check_labels_match_corpus({p.name: eh.load_labels(p) for p in LABEL_FILES},
+                                 corpus_ids)
+
+
+# --------------------------------------------------------------------------- #
 # Real corpus smoke test, all 4 configs, no Gemini
 # --------------------------------------------------------------------------- #
 @needs_corpus

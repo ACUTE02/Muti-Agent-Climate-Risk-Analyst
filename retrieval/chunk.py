@@ -102,10 +102,15 @@ def _split_long(text: str) -> list[str]:
     return [p for p in pieces if len(p) >= config.MIN_CHUNK_CHARS]
 
 
+def chunk_id(source_id: str, text: str) -> str:
+    """Content-derived, so the same chunk gets the same id in every process."""
+    return f"{source_id}::{hashlib.sha1(text.encode('utf-8')).hexdigest()[:12]}"
+
+
 def _chunk_record(source: SourceText, text: str, doc_type: str,
                   heading: str = "") -> dict:
     return {
-        "id": f"{source.source_id}::{hashlib.sha1(text.encode('utf-8')).hexdigest()[:12]}",
+        "id": chunk_id(source.source_id, text),
         "text": text,
         "source": source.title,
         "source_id": source.source_id,
