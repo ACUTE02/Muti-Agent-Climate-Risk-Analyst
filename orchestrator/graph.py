@@ -72,13 +72,30 @@ def _tally_call() -> None:
     CALL_TALLY["generate_content"] += 1
 
 
+QUOTA_ERROR_MARKERS = ("429", "resource_exhausted")
+# Gemini names the violated quota (e.g. GenerateRequestsPerDayPerProjectPerModel),
+# which is how a daily cap is told apart from the 5-per-minute limit.
+DAILY_QUOTA_MARKERS = ("perday", "per day", "per_day")
+
+
+def is_quota_error(message: str) -> bool:
+    message = message.lower()
+    return any(marker in message for marker in QUOTA_ERROR_MARKERS)
+
+
+def is_daily_quota_error(message: str) -> bool:
+    return is_quota_error(message) and any(
+        marker in message.lower() for marker in DAILY_QUOTA_MARKERS)
+
+
 def invoke_with_backoff(model, messages, attempts: int = 3):
     """Retry a chat call on transient rate limits.
 
-    Mirrors the embedding build's discipline. This cannot rescue a *daily*
-    free-tier cap (20 generate_content requests/day, 5 RPM) — that
-    surfaces as a warning and an explicit "report not generated" banner rather
-    than a silent empty answer.
+    Mirrors the embedding build's discipline. A per-minute limit is waited out;
+    a *daily* free-tier cap (20 generate_content requests/day) is not, because
+    it does not clear for hours and waiting only holds the HTTP request open.
+    Either way the failure surfaces as a warning and an explicit "report not
+    generated" banner rather than a silent empty answer.
     """
     import time
 
@@ -89,8 +106,7 @@ def invoke_with_backoff(model, messages, attempts: int = 3):
             return model.invoke(messages)
         except Exception as exc:
             last = exc
-            message = str(exc).lower()
-            if "429" not in message and "resource_exhausted" not in message:
+            if not is_quota_error(str(exc)) or is_daily_quota_error(str(exc)):
                 raise
             if attempt < attempts - 1:
                 time.sleep(30 * (attempt + 1))
@@ -135,6 +151,34 @@ system does not cover, still call the tools that are relevant to what it does
 cover. Do not answer in prose — only make tool calls."""
 
 
+def _caller_constraints(state: ReportState) -> str:
+    """The fields the API caller set explicitly, as text the router can read."""
+    parts = [f"{field}={state[field]}" for field in ("region", "crop", "month")
+             if state.get(field)]
+    if state.get("risk_types"):
+        parts.append(f"risk_types={', '.join(state['risk_types'])}")
+    if not parts:
+        return ""
+    return ("\n\nCaller constraints (set explicitly by the user, must be used "
+            "as given): " + "; ".join(parts) + ".")
+
+
+def _required_calls(state: ReportState, calls: list[dict]) -> list[dict]:
+    """Tools the caller's explicit risk_types/crop demand but the model skipped."""
+    wanted = set()
+    for risk in state.get("risk_types") or []:
+        if risk == "drought":
+            wanted.add("forecast_drought_risk")
+        elif risk == "heat_stress":
+            wanted.add("forecast_heat_stress_risk")
+    if state.get("crop"):
+        wanted.add("assess_crop_impact")
+
+    present = {c["name"] for c in calls}
+    return [c for c in _fallback_calls(state)
+            if c["name"] in wanted and c["name"] not in present]
+
+
 def parse_request(state: ReportState) -> ReportState:
     """Let the model choose the tools; fall back to the obvious ones."""
     prompt = ROUTING_INSTRUCTION.format(
@@ -146,7 +190,8 @@ def parse_request(state: ReportState) -> ReportState:
     try:
         response = invoke_with_backoff(
             get_chat_model(tools=True),
-            [("system", prompt), ("human", state["request"])])
+            [("system", prompt),
+             ("human", state["request"] + _caller_constraints(state))])
         calls = list(getattr(response, "tool_calls", []) or [])
     except Exception as exc:                 # network/quota — degrade, don't die
         calls = []
@@ -155,6 +200,8 @@ def parse_request(state: ReportState) -> ReportState:
 
     if not calls:
         calls = _fallback_calls(state)
+    else:
+        calls += _required_calls(state, calls)
     return {"tool_calls": calls, "attempts": 0,
             "warnings": state.get("warnings", [])}
 
@@ -199,9 +246,14 @@ def call_tools(state: ReportState) -> ReportState:
             warnings.append(f"model requested unknown tool {name!r}")
             continue
 
+        # Explicit caller fields win over whatever the model passed — or left out.
+        # Checking only args the model happened to include let a tool fall back
+        # to its default region and be reported under the requested one.
         args = dict(call.get("args") or {})
-        if state.get("region") and "region" in args:
-            args["region"] = state["region"]      # explicit caller wins
+        accepted = set(getattr(tool, "args", None) or ())
+        for field in ("region", "crop", "month"):
+            if state.get(field) and field in accepted:
+                args[field] = state[field]
         try:
             result = tool.invoke(args)
         except Exception as exc:
@@ -385,6 +437,12 @@ def finalise(state: ReportState) -> ReportState:
 def _should_retry(state: ReportState) -> str:
     grounding = state.get("grounding", {})
     if grounding.get("grounded", False):
+        return "finalise"
+    # invoke_with_backoff has already spent its retries on a quota error, so a
+    # regeneration would only repeat the same wait against the same limit.
+    if grounding.get("report_missing") and any(
+            "synthesis failed" in w and is_quota_error(w)
+            for w in state.get("warnings", [])):
         return "finalise"
     if state.get("attempts", 0) < config.MAX_SYNTHESIS_ATTEMPTS:
         return "synthesize"
