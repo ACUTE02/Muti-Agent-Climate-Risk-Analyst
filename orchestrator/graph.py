@@ -30,7 +30,9 @@ from heat.tool import forecast_heat_stress_risk
 from orchestrator import config
 from orchestrator.grounding import (check_grounding, log_failure,
                                     warning_banner)
+from retrieval import config as rconfig
 from retrieval.external import fetch_external_sources
+from retrieval.live import gather_with_deadline
 from retrieval.outlooks import fetch_outlooks
 from retrieval.tool import retrieve_context_tool
 
@@ -281,27 +283,39 @@ def fetch_type_c(state: ReportState) -> ReportState:
     never replaced by an undated cached copy.
     """
     warnings = list(state.get("warnings", []))
-    try:
-        payload = fetch_outlooks()
-    except Exception as exc:
-        payload = {"outlooks": [], "any_unavailable": True,
-                   "error": f"{type(exc).__name__}: {exc}"}
-        warnings.append("IMD outlook fetch failed entirely")
 
-    if payload.get("any_unavailable"):
-        warnings.append("at least one IMD outlook was unavailable")
+    def failed(label: str, exc: BaseException | None = None) -> dict:
+        warnings.append(f"{label} fetch failed entirely")
+        return {"any_unavailable": True,
+                "error": f"{type(exc).__name__}: {exc}" if exc else "timed out"}
+
+    def outlooks() -> dict:
+        try:
+            return fetch_outlooks()
+        except Exception as exc:
+            return {"outlooks": [], **failed("IMD outlook", exc)}
 
     # Phase 8: the other two live sources, on the same node and under the same
     # contract as IMD — attributed by name, never merged into this project's own
     # tool outputs, and reported as unavailable rather than substituted for.
-    try:
-        external = fetch_external_sources(region=state.get("region"),
+    def externals() -> dict:
+        try:
+            return fetch_external_sources(region=state.get("region"),
                                           crop=state.get("crop"),
                                           month=state.get("month"))
-    except Exception as exc:
-        external = {"sources": [], "any_unavailable": True,
-                    "error": f"{type(exc).__name__}: {exc}"}
-        warnings.append("external source fetch failed entirely")
+        except Exception as exc:
+            return {"sources": [], **failed("external source", exc)}
+
+    # Both aggregators enforce the live-fetch deadline themselves; running them
+    # side by side keeps the whole node near one deadline instead of two. The
+    # outer limit is only a backstop for a step that hangs outside a request.
+    payload, external = gather_with_deadline(
+        [outlooks, externals], rconfig.LIVE_FETCH_DEADLINE_S + 15,
+        lambda i: ({"outlooks": [], **failed("IMD outlook")} if i == 0
+                   else {"sources": [], **failed("external source")}))
+
+    if payload.get("any_unavailable"):
+        warnings.append("at least one IMD outlook was unavailable")
 
     for source in external.get("sources", []):
         if not source.get("available"):

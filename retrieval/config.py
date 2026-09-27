@@ -63,6 +63,13 @@ USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 FETCH_TIMEOUT = 120
 
+# Report-time fetches (IMD outlooks, NASA POWER, data.gov.in) are held to much
+# tighter limits than the one-off corpus build above: a report waits on them.
+LIVE_FETCH_TIMEOUT = (5, 20)   # (connect, read) seconds per request
+LIVE_FETCH_ATTEMPTS = 2
+LIVE_FETCH_DEADLINE_S = 45     # a source still running after this is reported
+#                                unavailable rather than waited for
+
 # --------------------------------------------------------------------------- #
 # Type A — domain reference documents
 # --------------------------------------------------------------------------- #
