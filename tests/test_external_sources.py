@@ -94,6 +94,33 @@ def test_unknown_crop_and_absent_crop_are_different_reported_states():
     assert "no crop was part of this request" in absent["reason"]
 
 
+def test_data_gov_key_never_appears_in_a_failure_reason(monkeypatch):
+    """requests puts the full URL, query string included, into connection errors."""
+    key = "FAKE-KEY-0123456789abcdef"
+
+    def refused(url, params=None, **kwargs):
+        query = "&".join(f"{k}={v}" for k, v in params.items())
+        raise external.requests.ConnectionError(
+            f"HTTPSConnectionPool(host='api.data.gov.in', port=443): Max retries "
+            f"exceeded with url: /resource/x?{query}")
+
+    monkeypatch.setattr(external, "get_data_gov_key", lambda: key)
+    monkeypatch.setattr(external.requests, "get", refused)
+    monkeypatch.setattr(external.time, "sleep", lambda s: None)
+
+    result = external.fetch_mandi_prices("barmer", "bajra")
+
+    assert result["available"] is False
+    assert key not in json.dumps(result)
+    assert "api-key=<redacted>" in result["reason"]
+
+
+def test_scrub_removes_an_api_key_param_even_if_the_value_differs():
+    text = "failed: /resource/x?api-key=SOMETHING_ELSE&format=json"
+    assert external._scrub_key(text, "not-in-text") == \
+        "failed: /resource/x?api-key=<redacted>&format=json"
+
+
 def test_aggregate_never_raises_even_if_both_sources_fail(monkeypatch):
     monkeypatch.setattr(external.requests, "get",
                         lambda *a, **k: (_ for _ in ()).throw(OSError("down")))

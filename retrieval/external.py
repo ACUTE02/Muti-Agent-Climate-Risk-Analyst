@@ -37,6 +37,7 @@ Run standalone:  python -m retrieval.external [region] [crop]
 from __future__ import annotations
 
 import os
+import re
 import time
 from datetime import datetime, timezone
 
@@ -198,6 +199,18 @@ def get_data_gov_key() -> str | None:
     return None
 
 
+def _scrub_key(text: str, key: str | None) -> str:
+    """Remove the data.gov.in key from text that can leave this module.
+
+    The portal only accepts the key as a query parameter, and requests puts the
+    full URL into connection-error messages, so an unscrubbed failure reason
+    would carry the key into the API response, the UI and the synthesis prompt.
+    """
+    if key:
+        text = text.replace(key, "<redacted>")
+    return re.sub(r"(api-key=)[^&\s'\"]+", r"\1<redacted>", text)
+
+
 def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
     """Today's official mandi prices for a crop in the region's state."""
     record = _base_record(
@@ -268,7 +281,7 @@ def fetch_mandi_prices(region: str, crop: str | None = None) -> dict:
                               "does not derive yield impact from them.")
             return {**record, "available": True}
         except Exception as exc:
-            last_error = f"{type(exc).__name__}: {exc}"
+            last_error = _scrub_key(f"{type(exc).__name__}: {exc}", key)
             time.sleep(2 * (attempt + 1))
 
     return {**record, "available": False,
