@@ -44,7 +44,7 @@ def test_unsupported_region_raises_a_clear_error(bad):
 
 
 @pytest.mark.parametrize("region", list(config.REGIONS))
-def test_forecast_returns_measured_per_horizon_confidence(region):
+def test_forecast_returns_measured_per_horizon_confidence(region, forecast_artifacts):
     """Phase 1.5 schema: every horizon carries its own measured skill and a label
     derived from it — never a hardcoded confidence."""
     if not config.HORIZON_MANIFEST_PATH.exists():

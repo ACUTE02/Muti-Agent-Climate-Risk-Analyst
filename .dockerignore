@@ -21,6 +21,12 @@ retrieval/chunks.jsonl
 # Not needed to run the API
 *.docx
 ~$*
-CLAUDE*.md
-design_export/          # the design-tool prototype; frontend/ is the real thing
+**/CLAUDE*.md
+# the design-tool prototype; frontend/ is the real thing
+design_export/
 orchestrator/grounding_failures.jsonl
+
+# Private working notes and phase specs. EVALUATION.md and PROJECT_LOG.md are
+# deliberately NOT listed: /evaluation serves the first and the retrieval corpus
+# indexes the second, so an image built from the author's checkout needs both.
+internal_docs/

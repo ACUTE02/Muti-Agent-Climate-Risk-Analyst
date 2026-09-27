@@ -326,7 +326,7 @@ def test_out_of_scope_crop_region_combination_is_declined():
     assert "not in scope" in result["risk_reasoning"]
 
 
-def test_past_month_gets_no_drought_forecast_and_says_why():
+def test_past_month_gets_no_drought_forecast_and_says_why(forecast_artifacts):
     result = assess_crop_impact_core("rajasthan", "wheat", "2024-03",
                                      with_narrative=False)
 
@@ -335,7 +335,7 @@ def test_past_month_gets_no_drought_forecast_and_says_why():
     assert "already happened" in drought["reason"]
 
 
-def test_record_warm_february_produces_the_sourced_estimate():
+def test_record_warm_february_produces_the_sourced_estimate(forecast_artifacts):
     """End-to-end through the real pipeline, no model call: Jaipur, Feb 2006."""
     result = assess_crop_impact_core("rajasthan", "wheat", "2006-02",
                                      with_narrative=False)
@@ -346,7 +346,7 @@ def test_record_warm_february_produces_the_sourced_estimate():
     assert result["confidence_label"].startswith("observed")
 
 
-def test_default_month_lands_in_the_crops_sensitive_window():
+def test_default_month_lands_in_the_crops_sensitive_window(forecast_artifacts):
     for crop, spec in config.CROPS.items():
         region = spec["regions"][0]
         target, _, _ = resolve_target_month(region, crop, None)

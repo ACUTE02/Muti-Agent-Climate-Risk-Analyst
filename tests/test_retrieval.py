@@ -27,6 +27,10 @@ def manifest():
 
 @pytest.fixture(scope="module")
 def chunks():
+    # The manifest is tracked but chunks.jsonl is not, so a fresh clone has one
+    # without the other.
+    if not config.CHUNKS_PATH.exists():
+        pytest.skip("no chunks yet — run `python -m retrieval.build`")
     return read_chunks()
 
 
@@ -166,8 +170,17 @@ def test_prose_chunking_overlaps_consecutive_chunks():
 def test_project_documents_load_from_the_repo():
     for src in config.TYPE_B_SOURCES:
         loaded = load_project_document(src)
-        assert loaded.usable, f"{src['id']}: {loaded.reason}"
         assert loaded.citation == src["path"]        # repo-relative, not a URL
+        if src.get("local_only") and not (config.REPO_ROOT / src["path"]).exists():
+            assert "local-only" in loaded.reason     # dropped, and says why
+            continue
+        assert loaded.usable, f"{src['id']}: {loaded.reason}"
+
+
+def test_only_the_local_only_document_may_be_absent():
+    """Everything else in Type B is tracked; only the project log is private."""
+    local_only = {s["id"] for s in config.TYPE_B_SOURCES if s.get("local_only")}
+    assert local_only == {"project_log"}
 
 
 def test_the_measured_skill_numbers_are_actually_in_the_corpus(chunks):

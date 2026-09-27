@@ -20,8 +20,13 @@ from fastapi.testclient import TestClient
 
 from api import quota
 from api.app import app
+from evaluation import config as econfig
 
 client = TestClient(app)
+
+needs_scorecard = pytest.mark.skipif(
+    not econfig.SCORECARD_PATH.exists(),
+    reason="EVALUATION.md is local-only and absent from this checkout")
 
 
 # --------------------------------------------------------------------------- #
@@ -321,6 +326,7 @@ def test_examples_include_an_impossible_request():
     assert "impossible_request" in ids
 
 
+@needs_scorecard
 def test_evaluation_serves_the_scorecard_and_a_summary():
     body = client.get("/evaluation").json()
 
@@ -329,10 +335,19 @@ def test_evaluation_serves_the_scorecard_and_a_summary():
     assert "known_defect" in body["summary"]["grounding_checker"]
 
 
+@needs_scorecard
 def test_evaluation_markdown_endpoint_returns_plain_text():
     response = client.get("/evaluation.md")
     assert response.status_code == 200
     assert response.text.startswith("# Evaluation")
+
+
+@pytest.mark.parametrize("path", ["/evaluation", "/evaluation.md"])
+def test_absent_scorecard_is_a_clear_404_not_a_crash(monkeypatch, tmp_path, path):
+    monkeypatch.setattr(econfig, "SCORECARD_PATH", tmp_path / "EVALUATION.md")
+    response = client.get(path)
+    assert response.status_code == 404
+    assert "local-only" in response.json()["detail"]
 
 
 def test_quota_endpoint_reports_budget_and_remaining():

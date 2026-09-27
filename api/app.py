@@ -268,16 +268,20 @@ def health() -> dict:
         "api_key_present": bool(key_present),
         "quota": quota.status(),
         "note": ("'degraded' means the app is up but regenerable artifacts are "
-                 "absent — run `python -m scripts.setup`. See "
-                 "SETUP_FROM_CLEAN.md."),
+                 "absent — run `python -m scripts.setup` (add --check to list "
+                 "what is missing without changing anything)."),
     }
+
+
+SCORECARD_ABSENT = ("EVALUATION.md is not present. The scorecard is kept "
+                    "local-only by the author, so a fresh clone does not have it.")
 
 
 @app.get("/evaluation")
 def evaluation() -> dict:
     """How good is this system — served without running a new evaluation."""
     if not econfig.SCORECARD_PATH.exists():
-        raise HTTPException(status_code=404, detail="EVALUATION.md is not present")
+        raise HTTPException(status_code=404, detail=SCORECARD_ABSENT)
 
     summary = {}
     if econfig.CHECKER_EVAL_PATH.exists():
@@ -302,7 +306,7 @@ def evaluation() -> dict:
 def evaluation_markdown() -> str:
     """The scorecard as raw Markdown, for a client that renders it directly."""
     if not econfig.SCORECARD_PATH.exists():
-        raise HTTPException(status_code=404, detail="EVALUATION.md is not present")
+        raise HTTPException(status_code=404, detail=SCORECARD_ABSENT)
     return econfig.SCORECARD_PATH.read_text(encoding="utf-8")
 
 
