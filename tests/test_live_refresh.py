@@ -152,7 +152,7 @@ def test_health_reports_data_currency():
 # The forecast says which real months it is about
 # --------------------------------------------------------------------------- #
 @pytest.mark.parametrize("region", REGIONS)
-def test_forecast_names_the_months_it_predicts(region):
+def test_forecast_names_the_months_it_predicts(region, forecast_artifacts):
     from forecasting.tool import forecast_drought_risk
 
     result = forecast_drought_risk.invoke({"region": region})
@@ -184,7 +184,8 @@ def test_refreshed_forecast_targets_months_after_the_fixed_archive(region):
 # The crop tool and the forecast must agree about which month is which
 # --------------------------------------------------------------------------- #
 @pytest.mark.parametrize("region", REGIONS)
-def test_crop_horizon_maps_to_the_same_month_the_forecast_names(region):
+def test_crop_horizon_maps_to_the_same_month_the_forecast_names(region,
+                                                                forecast_artifacts):
     """A horizon offset by one would put t+1's SPI-3 under the wrong month.
 
     Caught for real during Phase 8: the crop tool anchored on the newest

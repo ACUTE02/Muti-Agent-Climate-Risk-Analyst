@@ -86,7 +86,10 @@ def test_a_crash_inside_a_fetch_becomes_a_reported_reason(monkeypatch):
     assert "simulated outage" in result["reason"]
 
 
-def test_unknown_crop_and_absent_crop_are_different_reported_states():
+def test_unknown_crop_and_absent_crop_are_different_reported_states(monkeypatch):
+    # Both crop checks sit behind the key check, so pin a key: without one, both
+    # calls return the same "no key" reason and the test depends on the machine.
+    monkeypatch.setattr(external, "get_data_gov_key", lambda: "dummy-key")
     absent = external.fetch_mandi_prices("rajasthan", None)
     unknown = external.fetch_mandi_prices("rajasthan", "dragonfruit")
     assert absent["available"] is False and unknown["available"] is False

@@ -144,6 +144,9 @@ TYPE_B_SOURCES = [
         "id": "project_log",
         "title": "Project Log — Multi-Agent Climate Risk Analyst",
         "path": "PROJECT_LOG.md",
+        # Kept on the author's machine only (gitignored), so a fresh clone
+        # builds the corpus without it and the manifest records why.
+        "local_only": True,
         "why": "The full decision and result record, including every negative "
                "result and why it was accepted.",
     },

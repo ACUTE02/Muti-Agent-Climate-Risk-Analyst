@@ -293,8 +293,9 @@ def assess_crop_impact(region: str = fconfig.DEFAULT_REGION,
                        month: str | None = None) -> dict:
     """
     Assesses the impact of climate risk on a named crop in a supported Indian
-    region, for a given month (defaults to the crop's most recent completed
-    sensitive growth window).
+    region, for a given month (defaults to the crop's next sensitive growth
+    month within the 3-month drought forecast, else its most recent completed
+    sensitive window).
 
     Decides deterministically which risk factor — drought or heat — is actually
     binding on yield for that crop, region and month, respecting each signal's

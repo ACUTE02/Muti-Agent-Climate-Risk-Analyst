@@ -144,8 +144,11 @@ def load_project_document(source: dict) -> SourceText:
     """Type B: this project's own markdown, read from the repo."""
     path = config.REPO_ROOT / source["path"]
     if not path.exists():
+        reason = (f"{source['path']} is kept local-only and is absent from this "
+                  "checkout" if source.get("local_only")
+                  else f"missing file {source['path']}")
         return SourceText(source["id"], source["title"], "", source["path"],
-                          usable=False, reason=f"missing file {source['path']}")
+                          usable=False, reason=reason)
 
     text = path.read_text(encoding="utf-8")
     return SourceText(source["id"], source["title"], text, source["path"],
