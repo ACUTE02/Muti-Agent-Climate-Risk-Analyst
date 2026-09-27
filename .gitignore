@@ -52,3 +52,10 @@ orchestrator/grounding_failures.jsonl
 # internal working docs (project log, phase specs, tech spec, audit report,
 # old README draft) - not part of the public repo, kept locally only
 internal_docs/
+
+# EVALUATION.md and PROJECT_LOG.md are runtime dependencies (evaluation
+# endpoint reads EVALUATION.md; retrieval corpus indexes PROJECT_LOG.md) so
+# they must exist at the repo root for the app to work, but they stay local
+# only and are deliberately never pushed to the public GitHub repo.
+/EVALUATION.md
+/PROJECT_LOG.md
