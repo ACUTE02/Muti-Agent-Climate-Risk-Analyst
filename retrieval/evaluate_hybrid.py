@@ -28,6 +28,7 @@ from datetime import datetime, timezone
 
 from retrieval import config, tool
 from retrieval import rerank as rerank_module
+from retrieval.chunk import read_chunks
 from retrieval.lexical import bm25_search
 
 CONFIGS = [
@@ -113,6 +114,24 @@ def load_labels(path) -> dict[str, dict[str, bool]]:
             for qid, q in spec["queries"].items()}
 
 
+def check_labels_match_corpus(labels_by_set: dict[str, dict[str, dict[str, bool]]],
+                              corpus_ids: set[str]) -> None:
+    """Refuse to score against labels whose chunk ids this corpus does not have.
+
+    Unjudged chunks score as not relevant, so labels from a different build of
+    the corpus would not error on their own — every config would just quietly
+    score zero. Checked before any embedding call is spent.
+    """
+    missing = {chunk_id for labels in labels_by_set.values()
+               for query in labels.values() for chunk_id in query} - corpus_ids
+    if missing:
+        raise ValueError(
+            f"{len(missing)} labelled chunk ids are not in chunks.jsonl "
+            f"(e.g. {sorted(missing)[:3]}). The labels were made against a "
+            "different build of the corpus; re-key them with "
+            "`python -m scripts.migrate_chunk_ids` before evaluating.")
+
+
 def is_negative(query: dict) -> bool:
     return query.get("type") == "negative" or bool(query.get("excluded_from_mean"))
 
@@ -185,6 +204,9 @@ def evaluate() -> dict:
     for set_name, (queries_path, labels_path) in QUERY_SETS.items():
         queries = json.loads(queries_path.read_text(encoding="utf-8"))["queries"]
         loaded[set_name] = (queries, load_labels(labels_path))
+
+    check_labels_match_corpus({name: labels for name, (_, labels) in loaded.items()},
+                              {c["id"] for c in read_chunks()})
 
     vectors: dict[str, list[float]] = {}
     embedding_calls = 0
